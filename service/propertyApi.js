@@ -19,7 +19,7 @@ const propertyApi = {
             })
             .catch(handleError),
 
-    getOne: async (id) => await fetch(`${BACKEND_URL}/api/accommodation/property/${id}/`, {
+    getOne: async (id) => await fetch(`${BACKEND_URL}/api/accommodation/property/${id}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -54,7 +54,7 @@ const propertyApi = {
             .catch(handleError),
 
     update: async (property) =>
-        await fetch(`${BACKEND_URL}/api/accommodation/property/${property.id}/`, {
+        await fetch(`${BACKEND_URL}/api/accommodation/property/${property.id}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -72,7 +72,7 @@ const propertyApi = {
             .catch(handleError),
 
     delete: async (propertyId) =>
-        await fetch(`${BACKEND_URL}/api/accommodation/property/${propertyId}/`, {
+        await fetch(`${BACKEND_URL}/api/accommodation/property/${propertyId}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
