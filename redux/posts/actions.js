@@ -1,0 +1,38 @@
+const postActions = {
+  GET_ALL_POSTS_REQUEST: "GET_ALL_POSTS_REQUEST",
+  GET_ALL_POSTS_SUCCESS: "GET_ALL_POSTS_SUCCESS",
+  GET_ALL_POSTS_FAILURE: "GET_ALL_POSTS_FAILURE",
+  GET_POST_REQUEST: "GET_POST_REQUEST",
+  GET_POST_SUCCESS: "GET_POST_SUCCESS",
+  GET_POST_FAILURE: "GET_POST_FAILURE",
+  ADD_POST_REQUEST: "ADD_POST_REQUEST",
+  ADD_POST_SUCCESS: "ADD_POST_SUCCESS",
+  ADD_POST_FAILURE: "ADD_POST_FAILURE",
+  UPDATE_POST_REQUEST: "UPDATE_POST_REQUEST",
+  UPDATE_POST_SUCCESS: "UPDATE_POST_SUCCESS",
+  UPDATE_POST_FAILURE: "UPDATE_POST_FAILURE",
+  DELETE_POST_REQUEST: "DELETE_POST_REQUEST",
+  DELETE_POST_SUCCESS: "DELETE_POST_SUCCESS",
+  DELETE_POST_FAILURE: "DELETE_POST_FAILURE",
+
+  getAllPosts: () => ({
+    type: postActions.GET_ALL_POSTS_REQUEST,
+  }),
+  getPost: (postId) => ({
+    type: postActions.GET_POST_REQUEST,
+    postId,
+  }),
+  addPost: (newPost) => ({
+    type: postActions.ADD_POST_REQUEST,
+    post: newPost,
+  }),
+  updatePost: (newPost) => ({
+    type: postActions.UPDATE_POST_REQUEST,
+    post: newPost,
+  }),
+  deletePost: (postId) => ({
+    type: postActions.DELETE_POST_REQUEST,
+    postId,
+  }),
+};
+export default postActions;

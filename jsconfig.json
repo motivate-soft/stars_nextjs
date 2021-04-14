@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@redux/*": ["redux/*"],
+      "@context/*": ["context/*"],
+      "@styled/*": ["styled/*"],
+      "@iso/assets": ["shared/assets"],
+      "@iso/assets/*": ["shared/assets/*"],
+      "@iso/config": ["shared/config"],
+      "@iso/config/*": ["shared/config/*"],
+      "@iso/components": ["shared/components"],
+      "@iso/components/*": ["shared/components/*"],
+      "@iso/containers": ["shared/containers"],
+      "@iso/containers/*": ["shared/containers/*"],
+      "@iso/lib": ["shared/library"],
+      "@iso/lib/*": ["shared/library/*"],
+      "@iso/ui": ["shared/UI"],
+      "@iso/ui/*": ["shared/UI/*"],
+      "@iso/redux": ["shared/redux"],
+      "@iso/redux/*": ["shared/redux/*"]
+    }
+  }
+}
