@@ -33,6 +33,7 @@ const QuillEditor = styled.div`
   .ql-container {
     font-family: ${font('primary', 0)};
     min-height: 220px;
+
   }
 
   .ql-editor p,

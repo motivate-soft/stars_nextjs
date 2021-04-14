@@ -100,7 +100,7 @@ const propertyApi = {
         )
             .then(res => {
                 if (res.ok) {
-                    return null
+                    return res.json()
                 }
                 throw res;
             })
@@ -117,7 +117,7 @@ const propertyApi = {
         })
             .then(res => {
                 if (res.ok) {
-                    return null
+                    return res.json()
                 }
                 throw res;
             })

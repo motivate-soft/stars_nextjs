@@ -18,7 +18,7 @@ export default class SortableMediaGallery extends React.Component {
                             paddingTop: "100%",
                         }}
                         className="gallery-item"
-                    ></div>
+                    />
                 </Col>
             );
         });

@@ -26,7 +26,7 @@ export default function FeaturedImage(props) {
     return (
         <div>
             <Button type="primary" onClick={showModal} style={{marginTop: 20}}>
-                Attach Featured Image
+                {selectedItem ? 'Change Featured Image' : 'Attach Featured Image'}
             </Button>
             <Modal
                 visible={visible}

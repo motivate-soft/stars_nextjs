@@ -1,39 +1,22 @@
 import React from "react";
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
-import Box from "@iso/components/utility/box";
 import Tabs, {TabPane} from "@iso/components/uielements/tabs";
 import Editor from "@iso/components/uielements/editor";
 import Location from "@components/Admin/Property/Location/Location";
 import basicStyle from "@iso/assets/styles/constants";
 import {Row, Col, Button} from "antd";
+import arrayMove from "array-move";
 import Setting from "@components/Admin/Property/Setting/Setting";
 import Main from "@components/Admin/Property/Main/Main";
 import Amenity from "@components/Admin/Property/Amenity/Amenity";
 import Rooms from "@components/Admin/Property/Room/Rooms";
-import arrayMove from "array-move";
 import Gallery from "@components/Admin/Property/Gallery/Gallery";
 import FeaturedImage from "@components/Admin/Property/FeaturedImage/FeaturedImage";
 import {useDispatch} from "react-redux";
 import propertyActions from "@redux/properties/actions";
+import {SinglePropertyWrapper} from "@components/Admin/Property/PropertyList.styles";
+import Link from "next/link";
 
-function uploadCallback(file) {
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://api.imgur.com/3/image");
-        xhr.setRequestHeader("Authorization", "Client-ID 8d26ccd12712fca");
-        const data = new FormData();
-        data.append("image", file);
-        xhr.send(data);
-        xhr.addEventListener("load", () => {
-            const response = JSON.parse(xhr.responseText);
-            resolve(response);
-        });
-        xhr.addEventListener("error", () => {
-            const error = JSON.parse(xhr.responseText);
-            reject(error);
-        });
-    });
-}
 
 const newProperty = {
     name: "",
@@ -129,8 +112,8 @@ export default function AddProperty() {
         wrapperClassName: "home-wrapper",
         editorClassName: "home-editor",
         // onEditorStateChange: onEditorStateChange,
-        uploadCallback: uploadCallback,
-        toolbar: {image: {uploadCallback: uploadCallback}},
+        // uploadCallback: uploadCallback,
+        // toolbar: {image: {uploadCallback: uploadCallback}},
     };
 
     function handlePlaceChange(place) {
@@ -242,13 +225,21 @@ export default function AddProperty() {
 
     function handleUploadSuccess(image) {
         const {galleryImgs} = state;
-        galleryImgs.push(image);
+        galleryImgs.push({
+            ...image,
+            order: galleryImgs.length - 1
+        });
         setState({...state, galleryImgs});
     }
 
     function handleSortEnd({oldIndex, newIndex}) {
+        const newArray = arrayMove(state.galleryImgs, oldIndex, newIndex);
         setState({
-            galleryImgs: arrayMove(state.galleryImgs, oldIndex, newIndex),
+            ...state,
+            galleryImgs: newArray.map((image, index) => ({
+                ...image,
+                order: index + 1
+            })),
         });
     }
 
@@ -260,96 +251,91 @@ export default function AddProperty() {
 
     return (
         <LayoutWrapper>
-            <Box>
-                <Button type="primary" onClick={handleSave}>
-                    Save
-                </Button>
-                <Button type="default" onClick={handleReset}>
-                    Reset
-                </Button>
-            </Box>
-            <div
-                style={{
-                    display: "flex",
-                    flexFlow: "row wrap",
-                    alignItems: "flex-start",
-                    overflow: "hidden",
-                }}
-            ></div>
-            <Row style={rowStyle} gutter={0} justify="start">
-                <Col lg={8} md={12} sm={24} xs={24} style={colStyle}>
-                    <div style={{margin: "0 20px", background: "#fff", padding: 20}}>
-                        <Main
-                            name={state.name}
-                            bookervilleId={state.bookervilleId}
-                            category={state.category}
-                            onValuesChange={handleMainInfoChange}
-                        />
-                        <Gallery
-                            items={state.galleryImgs}
-                            onSortEnd={handleSortEnd}
-                            onUploadSuccess={handleUploadSuccess}
-                        />
-                        <FeaturedImage
-                            items={state.galleryImgs}
-                            selectedItem={state.featuredImg}
-                            onUploadSuccess={handleUploadSuccess}
-                            onSelectImage={handleSelectFeatured}
-                        />
-                    </div>
-                </Col>
-                <Col lg={16} md={12} sm={24} xs={24} style={colStyle}>
-                    <Tabs
-                        defaultActiveKey="1"
-                        onChange={callback}
-                        style={{margin: "0 20px", background: "#fff", padding: 20}}
-                    >
-                        {["description", "neighbourhood", "transit"].map((item) => (
-                            <TabPane
-                                tab={item.charAt(0).toUpperCase() + item.slice(1)}
-                                key={item}
-                            >
-                                <Editor
-                                    {...editorOption}
-                                    onEditorStateChange={(html) =>
-                                        setState({...state, [item]: html})
-                                    }
+            <SinglePropertyWrapper>
+                <div className="property-detail-actions">
+                    <Button type="primary" onClick={handleSave} style={{marginRight: 20}}>
+                        Save
+                    </Button>
+                    <Button type="default" onClick={handleReset}>
+                        Reset
+                    </Button>
+                    <Link href="/admin/property"><Button type="primary">Back to List</Button></Link>
+                </div>
+                <Row style={rowStyle} gutter={0} justify="start">
+                    <Col lg={8} md={12} sm={24} xs={24} style={colStyle}>
+                        <div className="property-detail-main">
+                            <Main
+                                name={state.name}
+                                bookervilleId={state.bookervilleId}
+                                category={state.category}
+                                onValuesChange={handleMainInfoChange}
+                            />
+                            <Gallery
+                                items={state.galleryImgs}
+                                onSortEnd={handleSortEnd}
+                                onUploadSuccess={handleUploadSuccess}
+                            />
+                            <FeaturedImage
+                                items={state.galleryImgs}
+                                selectedItem={state.featuredImg}
+                                onUploadSuccess={handleUploadSuccess}
+                                onSelectImage={handleSelectFeatured}
+                            />
+                        </div>
+                    </Col>
+                    <Col lg={16} md={12} sm={24} xs={24} style={colStyle}>
+                        <Tabs
+                            defaultActiveKey="1"
+                            onChange={callback}
+                            className="property-detail-tab"
+                        >
+                            {["description", "neighbourhood", "transit"].map((item) => (
+                                <TabPane
+                                    tab={item.charAt(0).toUpperCase() + item.slice(1)}
+                                    key={item}
+                                >
+                                    <Editor
+                                        {...editorOption}
+                                        onEditorStateChange={(html) =>
+                                            setState({...state, [item]: html})
+                                        }
+                                    />
+                                </TabPane>
+                            ))}
+                            <TabPane tab="Location" key="location">
+                                <Location
+                                    address={state.address}
+                                    center={{
+                                        lat: state.lat,
+                                        lng: state.lng,
+                                    }}
+                                    onPlaceChange={handlePlaceChange}
+                                    onReset={handlePlaceReset}
                                 />
                             </TabPane>
-                        ))}
-                        <TabPane tab="Location" key="location">
-                            <Location
-                                address={state.address}
-                                center={{
-                                    lat: state.lat,
-                                    lng: state.lng,
-                                }}
-                                onPlaceChange={handlePlaceChange}
-                                onReset={handlePlaceReset}
-                            />
-                        </TabPane>
-                        <TabPane tab="Setting" key="setting">
-                            <Setting setting={state} onValuesChange={handleSettingChange}/>
-                        </TabPane>
-                        <TabPane tab="Amenity" key="amenity">
-                            <Amenity
-                                amenities={[]}
-                                onValuesChange={handleAmenityChange}
-                                onToggleOption={handleToggleAmenityOption}
-                            />
-                        </TabPane>
-                        <TabPane tab="Bedtype" key="rooms">
-                            <Rooms
-                                rooms={state.rooms}
-                                onRoomChange={handleChangeRoom}
-                                onAddRoom={handleAddRoom}
-                                onRemoveRoom={handleRemoveRoom}
-                                onValuesChange={handleSettingChange}
-                            />
-                        </TabPane>
-                    </Tabs>
-                </Col>
-            </Row>
+                            <TabPane tab="Setting" key="setting">
+                                <Setting setting={state} onValuesChange={handleSettingChange}/>
+                            </TabPane>
+                            <TabPane tab="Amenity" key="amenity">
+                                <Amenity
+                                    amenities={[]}
+                                    onValuesChange={handleAmenityChange}
+                                    onToggleOption={handleToggleAmenityOption}
+                                />
+                            </TabPane>
+                            <TabPane tab="Bedtype" key="rooms">
+                                <Rooms
+                                    rooms={state.rooms}
+                                    onRoomChange={handleChangeRoom}
+                                    onAddRoom={handleAddRoom}
+                                    onRemoveRoom={handleRemoveRoom}
+                                    onValuesChange={handleSettingChange}
+                                />
+                            </TabPane>
+                        </Tabs>
+                    </Col>
+                </Row>
+            </SinglePropertyWrapper>
         </LayoutWrapper>
     );
 }

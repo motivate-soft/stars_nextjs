@@ -29,7 +29,7 @@ const tableColumns = [
 ];
 
 export default function SimilarProperty(props) {
-    const {selectedItems, onRowSelection} = props
+    const {propertyId, selectedItems, onRowSelection} = props
     const dispatch = useDispatch();
 
     const {items, loading} = useSelector((state) => state.Properties);
@@ -45,7 +45,7 @@ export default function SimilarProperty(props) {
     useEffect(() => {
         setState({
             ...state,
-            dataList: items
+            dataList: items.filter(item => item.id !== propertyId)
         });
     }, [items]);
 
@@ -79,7 +79,7 @@ export default function SimilarProperty(props) {
                                 ...rowSelection,
                             }}
                             columns={columns}
-                            dataSource={items}
+                            dataSource={dataList}
                             className="propertyListTable"
                         />
                     </Scrollbars>

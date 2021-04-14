@@ -48,6 +48,7 @@ export default function propertiesReducer(state = initState, action) {
                 error: action.error,
                 loading: false,
             };
+
         // Add
         case propertyActions.ADD_PROPERTY_REQUEST:
             return {
@@ -78,11 +79,12 @@ export default function propertiesReducer(state = initState, action) {
         case propertyActions.UPDATE_PROPERTY_SUCCESS:
             return {
                 ...state,
-                items: state.items.map((item) => {
-                    if (item.id === action.item.id) {
-                        item = action.item;
-                    }
-                }),
+                // items: state.items.map((item) => {
+                //     if (item.id === action.item.id) {
+                //         return action.item;
+                //     }
+                //     return item
+                // }),
                 selectedItem: action.item,
                 loading: false,
             };

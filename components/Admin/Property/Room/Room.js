@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, Select } from "antd";
 import { BACKEND_URL } from "env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import Button from "@iso/components/uielements/button";
+import {CloseOutlined} from "@ant-design/icons";
 const { Option } = Select;
 
 const formItemLayout = {
@@ -74,9 +75,8 @@ export default function Room(props) {
             </Form.Item>
           </Col>
           <Col lg={4} sm={24}>
-            <Button type="primary" onClick={() => onRemoveRoom(id)}>
-              remove
-            </Button>
+            <CloseOutlined onClick={() => onRemoveRoom(id)}/>
+
           </Col>
         </Row>
       </Form>

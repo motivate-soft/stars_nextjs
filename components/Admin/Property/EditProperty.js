@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
+import Link from 'next/link';
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
-import Box from "@iso/components/utility/box";
 import Tabs, {TabPane} from "@iso/components/uielements/tabs";
 import Location from "@components/Admin/Property/Location/Location";
 import basicStyle from "@iso/assets/styles/constants";
@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import propertyActions from "@redux/properties/actions";
 import PricingCalendar from "@components/Admin/Property/PricingCalendar/PricingCalendar";
 import SimilarProperty from "@components/Admin/Property/SimilarProperty/SimilarProperty";
+import {SinglePropertyWrapper} from "@components/Admin/Property/PropertyList.styles";
 
 function uploadCallback(file) {
     return new Promise((resolve, reject) => {
@@ -90,7 +91,7 @@ export default function EditProperty(props) {
     }, []);
 
     useEffect(() => {
-        if (`${selectedItem.id}` === `${propertyId}`) {
+        if (selectedItem.id === parseInt(propertyId)) {
             setState({
                 id: selectedItem.id,
                 bookervilleId: selectedItem.bookerville_id,
@@ -305,16 +306,21 @@ export default function EditProperty(props) {
 
     function handleUploadSuccess(image) {
         const {galleryImgs} = state;
-        galleryImgs.push(image);
+        galleryImgs.push({
+            ...image,
+            order: galleryImgs.length - 1
+        });
         setState({...state, galleryImgs});
     }
 
     function handleSortEnd({oldIndex, newIndex}) {
         const newArray = arrayMove(state.galleryImgs, oldIndex, newIndex);
-
         setState({
             ...state,
-            galleryImgs: newArray,
+            galleryImgs: newArray.map((image, index) => ({
+                ...image,
+                order: index + 1
+            })),
         });
     }
 
@@ -330,110 +336,110 @@ export default function EditProperty(props) {
 
     return (
         <LayoutWrapper>
-            <Row>
-                <Col sm={24}>
-                    <div style={{width: '100%', margin: "0 20px", background: "#fff", padding: 20}}>
-                        <Button type="primary" onClick={handleSave} style={{marginRight: 20}}>
-                            Save
-                        </Button>
-                        <Button type="default" onClick={handleReset}>
-                            Reset
-                        </Button>
-                    </div>
-                </Col>
-            </Row>
+            <SinglePropertyWrapper>
+                <div className="property-detail-actions">
+                    <Button type="primary" onClick={handleSave} style={{marginRight: 20}}>
+                        Save
+                    </Button>
+                    <Button type="default" onClick={handleReset}>
+                        Reset
+                    </Button>
+                    <Link href="/admin/property"><Button type="primary">Back to List</Button></Link>
+                    <a href={`/listing/${selectedItem.slug}`} target="_blank">Preview</a>
+                </div>
+                <Row style={rowStyle} gutter={0} justify="start">
+                    <Col lg={8} md={12} sm={24} xs={24} style={colStyle}>
+                        <div className="property-detail-main">
+                            {state.name !== "" && (
+                                <Main
+                                    name={state.name}
+                                    bookervilleId={state.bookervilleId}
+                                    category={state.category}
+                                    onValuesChange={handleMainInfoChange}
+                                />
+                            )}
 
-            <Row style={rowStyle} gutter={0} justify="start">
-                <Col lg={8} md={12} sm={24} xs={24} style={colStyle}>
-                    <div style={{margin: "0 20px", background: "#fff", padding: 20}}>
-                        {state.name !== "" && (
-                            <Main
-                                name={state.name}
-                                bookervilleId={state.bookervilleId}
-                                category={state.category}
-                                onValuesChange={handleMainInfoChange}
+                            <Gallery
+                                items={state.galleryImgs}
+                                onSortEnd={handleSortEnd}
+                                onUploadSuccess={handleUploadSuccess}
                             />
-                        )}
-
-                        <Gallery
-                            items={state.galleryImgs}
-                            onSortEnd={handleSortEnd}
-                            onUploadSuccess={handleUploadSuccess}
-                        />
-                        <FeaturedImage
-                            items={state.galleryImgs}
-                            selectedItem={state.featuredImg}
-                            onUploadSuccess={handleUploadSuccess}
-                            onSelectImage={handleSelectFeatured}
-                        />
-                    </div>
-                </Col>
-                <Col lg={16} md={12} sm={24} xs={24} style={colStyle}>
-                    <Tabs
-                        defaultActiveKey="1"
-                        onChange={callback}
-                        style={{margin: "0 20px", background: "#fff", padding: 20}}
-                    >
-                        {["description", "neighbourhood", "transit"].map((item) => (
-                            <TabPane
-                                tab={item.charAt(0).toUpperCase() + item.slice(1)}
-                                key={item}
-                            >
-                                {state?.[item] && (
-                                    <Editor
-                                        {...editorOption}
-                                        html={state[item]}
-                                        onEditorStateChange={(html) =>
-                                            setState({...state, [item]: html})
-                                        }
-                                    />
-                                )}
+                            <FeaturedImage
+                                items={state.galleryImgs}
+                                selectedItem={state.featuredImg}
+                                onUploadSuccess={handleUploadSuccess}
+                                onSelectImage={handleSelectFeatured}
+                            />
+                        </div>
+                    </Col>
+                    <Col lg={16} md={12} sm={24} xs={24} style={colStyle}>
+                        <Tabs
+                            defaultActiveKey="1"
+                            onChange={callback}
+                            className="property-detail-tab"
+                        >
+                            {["description", "neighbourhood", "transit"].map((item) => (
+                                <TabPane
+                                    tab={item.charAt(0).toUpperCase() + item.slice(1)}
+                                    key={item}
+                                >
+                                    {state?.[item] && (
+                                        <Editor
+                                            {...editorOption}
+                                            html={state[item]}
+                                            onEditorStateChange={(html) =>
+                                                setState({...state, [item]: html})
+                                            }
+                                        />
+                                    )}
+                                </TabPane>
+                            ))}
+                            <TabPane tab="Location" key="location">
+                                <Location
+                                    address={state.address}
+                                    center={{
+                                        lat: state.lat,
+                                        lng: state.lng,
+                                    }}
+                                    onPlaceChange={handlePlaceChange}
+                                    onReset={handlePlaceReset}
+                                />
                             </TabPane>
-                        ))}
-                        <TabPane tab="Location" key="location">
-                            <Location
-                                address={state.address}
-                                center={{
-                                    lat: state.lat,
-                                    lng: state.lng,
-                                }}
-                                onPlaceChange={handlePlaceChange}
-                                onReset={handlePlaceReset}
-                            />
-                        </TabPane>
-                        <TabPane tab="Setting" key="setting">
-                            <Setting setting={state} onValuesChange={handleSettingChange}/>
-                        </TabPane>
-                        <TabPane tab="Amenity" key="amenity">
-                            <Amenity
-                                amenities={state.amenities}
-                                onToggleOption={handleToggleAmenityOption}
-                            />
-                        </TabPane>
-                        <TabPane tab="Bedtype" key="rooms">
-                            <Rooms
-                                rooms={state.rooms}
-                                onRoomChange={handleChangeRoom}
-                                onAddRoom={handleAddRoom}
-                                onRemoveRoom={handleRemoveRoom}
-                                onValuesChange={handleSettingChange}
-                            />
-                        </TabPane>
-                        <TabPane tab="Pricing" key="pricing">
-                            <PricingCalendar
-                                propertyId={propertyId}
-                                defaultPrice={state.price}
-                            />
-                        </TabPane>
-                        <TabPane tab="Similar Properties" key="similar">
-                            <SimilarProperty
-                                selectedItems={state.similarProperties}
-                                onRowSelection={handleSimilarPropertyChange}
-                            />
-                        </TabPane>
-                    </Tabs>
-                </Col>
-            </Row>
+                            <TabPane tab="Setting" key="setting">
+                                <Setting setting={state} onValuesChange={handleSettingChange}/>
+                            </TabPane>
+                            <TabPane tab="Amenity" key="amenity">
+                                <Amenity
+                                    amenities={state.amenities}
+                                    onToggleOption={handleToggleAmenityOption}
+                                />
+                            </TabPane>
+                            <TabPane tab="Bedtype" key="rooms">
+                                <Rooms
+                                    rooms={state.rooms}
+                                    onRoomChange={handleChangeRoom}
+                                    onAddRoom={handleAddRoom}
+                                    onRemoveRoom={handleRemoveRoom}
+                                    onValuesChange={handleSettingChange}
+                                />
+                            </TabPane>
+                            <TabPane tab="Pricing" key="pricing">
+                                <PricingCalendar
+                                    propertyId={propertyId}
+                                    defaultPrice={state.price}
+                                />
+                            </TabPane>
+                            <TabPane tab="Similar Properties" key="similar">
+                                <SimilarProperty
+                                    propertyId={state.id}
+                                    selectedItems={state.similarProperties}
+                                    onRowSelection={handleSimilarPropertyChange}
+                                />
+                            </TabPane>
+                        </Tabs>
+                    </Col>
+                </Row>
+            </SinglePropertyWrapper>
         </LayoutWrapper>
     );
 }

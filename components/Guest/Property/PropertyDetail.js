@@ -17,8 +17,10 @@ import Reservation from "@components/Guest/Property/Reservation/Reservation";
 import {palette} from "styled-tools";
 import {Element} from "react-scroll";
 import {useSelector} from "react-redux";
+import PropertyCard from "@components/Guest/Property/PropertyCard/PropertyCard";
 
 const PropertyDetailWrapper = styled.div`
+  padding: 20px 0 100px;
   h3 {
     color: ${palette('primary', 0)};
     margin-bottom: 30px;
@@ -163,6 +165,36 @@ function PropertyDetail(props) {
                             <Reservation  property={property}/>
                         )}
                     </Col>
+                </Row>
+                <Row gutter={[32,32]}>
+                    <Col sm={24}>
+                        <h3>Similar Accommodations</h3>
+                    </Col>
+                    {
+                        property.similar_properties.map((item, index) => (
+                            <Col key={index} lg={8} sm={24}>
+                                <PropertyCard
+                                    key={index}
+                                    id={item.id}
+                                    address={item.address}
+                                    title={item.name}
+                                    slug={item.slug}
+                                    price={item.price}
+                                    minPrice={item.min_price}
+                                    maxPrice={item.max_price}
+                                    minMonthPrice={item.min_month_price}
+                                    bedroomCount={item.bedroom_count}
+                                    bathroomCount={item.bathroom_count}
+                                    sharedBathroom={item.shared_bathroom}
+                                    minSleeps={item.min_sleeps}
+                                    sleeps={item.sleeps}
+                                    rentalParking={item.rental_parking}
+                                    furnished={item.furnished}
+                                    petsConsidered={item.pets_considered}
+                                    image={item.featured_img}/>
+                            </Col>
+                        ))
+                    }
                 </Row>
             </Container>
         </PropertyDetailWrapper>

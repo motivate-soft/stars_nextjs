@@ -334,11 +334,19 @@ html[dir="rtl"] .dz-hidden-input {
     color: #0071aa;
 }
 
-
 .DayPicker_transitionContainer {
     height: 350px !important;
 }
 
 .DayPicker_transitionContainer .booked-date h6 {
     text-decoration: line-through;
+}
+
+.SortableHelper {
+    z-index: 1000000 !important;
+}
+
+
+.ql-container {
+    font-size: 16px !important;
 }
