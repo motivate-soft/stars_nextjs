@@ -150,6 +150,20 @@ export default function AddProperty() {
         });
     }
 
+    // function handleAmenityChange(changedValues, allValues) {
+    //     console.log("handleAmenityChange", changedValues, allValues);
+    //     const array = [];
+    //     Object.keys(allValues).map((key) => {
+    //         if (allValues[key]) {
+    //             array.push(key);
+    //         }
+    //     });
+    //     setState({
+    //         ...state,
+    //         amenities: array,
+    //     });
+    // }
+
     function handleToggleAmenityOption(amenityId) {
         console.log("amenityId", state.amenities, amenityId);
         let array = state.amenities;
@@ -168,20 +182,6 @@ export default function AddProperty() {
             });
         }
         console.log("handleToggleAmenityOption", array, state);
-    }
-
-    function handleAmenityChange(changedValues, allValues) {
-        console.log("handleAmenityChange", changedValues, allValues);
-        const array = [];
-        Object.keys(allValues).map((key) => {
-            if (allValues[key]) {
-                array.push(key);
-            }
-        });
-        setState({
-            ...state,
-            amenities: array,
-        });
     }
 
     function handleChangeRoom(values, id) {
@@ -319,7 +319,7 @@ export default function AddProperty() {
                             <TabPane tab="Amenity" key="amenity">
                                 <Amenity
                                     amenities={[]}
-                                    onValuesChange={handleAmenityChange}
+                                    onValuesChange={handleToggleAmenityOption}
                                     onToggleOption={handleToggleAmenityOption}
                                 />
                             </TabPane>

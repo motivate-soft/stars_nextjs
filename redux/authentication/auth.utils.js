@@ -2,6 +2,32 @@ import {useEffect} from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 import cookie from 'js-cookie';
+import jwtDecode from "jwt-decode";
+
+export const checkExpirity = token => {
+    if (!token) {
+        return {
+            error: 'not matched',
+        };
+    }
+    try {
+        const profile = jwtDecode(token);
+
+        const expiredAt = profile.exp * 1000;
+
+        if (expiredAt > new Date().getTime()) {
+            return {
+                profile,
+                token,
+                expiredAt: new Date(expiredAt),
+            };
+        } else {
+            return { error: 'Token expired' };
+        }
+    } catch (e) {
+        return { error: 'Server Error' };
+    }
+};
 
 export const setCookie = (key, value) => {
     if (process.browser) {

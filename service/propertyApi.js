@@ -1,5 +1,6 @@
 import {BACKEND_URL} from "../env-config";
-import {getCookie} from "@redux/authentication/auth.utils";
+import {getCookie, logout} from "@redux/authentication/auth.utils";
+import {notification} from "@iso/components";
 
 const propertyApi = {
     getAll: async () =>
@@ -139,8 +140,13 @@ const handleError = (res) => {
     //     }
     //     throw error
     // })
+    if (res.status === 403) {
+        notification('warning', 'Token not valid')
+        logout()
+    }
+
     if (res.status >= 400 && res.status < 500) {
-        console.log(res.text())
+
         error = {
             status: res.status,
             statusText: res.statusText,

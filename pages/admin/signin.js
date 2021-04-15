@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Link from 'next/link';
 import {useDispatch} from 'react-redux';
 import {useRouter} from 'next/router';
@@ -22,16 +22,14 @@ const formItemLayout = {
 export default function SignInPage(props) {
     const dispatch = useDispatch();
     const router = useRouter();
-
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        const {jwtLogin} = authActions
         const userInfo = {
             username: values.username,
             password: values.password,
         };
-        dispatch(jwtLogin(router, userInfo))
+        dispatch(authActions.jwtLogin(router, userInfo))
     };
 
 
