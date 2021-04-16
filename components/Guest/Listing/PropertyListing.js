@@ -116,9 +116,9 @@ const PropertyListingWrapper = styled.div`
 `
 
 function PropertyListing(props) {
-    const {items, categories} = props
+    const {items, categories, category} = props
     const {state, dispatch} = useContext(BookingContext);
-
+    console.log("__PropertyListing__", category)
 
     useEffect(() => {
         dispatch({
@@ -134,17 +134,16 @@ function PropertyListing(props) {
             <Box as="section" className="property-listing-block">
                 <Container>
                     <Tabs
-                        defaultActiveKey="all"
+                        defaultActiveKey={category ? category : 'all'}
                     >
                         <TabPane tab="All" key="all">
                             <Row gutter={[32, 32]}>
                                 {
                                     categories && categories.map(category => {
                                         let filteredItems = items.filter(item => item.category === category.name)
-                                        console.log("filteredItems", items, category, filteredItems)
                                         if (filteredItems.length > 0) {
                                             return (
-                                                <>
+                                                <React.Fragment key={category.name}>
                                                     <Col sm={24}>
                                                         <h2>{category.name}</h2>
                                                         <hr className="property-category-border"/>
@@ -174,7 +173,7 @@ function PropertyListing(props) {
                                                             </Col>
                                                         ))
                                                     }
-                                                </>
+                                                </React.Fragment>
                                             )
                                         }
                                     })

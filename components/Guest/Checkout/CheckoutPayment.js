@@ -34,7 +34,6 @@ function CheckoutPayment(props) {
     const router = useRouter();
 
     const handlePaymentSuccess = (details, data) => {
-        console.log("handlePaymentSuccess", details, data)
         addPaymentInfo();
     }
 
@@ -116,40 +115,39 @@ function CheckoutPayment(props) {
                                 <span>Step 3 of 3</span>
                             </div>
 
-                            {/*{isPaypalButtonLoading*/}
-                            {/*    ? <LoaderComponent/>*/}
-                            {/*    : <PayPalButton*/}
-                            {/*        amount={state.total}*/}
-                            {/*        // disableCard*/}
-                            {/*        style={{color: 'blue'}}*/}
-                            {/*        shippingPreference="NO_SHIPPING"*/}
-                            {/*        onButtonReady={() => {*/}
-                            {/*            setIsPaypalButtonLoading(false)*/}
-                            {/*        }}*/}
-                            {/*        onSuccess={(details, data) => {*/}
-                            {/*            console.log(*/}
-                            {/*                '_Transaction completed by_',*/}
-                            {/*                details,*/}
-                            {/*                data,*/}
-                            {/*                details.payer.name.given_name*/}
-                            {/*            );*/}
-                            {/*            handlePaymentSuccess(details);*/}
-                            {/*        }}*/}
-                            {/*        catchError={(error) => {*/}
-                            {/*            handlePaymentError(error);*/}
-                            {/*        }}*/}
-                            {/*        options={{*/}
-                            {/*            clientId:*/}
-                            {/*                'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'*/}
-                            {/*        }}*/}
-                            {/*        // Sandbox*/}
-                            {/*        // options={{*/}
-                            {/*        //     clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",*/}
-                            {/*        //     currency: "USD"*/}
-                            {/*        // }}*/}
-                            {/*    />*/}
-                            {/*}*/}
-                            <button type="submit" onClick={(e) => handlePaymentSuccess('aaa', 'aaa')}>submit</button>
+                            {isPaypalButtonLoading
+                                ? <LoaderComponent/>
+                                : <PayPalButton
+                                    amount={state.total}
+                                    // disableCard
+                                    style={{color: 'blue'}}
+                                    shippingPreference="NO_SHIPPING"
+                                    onButtonReady={() => {
+                                        setIsPaypalButtonLoading(false)
+                                    }}
+                                    onSuccess={(details, data) => {
+                                        console.log(
+                                            '__TransactionCompletedBy__',
+                                            details,
+                                            data,
+                                            details.payer.name.given_name
+                                        );
+                                        handlePaymentSuccess(details, data);
+                                    }}
+                                    catchError={(error) => {
+                                        handlePaymentError(error);
+                                    }}
+                                    // options={{
+                                    //     clientId:
+                                    //         'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'
+                                    // }}
+                                    // Sandbox
+                                    options={{
+                                        clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",
+                                        currency: "USD"
+                                    }}
+                                />
+                            }
                             <p>
                                 <Link href="/contact" target="_blank">
                                     <span className="underlined-link">Contact us</span>

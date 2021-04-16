@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import GuestAppHolder from "./GuestLayout.styles";
 import WithGATracker from "@components/HOC/WithGATracker";
 import WithPixel from "@components/HOC/WithPixel";
+import ChatWidget from "@components/Guest/ChatWidget/ChatWidget";
 
 
 function GuestLayout({children}) {
@@ -13,6 +14,7 @@ function GuestLayout({children}) {
                 <TopNavigation/>
                 {children}
                 <Footer/>
+                <ChatWidget/>
             </div>
         </GuestAppHolder>
     );

@@ -20,7 +20,7 @@ export default function HomePage(props) {
 export async function getStaticProps() {
     const response = await fetch(`${BACKEND_URL}/api/content/`)
     const posts = await response.json()
-    console.log("posts", posts)
+
     return {
         props: {
             posts,

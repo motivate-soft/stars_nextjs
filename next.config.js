@@ -28,27 +28,14 @@ const nextConfig = {
         ZENDESK_KEY: "fb706650-c59e-4f45-b7b3-f601aec370db",
     },
     distDir: 'build',
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.(png|jpe?g|gif|svg)$/i,
-    //             loader: "file-loader",
-    //             options: {
-    //                 outputPath: '../static/assets/', // if you don't use ../ it will put it inside ".next" folder by default
-    //                 publicPath: 'assets/',
-    //             }
-    //         }
-    //     ]
-    // },
     // resolve: {
     //     alias: {
-    //         '@iso/assets': require.resolve('shared/assets'),
-    //         '@iso/config': require.resolve('shared/config'),
-    //         '@iso/components': require.resolve('shared/components'),
-    //         '@iso/containers': require.resolve('shared/containers'),
-    //         '@iso/lib': require.resolve('shared/library'),
-    //         '@iso/ui': require.resolve('shared/UI'),
-    //
+    //         // '@iso/assets': require.resolve('shared/assets'),
+    //         // '@iso/config': require.resolve('shared/config'),
+    //         // '@iso/components': require.resolve('shared/components'),
+    //         // '@iso/containers': require.resolve('shared/containers'),
+    //         // '@iso/lib': require.resolve('shared/library'),
+    //         // '@iso/ui': require.resolve('shared/UI'),
     //         '@iso/assets': path.join(__dirname, 'shared/assets'),
     //         '@iso/config': path.join(__dirname, 'shared/config'),
     //         '@iso/components': path.join(__dirname, 'shared/components'),
@@ -64,48 +51,54 @@ const nextConfig = {
 //   require.extensions['.css'] = file => {};
 // }
 
-module.exports = withPlugins(
-    [
-        withTM,
-        withOptimizedImages,
-        withFonts,
-        withSass,
-        withCSS,
-        [
-            withBundleAnalyzer,
-            {
-                analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-                analyzeBrowser: ['browser', 'both'].includes(
-                    process.env.BUNDLE_ANALYZE
-                ),
-                bundleAnalyzerConfig: {
-                    server: {
-                        analyzerMode: 'static',
-                        reportFilename: '../bundles/server.html',
-                    },
-                    browser: {
-                        analyzerMode: 'static',
-                        reportFilename: '../bundles/client.html',
-                    },
-                },
-            },
-        ],
-    ],
-    nextConfig
-);
+const webpackConfig = withTM(withFonts(withSass(withCSS({
+    webpack: (config, {buildId, dev, isServer, defaultLoaders, webpack}) => {
+        config.module.rules.push({
+            test: /\.(png|jpe?g|gif|svg|eot|woff|woff2|ttf)$/i,
+            loader: "file-loader",
+            options: {
+                outputPath: '../static/assets/', // if you don't use ../ it will put it inside ".next" folder by default
+                publicPath: '/static/assets/',
+            }
+        });
 
-// module.exports = withCSS({
-//     webpack: function (config) {
-//         config.module.rules.push({
-//             test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-//             use: {
-//                 loader: 'url-loader',
-//                 options: {
-//                     limit: 100000,
-//                     name: '[name].[ext]'
-//                 }
-//             }
-//         })
-//         return config
-//     }
-// })
+        return config;
+    }
+}))));
+
+
+module.exports = {
+    ...webpackConfig,
+    distDir: 'build',
+}
+
+
+// module.exports = withPlugins(
+//     [
+//         withTM,
+//         // withOptimizedImages,
+//         withFonts,
+//         withSass,
+//         withCSS,
+//         [
+//             withBundleAnalyzer,
+//             {
+//                 analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+//                 analyzeBrowser: ['browser', 'both'].includes(
+//                     process.env.BUNDLE_ANALYZE
+//                 ),
+//                 bundleAnalyzerConfig: {
+//                     server: {
+//                         analyzerMode: 'static',
+//                         reportFilename: '../bundles/server.html',
+//                     },
+//                     browser: {
+//                         analyzerMode: 'static',
+//                         reportFilename: '../bundles/client.html',
+//                     },
+//                 },
+//             },
+//         ],
+//     ],
+//     nextConfig
+// );

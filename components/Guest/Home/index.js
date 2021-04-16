@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import HomePageSearch from "@components/Guest/Home/Search/HomePageSearch";
 import Container from "@iso/ui/UI/Container/Container";
 import Link from 'next/link'
@@ -33,9 +33,42 @@ import Box from "@iso/ui/Box/Box";
 import {FaStar} from "react-icons/fa";
 import EditPost from "@components/common/PostBlock/EditPost";
 import GuestReviews from "@components/Guest/Review/GuestReview";
+import {SearchContext} from "@context/SearchProvider";
+import Router, {withRouter} from 'next/router';
 
 
-export default function Home({posts}) {
+function Home({posts}) {
+    const {state, dispatch} = useContext(SearchContext);
+
+    function gotoListingPage(category) {
+        let query = {
+            category: category
+        };
+
+        dispatch({
+            type: 'UPDATE_QUERY',
+            payload: {
+                ...state,
+                category: category
+            },
+        });
+
+        if (process.browser) {
+
+            Router.push(
+                {
+                    pathname: `/listing`,
+                    query: query,
+                },
+                {
+                    pathname: `/listing`,
+                    query: query,
+                },
+                {shallow: true}
+            );
+        }
+    }
+
     return (
         <HomeWrapper>
             <HomePageSearch posts={posts}/>
@@ -48,12 +81,10 @@ export default function Home({posts}) {
                                 <img src={room1} alt="private rooom"/>
                                 <div className="solution-content">
                                     <EditPost index={1} posts={posts}/>
-                                    <Link
-                                        href={`/listing?category=Private Rooms`}>
-                                        <Button type="secondary" size="large">
-                                            Explore
-                                        </Button>
-                                    </Link>
+                                    <Button type="secondary" size="large"
+                                            onClick={() => gotoListingPage("Private Rooms")}>
+                                        Explore
+                                    </Button>
                                 </div>
                             </div>
                         </Col>
@@ -62,12 +93,9 @@ export default function Home({posts}) {
                                 <img src={room2} alt="apartments"/>
                                 <div className="solution-content">
                                     <EditPost index={2} posts={posts}/>
-                                    <Link
-                                        href={`/listing?category=Studios`}>
-                                        <Button type="secondary" size="large">
-                                            Explore
-                                        </Button>
-                                    </Link>
+                                    <Button type="secondary" size="large" onClick={() => gotoListingPage("Studios")}>
+                                        Explore
+                                    </Button>
                                 </div>
                             </div>
                         </Col>
@@ -76,12 +104,9 @@ export default function Home({posts}) {
                                 <img src={room3} alt="homes"/>
                                 <div className="solution-content">
                                     <EditPost index={3} posts={posts}/>
-                                    <Link
-                                        href={`/listing?category=3-Bedrooms`}>
-                                        <Button type="secondary" size="large">
-                                            Explore
-                                        </Button>
-                                    </Link>
+                                    <Button type="secondary" size="large" onClick={() => gotoListingPage("3-Bedrooms")}>
+                                        Explore
+                                    </Button>
                                 </div>
                             </div>
                         </Col>
@@ -343,3 +368,5 @@ export default function Home({posts}) {
         </HomeWrapper>
     )
 }
+
+export default Home;

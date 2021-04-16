@@ -1,7 +1,12 @@
 import React from 'react';
 import App from 'next/app';
-import {Provider} from 'react-redux';
-import withRedux, {createWrapper} from 'next-redux-wrapper';
+/**
+ *  import for legacy version of next-redux-wrapper
+ */
+// import {Provider} from 'react-redux';
+// import withRedux from 'next-redux-wrapper';
+
+import {createWrapper} from 'next-redux-wrapper';
 import ThemeProvider from '../containers/Admin/ThemeProvider';
 import initStore from '../redux/store';
 import 'antd/dist/antd.css';
@@ -11,8 +16,8 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.core.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import '../style/global.css';
 import GuestThemeProvider from "../containers/Guest/GuestThemeProvider";
 import {SearchProvider} from "@context/SearchProvider";
