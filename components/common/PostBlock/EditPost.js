@@ -20,7 +20,7 @@ const EditPostWrapper = styled.div`
 function EditPost(props) {
     const {index, posts, size, title, content} = props;
 
-    const isLoggedIn = useSelector((state) => state.Auth.indexToken);
+    const isLoggedIn = useSelector((state) => state.Auth.idToken);
 
     const renderTitle = () => {
         if (content) return null;
@@ -65,9 +65,9 @@ function EditPost(props) {
             {renderContent()}
             {isLoggedIn && posts && posts.length > 0 && (
                 <div className="text-center">
-                    <Link href={`/admin/posts/${posts[index].index}`} className="edit-btn">
+                    <a href={`/admin/post?id=${posts[index].id}`} target="_blank" className="edit-btn">
                         Edit
-                    </Link>
+                    </a>
                 </div>
             )}
         </EditPostWrapper>

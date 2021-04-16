@@ -19,7 +19,7 @@ const userApi = {
             })
             .catch(handleError),
 
-    getOne: async (id) => await fetch(`${BACKEND_URL}/api/users/${id}/`, {
+    getOne: async (id) => await fetch(`${BACKEND_URL}/api/users/${id}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -54,7 +54,7 @@ const userApi = {
             .catch(handleError),
 
     update: async (user) =>
-        await fetch(`${BACKEND_URL}/api/users/${user.id}/`, {
+        await fetch(`${BACKEND_URL}/api/users/${user.id}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -72,7 +72,7 @@ const userApi = {
             .catch(handleError),
 
     delete: async (userId) =>
-        await fetch(`${BACKEND_URL}/api/users/${userId}/`, {
+        await fetch(`${BACKEND_URL}/api/users/${userId}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",

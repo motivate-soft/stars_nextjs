@@ -145,7 +145,7 @@ function PropertyDetail(props) {
                             </div>
                         </Element>
                         <Element name="transit">
-                            <div>
+                            <div id="transit">
                                 <h3>Transit</h3>
                                 <div dangerouslySetInnerHTML={{__html: property.neighbourhood}}/>
                             </div>
@@ -157,7 +157,7 @@ function PropertyDetail(props) {
                                 innerZ={999}
                                 activeClass="isSticky"
                                 top={202}
-                                bottomBoundary="#reviewSection"
+                                bottomBoundary="#transit"
                             >
                                 <Reservation property={property}/>
                             </Sticky>

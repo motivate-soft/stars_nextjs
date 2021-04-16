@@ -28,23 +28,35 @@ const nextConfig = {
         ZENDESK_KEY: "fb706650-c59e-4f45-b7b3-f601aec370db",
     },
     distDir: 'build',
-    resolve: {
-        alias: {
-            // '@iso/assets': require.resolve('shared/assets'),
-            // '@iso/config': require.resolve('shared/config'),
-            // '@iso/components': require.resolve('shared/components'),
-            // '@iso/containers': require.resolve('shared/containers'),
-            // '@iso/lib': require.resolve('shared/library'),
-            // '@iso/ui': require.resolve('shared/UI'),
-
-            // '@iso/assets': path.join(__dirname, 'shared/assets'),
-            // '@iso/config': path.join(__dirname, 'shared/config'),
-            // '@iso/components': path.join(__dirname, 'shared/components'),
-            // '@iso/containers': path.join(__dirname, 'shared/containers'),
-            // '@iso/lib': path.join(__dirname, 'shared/library'),
-            // '@iso/ui': path.join(__dirname, 'shared/UI'),
-        }
-    }
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.(png|jpe?g|gif|svg)$/i,
+    //             loader: "file-loader",
+    //             options: {
+    //                 outputPath: '../static/assets/', // if you don't use ../ it will put it inside ".next" folder by default
+    //                 publicPath: 'assets/',
+    //             }
+    //         }
+    //     ]
+    // },
+    // resolve: {
+    //     alias: {
+    //         '@iso/assets': require.resolve('shared/assets'),
+    //         '@iso/config': require.resolve('shared/config'),
+    //         '@iso/components': require.resolve('shared/components'),
+    //         '@iso/containers': require.resolve('shared/containers'),
+    //         '@iso/lib': require.resolve('shared/library'),
+    //         '@iso/ui': require.resolve('shared/UI'),
+    //
+    //         '@iso/assets': path.join(__dirname, 'shared/assets'),
+    //         '@iso/config': path.join(__dirname, 'shared/config'),
+    //         '@iso/components': path.join(__dirname, 'shared/components'),
+    //         '@iso/containers': path.join(__dirname, 'shared/containers'),
+    //         '@iso/lib': path.join(__dirname, 'shared/library'),
+    //         '@iso/ui': path.join(__dirname, 'shared/UI'),
+    //     }
+    // }
 };
 
 // fix: prevents error when .css files are required by node
@@ -55,7 +67,6 @@ const nextConfig = {
 module.exports = withPlugins(
     [
         withTM,
-        // withImages,
         withOptimizedImages,
         withFonts,
         withSass,

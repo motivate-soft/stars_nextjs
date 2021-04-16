@@ -14,7 +14,7 @@ if (process.browser) {
     if (token) {
         try {
             const res = checkExpirity(token)
-            console.log("__checkExpirity___browser", res)
+            console.log("__checkExpirity:browser___", res)
             if (res.expiredAt) {
                 initState = {
                     idToken: res.token,

@@ -19,7 +19,7 @@ const postApi = {
             })
             .catch(handleError),
 
-    getOne: async (id) => await fetch(`${BACKEND_URL}/api/content/${id}/`, {
+    getOne: async (id) => await fetch(`${BACKEND_URL}/api/content/${id}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -54,7 +54,7 @@ const postApi = {
             .catch(handleError),
 
     update: async (post) =>
-        await fetch(`${BACKEND_URL}/api/content/${post.id}/`, {
+        await fetch(`${BACKEND_URL}/api/content/${post.id}`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -72,7 +72,7 @@ const postApi = {
             .catch(handleError),
 
     delete: async (postId) =>
-        await fetch(`${BACKEND_URL}/api/content/${postId}/`, {
+        await fetch(`${BACKEND_URL}/api/content/${postId}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",

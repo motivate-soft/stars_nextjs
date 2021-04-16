@@ -51,7 +51,7 @@ export function* addPost() {
     yield takeEvery(actions.ADD_POST_REQUEST, function* (payload) {
         try {
             const res = yield call(postApi.add, payload.post);
-            notification('warning', 'New post created');
+            notification('success', 'New post created');
 
             yield put({
                 type: actions.ADD_POST_SUCCESS,
@@ -71,7 +71,7 @@ export function* updatePost() {
     yield takeEvery(actions.UPDATE_POST_REQUEST, function* (payload) {
         try {
             const res = yield call(postApi.update, payload.post);
-            notification('warning', 'Post has been updated successfully');
+            notification('success', 'Post has been updated successfully');
             yield put({
                 type: actions.UPDATE_POST_SUCCESS,
                 item: res,
