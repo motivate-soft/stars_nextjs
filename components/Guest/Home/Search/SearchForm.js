@@ -10,8 +10,8 @@ import {
 } from './Search.style';
 import {SearchContext} from "@context/SearchProvider";
 import DateRangePickerBox from "@iso/components/DatePicker/ReactDates";
-import ViewWithPopup from "@components/common/ViewWithPopup/ViewWithPopup";
-import InputIncDec from "@components/common/InputIncDec/InputIncDec";
+import ViewWithPopup from "@components/Common/ViewWithPopup/ViewWithPopup";
+import InputIncDec from "@components/Common/InputIncDec/InputIncDec";
 import ReactGA from "react-ga";
 import {PIXEL_ID} from "../../../../env-config";
 

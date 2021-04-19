@@ -8,8 +8,8 @@ import ReservationFormWrapper, {
     ItemWrapper,
 } from './Reservation.style.js';
 import DateRangePickerBox from "@iso/components/DatePicker/ReactDates";
-import ViewWithPopup from "@components/common/ViewWithPopup/ViewWithPopup";
-import InputIncDec from "@components/common/InputIncDec/InputIncDec";
+import ViewWithPopup from "@components/Common/ViewWithPopup/ViewWithPopup";
+import InputIncDec from "@components/Common/InputIncDec/InputIncDec";
 import {BookingContext} from "@context/BookingProvider";
 import Router from "next/router";
 import moment from 'moment';

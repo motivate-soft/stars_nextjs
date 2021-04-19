@@ -1,6 +1,6 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import {FaStar} from "react-icons/fa";
 
 function GuestReviewCard(props) {

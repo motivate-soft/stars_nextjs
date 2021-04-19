@@ -6,7 +6,7 @@ import styled from "styled-components";
 import {palette} from "styled-tools";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import MailingAddressForm from "@components/Guest/Checkout/MailingAddress";
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import ReactGA from 'react-ga';
 
 const CheckoutReviewWrapper = styled.div`

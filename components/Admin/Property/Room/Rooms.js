@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col, Switch } from "antd";
-import { BACKEND_URL } from "env-config";
-import { getCookie } from "@redux/authentication/auth.utils";
 import Button from "@iso/components/uielements/button";
 import Room from "./Room";
 

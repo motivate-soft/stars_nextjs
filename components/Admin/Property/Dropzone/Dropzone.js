@@ -6,7 +6,7 @@ import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import ContentHolder from "@iso/components/utility/contentHolder";
 import DropzoneWrapper from "./Dropzone.styles";
 import { getCookie } from "@redux/authentication/auth.utils";
-import { BACKEND_URL } from "env-config";
+import {BACKEND_URL} from "../../../../env-config";
 
 export default (props) => {
   const { onUploadSuccess } = props;

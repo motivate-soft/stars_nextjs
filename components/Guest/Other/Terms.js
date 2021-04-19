@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
 

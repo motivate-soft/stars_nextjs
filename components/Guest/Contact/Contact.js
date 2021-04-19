@@ -5,7 +5,7 @@ import {Col, Row} from "antd";
 import ContactForm from "@components/Guest/Contact/ContactForm";
 import Subscription from "@components/Guest/Subscription";
 import ContactWrapper from "@components/Guest/Contact/Contact.styles";
-import ContactSocialLinks from "@components/common/ContactSocialLinks";
+import ContactSocialLinks from "@components/Common/ContactSocialLinks";
 
 
 class ContactUs extends React.Component {

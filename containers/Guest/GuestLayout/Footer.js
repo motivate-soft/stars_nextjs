@@ -2,7 +2,7 @@ import React from "react";
 import Container from "@iso/ui/UI/Container/Container";
 import {Col, Row} from "antd";
 import Link from "next/link";
-import SocialLinks from "@components/common/SocialLinks";
+import SocialLinks from "@components/Common/SocialLinks";
 import {palette} from "styled-tools";
 import styled from "styled-components";
 import LogoNext from "@iso/ui/Logo/LogoNextJs";

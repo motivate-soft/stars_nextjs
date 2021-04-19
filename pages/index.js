@@ -1,6 +1,6 @@
 import Head from "next/head";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
-import Home from "@components/guest/Home";
+import Home from "@components/Guest/Home";
 import {BACKEND_URL} from "../env-config";
 
 export default function HomePage(props) {

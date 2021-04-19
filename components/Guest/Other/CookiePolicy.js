@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 
 
 function CookiePolicy({posts}) {

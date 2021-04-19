@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import DashboardLayout from "../../containers/Admin/DashboardLayout/DashboardLayout";
-import PostList from "@containers/../../components/Admin/Post/PostList";
+import PostList from "@components/Admin/Post/PostList";
 import { withRouter } from "next/router";
 import { withAuthSync } from "@redux/authentication/auth.utils";
-import SinglePost from "@containers/../../components/Admin/Post/SinglePost";
+import SinglePost from "@components/Admin/Post/SinglePost";
 
 const getPostId = (props) => {
   try {

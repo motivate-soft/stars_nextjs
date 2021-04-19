@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BACKEND_URL } from "env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import authActions from "@redux/authentication/actions";
 import classNames from "classnames";
 import Loader from "@iso/components/utility/loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Col } from "antd";
+import {BACKEND_URL} from "../../../../env-config";
 
 export default function InfiniteGallery(props) {
   const { selectedItem, onSelectImage } = props;

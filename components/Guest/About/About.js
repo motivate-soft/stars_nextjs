@@ -4,9 +4,9 @@ import Container from "@iso/ui/UI/Container/Container";
 import {Button, Col, Row} from "antd";
 import ContactForm from "@components/Guest/Contact/ContactForm";
 import Subscription from "@components/Guest/Subscription";
-import ContactSocialLinks from "@components/common/ContactSocialLinks";
+import ContactSocialLinks from "@components/Common/ContactSocialLinks";
 import AboutWrapper from "@components/Guest/About/About.styles";
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import Link from "next/link";
 import BostonImage from '@iso/assets/images/locations-boston.jpg';
 

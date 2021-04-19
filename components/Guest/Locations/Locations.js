@@ -8,7 +8,7 @@ import imgBoston from '@iso/assets/images/locations-boston.jpg';
 import imgBrookline from '@iso/assets/images/locations-brookline.jpg';
 import imgCambridge from '@iso/assets/images/locations-cambridge.jpg';
 import imgQuincy from '@iso/assets/images/locations-quincy.jpg';
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import Container from "@iso/ui/UI/Container/Container";
 
 const locationsMenu = [

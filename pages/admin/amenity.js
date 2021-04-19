@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import DashboardLayout from "../../containers/Admin/DashboardLayout/DashboardLayout";
-import AmenityList from "@containers/../../components/Admin/Amenity/AmenityList";
+import AmenityList from "@components/Admin/Amenity/AmenityList";
 import { withRouter } from "next/router";
 import { withAuthSync } from "@redux/authentication/auth.utils";
-import SingleAmenity from "@containers/../../components/Admin/Amenity/SingleAmenity";
+import SingleAmenity from "@components/Admin/Amenity/SingleAmenity";
 
 const getAmenityId = (props) => {
   try {

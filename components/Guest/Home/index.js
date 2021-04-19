@@ -31,7 +31,7 @@ import QuincyImage from '@iso/assets/images/location_quincy.jpg';
 import HomeWrapper from "@components/Guest/Home/Home.styles";
 import Box from "@iso/ui/Box/Box";
 import {FaStar} from "react-icons/fa";
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import GuestReviews from "@components/Guest/Review/GuestReview";
 import {SearchContext} from "@context/SearchProvider";
 import Router, {withRouter} from 'next/router';

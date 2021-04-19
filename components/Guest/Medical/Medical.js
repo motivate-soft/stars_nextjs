@@ -13,9 +13,9 @@ import iconCalendar from '@iso/assets/images/icon/icon_calendar.png';
 import iconWorkspace from '@iso/assets/images/icon/icon_workspace.png';
 import iconService from '@iso/assets/images/icon/icon_service.png';
 
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 import Container from "@iso/ui/UI/Container/Container";
-import MedicalWrapper from "@components/Guest/Medical/medical.styles";
+import MedicalWrapper from "@components/Guest/Medical/Medical.styles";
 import {BACKEND_URL} from "../../../env-config";
 import AccommodationsMap from "@components/Guest/Medical/AccommodationsMap";
 

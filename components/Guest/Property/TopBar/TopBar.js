@@ -9,7 +9,7 @@ import Sticky from 'react-stickynode';
 import {Button, Dropdown} from 'antd';
 import {TobBarWrapper, ButtonGroup} from '../SinglePageView.style';
 import SocialShareMenu from "@components/Guest/Property/TopBar/SocialShareMenu";
-import TopScrollBar from "@components/common/ScrollBar/ScrollBar";
+import TopScrollBar from "@components/Common/ScrollBar/ScrollBar";
 
 const topBarMenu = [
     {

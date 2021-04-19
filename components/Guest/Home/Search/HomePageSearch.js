@@ -3,7 +3,7 @@ import SearchForm from './SearchForm';
 import BannerWrapper, {SearchWrapper} from './Search.style';
 import Container from "@iso/ui/UI/Container/Container";
 import Link from 'next/link';
-import EditPost from "@components/common/PostBlock/EditPost";
+import EditPost from "@components/Common/PostBlock/EditPost";
 
 const HomePageSearch = ({posts}) => {
     return (
