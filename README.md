@@ -12,7 +12,13 @@ Development server stars on [localhost:3030](http://localhost:3030)
 
 ## Build for production
 ```
-npm run prod:build
+npm run build
 npm start
 ```
 Nextjs app starts on [localhost:8080](http://localhost:8080)
+
+## Deploy to google app engine
+
+```
+npm run deploy
+```
