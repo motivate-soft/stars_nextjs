@@ -11,14 +11,3 @@ node_modules
 
 .idea
 .vscode
-
-components
-containers
-context
-pages
-redux
-service
-shared
-style
-styled
-
