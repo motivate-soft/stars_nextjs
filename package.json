@@ -117,8 +117,10 @@
   "scripts": {
     "dev": "next -p 3030",
     "start": "next start -p 8080",
-    "prod:build": "rimraf build && cross-env NODE_ENV=production next build",
-    "dev:build": "rimraf build && cross-env NODE_ENV=development next build",
+    "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
+    "gcp-build": "find ./build -name '\\[@@@*' -exec bash -c 'mv \"$1\" \"${1/@@@/...}\"' -- {} \\;",
+    "build": "rimraf ./build && cross-env NODE_ENV=production && next build",
+    "dev:build": "rimraf build && cross-env NODE_ENV=development && next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=1 next build",
     "heroku-postbuild": "npm run build"
