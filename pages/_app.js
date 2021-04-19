@@ -23,8 +23,7 @@ import GuestThemeProvider from "../containers/Guest/GuestThemeProvider";
 import {SearchProvider} from "@context/SearchProvider";
 import {BookingProvider, initBooking} from "@context/BookingProvider";
 import GlobalStyles from "../style/GlobalStyles";
-import WithGATracker from "@components/HOC/WithGATracker";
-import WithPixel from "@components/HOC/WithPixel";
+
 
 
 class CustomApp extends App {
@@ -51,18 +50,6 @@ class CustomApp extends App {
                 </SearchProvider>
             </GuestThemeProvider>
         )
-        // return WithGATracker(WithPixel((
-        //     // <Provider store={store}>
-        //     <GuestThemeProvider>
-        //         <SearchProvider query={query}>
-        //             <BookingProvider booking={initBooking}>
-        //                 <GlobalStyles/>
-        //                 <Component {...pageProps} />
-        //             </BookingProvider>
-        //         </SearchProvider>
-        //     </GuestThemeProvider>
-        //     // </Provider>
-        // )))
     }
 }
 

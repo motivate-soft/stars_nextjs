@@ -8,6 +8,7 @@ import PropertyCard from "@components/Guest/Property/PropertyCard/PropertyCard";
 import {palette} from "styled-tools";
 import ListingPageSearch from "@components/Guest/Listing/Search/ListingPageSearch";
 import {BookingContext} from "@context/BookingProvider";
+import ReactGA from 'react-ga'
 
 const PropertyListingWrapper = styled.div`
   .property-listing-block {
@@ -118,9 +119,12 @@ const PropertyListingWrapper = styled.div`
 function PropertyListing(props) {
     const {items, categories, category} = props
     const {state, dispatch} = useContext(BookingContext);
-    console.log("__PropertyListing__", category)
 
     useEffect(() => {
+        ReactGA.event({
+            category: 'engagement',
+            action: 'view_item_list'
+        });
         dispatch({
             type: 'RESET_BOOKING_INFORMATION',
         })

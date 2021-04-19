@@ -18,9 +18,11 @@ import {palette} from "styled-tools";
 import {Element} from "react-scroll";
 import {useSelector} from "react-redux";
 import PropertyCard from "@components/Guest/Property/PropertyCard/PropertyCard";
+import ReactGA from "react-ga";
 
 const PropertyDetailWrapper = styled.div`
   padding: 20px 0 100px;
+
   h3 {
     color: ${palette('primary', 0)};
     margin-bottom: 30px;
@@ -85,6 +87,13 @@ function PropertyDetail(props) {
     const {view} = useSelector(state => state.App);
 
     if (isEmpty(property)) return <Loader/>;
+
+    useEffect(() => {
+        ReactGA.event({
+            category: 'engagement',
+            action: 'view_item'
+        });
+    }, [])
 
     useEffect(() => {
         const path = window.location.href;
@@ -162,11 +171,11 @@ function PropertyDetail(props) {
                                 <Reservation property={property}/>
                             </Sticky>
                         ) : (
-                            <Reservation  property={property}/>
+                            <Reservation property={property}/>
                         )}
                     </Col>
                 </Row>
-                <Row gutter={[32,32]}>
+                <Row gutter={[32, 32]}>
                     <Col sm={24}>
                         <h3>Similar Accommodations</h3>
                     </Col>

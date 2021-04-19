@@ -2,8 +2,6 @@ import Head from "next/head";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import {BACKEND_URL} from "../env-config";
 import PropertyListing from "@components/Guest/Listing/PropertyListing";
-import {useContext} from "react";
-import {SearchContext} from "@context/SearchProvider";
 // import qs from 'query-string';
 
 export default function PropertyListingPage(props) {

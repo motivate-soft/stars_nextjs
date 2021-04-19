@@ -26,8 +26,7 @@ export default function propertiesReducer(state = initialState, action) {
                 ...action.data,
             };
         case guestActions.Add_BOOKING_PAYMENT_REQUEST:
-
-
+            return state;
         default:
             return state;
     }

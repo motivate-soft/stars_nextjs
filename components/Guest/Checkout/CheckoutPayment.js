@@ -10,9 +10,11 @@ import {BookingContext} from "@context/BookingProvider";
 import LoaderComponent from "@iso/components/utility/loader.style";
 import {PayPalButton} from "react-paypal-button-v2";
 import {notification} from "@iso/components";
-import {BACKEND_URL} from "../../../env-config";
+import {BACKEND_URL, PIXEL_ID} from "../../../env-config";
 import moment from "moment";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
+import ReactGA from 'react-ga';
+
 
 const CheckoutPaymentWrapper = styled.div`
   .checkout-payment-block {
@@ -34,6 +36,7 @@ function CheckoutPayment(props) {
     const router = useRouter();
 
     const handlePaymentSuccess = (details, data) => {
+        console.log("handlePaymentSuccess", details, data)
         addPaymentInfo();
     }
 
@@ -77,11 +80,25 @@ function CheckoutPayment(props) {
                 body: JSON.stringify(bookingData)
             })
             const data = await res.json()
-            console.log("bookingData", bookingData, res, data)
+
             if (res.status === 400) {
                 notification('warning', 'Bad request');
             }
+
             if (res.ok) {
+                ReactGA.event({
+                    category: 'ecommerce',
+                    action: 'purchase'
+                });
+
+                import('react-facebook-pixel')
+                    .then((x) => x.default)
+                    .then((ReactPixel) => {
+                        console.log("initReactPixel", PIXEL_ID)
+                        ReactPixel.init(PIXEL_ID);
+                        ReactPixel.track('Purchase', { value: bookingData.total, currency: 'USD' });
+                    });
+
                 dispatch({
                     type: 'UPDATE_BOOKING_INFORMATION',
                     payload: {
@@ -89,6 +106,7 @@ function CheckoutPayment(props) {
                         bookingId: data.booking_id
                     }
                 })
+
                 router.push('/checkout-confirm')
             }
         } catch (e) {

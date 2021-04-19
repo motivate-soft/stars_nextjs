@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Col, Row} from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
@@ -7,6 +7,7 @@ import {palette} from "styled-tools";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import MailingAddressForm from "@components/Guest/Checkout/MailingAddress";
 import EditPost from "@components/common/PostBlock/EditPost";
+import ReactGA from 'react-ga';
 
 const CheckoutReviewWrapper = styled.div`
   .checkout-review-block {
@@ -23,6 +24,13 @@ const CheckoutReviewWrapper = styled.div`
 `;
 
 function CheckoutReview({posts}) {
+    useEffect(() => {
+        ReactGA.event({
+            category: 'ecommerce',
+            action: 'checkout_progress'
+        });
+    }, [])
+
     return (
         <CheckoutReviewWrapper>
             <Box as="section" className="main-background-2"/>

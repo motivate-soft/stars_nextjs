@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Button, Col, Row} from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
@@ -6,6 +6,7 @@ import styled from "styled-components";
 import {palette} from "styled-tools";
 import ContactInfoForm from "@components/Guest/Checkout/ContactInfoForm";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
+import ReactGA from 'react-ga'
 
 const CheckoutWrapper = styled.div`
   .checkout-block {
@@ -22,6 +23,13 @@ const CheckoutWrapper = styled.div`
 `
 
 function Checkout(props) {
+    useEffect(() => {
+        ReactGA.event({
+            category: 'ecommerce',
+            action: 'begin_checkout'
+        });
+    }, [])
+
     return (
         <CheckoutWrapper>
             <Box as="section" className="main-background-2"/>

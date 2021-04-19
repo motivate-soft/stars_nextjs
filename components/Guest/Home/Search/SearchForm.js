@@ -59,6 +59,11 @@ const SearchForm = () => {
     };
 
     const goToListingPage = () => {
+        ReactGA.event({
+            category: 'engagement',
+            action: 'browse',
+            label: 'browse rentals'
+        });
         dispatch({
             type: 'UPDATE_QUERY',
             payload: {
