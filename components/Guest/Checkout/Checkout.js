@@ -7,6 +7,7 @@ import {palette} from "styled-tools";
 import ContactInfoForm from "@components/Guest/Checkout/ContactInfoForm";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import ReactGA from 'react-ga'
+import {PIXEL_ID} from "../../../env-config";
 
 const CheckoutWrapper = styled.div`
   .checkout-block {
@@ -28,6 +29,12 @@ function Checkout(props) {
             category: 'ecommerce',
             action: 'begin_checkout'
         });
+        import('react-facebook-pixel')
+            .then((x) => x.default)
+            .then((ReactPixel) => {
+                ReactPixel.init(PIXEL_ID);
+                ReactPixel.track('InitiateCheckout');
+            });
     }, [])
 
     return (

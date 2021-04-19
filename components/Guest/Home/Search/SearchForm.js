@@ -13,6 +13,7 @@ import DateRangePickerBox from "@iso/components/DatePicker/ReactDates";
 import ViewWithPopup from "@components/common/ViewWithPopup/ViewWithPopup";
 import InputIncDec from "@components/common/InputIncDec/InputIncDec";
 import ReactGA from "react-ga";
+import {PIXEL_ID} from "../../../../env-config";
 
 
 const calendarItem = {
@@ -64,6 +65,13 @@ const SearchForm = () => {
             action: 'browse',
             label: 'browse rentals'
         });
+        import('react-facebook-pixel')
+            .then((x) => x.default)
+            .then((ReactPixel) => {
+                ReactPixel.init(PIXEL_ID);
+                ReactPixel.track('Search');
+            });
+
         dispatch({
             type: 'UPDATE_QUERY',
             payload: {

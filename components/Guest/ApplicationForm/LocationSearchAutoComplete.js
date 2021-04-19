@@ -73,7 +73,6 @@ class LocationSearchAutoComplete extends React.Component {
                         <div className="place-input-wrapper">
                             <Input
                                 {...getInputProps({
-                                    name: name ? name : "address",
                                     placeholder: placeholder ? placeholder : "Search for address...",
                                 })}
                             />

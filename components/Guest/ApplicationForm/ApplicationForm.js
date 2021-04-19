@@ -9,6 +9,7 @@ import {palette} from "styled-tools";
 import {BACKEND_URL} from "../../../env-config";
 import {notification} from "@iso/components";
 import LocationSearchAutoComplete from "@components/Guest/ApplicationForm/LocationSearchAutoComplete";
+import moment from 'moment';
 
 const {RangePicker} = DatePicker;
 
@@ -161,7 +162,7 @@ const AddressInput = ({value = {}, onChange}) => {
             onChange={(place) => {
                 triggerChange(place.formatted_address);
             }}
-            onReset={onChange('')}/>
+            onReset={() => onChange('')}/>
     )
 };
 
@@ -171,6 +172,10 @@ function ApplicationForm({posts}) {
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
+        values.occupancy[0] = moment(values.occupancy[0]).format('YYYY/MM/DD');
+        values.occupancy[1] = moment(values.occupancy[1]).format('YYYY/MM/DD');
+        values.formerlordoccupancy[0] = moment(values.formerlordoccupancy[0]).format('YYYY/MM/DD');
+        values.formerlordoccupancy[1] = moment(values.formerlordoccupancy[1]).format('YYYY/MM/DD');
         try {
             const res = await fetch(`${BACKEND_URL}/api/users/apply_email`, {
                 method: 'POST',
@@ -183,8 +188,7 @@ function ApplicationForm({posts}) {
                 notification('warning', 'Bad request');
             }
             if (res.ok) {
-                notification('success', 'Your rental application form has been submitted! <br /> We will process it\n' +
-                    '                        and get back to you ASAP!');
+                notification('success', 'Your rental application form has been submitted! We will process it and get back to you ASAP!');
             }
         } catch (e) {
             notification('warning', 'Server error while handling booking information')
@@ -218,7 +222,7 @@ function ApplicationForm({posts}) {
                             address: 'asdf',
                             phonenumber: '1',
                             email: '',
-                            'occupancy-dates': '',
+                            occupancy: '',
                             people: '',
                             pets: '',
                             contact: '',
@@ -232,7 +236,7 @@ function ApplicationForm({posts}) {
                             lordphonenumber: '',
                             formerlordname: '',
                             formerlordaddress: '',
-                            'formerlordoccupancy-dates': '',
+                            formerlordoccupancy: '',
                             formerlordphonenumber: ''
                         }}>
                         <Row gutter={[32, 32]}>
@@ -304,7 +308,7 @@ function ApplicationForm({posts}) {
                                 </Form.Item>
                             </Col>
                             <Col lg={12} sm={24}>
-                                <Form.Item label="Dates of occupancy (Start Date - End Date)" name="occupancy-dates"
+                                <Form.Item label="Dates of occupancy (Start Date - End Date)" name="occupancy"
                                            className="isoInputWrapper" {...rangeConfig}>
                                     <RangePicker size="large"/>
                                 </Form.Item>
@@ -378,7 +382,7 @@ function ApplicationForm({posts}) {
                                 </Form.Item>
                             </Col>
                             <Col lg={8} sm={24}>
-                                <Form.Item label="Occupancy" name="formerlordoccupancy-dates" {...rangeConfig}>
+                                <Form.Item label="Occupancy" name="formerlordoccupancy" {...rangeConfig}>
                                     <RangePicker size="large"/>
                                 </Form.Item>
                             </Col>

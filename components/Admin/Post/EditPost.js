@@ -21,7 +21,6 @@ const {useForm} = Form
 
 const HtmlEditor = ({value = {}, onChange}) => {
     const triggerChange = (changedValue) => {
-        console.log("htmlEditor", changedValue);
         onChange(changedValue);
     };
 
@@ -67,7 +66,7 @@ export default function EditPost(props) {
                     <Col lg={{span: 12, offset: 6}} sm={24}>
                         <SingeCategoryWrapper>
                             <div className="card-title-wrapper">
-                                <h3>Edit Category</h3>
+                                <h3>Edit Post</h3>
                                 <Link href="/admin/post">
                                     <Button type="primary">Back to List</Button>
                                 </Link>
