@@ -27,23 +27,7 @@ const nextConfig = {
         GA_ID: "UA-129107246-1",
         ZENDESK_KEY: "fb706650-c59e-4f45-b7b3-f601aec370db",
     },
-    distDir: 'build',
-    // resolve: {
-    //     alias: {
-    //         // '@iso/assets': require.resolve('shared/assets'),
-    //         // '@iso/config': require.resolve('shared/config'),
-    //         // '@iso/components': require.resolve('shared/components'),
-    //         // '@iso/containers': require.resolve('shared/containers'),
-    //         // '@iso/lib': require.resolve('shared/library'),
-    //         // '@iso/ui': require.resolve('shared/UI'),
-    //         '@iso/assets': path.join(__dirname, 'shared/assets'),
-    //         '@iso/config': path.join(__dirname, 'shared/config'),
-    //         '@iso/components': path.join(__dirname, 'shared/components'),
-    //         '@iso/containers': path.join(__dirname, 'shared/containers'),
-    //         '@iso/lib': path.join(__dirname, 'shared/library'),
-    //         '@iso/ui': path.join(__dirname, 'shared/UI'),
-    //     }
-    // }
+    distDir: 'build'
 };
 
 // fix: prevents error when .css files are required by node
@@ -61,6 +45,23 @@ const webpackConfig = withTM(withFonts(withSass(withCSS({
                 publicPath: '/static/assets/',
             }
         });
+
+        const {resolve: {alias}} = config
+        config.resolve.alias = {
+            ...alias,
+            "@components": path.join(__dirname, "components"),
+            "@containers": path.join(__dirname, "containers"),
+            "@redux": path.join(__dirname, "redux"),
+            "@context": path.join(__dirname, "context"),
+            "@styled": path.join(__dirname, "styled"),
+            '@iso/assets': path.join(__dirname, 'shared/assets'),
+            '@iso/redux': path.join(__dirname, 'shared/redux'),
+            '@iso/config': path.join(__dirname, 'shared/config'),
+            '@iso/components': path.join(__dirname, 'shared/components'),
+            '@iso/containers': path.join(__dirname, 'shared/containers'),
+            '@iso/lib': path.join(__dirname, 'shared/library'),
+            '@iso/ui': path.join(__dirname, 'shared/UI'),
+        }
 
         return config;
     }
