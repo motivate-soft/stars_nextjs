@@ -120,8 +120,6 @@
     "dev": "next -p 3030",
     "start": "next start -p 8080",
     "serve": "next start -p 8080",
-    "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
-    "gcp-build": "npm run build",
     "build": "rimraf build && next build",
     "deploy": "gcloud app deploy --project stars-website-nextjs",
     "analyze": "cross-env ANALYZE=1 next build",
