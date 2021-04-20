@@ -31,6 +31,7 @@ export default function Sidebar(props) {
         height,
         current,
     } = useSelector((state) => state.App);
+    console.log("Sidebar", height)
     const {sidebarTheme} = useSelector((state) => state.ThemeSwitcher);
     const dispatch = useDispatch();
 

@@ -1,0 +1,38 @@
+const blogActions = {
+  GET_ALL_BLOGS_REQUEST: "GET_ALL_BLOGS_REQUEST",
+  GET_ALL_BLOGS_SUCCESS: "GET_ALL_BLOGS_SUCCESS",
+  GET_ALL_BLOGS_FAILURE: "GET_ALL_BLOGS_FAILURE",
+  GET_BLOG_REQUEST: "GET_BLOG_REQUEST",
+  GET_BLOG_SUCCESS: "GET_BLOG_SUCCESS",
+  GET_BLOG_FAILURE: "GET_BLOG_FAILURE",
+  ADD_BLOG_REQUEST: "ADD_BLOG_REQUEST",
+  ADD_BLOG_SUCCESS: "ADD_BLOG_SUCCESS",
+  ADD_BLOG_FAILURE: "ADD_BLOG_FAILURE",
+  UPDATE_BLOG_REQUEST: "UPDATE_BLOG_REQUEST",
+  UPDATE_BLOG_SUCCESS: "UPDATE_BLOG_SUCCESS",
+  UPDATE_BLOG_FAILURE: "UPDATE_BLOG_FAILURE",
+  DELETE_BLOG_REQUEST: "DELETE_BLOG_REQUEST",
+  DELETE_BLOG_SUCCESS: "DELETE_BLOG_SUCCESS",
+  DELETE_BLOG_FAILURE: "DELETE_BLOG_FAILURE",
+
+  getAllBlogs: () => ({
+    type: blogActions.GET_ALL_BLOGS_REQUEST,
+  }),
+  getBlog: (blogId) => ({
+    type: blogActions.GET_BLOG_REQUEST,
+    blogId,
+  }),
+  addBlog: (newBlog) => ({
+    type: blogActions.ADD_BLOG_REQUEST,
+    blog: newBlog,
+  }),
+  updateBlog: (newBlog) => ({
+    type: blogActions.UPDATE_BLOG_REQUEST,
+    blog: newBlog,
+  }),
+  deleteBlog: (blogId) => ({
+    type: blogActions.DELETE_BLOG_REQUEST,
+    blogId,
+  }),
+};
+export default blogActions;

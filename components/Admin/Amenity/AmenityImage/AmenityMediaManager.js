@@ -5,8 +5,6 @@ import Tabs, {TabPane} from "@iso/components/uielements/tabs";
 import {Button} from "antd";
 import DropzoneWrapper from "../../Property/Dropzone/Dropzone.styles";
 import Dropzone from "../../Property/Dropzone/Dropzone";
-import {Row, Col} from "antd";
-import classNames from "classnames";
 import GalleryWrapper from "../../Property/Gallery/Gallery.styles";
 import InfiniteGallery from "./InfiniteGallery";
 

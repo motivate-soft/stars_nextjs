@@ -74,7 +74,7 @@ const CardWrapper = styled.div`
   }
 `;
 
-export const SingePostWrapper = styled.div`
+export const SingeBlogWrapper = styled.div`
   margin: 50px auto;
   padding: 20px;
   background: #fff;

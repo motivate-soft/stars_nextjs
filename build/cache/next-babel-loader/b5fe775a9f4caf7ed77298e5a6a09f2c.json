@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Dropzone from 'react-dropzone-component';\nimport 'dropzone/dist/min/dropzone.min.css';\nexport default Dropzone;","map":null,"metadata":{},"sourceType":"module"}

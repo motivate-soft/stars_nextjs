@@ -6,6 +6,7 @@
   "sidebar.property": "Property",
   "sidebar.users": "Users",
   "sidebar.posts": "Posts",
+  "sidebar.blogs": "Blogs",
 
   "Component.users.noOption": "No user found",
   "userlist.searchUsers": "Search Users",

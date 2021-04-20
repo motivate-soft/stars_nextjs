@@ -322,6 +322,7 @@ export const ComponentWrapper = styled.div`
           align-items: center;
           color: #797979;
           font-weight: bold;
+          height: 100%;
         }
 
         @media (max-width: 991px) {

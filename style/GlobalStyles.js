@@ -82,7 +82,7 @@ const GlobalStyle = createGlobalStyle`
   .reservation_sidebar {
     padding: 0 !important;
     background-color: #ffffff;
-    min-height: 70vh;
+    min-height: 50vh;
 
     header {
       margin-bottom: 29px;

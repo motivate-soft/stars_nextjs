@@ -71,7 +71,7 @@ export default function EditPost(props) {
                                     <Button type="primary">Back to List</Button>
                                 </Link>
                             </div>
-                            {selectedItem.id === parseInt(postId) && selectedItem ? (
+                            {selectedItem && selectedItem.id === parseInt(postId) && selectedItem ? (
                                 <Box>
                                     <Container>
                                         <Form

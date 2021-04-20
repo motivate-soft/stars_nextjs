@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Select from \"antd/lib/select\";\nimport { AntSelect } from './styles/select.style';\nimport WithDirection from '@iso/lib/helpers/rtl';\nvar WDSelect = AntSelect(_Select);\nvar isoSelect = WithDirection(WDSelect);\nvar SelectOption = _Select.Option;\nexport default isoSelect;\nexport { SelectOption };","map":null,"metadata":{},"sourceType":"module"}

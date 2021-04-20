@@ -31,7 +31,7 @@ export default function propertiesReducer(state = initState, action) {
       };
 
     // Get one
-    case postActions.GET_POST_FAILURE:
+    case postActions.GET_POST_REQUEST:
       return {
         ...state,
         loading: true,
@@ -39,7 +39,6 @@ export default function propertiesReducer(state = initState, action) {
     case postActions.GET_POST_SUCCESS:
       return {
         ...state,
-        items: items,
         selectedItem: action.item,
         loading: false,
       };
@@ -50,6 +49,7 @@ export default function propertiesReducer(state = initState, action) {
         error: action.error,
         loading: false,
       };
+
     // Add
     case postActions.ADD_POST_REQUEST:
       return {
@@ -57,9 +57,7 @@ export default function propertiesReducer(state = initState, action) {
         loading: true,
       };
     case postActions.ADD_POST_SUCCESS:
-      const { items } = state;
-      items.push(action.item);
-
+      state.items.push(action.item);
       return {
         ...state,
         items: items,

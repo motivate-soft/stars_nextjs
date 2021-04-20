@@ -1,0 +1,1 @@
+{"ast":null,"code":"import styled from 'styled-components';\nimport { palette } from \"styled-tools\";\nconst AmenitiesWrapper = styled.div.withConfig({\n  displayName: \"Amenitiesstyle__AmenitiesWrapper\",\n  componentId: \"zl1gm7-0\"\n})([\"padding:29px 0;\"]);\nexport default AmenitiesWrapper;","map":null,"metadata":{},"sourceType":"module"}

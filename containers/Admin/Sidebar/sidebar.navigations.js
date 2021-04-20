@@ -67,6 +67,12 @@ export default [
     leftIcon: <SidebarBlankIcon size={19} />,
   },
   {
+    key: "blog",
+    path: "/blog",
+    label: "sidebar.blogs",
+    leftIcon: <SidebarBlankIcon size={19} />,
+  },
+  {
     key: "blank_page",
     label: "sidebar.blankPage",
     leftIcon: <SidebarBlankIcon size={19} />,
