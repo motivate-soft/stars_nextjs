@@ -12,23 +12,25 @@ import {SearchContext} from "@context/SearchProvider";
 import DateRangePickerBox from "@iso/components/DatePicker/ReactDates";
 import ViewWithPopup from "@components/Common/ViewWithPopup/ViewWithPopup";
 import InputIncDec from "@components/Common/InputIncDec/InputIncDec";
+import moment from "moment";
 
 
 const calendarItem = {
     separator: '-',
-    format: 'MM-DD-YYYY',
+    format: 'YYYY-MM-DD',
     locale: 'en',
 };
 
 const SearchForm = () => {
     const {state, dispatch} = useContext(SearchContext);
+    console.log("SearchFormSearchContext", state)
     const [searchDate, setSearchDate] = useState({
-        setStartDate: null,
-        setEndDate: null,
+        setStartDate: state.checkin_date ? state.checkin_date : null,
+        setEndDate: state.checkout_date ? state.checkout_date : null,
     });
     const [guest, setGuest] = useState({
-        children: 0,
-        adults: 0,
+        children: state.children ? state.children : 0,
+        adults: state.adults ? state.adults : 0
     });
 
 
@@ -75,12 +77,10 @@ const SearchForm = () => {
             {
                 pathname: `/listing`,
             },
-            {shallow: true}
         );
     }
 
     const goToFilteredListingPage = () => {
-
         console.log("goToFilteredListingPage", state, searchDate)
         let query = {
             checkin_date: searchDate.setStartDate,
@@ -112,7 +112,6 @@ const SearchForm = () => {
                 pathname: `/listing`,
                 query: query,
             },
-            {shallow: true}
         );
     };
 
@@ -123,6 +122,8 @@ const SearchForm = () => {
                     <ComponentWrapper>
                         <FaRegCalendar className="calendar"/>
                         <DateRangePickerBox
+                            startDate={moment(searchDate.setStartDate)}
+                            endDate={moment(searchDate.setEndDate)}
                             startDatePlaceholderText="Check In"
                             endDatePlaceholderText="Check Out"
                             item={calendarItem}

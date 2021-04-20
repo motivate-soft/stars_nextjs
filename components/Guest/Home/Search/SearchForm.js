@@ -18,7 +18,7 @@ import {PIXEL_ID} from "../../../../env-config";
 
 const calendarItem = {
     separator: '-',
-    format: 'MM-DD-YYYY',
+    format: 'YYYY-MM-DD',
     locale: 'en',
 };
 

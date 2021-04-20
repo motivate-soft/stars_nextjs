@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {UserCardWrapper} from './UserCard.style';
 import {notification} from "@iso/components";
@@ -68,9 +68,6 @@ export default function EditUser(props) {
         }))
     };
 
-    console.log("__selectedItem__", selectedItem)
-    const user = selectedItem
-
     if (loading) return <Loader/>
 
     return (
@@ -104,106 +101,110 @@ export default function EditUser(props) {
                             {/*<h1 className="isoPersonName">{user.username}</h1>*/}
                         </div>
                         <div className="isoUserInfoWrapper">
-                            <Form
-                                {...formItemLayout}
-                                form={form}
-                                name="userEdit"
-                                className="isoUserInfoWrapper"
-                                onFinish={onFinish}
-                                initialValues={{
-                                    username: user.username,
-                                    first_name: user.first_name,
-                                    last_name: user.last_name,
-                                    status: user.status,
-                                    role: user.role
-                                }}
-                                scrollToFirstError
-                            >
-                                <Form.Item
-                                    label="Username"
-                                    name="username"
-                                    className="isoUserCardInfos"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input username',
-                                        },
-                                    ]}
+                            {
+                                selectedItem
+                                && selectedItem.id === parseInt(userId)
+                                && <Form
+                                    {...formItemLayout}
+                                    form={form}
+                                    name="userEdit"
+                                    className="isoUserInfoWrapper"
+                                    onFinish={onFinish}
+                                    initialValues={{
+                                        username: selectedItem.username,
+                                        first_name: selectedItem.first_name,
+                                        last_name: selectedItem.last_name,
+                                        status: selectedItem.status,
+                                        role: selectedItem.role
+                                    }}
+                                    scrollToFirstError
                                 >
-                                    <Input
-                                        placeholder='Username'
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    label="First Name"
-                                    name="first_name"
-                                    className="isoUserCardInfos"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input first name',
-                                        },
-                                    ]}
-                                >
-                                    <Input
-                                        placeholder='First Name'
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    label="Last Name"
-                                    name="last_name"
-                                    className="isoUserCardInfos"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input Last name',
-                                        },
-                                    ]}
-                                >
-                                    <Input
-                                        placeholder='First Name'
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    label="Role"
-                                    name="role"
-                                    className="isoUserCardInfos"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select role',
-                                        },
-                                    ]}
-                                >
-                                    <Select placeholder='Please select role'>
-                                        <Option value="S">Super Admin</Option>
-                                        <Option value="A">Admin</Option>
-                                        <Option value="E">Editor</Option>
-                                    </Select>
-                                </Form.Item>
-                                <Form.Item
-                                    label="Status"
-                                    name="status"
-                                    className="isoUserCardInfos"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please select status',
-                                        },
-                                    ]}
-                                >
-                                    <Select placeholder='Please select status'>
-                                        <Option value="P">Pending</Option>
-                                        <Option value="A">APPROVED</Option>
-                                        <Option value="B">BLOCKED</Option>
-                                    </Select>
-                                </Form.Item>
-                                <Form.Item wrapperCol={{span: 12, offset: 6}}>
-                                    <Button type="primary" htmlType="submit">
-                                        Save
-                                    </Button>
-                                </Form.Item>
-                            </Form>
+                                    <Form.Item
+                                        label="Username"
+                                        name="username"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input username',
+                                            },
+                                        ]}
+                                    >
+                                        <Input
+                                            placeholder='Username'
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="First Name"
+                                        name="first_name"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input first name',
+                                            },
+                                        ]}
+                                    >
+                                        <Input
+                                            placeholder='First Name'
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Last Name"
+                                        name="last_name"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input Last name',
+                                            },
+                                        ]}
+                                    >
+                                        <Input
+                                            placeholder='First Name'
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Role"
+                                        name="role"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please select role',
+                                            },
+                                        ]}
+                                    >
+                                        <Select placeholder='Please select role'>
+                                            <Option value="S">Super Admin</Option>
+                                            <Option value="A">Admin</Option>
+                                            <Option value="E">Editor</Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Status"
+                                        name="status"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please select status',
+                                            },
+                                        ]}
+                                    >
+                                        <Select placeholder='Please select status'>
+                                            <Option value="P">Pending</Option>
+                                            <Option value="A">APPROVED</Option>
+                                            <Option value="B">BLOCKED</Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Form.Item wrapperCol={{span: 12, offset: 6}}>
+                                        <Button type="primary" htmlType="submit">
+                                            Save
+                                        </Button>
+                                    </Form.Item>
+                                </Form>
+                            }
                         </div>
                     </UserCardWrapper>
                 </SingeUserWrapper>

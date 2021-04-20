@@ -103,6 +103,10 @@ const PropertyListingWrapper = styled.div`
       }
     }
 
+    .ant-row {
+      padding-top: 50px;
+    }
+
     .property-category-border {
       width: 100%;
       border-top: 3px solid ${palette('primary', 0)};
@@ -116,8 +120,42 @@ const PropertyListingWrapper = styled.div`
   }
 `
 
+const categories = [
+    {
+        "id": 6,
+        "name": "Private Rooms",
+        "slug": "private-rooms",
+    },
+    {
+        "id": 5,
+        "name": "Studios",
+        "slug": "studios",
+    },
+    {
+        "id": 1,
+        "name": "1-Bedroom",
+        "slug": "1-bedroom",
+    },
+    {
+        "id": 2,
+        "name": "2-Bedrooms",
+        "slug": "2-bedrooms",
+    },
+    {
+        "id": 3,
+        "name": "3-bedrooms",
+        "slug": "3-bedrooms",
+    },
+    {
+        "id": 4,
+        "name": "4-Bedrooms",
+        "slug": "4-bedrooms",
+    },
+]
+
 function PropertyListing(props) {
-    const {items, categories, category} = props
+    // const {items, categories, category} = props
+    const {items, category} = props
     const {state, dispatch} = useContext(BookingContext);
 
     useEffect(() => {
