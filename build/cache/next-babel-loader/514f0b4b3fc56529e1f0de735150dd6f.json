@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { ComponentTitleWrapper } from './pageHeader.style';\nexport default (props => __jsx(ComponentTitleWrapper, {\n  className: \"isoComponentTitle\"\n}, props.children));","map":null,"metadata":{},"sourceType":"module"}

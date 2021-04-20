@@ -5,7 +5,6 @@ import HttpsProxyAgent from "https-proxy-agent/dist/agent";
 const postApi = {
     getAll: async () => {
         const prod = process.env.NODE_ENV === 'production';
-        console.log("NODE_ENV", process.env.NODE_ENV)
         if (prod) {
             return await fetch(`${BACKEND_URL}/api/content/`, {
                 method: "GET",
