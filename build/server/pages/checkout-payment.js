@@ -180,7 +180,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const postApi = {
   getAll: async () => {
     const prod = true;
-    console.log("NODE_ENV", "production");
 
     if (prod) {
       return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
@@ -1193,9 +1192,6 @@ var BookingWidget = __webpack_require__("gNcs");
 // EXTERNAL MODULE: ./context/BookingProvider.js
 var BookingProvider = __webpack_require__("t9tb");
 
-// EXTERNAL MODULE: ./shared/components/utility/loader.style.js
-var loader_style = __webpack_require__("EDUr");
-
 // EXTERNAL MODULE: external "react-paypal-button-v2"
 var external_react_paypal_button_v2_ = __webpack_require__("eg6N");
 
@@ -1215,6 +1211,9 @@ var router_ = __webpack_require__("4Q3z");
 // EXTERNAL MODULE: external "react-ga"
 var external_react_ga_ = __webpack_require__("lJcc");
 var external_react_ga_default = /*#__PURE__*/__webpack_require__.n(external_react_ga_);
+
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
 
 // CONCATENATED MODULE: ./components/Guest/Checkout/CheckoutPayment.js
 
@@ -1353,7 +1352,7 @@ function CheckoutPayment(props) {
       justifyContent: "space-between",
       marginBottom: 30
     }
-  }, __jsx("h3", null, "Payment Information"), __jsx("span", null, "Step 3 of 3")), isPaypalButtonLoading ? __jsx(loader_style["a" /* default */], null) : __jsx(external_react_paypal_button_v2_["PayPalButton"], {
+  }, __jsx("h3", null, "Payment Information"), __jsx("span", null, "Step 3 of 3")), isPaypalButtonLoading && __jsx(loader["a" /* default */], null), __jsx(external_react_paypal_button_v2_["PayPalButton"], {
     amount: state.total // disableCard
     ,
     style: {
@@ -1369,22 +1368,21 @@ function CheckoutPayment(props) {
     },
     catchError: error => {
       handlePaymentError(error);
-    } // options={{
-    //     clientId:
-    //         'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'
-    // }}
-    // Sandbox
-    ,
+    },
     options: {
-      clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",
-      currency: "USD"
-    }
+      clientId: 'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'
+    } // Sandbox
+    // options={{
+    //     clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",
+    //     currency: "USD"
+    // }}
+
   }), __jsx("p", null, __jsx(link_default.a, {
     href: "/contact",
     target: "_blank"
   }, __jsx("span", {
     className: "underlined-link"
-  }, "Contact us")), "if you want more information about long-term (+30 days) reservations.")), __jsx(col_default.a, {
+  }, "Contact us ")), "if you want more information about long-term (+30 days) reservations.")), __jsx(col_default.a, {
     lg: 10,
     sm: 24
   }, __jsx(BookingWidget["a" /* default */], {
@@ -4354,6 +4352,7 @@ const useIsScrolled = () => {
 
   const handleScroll = () => {
     const top = window.pageYOffset || document.documentElement.scrollTop;
+    console.log("useIsScrolled", window.pageYOffset, document.documentElement.scrollTop);
     setHidden(top !== 0);
   };
 
@@ -4488,7 +4487,14 @@ const TopNavigation = () => {
     0: show,
     1: setShow
   } = Object(external_react_["useState"])(false);
-  const isScrolled = hooks_useIsScrolled();
+
+  const hasPageYOffset = () => {
+    if (false) {}
+
+    return false;
+  };
+
+  const isScrolled = hooks_useIsScrolled() || hasPageYOffset();
   return TopNav_jsx(TopNavWrapper, null, TopNav_jsx(GuestLayout_CovidBanner, {
     isScrolled: isScrolled
   }), TopNav_jsx("nav", {

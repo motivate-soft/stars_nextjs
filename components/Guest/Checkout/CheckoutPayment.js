@@ -7,13 +7,13 @@ import styled from "styled-components";
 import {palette} from "styled-tools";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import {BookingContext} from "@context/BookingProvider";
-import LoaderComponent from "@iso/components/utility/loader.style";
 import {PayPalButton} from "react-paypal-button-v2";
 import {notification} from "@iso/components";
 import {BACKEND_URL, PIXEL_ID} from "../../../env-config";
 import moment from "moment";
-import Router, {useRouter} from "next/router";
+import {useRouter} from "next/router";
 import ReactGA from 'react-ga';
+import Loader from '@iso/components/utility/loader';
 
 
 const CheckoutPaymentWrapper = styled.div`
@@ -96,7 +96,7 @@ function CheckoutPayment(props) {
                     .then((ReactPixel) => {
                         console.log("initReactPixel", PIXEL_ID)
                         ReactPixel.init(PIXEL_ID);
-                        ReactPixel.track('Purchase', { value: bookingData.total, currency: 'USD' });
+                        ReactPixel.track('Purchase', {value: bookingData.total, currency: 'USD'});
                     });
 
                 dispatch({
@@ -132,43 +132,43 @@ function CheckoutPayment(props) {
                                 <h3>Payment Information</h3>
                                 <span>Step 3 of 3</span>
                             </div>
-
-                            {isPaypalButtonLoading
-                                ? <LoaderComponent/>
-                                : <PayPalButton
-                                    amount={state.total}
-                                    // disableCard
-                                    style={{color: 'blue'}}
-                                    shippingPreference="NO_SHIPPING"
-                                    onButtonReady={() => {
-                                        setIsPaypalButtonLoading(false)
-                                    }}
-                                    onSuccess={(details, data) => {
-                                        console.log(
-                                            '__TransactionCompletedBy__',
-                                            details,
-                                            data,
-                                            details.payer.name.given_name
-                                        );
-                                        handlePaymentSuccess(details, data);
-                                    }}
-                                    catchError={(error) => {
-                                        handlePaymentError(error);
-                                    }}
-                                    // options={{
-                                    //     clientId:
-                                    //         'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'
-                                    // }}
-                                    // Sandbox
-                                    options={{
-                                        clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",
-                                        currency: "USD"
-                                    }}
-                                />
+                            {
+                                isPaypalButtonLoading && <Loader/>
                             }
+
+                            <PayPalButton
+                                amount={state.total}
+                                // disableCard
+                                style={{color: 'blue'}}
+                                shippingPreference="NO_SHIPPING"
+                                onButtonReady={() => {
+                                    setIsPaypalButtonLoading(false)
+                                }}
+                                onSuccess={(details, data) => {
+                                    console.log(
+                                        '__TransactionCompletedBy__',
+                                        details,
+                                        data,
+                                        details.payer.name.given_name
+                                    );
+                                    handlePaymentSuccess(details, data);
+                                }}
+                                catchError={(error) => {
+                                    handlePaymentError(error);
+                                }}
+                                options={{
+                                    clientId:
+                                        'AVGSCRet9DZ7Ct0uNXIXGlZDO4EIlbnmGty4_jUvnG5Wn0GPTYJudDiB1tqkM2srJGWNZPEE1ZKt4_71'
+                                }}
+                                // Sandbox
+                                // options={{
+                                //     clientId: "AQod8JtRRk59F5HjcGOH7ZNymA7N6s2B1WhXH_g_UCBY40Y1LPSt0fxhdaR2rYmIQPNP2k7uZ5gL95Oe",
+                                //     currency: "USD"
+                                // }}
+                            />
                             <p>
                                 <Link href="/contact" target="_blank">
-                                    <span className="underlined-link">Contact us</span>
+                                    <span className="underlined-link">Contact us </span>
                                 </Link>
                                 if you want more information about long-term (+30 days)
                                 reservations.

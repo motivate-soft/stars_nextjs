@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link';
 import styled from "styled-components";
 import {palette} from "styled-tools";
@@ -304,7 +304,14 @@ const navLinks = [
 
 const TopNavigation = () => {
     const [show, setShow] = useState(false)
-    const isScrolled = useIsScrolled()
+    const hasPageYOffset = () => {
+        if (process.browser) {
+            return window.pageYOffset > 0 || document.documentElement.scrollTop > 0
+        }
+        return false
+    };
+
+    const isScrolled = useIsScrolled() || hasPageYOffset();
 
     return (
         <TopNavWrapper>

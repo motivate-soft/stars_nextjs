@@ -134,7 +134,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const postApi = {
   getAll: async () => {
     const prod = true;
-    console.log("NODE_ENV", "production");
 
     if (prod) {
       return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
@@ -341,6 +340,13 @@ module.exports = require("styled-tools");
 
 module.exports = __webpack_require__("RNiq");
 
+
+/***/ }),
+
+/***/ "27qp":
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/popover");
 
 /***/ }),
 
@@ -641,6 +647,17 @@ module.exports = _interopRequireWildcard;
 
 /***/ }),
 
+/***/ "7wCw":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var antd_lib_popover__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("27qp");
+/* harmony import */ var antd_lib_popover__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_lib_popover__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["a"] = (antd_lib_popover__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+/***/ }),
+
 /***/ "8gEg":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -817,6 +834,13 @@ class ReactDates_DateRangePickerBox extends external_react_["Component"] {
 }
 
 /* harmony default export */ var ReactDates = __webpack_exports__["a"] = (ReactDates_DateRangePickerBox);
+
+/***/ }),
+
+/***/ "AElg":
+/***/ (function(module, exports) {
+
+module.exports = require("@ant-design/icons/lib/icons/CheckOutlined");
 
 /***/ }),
 
@@ -1045,6 +1069,13 @@ function ViewWithPopup({
 
 /***/ }),
 
+/***/ "Gss8":
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/notification");
+
+/***/ }),
+
 /***/ "K2gz":
 /***/ (function(module, exports) {
 
@@ -1059,6 +1090,25 @@ module.exports = require("@ant-design/icons/lib/icons/PlusOutlined");
 
 /***/ }),
 
+/***/ "MNix":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var antd_lib_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Gss8");
+/* harmony import */ var antd_lib_notification__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_lib_notification__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const createNotification = (type, message, description) => {
+  antd_lib_notification__WEBPACK_IMPORTED_MODULE_0___default.a[type]({
+    message,
+    description
+  });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (createNotification);
+
+/***/ }),
+
 /***/ "O/hg":
 /***/ (function(module, exports) {
 
@@ -1066,10 +1116,269 @@ module.exports = require("react-slick");
 
 /***/ }),
 
+/***/ "OKMn":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ Notification["a" /* default */]; });
+
+// UNUSED EXPORTS: ColorChoser, EditableComponent
+
+// EXTERNAL MODULE: ./shared/components/Notification.js
+var Notification = __webpack_require__("MNix");
+
+// EXTERNAL MODULE: external "antd/lib/button"
+var button_ = __webpack_require__("eGmO");
+var button_default = /*#__PURE__*/__webpack_require__.n(button_);
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: ./shared/components/uielements/popover.js
+var popover = __webpack_require__("7wCw");
+
+// EXTERNAL MODULE: external "styled-components"
+var external_styled_components_ = __webpack_require__("Dtiu");
+var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
+
+// EXTERNAL MODULE: ./shared/library/helpers/style_utils.js
+var style_utils = __webpack_require__("p3F5");
+
+// EXTERNAL MODULE: ./shared/library/helpers/rtl.js
+var rtl = __webpack_require__("AwK5");
+
+// CONCATENATED MODULE: ./shared/components/ColorChooser.style.js
+
+
+
+const ColorChooserDropdown = external_styled_components_default.a.div.withConfig({
+  displayName: "ColorChooserstyle__ColorChooserDropdown",
+  componentId: "yqgxfr-0"
+})(["display:flex;flex-flow:row wrap;max-width:160px;.ant-btn{width:20px;height:20px;border:0;outline:0;padding:0;margin:", ";", ";&:empty{visibility:visible;}&:last-child{margin:0;}&:nth-child(n + 6){margin-top:15px;}&:nth-child(5n){margin-right:0;margin-left:0;}}"], props => props['data-rtl'] === 'rtl' ? '0 0 0 15px' : '0 15px 0 0', Object(style_utils["a" /* borderRadius */])('3px'));
+/* harmony default export */ var ColorChooser_style = (Object(rtl["a" /* default */])(ColorChooserDropdown));
+// CONCATENATED MODULE: ./shared/components/ColorChoser.js
+
+var __jsx = external_react_default.a.createElement;
+
+
+
+/* harmony default export */ var ColorChoser = (function ({
+  colors,
+  seectedColor,
+  changeColor
+}) {
+  const [visible, setVisibility] = external_react_default.a.useState(false);
+
+  function hide() {
+    setVisibility(false);
+  }
+
+  function handleVisibleChange() {
+    setVisibility(visible => !visible);
+  }
+
+  const content = () => __jsx(ColorChooser_style, {
+    className: "isoColorOptions"
+  }, colors.map((color, index) => {
+    const onClick = () => {
+      hide();
+      changeColor(index);
+    };
+
+    const style = {
+      background: color
+    };
+    return __jsx(button_default.a, {
+      key: index,
+      onClick: onClick,
+      style: style
+    });
+  }));
+
+  return __jsx(popover["a" /* default */], {
+    content: content(),
+    trigger: "click",
+    visible: visible,
+    onVisibleChange: handleVisibleChange
+  }, __jsx(button_default.a, {
+    style: {
+      backgroundColor: colors[seectedColor]
+    },
+    className: "isoColorChooser"
+  }));
+});
+// EXTERNAL MODULE: external "@ant-design/icons/lib/icons/EditOutlined"
+var EditOutlined_ = __webpack_require__("x0cy");
+var EditOutlined_default = /*#__PURE__*/__webpack_require__.n(EditOutlined_);
+
+// EXTERNAL MODULE: external "@ant-design/icons/lib/icons/CheckOutlined"
+var CheckOutlined_ = __webpack_require__("AElg");
+var CheckOutlined_default = /*#__PURE__*/__webpack_require__.n(CheckOutlined_);
+
+// EXTERNAL MODULE: ./shared/components/uielements/input.js + 1 modules
+var input = __webpack_require__("P1ll");
+
+// CONCATENATED MODULE: ./shared/components/EditableComponent.js
+
+
+var EditableComponent_jsx = external_react_default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function EditableComponent(props) {
+  const [state, setState] = external_react_default.a.useState({
+    value: props.value,
+    editable: false
+  });
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      value
+    }));
+  }
+
+  function check() {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      editable: false
+    }));
+
+    if (props.onChange) {
+      props.onChange(props.itemKey, state.value);
+    }
+  }
+
+  function edit() {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      editable: true
+    }));
+  }
+
+  const {
+    value,
+    editable
+  } = state;
+  return EditableComponent_jsx("div", {
+    className: "isoNoteContent"
+  }, editable ? EditableComponent_jsx("div", {
+    className: "isoNoteEditWrapper"
+  }, EditableComponent_jsx(input["b" /* Textarea */], {
+    rows: 3,
+    value: value,
+    onChange: handleChange,
+    onPressEnter: check
+  }), EditableComponent_jsx(CheckOutlined_default.a, {
+    className: "isoNoteEditIcon",
+    onClick: check
+  })) : EditableComponent_jsx("p", {
+    className: "isoNoteTextWrapper",
+    onClick: edit
+  }, value || ' ', EditableComponent_jsx(EditOutlined_default.a, {
+    className: "isoNoteEditIcon"
+  })));
+}
+// CONCATENATED MODULE: ./shared/components/index.js
+
+
+
+
+
+/***/ }),
+
 /***/ "Osoz":
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/router-context.js");
+
+/***/ }),
+
+/***/ "P1ll":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ InputSearch; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ Textarea; });
+
+// UNUSED EXPORTS: InputGroup
+
+// EXTERNAL MODULE: external "antd/lib/input"
+var input_ = __webpack_require__("Uqqx");
+var input_default = /*#__PURE__*/__webpack_require__.n(input_);
+
+// EXTERNAL MODULE: external "styled-components"
+var external_styled_components_ = __webpack_require__("Dtiu");
+var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
+
+// EXTERNAL MODULE: external "styled-theme"
+var external_styled_theme_ = __webpack_require__("BnVt");
+
+// EXTERNAL MODULE: ./shared/library/helpers/style_utils.js
+var style_utils = __webpack_require__("p3F5");
+
+// CONCATENATED MODULE: ./shared/components/uielements/styles/input.style.js
+
+
+
+
+const InputWrapper = ComponentName => external_styled_components_default()(ComponentName).withConfig({
+  displayName: "inputstyle__InputWrapper",
+  componentId: "lmpumv-0"
+})(["&.ant-input{padding:4px 10px;width:100%;height:35px;cursor:text;text-align:", ";font-size:13px;line-height:1.5;color:", ";background-color:#fff;background-image:none;border:1px solid ", ";", ";", ";&:focus{border-color:", ";}&.ant-input-lg{height:42px;padding:6px 10px;}&.ant-input-sm{padding:1px 10px;height:30px;}&::-webkit-input-placeholder{text-align:", ";color:", ";}&:-moz-placeholder{text-align:", ";color:", ";}&::-moz-placeholder{text-align:", ";color:", ";}&:-ms-input-placeholder{text-align:", ";color:", ";}}"], props => props['data-rtl'] === 'rtl' ? 'right' : 'left', Object(external_styled_theme_["palette"])('text', 1), Object(external_styled_theme_["palette"])('border', 0), Object(style_utils["a" /* borderRadius */])('4px'), Object(style_utils["c" /* transition */])(), Object(external_styled_theme_["palette"])('primary', 0), props => props['data-rtl'] === 'rtl' ? 'right' : 'left', Object(external_styled_theme_["palette"])('grayscale', 0), props => props['data-rtl'] === 'rtl' ? 'right' : 'left', Object(external_styled_theme_["palette"])('grayscale', 0), props => props['data-rtl'] === 'rtl' ? 'right' : 'left', Object(external_styled_theme_["palette"])('grayscale', 0), props => props['data-rtl'] === 'rtl' ? 'right' : 'left', Object(external_styled_theme_["palette"])('grayscale', 0));
+
+const InputGroupWrapper = ComponentName => external_styled_components_default()(ComponentName).withConfig({
+  displayName: "inputstyle__InputGroupWrapper",
+  componentId: "lmpumv-1"
+})(["&.ant-input-group{margin-bottom:10px;.ant-select{.ant-select-selector{height:35px;}}.ant-input{height:35px;}.ant-select-auto-complete{margin-right:", ";}.ant-input{border:1px solid ", ";&:first-child{border-radius:", ";}}.ant-input-group-addon:not(:first-child):not(:last-child),.ant-input-group-wrap:not(:first-child):not(:last-child),> .ant-input:not(:first-child):not(:last-child){padding:0 7px;border-left-width:", ";margin-right:", ";}.ant-input-group-addon{padding:4px 7px;font-size:12px;color:", ";text-align:center;background-color:", ";border:1px solid ", ";", ";&:first-child{border-right-width:", ";border-left-width:", ";border-radius:", ";}&:last-child{border-right-width:", ";border-left-width:", ";border-radius:", ";}.ant-select{.ant-select-selector{height:35px;background-color:inherit;margin:-1px;border:1px solid transparent;", ";}}}.ant-input-group-addon:not(:first-child):not(:last-child),.ant-input-group-wrap:not(:first-child):not(:last-child){border-left:0;border-right:0;}& > .ant-input:not(:first-child):not(:last-child){", ";}.ant-input:first-child:last-child{border-radius:4px;}&.ant-input-group-compact > *{border-right-width:", ";}&.ant-input-group-compact > .ant-select > .ant-select-selection,&.ant-input-group-compact > .ant-calendar-picker .ant-input,&.ant-input-group-compact > .ant-select-auto-complete .ant-input,&.ant-input-group-compact > .ant-cascader-picker .ant-input,&.ant-input-group-compact > .ant-mention-wrapper .ant-mention-editor,&.ant-input-group-compact > .ant-time-picker .ant-time-picker-input{border-right-width:", ";}&.ant-input-group-compact > *:first-child,&.ant-input-group-compact > .ant-select:first-child > .ant-select-selection,&.ant-input-group-compact > .ant-calendar-picker:first-child .ant-input,&.ant-input-group-compact > .ant-select-auto-complete:first-child .ant-input,&.ant-input-group-compact > .ant-cascader-picker:first-child .ant-input,&.ant-input-group-compact > .ant-mention-wrapper:first-child .ant-mention-editor,&.ant-input-group-compact > .ant-time-picker:first-child .ant-time-picker-input{border-radius:", ";border-left-width:1px ", ";}&.ant-input-group-compact > *:last-child,&.ant-input-group-compact > .ant-select:last-child > .ant-select-selection,&.ant-input-group-compact > .ant-calendar-picker:last-child .ant-input,&.ant-input-group-compact > .ant-select-auto-complete:last-child .ant-input,&.ant-input-group-compact > .ant-cascader-picker:last-child .ant-input,&.ant-input-group-compact > .ant-mention-wrapper:last-child .ant-mention-editor,&.ant-input-group-compact > .ant-time-picker:last-child .ant-time-picker-input{border-radius:", ";border-right-width:", ";}.ant-calendar-picker-clear,.ant-calendar-picker-icon{right:", ";left:", ";}}&.ant-input-group-lg{.ant-input,> .ant-input-group-addon{padding:6px 10px;height:35px;}}"], props => props['data-rtl'] === 'rtl' ? '-1px' : '0', Object(external_styled_theme_["palette"])('border', 0), props => props['data-rtl'] === 'rtl' ? '0 4px 4px 0' : '4px 0 0 4px', props => props['data-rtl'] === 'rtl' ? '0' : '1px', props => props['data-rtl'] === 'rtl' ? '-1px' : '0', Object(external_styled_theme_["palette"])('text', 1), Object(external_styled_theme_["palette"])('grayscale', 4), Object(external_styled_theme_["palette"])('border', 0), Object(style_utils["c" /* transition */])(), props => props['data-rtl'] === 'rtl' ? '1px' : '0', props => props['data-rtl'] === 'rtl' ? '0' : '1px', props => props['data-rtl'] === 'rtl' ? '0 4px 4px 0' : '4px 0 0 4px', props => props['data-rtl'] === 'rtl' ? '0' : '1px', props => props['data-rtl'] === 'rtl' ? '1px' : '0', props => props['data-rtl'] === 'rtl' ? '4px 0 0 4px' : '0 4px 4px 0', Object(style_utils["b" /* boxShadow */])(), ''
+/* border-left: 0; */
+, props => props['data-rtl'] === 'rtl' ? '1px ' : '0', props => props['data-rtl'] === 'rtl' ? '1px ' : '0', props => props['data-rtl'] === 'rtl' ? '0 4px 4px 0' : '4px 0 0 4px', ''
+/* border-right-width: ${props =>
+props['data-rtl'] === 'rtl' ? '1px' : '0'}; */
+, props => props['data-rtl'] === 'rtl' ? '4px 0 0 4px' : '0 4px 4px 0', props => props['data-rtl'] === 'rtl' ? '0 ' : '1px', props => props['data-rtl'] === 'rtl' ? 'inherit' : '8px', props => props['data-rtl'] === 'rtl' ? '8px' : 'inherit');
+
+const TextAreaWrapper = ComponentName => external_styled_components_default()(ComponentName).withConfig({
+  displayName: "inputstyle__TextAreaWrapper",
+  componentId: "lmpumv-2"
+})(["&.ant-input{padding:4px 10px;width:100%;height:auto;cursor:text;font-size:13px;line-height:1.5;color:", ";background-color:#fff;background-image:none;border:1px solid ", ";", ";", ";&:focus{border-color:", ";}&::-webkit-input-placeholder{color:", ";}&:-moz-placeholder{color:", ";}&::-moz-placeholder{color:", ";}&:-ms-input-placeholder{color:", ";}}"], Object(external_styled_theme_["palette"])('text', 1), Object(external_styled_theme_["palette"])('border', 0), Object(style_utils["a" /* borderRadius */])('4px'), Object(style_utils["c" /* transition */])(), Object(external_styled_theme_["palette"])('primary', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0));
+
+const InputSearchWrapper = ComponentName => external_styled_components_default()(ComponentName).withConfig({
+  displayName: "inputstyle__InputSearchWrapper",
+  componentId: "lmpumv-3"
+})(["&.ant-input-affix-wrapper{background-color:#fff;background-image:none;border:1px solid ", ";padding:4px 10px;width:100%;height:35px;max-height:35px;", ";", ";.ant-input{height:auto}&:focus,&.ant-input-affix-wrapper-focused{border-color:", ";}&.ant-input-affix-wrapper-lg{height:42px;padding:6px 10px;}&.ant-input-affix-wrapper-sm{padding:1px 10px;height:30px;}&.ant-input-search:not(.ant-input-search-enter-button){padding-right:0;}.ant-input{cursor:text;font-size:13px;line-height:1.5;color:", ";&::-webkit-input-placeholder{color:", ";}&:-moz-placeholder{color:", ";}&::-moz-placeholder{color:", ";}&:-ms-input-placeholder{color:", ";}}.ant-input-search-icon{color:", ";&:hover{color:", ";}}}"], Object(external_styled_theme_["palette"])('border', 0), Object(style_utils["a" /* borderRadius */])('4px'), Object(style_utils["c" /* transition */])(), Object(external_styled_theme_["palette"])('primary', 0), Object(external_styled_theme_["palette"])('text', 1), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('grayscale', 0), Object(external_styled_theme_["palette"])('primary', 0));
+
+
+// EXTERNAL MODULE: ./shared/library/helpers/rtl.js
+var rtl = __webpack_require__("AwK5");
+
+// CONCATENATED MODULE: ./shared/components/uielements/input.js
+
+
+
+const {
+  Search,
+  TextArea,
+  Group
+} = input_default.a;
+const WDStyledInput = InputWrapper(input_default.a);
+const StyledInput = Object(rtl["a" /* default */])(WDStyledInput);
+const WDInputGroup = InputGroupWrapper(Group);
+const InputGroup = Object(rtl["a" /* default */])(WDInputGroup);
+const WDInputSearch = InputSearchWrapper(Search);
+const InputSearch = Object(rtl["a" /* default */])(WDInputSearch);
+const WDTextarea = TextAreaWrapper(TextArea);
+const Textarea = Object(rtl["a" /* default */])(WDTextarea);
+/* harmony default export */ var input = __webpack_exports__["c"] = (StyledInput);
+
 
 /***/ }),
 
@@ -1175,6 +1484,9 @@ var external_react_ga_default = /*#__PURE__*/__webpack_require__.n(external_reac
 // EXTERNAL MODULE: ./env-config.js
 var env_config = __webpack_require__("Ye+W");
 
+// EXTERNAL MODULE: ./shared/components/index.js + 3 modules
+var components = __webpack_require__("OKMn");
+
 // CONCATENATED MODULE: ./components/Guest/Home/Search/SearchForm.js
 
 
@@ -1186,6 +1498,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1252,10 +1565,6 @@ const SearchForm = () => {
       action: 'browse',
       label: 'browse rentals'
     });
-    Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "11tx", 7)).then(x => x.default).then(ReactPixel => {
-      ReactPixel.init(env_config["PIXEL_ID"]);
-      ReactPixel.track('Search');
-    });
     dispatch({
       type: 'UPDATE_QUERY',
       payload: _objectSpread(_objectSpread({}, state), {}, {
@@ -1275,6 +1584,16 @@ const SearchForm = () => {
   };
 
   const goToFilteredListingPage = () => {
+    if (searchDate.setStartDate === null || searchDate.setEndDate === null) {
+      Object(components["a" /* notification */])('warning', 'Please select dates');
+      return;
+    }
+
+    if (guest.adults === 0) {
+      Object(components["a" /* notification */])('warning', 'Please input number of guests');
+      return;
+    }
+
     external_react_ga_default.a.event({
       category: 'engagement',
       action: 'search',
@@ -1284,6 +1603,10 @@ const SearchForm = () => {
       category: 'engagement',
       action: 'view_search_results',
       label: 'view rentals search results'
+    });
+    Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "11tx", 7)).then(x => x.default).then(ReactPixel => {
+      ReactPixel.init(env_config["PIXEL_ID"]);
+      ReactPixel.track('Search');
     });
     let query = {
       checkin_date: searchDate.setStartDate,
@@ -1341,7 +1664,7 @@ const SearchForm = () => {
     className: "children_adults",
     view: __jsx(button_default.a, {
       type: "default"
-    }, __jsx("span", null, "Adults ", guest.children > 0 && `: ${guest.children}`), __jsx("span", null, "-"), __jsx("span", null, "Children", guest.adults > 0 && `: ${guest.adults}`)),
+    }, __jsx("span", null, "Adults ", guest.adults > 0 && `: ${guest.adults}`), __jsx("span", null, "-"), __jsx("span", null, "Children", guest.children > 0 && `: ${guest.children}`)),
     popup: __jsx(GuestWrapper, null, __jsx(ItemWrapper, null, __jsx("strong", null, "Adults"), __jsx(InputIncDec["a" /* default */], {
       id: "adults",
       increment: () => handleIncrement('adults'),
@@ -4296,6 +4619,7 @@ const useIsScrolled = () => {
 
   const handleScroll = () => {
     const top = window.pageYOffset || document.documentElement.scrollTop;
+    console.log("useIsScrolled", window.pageYOffset, document.documentElement.scrollTop);
     setHidden(top !== 0);
   };
 
@@ -4430,7 +4754,14 @@ const TopNavigation = () => {
     0: show,
     1: setShow
   } = Object(external_react_["useState"])(false);
-  const isScrolled = hooks_useIsScrolled();
+
+  const hasPageYOffset = () => {
+    if (false) {}
+
+    return false;
+  };
+
+  const isScrolled = hooks_useIsScrolled() || hasPageYOffset();
   return TopNav_jsx(TopNavWrapper, null, TopNav_jsx(GuestLayout_CovidBanner, {
     isScrolled: isScrolled
   }), TopNav_jsx("nav", {
@@ -4984,6 +5315,44 @@ function makePublicRouterInstance(router) {
 
 /***/ }),
 
+/***/ "p3F5":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return transition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return borderRadius; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return boxShadow; });
+// Transition
+function transition(timing = 0.3) {
+  return `
+      -webkit-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
+      -moz-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
+      -ms-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
+      -o-transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition: all ${timing}s cubic-bezier(0.215, 0.61, 0.355, 1);
+  `;
+} // Border Radius
+
+function borderRadius(radius = 0) {
+  return `
+      -webkit-border-radius: ${radius};
+      -moz-border-radius: ${radius};
+      -ms-transition: ${radius};
+      -o-border-radius: ${radius};
+      border-radius: ${radius};
+  `;
+} // Box Shadow
+
+function boxShadow(shadow = 'none') {
+  return `
+      -webkit-box-shadow: ${shadow};
+      -moz-box-shadow: ${shadow};
+      box-shadow: ${shadow};
+  `;
+}
+
+/***/ }),
+
 /***/ "rf6O":
 /***/ (function(module, exports) {
 
@@ -5269,6 +5638,13 @@ module.exports = require("antd/lib/col");
 "use strict";
 exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
 //# sourceMappingURL=denormalize-page-path.js.map
+
+/***/ }),
+
+/***/ "x0cy":
+/***/ (function(module, exports) {
+
+module.exports = require("@ant-design/icons/lib/icons/EditOutlined");
 
 /***/ }),
 

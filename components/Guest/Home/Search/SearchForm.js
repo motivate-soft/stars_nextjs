@@ -14,6 +14,7 @@ import ViewWithPopup from "@components/Common/ViewWithPopup/ViewWithPopup";
 import InputIncDec from "@components/Common/InputIncDec/InputIncDec";
 import ReactGA from "react-ga";
 import {PIXEL_ID} from "../../../../env-config";
+import {notification} from "@iso/components";
 
 
 const calendarItem = {
@@ -65,12 +66,6 @@ const SearchForm = () => {
             action: 'browse',
             label: 'browse rentals'
         });
-        import('react-facebook-pixel')
-            .then((x) => x.default)
-            .then((ReactPixel) => {
-                ReactPixel.init(PIXEL_ID);
-                ReactPixel.track('Search');
-            });
 
         dispatch({
             type: 'UPDATE_QUERY',
@@ -94,6 +89,15 @@ const SearchForm = () => {
     }
 
     const goToFilteredListingPage = () => {
+        if (searchDate.setStartDate===null || searchDate.setEndDate===null){
+            notification('warning','Please select dates')
+            return;
+        }
+        if (guest.adults===0){
+            notification('warning','Please input number of guests')
+            return;
+        }
+
         ReactGA.event({
             category: 'engagement',
             action: 'search',
@@ -104,6 +108,12 @@ const SearchForm = () => {
             action: 'view_search_results',
             label: 'view rentals search results'
         });
+        import('react-facebook-pixel')
+            .then((x) => x.default)
+            .then((ReactPixel) => {
+                ReactPixel.init(PIXEL_ID);
+                ReactPixel.track('Search');
+            });
 
         let query = {
             checkin_date: searchDate.setStartDate,
@@ -167,9 +177,9 @@ const SearchForm = () => {
                             className="children_adults"
                             view={
                                 <Button type="default">
-                                    <span>Adults {guest.children > 0 && `: ${guest.children}`}</span>
+                                    <span>Adults {guest.adults > 0 && `: ${guest.adults}`}</span>
                                     <span>-</span>
-                                    <span>Children{guest.adults > 0 && `: ${guest.adults}`}</span>
+                                    <span>Children{guest.children > 0 && `: ${guest.children}`}</span>
                                 </Button>
                             }
                             popup={

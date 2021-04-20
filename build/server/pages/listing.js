@@ -3091,6 +3091,7 @@ const useIsScrolled = () => {
 
   const handleScroll = () => {
     const top = window.pageYOffset || document.documentElement.scrollTop;
+    console.log("useIsScrolled", window.pageYOffset, document.documentElement.scrollTop);
     setHidden(top !== 0);
   };
 
@@ -3225,7 +3226,14 @@ const TopNavigation = () => {
     0: show,
     1: setShow
   } = Object(external_react_["useState"])(false);
-  const isScrolled = hooks_useIsScrolled();
+
+  const hasPageYOffset = () => {
+    if (false) {}
+
+    return false;
+  };
+
+  const isScrolled = hooks_useIsScrolled() || hasPageYOffset();
   return TopNav_jsx(TopNavWrapper, null, TopNav_jsx(GuestLayout_CovidBanner, {
     isScrolled: isScrolled
   }), TopNav_jsx("nav", {

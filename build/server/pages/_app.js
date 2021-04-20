@@ -114,7 +114,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const postApi = {
   getAll: async () => {
     const prod = true;
-    console.log("NODE_ENV", "production");
 
     if (prod) {
       return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
