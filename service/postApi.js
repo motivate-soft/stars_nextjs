@@ -13,7 +13,7 @@ const postApi = {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
-                agent: new HttpsProxyAgent('http://172.25.1.2:3129')
+                // agent: new HttpsProxyAgent('http://172.25.1.2:3129')
             })
                 .then(res => {
                     if (res.ok) {
