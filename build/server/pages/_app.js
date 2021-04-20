@@ -2040,7 +2040,7 @@ var components = __webpack_require__("OKMn");
 // CONCATENATED MODULE: ./shared/config/jwt.config.js
 /* harmony default export */ var jwt_config = ({
   enabled: true,
-  fetchUrl: "http://stars-website-react-2.ue.r.appspot.com/api/rest-auth/token/obtain/",
+  fetchUrl: "https://stars-website-react-2.ue.r.appspot.com/api/rest-auth/token/obtain/",
   secretKey: "x=y#mma+9+3cixlanut$c3wnbjc)#^6qvg&jz)8p0^e3ybg&80"
 });
 // EXTERNAL MODULE: external "jwt-decode"
@@ -5313,9 +5313,9 @@ const blogActions = {
 const prod = true;
 console.log("process.env.NODE_ENV", "production", prod);
 module.exports = {
-  BACKEND_URL: 'http://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: 'http://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: prod ? 'http://stars-website-react-2.ue.r.appspot.com' : 'http://stars-website-react-2.ue.r.appspot.com',
+  BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
+  // BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
+  // BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'https://stars-website-react-2.ue.r.appspot.com',
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
   GA_ID: "UA-129107246-1",
