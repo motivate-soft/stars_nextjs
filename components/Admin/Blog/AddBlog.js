@@ -3,15 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import Loader from "@iso/components/utility/loader";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
-import {Button, Col, Form, Input, Row} from "antd";
+import {Button, Col, Form, Input, Row, Upload, message} from "antd";
 import Editor from "@components/Admin/Property/Editor/Editor";
 import Link from "next/link";
 import blogActions from "@redux/blogs/actions";
 import {SingeBlogWrapper} from "@components/Admin/Blog/Blog.styles";
-import Upload from "@iso/containers/Forms/Upload/Upload";
 import {BACKEND_URL} from "../../../env-config";
 import {getCookie} from "@redux/authentication/auth.utils";
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import {UploadOutlined, InboxOutlined} from '@ant-design/icons';
+import {isServer} from "@iso/lib/helpers/isServer";
+
 
 const formItemLayout = {
     labelCol: {
@@ -22,6 +23,7 @@ const formItemLayout = {
     },
 };
 const {useForm} = Form
+const {Dragger} = Upload;
 
 const HtmlEditor = ({value = {}, onChange}) => {
     const triggerChange = (changedValue) => {
@@ -40,36 +42,42 @@ const HtmlEditor = ({value = {}, onChange}) => {
     );
 };
 
-const normFile = (e) => {
-    console.log('Upload event:', e);
-
-    if (Array.isArray(e)) {
-        return e;
-    }
-
-    return e && e.fileList;
+const props = {
+    name: 'file',
+    multiple: true,
+    action: `${BACKEND_URL}/api/media/create`,
+    listType: "picture",
+    maxCount: 1,
+    beforeUpload: (file) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isJpgOrPng && isLt2M;
+    },
+    onChange(info) {
+        const {status} = info.file;
+        if (status !== 'uploading') {
+            console.log(info.file, info.fileList);
+        }
+        if (status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully.`);
+        } else if (status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+        }
+    },
 };
-
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-        message.error('You can only upload JPG/PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-    }
-    return isJpgOrPng && isLt2M;
-}
 
 export default function AddBlog() {
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        props.headers = {Authorization: "Bearer " + getCookie("token")}
+    }, [])
 
     const [form] = useForm();
 
@@ -132,27 +140,18 @@ export default function AddBlog() {
                                 >
                                     <HtmlEditor/>
                                 </Form.Item>
-                                <Form.Item label="image">
-                                    <Form.Item name="image" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-                                        <Upload.Dragger name="files" action="/upload.do">
-                                            <p className="ant-upload-drag-icon">
-                                                <InboxOutlined />
-                                            </p>
-                                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                                            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-                                        </Upload.Dragger>
-                                    </Form.Item>
+
+                                <Form.Item name="image" hidden>
+                                    <Input/>
                                 </Form.Item>
-                                {/*<Form.Item*/}
-                                {/*    label="Upload"*/}
-                                {/*>*/}
-                                {/*    <Upload.Dragger name="image" valuePropName="fileList" action={`${BACKEND_URL}/api/media/create`}*/}
-                                {/*                    header={{Authorization: "Bearer " + "token"}}*/}
-                                {/*                    listType="picture">*/}
-                                {/*        <InboxOutlined />*/}
-                                {/*    </Upload.Dragger>*/}
-                                {/*</Form.Item>*/}
-                                <div>
+                                <Dragger {...props}
+                                         headers={{Authorization: "Bearer " + !isServer && getCookie("token")}}>
+                                    <p className="ant-upload-drag-icon">
+                                        <InboxOutlined/>
+                                    </p>
+                                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                </Dragger>
+                                <div className="blog-actions-wrapper">
                                     <Button type="primary" htmlType="submit">
                                         Save
                                     </Button>

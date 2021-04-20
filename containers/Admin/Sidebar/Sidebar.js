@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import clone from 'clone';
 import {Layout} from 'antd';
@@ -31,9 +31,19 @@ export default function Sidebar(props) {
         height,
         current,
     } = useSelector((state) => state.App);
-    console.log("Sidebar", height)
+
     const {sidebarTheme} = useSelector((state) => state.ThemeSwitcher);
     const dispatch = useDispatch();
+    const [scrollheight, setScrollheight] = useState(null)
+    const [isCollapsed, setIsCollapsed] = useState(null)
+
+    useEffect(() => {
+        setScrollheight(height)
+    }, [height])
+
+    useEffect(() => {
+        setIsCollapsed(collapsed && !openDrawer)
+    }, [collapsed])
 
     function handleClick(e) {
         dispatch(changeCurrent([e.key]));
@@ -69,9 +79,7 @@ export default function Sidebar(props) {
         return map[key] || [];
     };
 
-    const isCollapsed = collapsed && !openDrawer;
     const mode = isCollapsed === true ? 'vertical' : 'inline';
-    const scrollheight = height;
     const styling = {
         backgroundColor: sidebarTheme.backgroundColor,
     };

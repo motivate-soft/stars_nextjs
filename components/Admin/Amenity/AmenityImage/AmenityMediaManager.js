@@ -39,8 +39,7 @@ export default function AmenityMediaManager(props) {
                 >
                     <TabPane tab="Upload" key="upload">
                         <DropzoneWrapper>
-                            <Dropzone onUploadSuccess={() => {
-                            }}/>
+                            <Dropzone onUploadSuccess={() => {}}/>
                         </DropzoneWrapper>
                     </TabPane>
                     <TabPane tab="Images" key="featured">
