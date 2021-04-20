@@ -19,6 +19,7 @@ import HelperText from "@iso/components/utility/helper-text";
 import Scrollbars from "@iso/components/utility/customScrollBar";
 import TableWrapper from "@iso/containers/Tables/AntTables/AntTables.styles";
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
+import Loader from '@iso/components/utility/loader';
 
 const renderCell = (object, type, key) => {
     const value = object[key];
@@ -88,7 +89,7 @@ const userTableColumns = [
 ];
 
 export default function UserList() {
-    const {items} = useSelector(state => state.Users);
+    const {items, loading} = useSelector(state => state.Users);
     const [state, setState] = React.useState({
         columns: createcolumns(clone(userTableColumns)),
         dataList: items,
@@ -145,22 +146,22 @@ export default function UserList() {
                     {/*        </a>*/}
                     {/*    </Link>*/}
                     {/*</div>*/}
-                    {items?.length === 0 ? (
-                        <HelperText text="No Users found"/>
-                    ) : (
-                        <div className="isoUserTable">
-                            <Scrollbars
-                                style={{width: "100%", height: "calc(60vh - 70px)"}}
-                            >
-                                <TableWrapper
-                                    columns={columns}
-                                    dataSource={items}
-                                    pagination={{pageSize: 5}}
-                                    className="userListTable"
-                                />
-                            </Scrollbars>
-                        </div>
-                    )}
+                    {
+                        loading
+                            ? <Loader/>
+                            : <div className="isoUserTable">
+                                <Scrollbars
+                                    style={{width: "100%", height: "calc(60vh - 70px)"}}
+                                >
+                                    <TableWrapper
+                                        columns={columns}
+                                        dataSource={items}
+                                        pagination={{pageSize: 5}}
+                                        className="userListTable"
+                                    />
+                                </Scrollbars>
+                            </div>
+                    }
                 </UserListWrapper>
             </Box>
         </LayoutWrapper>

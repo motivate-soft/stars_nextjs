@@ -15,7 +15,7 @@ import {
     TextCell,
 } from "@iso/components/Tables/HelperCells";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
-
+import Loader from '@iso/components/utility/loader';
 import TableWrapper from "@iso/containers/Tables/AntTables/AntTables.styles";
 import CardWrapper from "./AmenityList.styles";
 
@@ -129,29 +129,28 @@ export default function AmenityList() {
                             </a>
                         </Link>
                     </div>
-                    {items?.length === 0 ? (
-                        <HelperText text="No Properties found"/>
-                    ) : (
-                        <div className="isoAmenityTable">
-                            <Scrollbars
-                                style={{width: "100%", height: "calc(60vh - 70px)"}}
-                            >
-                                <TableWrapper
-                                    onRow={(record, rowIndex) => {
-                                        return {
-                                            onClick: (event) => {
-                                                console.log("rowClick", record, rowIndex);
-                                            },
-                                        };
-                                    }}
-                                    columns={columns}
-                                    dataSource={items}
-                                    pagination={{pageSize: 5}}
-                                    className="amenityListTable"
-                                />
-                            </Scrollbars>
-                        </div>
-                    )}
+                    {
+                        loading
+                            ? <Loader/>
+                            : <div className="isoAmenityTable">
+                                <Scrollbars
+                                    style={{width: "100%", height: "calc(60vh - 70px)"}}>
+                                    <TableWrapper
+                                        onRow={(record, rowIndex) => {
+                                            return {
+                                                onClick: (event) => {
+                                                    console.log("rowClick", record, rowIndex);
+                                                },
+                                            };
+                                        }}
+                                        columns={columns}
+                                        dataSource={items}
+                                        pagination={{pageSize: 5}}
+                                        className="amenityListTable"
+                                    />
+                                </Scrollbars>
+                            </div>
+                    }
                 </CardWrapper>
             </Box>
         </LayoutWrapper>

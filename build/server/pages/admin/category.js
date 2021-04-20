@@ -1848,6 +1848,9 @@ var AntTables_styles = __webpack_require__("uhnA");
 // EXTERNAL MODULE: ./components/Admin/Category/Category.styles.js
 var Category_styles = __webpack_require__("EFTZ");
 
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
+
 // EXTERNAL MODULE: ./redux/categories/actions.js
 var actions = __webpack_require__("G3ex");
 
@@ -1864,6 +1867,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1971,9 +1975,7 @@ function CategoryList() {
   }, __jsx("a", null, __jsx(uielements_button["a" /* default */], {
     type: "primary",
     className: "mateAddCategoryBtn"
-  }, "Add Category")))), (items === null || items === void 0 ? void 0 : items.length) === 0 ? __jsx(helper_text["a" /* default */], {
-    text: "No Properties found"
-  }) : __jsx("div", {
+  }, "Add Category")))), loading ? __jsx(loader["a" /* default */], null) : __jsx("div", {
     className: "isoCategoryTable"
   }, __jsx(customScrollBar["a" /* default */], {
     style: {
@@ -2106,9 +2108,6 @@ function AddCategory(props) {
     onClick: onReset
   }, "Reset")))))))));
 }
-// EXTERNAL MODULE: ./shared/components/utility/loader.js
-var loader = __webpack_require__("7Sp7");
-
 // CONCATENATED MODULE: ./components/Admin/Category/EditCategory.js
 
 

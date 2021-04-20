@@ -76,7 +76,7 @@ export default function EditProperty(props) {
     const [state, setState] = React.useState(newProperty);
 
     const dispatch = useDispatch();
-    const {selectedItem} = useSelector((state) => state.Properties);
+    const {selectedItem, loading} = useSelector((state) => state.Properties);
     const editorOption = {
         style: {width: "90%", height: "70%"},
         toolbarClassName: "home-toolbar",

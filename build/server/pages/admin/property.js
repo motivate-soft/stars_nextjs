@@ -2318,6 +2318,30 @@ module.exports = _interopRequireWildcard;
 
 /***/ }),
 
+/***/ "7Sp7":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _loader_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("EDUr");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+/* harmony default export */ __webpack_exports__["a"] = (Loader => __jsx(_loader_style__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], null, __jsx("svg", {
+  className: "isoContentLoader",
+  viewBox: "0 0 50 50"
+}, __jsx("circle", {
+  className: "isoContentLoaderCircle",
+  cx: "25",
+  cy: "25",
+  r: "20",
+  fill: "none",
+  strokeWidth: "3.6"
+}))));
+
+/***/ }),
+
 /***/ "7wCw":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2563,6 +2587,24 @@ const ButtonGroup = Object(rtl["a" /* default */])(AntButtonGroup);
 /***/ (function(module, exports) {
 
 module.exports = require("styled-components");
+
+/***/ }),
+
+/***/ "EDUr":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Dtiu");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("BnVt");
+/* harmony import */ var styled_theme__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_theme__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const LoaderComponent = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "loaderstyle__LoaderComponent",
+  componentId: "sc-1pxv3ii-0"
+})(["width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:absolute;z-index:10000000000;top:0;right:0;@media only screen and (min-width:768px) and (max-width:1220px){width:calc(100% - 80px);}@media only screen and (max-width:767px){width:100%;}.isoContentLoader{width:50px;height:50px;animation:svgSpinner 1.4s linear infinite;}.isoContentLoaderCircle{animation:svgSpinnerCircle 1.4s ease-in-out infinite;stroke-dasharray:80px,200px;stroke-dashoffset:0px;stroke:", ";stroke-linecap:round;}@keyframes svgSpinner{100%{transform:rotate(360deg);}}@keyframes svgSpinnerCircle{0%{stroke-dasharray:1px,200px;stroke-dashoffset:0px;}50%{stroke-dasharray:100px,200px;stroke-dashoffset:-15px;}100%{stroke-dasharray:100px,200px;stroke-dashoffset:-120px;}}"], Object(styled_theme__WEBPACK_IMPORTED_MODULE_1__["palette"])('primary', 0));
+/* harmony default export */ __webpack_exports__["a"] = (LoaderComponent);
 
 /***/ }),
 
@@ -3557,6 +3599,9 @@ var Popconfirm = __webpack_require__("jiIP");
 // EXTERNAL MODULE: ./shared/components/Tables/HelperCells.js + 4 modules
 var HelperCells = __webpack_require__("0+jO");
 
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
+
 // EXTERNAL MODULE: ./shared/containers/Tables/AntTables/AntTables.styles.js + 1 modules
 var AntTables_styles = __webpack_require__("uhnA");
 
@@ -3599,6 +3644,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3714,9 +3760,7 @@ function PropertyList() {
   }, __jsx("a", null, __jsx(uielements_button["a" /* default */], {
     type: "primary",
     className: "mateAddPropertyBtn"
-  }, "Add Property")))), (items === null || items === void 0 ? void 0 : items.length) === 0 ? __jsx(helper_text["a" /* default */], {
-    text: "No Properties found"
-  }) : __jsx("div", {
+  }, "Add Property")))), loading ? __jsx(loader["a" /* default */], null) : __jsx("div", {
     className: "isoPropertyTable"
   }, __jsx(customScrollBar["a" /* default */], {
     style: {
@@ -5941,7 +5985,8 @@ function EditProperty(props) {
   const [state, setState] = external_react_default.a.useState(EditProperty_newProperty);
   const dispatch = Object(external_react_redux_["useDispatch"])();
   const {
-    selectedItem
+    selectedItem,
+    loading
   } = Object(external_react_redux_["useSelector"])(state => state.Properties);
   const editorOption = {
     style: {

@@ -2988,6 +2988,9 @@ var Popconfirm = __webpack_require__("jiIP");
 // EXTERNAL MODULE: ./shared/components/Tables/HelperCells.js + 4 modules
 var HelperCells = __webpack_require__("0+jO");
 
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
+
 // EXTERNAL MODULE: ./shared/containers/Tables/AntTables/AntTables.styles.js + 1 modules
 var AntTables_styles = __webpack_require__("uhnA");
 
@@ -3033,6 +3036,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3142,9 +3146,7 @@ function PostList() {
   }, __jsx("a", null, __jsx(uielements_button["a" /* default */], {
     type: "primary",
     className: "mateAddPostBtn"
-  }, "Add Post")))), (items === null || items === void 0 ? void 0 : items.length) === 0 ? __jsx(helper_text["a" /* default */], {
-    text: "No Properties found"
-  }) : __jsx("div", {
+  }, "Add Post")))), loading ? __jsx(loader["a" /* default */], null) : __jsx("div", {
     className: "isoPostTable"
   }, __jsx(customScrollBar["a" /* default */], {
     style: {
@@ -3205,9 +3207,6 @@ var Box = __webpack_require__("Wasw");
 
 // EXTERNAL MODULE: ./components/Admin/Category/Category.styles.js
 var Category_styles = __webpack_require__("EFTZ");
-
-// EXTERNAL MODULE: ./shared/components/utility/loader.js
-var loader = __webpack_require__("7Sp7");
 
 // CONCATENATED MODULE: ./components/Admin/Post/EditPost.js
 

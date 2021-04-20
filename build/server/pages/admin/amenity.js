@@ -2666,6 +2666,9 @@ var Popconfirm = __webpack_require__("jiIP");
 // EXTERNAL MODULE: ./shared/components/Tables/HelperCells.js + 4 modules
 var HelperCells = __webpack_require__("0+jO");
 
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
+
 // EXTERNAL MODULE: ./shared/containers/Tables/AntTables/AntTables.styles.js + 1 modules
 var AntTables_styles = __webpack_require__("uhnA");
 
@@ -2711,6 +2714,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2825,9 +2829,7 @@ function AmenityList() {
   }, __jsx("a", null, __jsx(uielements_button["a" /* default */], {
     type: "primary",
     className: "mateAddAmenityBtn"
-  }, "Add Amenity")))), (items === null || items === void 0 ? void 0 : items.length) === 0 ? __jsx(helper_text["a" /* default */], {
-    text: "No Properties found"
-  }) : __jsx("div", {
+  }, "Add Amenity")))), loading ? __jsx(loader["a" /* default */], null) : __jsx("div", {
     className: "isoAmenityTable"
   }, __jsx(customScrollBar["a" /* default */], {
     style: {
@@ -2897,9 +2899,6 @@ var authentication_actions = __webpack_require__("8XiI");
 // EXTERNAL MODULE: external "classnames"
 var external_classnames_ = __webpack_require__("K2gz");
 var external_classnames_default = /*#__PURE__*/__webpack_require__.n(external_classnames_);
-
-// EXTERNAL MODULE: ./shared/components/utility/loader.js
-var loader = __webpack_require__("7Sp7");
 
 // EXTERNAL MODULE: external "react-infinite-scroll-component"
 var external_react_infinite_scroll_component_ = __webpack_require__("3SD1");

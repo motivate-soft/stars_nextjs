@@ -4052,7 +4052,7 @@ class _app_CustomApp extends app_default.a {
       query
     } = router;
 
-    if (router.pathname.split('/')[0] === 'admin') {
+    if ((router === null || router === void 0 ? void 0 : router.pathname.split('/')[0]) === 'admin') {
       return (// <Provider store={store}>
         _app_jsx(AppProvider, null, _app_jsx(Component, pageProps)) // </Provider>
 

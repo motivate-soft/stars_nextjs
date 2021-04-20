@@ -54,7 +54,7 @@ export default function EditAmenity(props) {
     if (loading) return <Loader/>
 
     return (
-        <Box    >
+        <Box>
             <Container>
                 <Row>
                     <Col lg={{span: 12, offset: 6}} sm={24}>

@@ -31,7 +31,7 @@ class CustomApp extends App {
         const {Component, router, pageProps, store} = this.props;
         const {query} = router
 
-        if (router.pathname.split('/')[0] === 'admin') {
+        if (router?.pathname.split('/')[0] === 'admin') {
             return (
                 // <Provider store={store}>
                 <ThemeProvider>
@@ -40,6 +40,7 @@ class CustomApp extends App {
                 // </Provider>
             );
         }
+
         return (
             <GuestThemeProvider>
                 <SearchProvider query={query}>

@@ -5286,10 +5286,14 @@ var AntTables_styles = __webpack_require__("uhnA");
 // EXTERNAL MODULE: ./shared/components/utility/layoutWrapper.js + 1 modules
 var layoutWrapper = __webpack_require__("kOzy");
 
+// EXTERNAL MODULE: ./shared/components/utility/loader.js
+var loader = __webpack_require__("7Sp7");
+
 // CONCATENATED MODULE: ./components/Admin/Users/UserList.js
 
 
 var __jsx = external_react_default.a.createElement;
+
 
 
 
@@ -5391,7 +5395,8 @@ const userTableColumns = [{
 }];
 function UserList() {
   const {
-    items
+    items,
+    loading
   } = Object(external_react_redux_["useSelector"])(state => state.Users);
   const [state, setState] = external_react_default.a.useState({
     columns: createcolumns(external_clone_default()(userTableColumns)),
@@ -5433,9 +5438,7 @@ function UserList() {
     dispatch(actions["a" /* default */].deleteUser(userId));
   }
 
-  return __jsx(layoutWrapper["a" /* default */], null, __jsx(pageHeader["a" /* default */], null, "User"), __jsx(box["a" /* default */], null, __jsx(UserList_style["b" /* UserListWrapper */], null, (items === null || items === void 0 ? void 0 : items.length) === 0 ? __jsx(helper_text["a" /* default */], {
-    text: "No Users found"
-  }) : __jsx("div", {
+  return __jsx(layoutWrapper["a" /* default */], null, __jsx(pageHeader["a" /* default */], null, "User"), __jsx(box["a" /* default */], null, __jsx(UserList_style["b" /* UserListWrapper */], null, loading ? __jsx(loader["a" /* default */], null) : __jsx("div", {
     className: "isoUserTable"
   }, __jsx(customScrollBar["a" /* default */], {
     style: {
@@ -5483,9 +5486,6 @@ var uielements_select = __webpack_require__("gD8E");
 
 // EXTERNAL MODULE: ./shared/UI/UI/Container/Container.js + 1 modules
 var Container = __webpack_require__("iDsv");
-
-// EXTERNAL MODULE: ./shared/components/utility/loader.js
-var loader = __webpack_require__("7Sp7");
 
 // EXTERNAL MODULE: ./shared/UI/Box/Box.js + 1 modules
 var Box = __webpack_require__("Wasw");
