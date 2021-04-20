@@ -421,14 +421,6 @@ module.exports = require("next-cookies");
 
 /***/ }),
 
-/***/ "3qoQ":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("/static/assets/bf76eb2560efdc993ea7c5acff35a895.jpg");
-
-/***/ }),
-
 /***/ "4GXx":
 /***/ (function(module, exports) {
 
@@ -1129,9 +1121,8 @@ var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(exte
 // EXTERNAL MODULE: external "@styled-system/theme-get"
 var theme_get_ = __webpack_require__("/JeY");
 
-// EXTERNAL MODULE: ./shared/assets/images/couch-background.jpg
-var couch_background = __webpack_require__("3qoQ");
-
+// CONCATENATED MODULE: ./shared/assets/images/couch-background.jpg
+/* harmony default export */ var couch_background = ("/static/assets/bf76eb2560efdc993ea7c5acff35a895.jpg");
 // EXTERNAL MODULE: external "styled-tools"
 var external_styled_tools_ = __webpack_require__("1exS");
 
@@ -1143,7 +1134,7 @@ var external_styled_tools_ = __webpack_require__("1exS");
 const BannerWrapper = external_styled_components_default.a.div.withConfig({
   displayName: "Searchstyle__BannerWrapper",
   componentId: "qmc439-0"
-})(["width:100%;min-height:70vh;position:relative;background:linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0.3),transparent),url(", ") no-repeat center center;@media (max-width:991px){> div{max-width:100%;}}> div{position:relative;min-height:70vh;}&:after{display:block;content:'';width:100%;height:60%;position:absolute;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));pointer-events:none;z-index:0;}"], couch_background["a" /* default */]);
+})(["width:100%;min-height:70vh;position:relative;background:linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0.3),transparent),url(", ") no-repeat center center;@media (max-width:991px){> div{max-width:100%;}}> div{position:relative;min-height:70vh;}&:after{display:block;content:'';width:100%;height:60%;position:absolute;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));pointer-events:none;z-index:0;}"], couch_background);
 const SearchWrapper = external_styled_components_default.a.div.withConfig({
   displayName: "Searchstyle__SearchWrapper",
   componentId: "qmc439-1"

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import {themeGet} from '@styled-system/theme-get';
-import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
 import {palette} from "styled-tools";
 
 export const SearchWrapper = styled.div`
@@ -57,10 +56,10 @@ export const FormWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   min-height: 60px;
 
-  .ant-row{
+  .ant-row {
     width: 100%;
   }
-  
+
   @media (max-width: 991px) {
     flex-direction: column;
   }
@@ -73,11 +72,11 @@ export const FormWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  
-  .search-form-buttons{
+
+  .search-form-buttons {
     display: flex;
     justify-content: space-between;
-    
+
     @media (max-width: 991px) {
       flex-direction: column;
     }
@@ -295,12 +294,13 @@ export const ComponentWrapper = styled.div`
         font-size: 15px;
         color: ${palette('text', 0)};
         background-color: #F7F7F7;
-        
+
         span {
           display: flex;
           align-items: center;
           color: #797979;
           font-weight: bold;
+          height: 100%;
         }
 
         @media (max-width: 991px) {
