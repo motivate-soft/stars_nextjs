@@ -2,6 +2,7 @@ import Head from "next/head";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import {BACKEND_URL} from "../env-config";
 import Medical from "@components/Guest/Medical/Medical";
+import postApi from "../service/postApi";
 
 export default function MedicalPage(props) {
     const {posts} = props
@@ -18,12 +19,18 @@ export default function MedicalPage(props) {
 }
 
 export async function getStaticProps() {
-    const response = await fetch(`${BACKEND_URL}/api/content/`)
-    const posts = await response.json()
+    let posts;
+
+    try {
+        posts = await postApi.getAll()
+    } catch (e) {
+        console.log("fetchPostsError", e)
+        posts = [];
+    }
+
     return {
         props: {
             posts,
         },
     };
 }
-

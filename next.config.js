@@ -37,6 +37,11 @@ const nextConfig = {
 
 const webpackConfig = withTM(withFonts(withSass(withCSS({
     webpack: (config, {buildId, dev, isServer, defaultLoaders, webpack}) => {
+        config.node = {
+            net: 'empty',
+            tls: 'empty'
+        }
+
         config.module.rules.push({
             test: /\.(png|jpe?g|gif|svg|eot|woff|woff2|ttf)$/i,
             loader: "file-loader",

@@ -64,7 +64,7 @@ export async function getServerSideProps({query}) {
     }
 
     category = query.category || null
-    console.log("__BACKEND_URL__", BACKEND_URL)
+
     console.log("__propertyListing__", properties, categories, category)
 
     return {

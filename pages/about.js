@@ -1,7 +1,7 @@
 import Head from "next/head";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
-import {BACKEND_URL} from "../env-config";
 import About from "@components/Guest/About/About";
+import postApi from "../service/postApi";
 
 export default function AboutPage(props) {
   const {posts} = props
@@ -18,12 +18,20 @@ export default function AboutPage(props) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch(`${BACKEND_URL}/api/content/`)
-  const posts = await response.json()
-  return {
-    props: {
-      posts,
-    },
-  };
+    let posts;
+
+    try {
+        posts = await postApi.getAll()
+    } catch (e) {
+        console.log("fetchPostsError", e)
+        posts = [];
+    }
+
+    return {
+        props: {
+            posts,
+        },
+    };
 }
+
 

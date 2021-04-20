@@ -113,6 +113,165 @@ module.exports = require("@styled-system/theme-get");
 
 /***/ }),
 
+/***/ "/cYB":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _env_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Ye+W");
+/* harmony import */ var _env_config__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_env_config__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("vBVF");
+/* harmony import */ var https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3E2n");
+/* harmony import */ var https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const postApi = {
+  getAll: async () => {
+    const prod = true;
+    console.log("NODE_ENV", "production");
+
+    if (prod) {
+      return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        agent: new https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2___default.a('http://172.25.1.2:3129')
+      }).then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        throw res;
+      }).catch(handleError);
+    }
+
+    return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      throw res;
+    }).catch(handleError);
+  },
+  getOne: async id => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    }
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  add: async (post) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    },
+    body: JSON.stringify(post)
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  update: async (post) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${post.id}`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    },
+    body: JSON.stringify(post)
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  delete: async (postId) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${postId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    }
+  }).then(res => {
+    if (res.ok) {
+      return null;
+    }
+
+    throw res;
+  }).catch(handleError)
+};
+
+const handleError = res => {
+  if (res instanceof Error) {
+    throw Error('Network error');
+  }
+
+  let error = new Error(); // res.json().then((responseJson) => {
+  //     error = {
+  //         status: res.status,
+  //         statusText: res.statusText,
+  //         message: responseJson.detail || 'Application Error'
+  //     }
+  //     throw error
+  // })
+
+  if (res.status >= 400 && res.status < 500) {
+    console.log(res.text());
+    error = {
+      status: res.status,
+      statusText: res.statusText,
+      message: res.detail || 'Application Error'
+    };
+    throw error;
+  }
+
+  if (res.status >= 500) {
+    error = {
+      status: res.status,
+      statusText: res.statusText,
+      message: res.detail || 'Server Error'
+    };
+    throw error;
+  }
+
+  error = _objectSpread(_objectSpread({}, error), {}, {
+    status: res.status,
+    statusText: res.statusText,
+    message: res.detail || 'Error'
+  });
+  throw error;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (postApi);
+
+/***/ }),
+
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -192,6 +351,13 @@ module.exports = __webpack_require__("u2k8");
 
 /***/ }),
 
+/***/ "3E2n":
+/***/ (function(module, exports) {
+
+module.exports = require("https-proxy-agent/dist/agent");
+
+/***/ }),
+
 /***/ "3WeD":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -245,6 +411,13 @@ function assign(target, ...searchParamsList) {
   });
   return target;
 }
+
+/***/ }),
+
+/***/ "3i/4":
+/***/ (function(module, exports) {
+
+module.exports = require("next-cookies");
 
 /***/ }),
 
@@ -779,11 +952,8 @@ function getRouteRegex(normalizedRoute) {
 /***/ (function(module, exports) {
 
 const prod = true;
-console.log("process.env.NODE_ENV", "production", prod);
 module.exports = {
-  BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'https://stars-website-react-2.ue.r.appspot.com',
+  BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'http://localhost:8000',
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
   GA_ID: "UA-129107246-1",
@@ -3333,6 +3503,13 @@ module.exports = require("antd/lib/row");
 
 /***/ }),
 
+/***/ "tlnx":
+/***/ (function(module, exports) {
+
+module.exports = require("jwt-decode");
+
+/***/ }),
+
 /***/ "u2k8":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3354,9 +3531,6 @@ var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
 // EXTERNAL MODULE: ./containers/Guest/GuestLayout/GuestLayout.js + 9 modules
 var GuestLayout = __webpack_require__("mq74");
-
-// EXTERNAL MODULE: ./env-config.js
-var env_config = __webpack_require__("Ye+W");
 
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__("YFqc");
@@ -3442,6 +3616,9 @@ function Terms({
 }
 
 /* harmony default export */ var Other_Terms = (Terms);
+// EXTERNAL MODULE: ./service/postApi.js
+var postApi = __webpack_require__("/cYB");
+
 // CONCATENATED MODULE: ./pages/terms-and-conditions.js
 
 var terms_and_conditions_jsx = external_react_default.a.createElement;
@@ -3458,14 +3635,184 @@ function TermsPage(props) {
   })));
 }
 async function getStaticProps() {
-  const response = await fetch(`${env_config["BACKEND_URL"]}/api/content/`);
-  const posts = await response.json();
+  let posts;
+
+  try {
+    posts = await postApi["a" /* default */].getAll();
+  } catch (e) {
+    console.log("fetchPostsError", e);
+    posts = [];
+  }
+
   return {
     props: {
       posts
     }
   };
 }
+
+/***/ }),
+
+/***/ "vBVF":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export checkExpirity */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setCookie; });
+/* unused harmony export removeCookie */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getCookie; });
+/* unused harmony export auth */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return withAuthSync; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("4Q3z");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3i/4");
+/* harmony import */ var next_cookies__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_cookies__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vmXh");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("tlnx");
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jwt_decode__WEBPACK_IMPORTED_MODULE_4__);
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+const checkExpirity = token => {
+  if (!token) {
+    return {
+      error: 'not matched'
+    };
+  }
+
+  try {
+    const profile = jwt_decode__WEBPACK_IMPORTED_MODULE_4___default()(token);
+    const expiredAt = profile.exp * 1000;
+
+    if (expiredAt > new Date().getTime()) {
+      return {
+        profile,
+        token,
+        expiredAt: new Date(expiredAt)
+      };
+    } else {
+      return {
+        error: 'Token expired'
+      };
+    }
+  } catch (e) {
+    return {
+      error: 'Server Error'
+    };
+  }
+};
+const setCookie = (key, value) => {
+  if (false) {}
+};
+const removeCookie = key => {
+  if (false) {}
+};
+const getCookie = (key, req) => {
+  return false ? undefined : getCookieFromServer(key, req);
+};
+
+const getCookieFromBrowser = key => {
+  return js_cookie__WEBPACK_IMPORTED_MODULE_3___default.a.get(key);
+};
+
+const getCookieFromServer = (key, req) => {
+  if (!req.headers.cookie) {
+    return undefined;
+  }
+
+  const rawCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith(`${key}=`));
+
+  if (!rawCookie) {
+    return undefined;
+  }
+
+  return rawCookie.split('=')[1];
+}; // export const login = ({token}) => {
+//     cookie.set('token', token, {expires: 1});
+//     Router.push('/admin');
+// };
+
+
+const auth = ctx => {
+  const {
+    token
+  } = next_cookies__WEBPACK_IMPORTED_MODULE_2___default()(ctx);
+  /*
+   * If `ctx.req` is available it means we are on the server.
+   * Additionally if there's no token it means the user is not logged in.
+   */
+
+  if (ctx.req && !token) {
+    ctx.res.writeHead(302, {
+      Location: '/admin/signin'
+    });
+    ctx.res.end();
+  } // We already checked for server. This should only happen on client.
+
+
+  if (!token) {
+    next_router__WEBPACK_IMPORTED_MODULE_1___default.a.push('/admin/signin');
+  }
+
+  return token;
+};
+const logout = () => {
+  js_cookie__WEBPACK_IMPORTED_MODULE_3___default.a.remove('token'); // to support logging out from all windows
+
+  window.localStorage.setItem('logout', Date.now());
+  next_router__WEBPACK_IMPORTED_MODULE_1___default.a.push('/admin/signin');
+};
+const withAuthSync = WrappedComponent => {
+  const Wrapper = props => {
+    const syncLogout = event => {
+      if (event.key === 'logout') {
+        console.log('logged out from storage!');
+        next_router__WEBPACK_IMPORTED_MODULE_1___default.a.push('/admin/signin');
+      }
+    };
+
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+      window.addEventListener('storage', syncLogout);
+      return () => {
+        window.removeEventListener('storage', syncLogout);
+        window.localStorage.removeItem('logout');
+      };
+    }, [null]);
+    return __jsx(WrappedComponent, props);
+  };
+
+  Wrapper.getInitialProps = async ctx => {
+    const token = auth(ctx);
+    const componentProps = WrappedComponent.getInitialProps && (await WrappedComponent.getInitialProps(ctx));
+    return _objectSpread(_objectSpread({}, componentProps), {}, {
+      token
+    });
+  };
+
+  return Wrapper;
+};
+
+/***/ }),
+
+/***/ "vmXh":
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 

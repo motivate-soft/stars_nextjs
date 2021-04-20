@@ -2652,11 +2652,8 @@ function getRouteRegex(normalizedRoute) {
 /***/ (function(module, exports) {
 
 const prod = true;
-console.log("process.env.NODE_ENV", "production", prod);
 module.exports = {
-  BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'https://stars-website-react-2.ue.r.appspot.com',
+  BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'http://localhost:8000',
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
   GA_ID: "UA-129107246-1",

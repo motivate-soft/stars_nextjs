@@ -93,6 +93,165 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "/cYB":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _env_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Ye+W");
+/* harmony import */ var _env_config__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_env_config__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("vBVF");
+/* harmony import */ var https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3E2n");
+/* harmony import */ var https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const postApi = {
+  getAll: async () => {
+    const prod = true;
+    console.log("NODE_ENV", "production");
+
+    if (prod) {
+      return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        agent: new https_proxy_agent_dist_agent__WEBPACK_IMPORTED_MODULE_2___default.a('http://172.25.1.2:3129')
+      }).then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        throw res;
+      }).catch(handleError);
+    }
+
+    return await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      throw res;
+    }).catch(handleError);
+  },
+  getOne: async id => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    }
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  add: async (post) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    },
+    body: JSON.stringify(post)
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  update: async (post) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${post.id}`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    },
+    body: JSON.stringify(post)
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    throw res;
+  }).catch(handleError),
+  delete: async (postId) => await fetch(`${_env_config__WEBPACK_IMPORTED_MODULE_0__["BACKEND_URL"]}/api/content/${postId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Object(_redux_authentication_auth_utils__WEBPACK_IMPORTED_MODULE_1__[/* getCookie */ "a"])("token")}`
+    }
+  }).then(res => {
+    if (res.ok) {
+      return null;
+    }
+
+    throw res;
+  }).catch(handleError)
+};
+
+const handleError = res => {
+  if (res instanceof Error) {
+    throw Error('Network error');
+  }
+
+  let error = new Error(); // res.json().then((responseJson) => {
+  //     error = {
+  //         status: res.status,
+  //         statusText: res.statusText,
+  //         message: responseJson.detail || 'Application Error'
+  //     }
+  //     throw error
+  // })
+
+  if (res.status >= 400 && res.status < 500) {
+    console.log(res.text());
+    error = {
+      status: res.status,
+      statusText: res.statusText,
+      message: res.detail || 'Application Error'
+    };
+    throw error;
+  }
+
+  if (res.status >= 500) {
+    error = {
+      status: res.status,
+      statusText: res.statusText,
+      message: res.detail || 'Server Error'
+    };
+    throw error;
+  }
+
+  error = _objectSpread(_objectSpread({}, error), {}, {
+    status: res.status,
+    statusText: res.statusText,
+    message: res.detail || 'Error'
+  });
+  throw error;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (postApi);
+
+/***/ }),
+
 /***/ "1TCz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2040,7 +2199,7 @@ var components = __webpack_require__("OKMn");
 // CONCATENATED MODULE: ./shared/config/jwt.config.js
 /* harmony default export */ var jwt_config = ({
   enabled: true,
-  fetchUrl: "https://stars-website-react-2.ue.r.appspot.com/api/rest-auth/token/obtain/",
+  fetchUrl: "http://localhost:8000/api/rest-auth/token/obtain/",
   secretKey: "x=y#mma+9+3cixlanut$c3wnbjc)#^6qvg&jz)8p0^e3ybg&80"
 });
 // EXTERNAL MODULE: external "jwt-decode"
@@ -3162,132 +3321,9 @@ function* deleteCategory() {
 function* categories_saga_rootSaga() {
   yield Object(effects_["all"])([Object(effects_["call"])(getAllCategories), Object(effects_["fork"])(getCategory), Object(effects_["fork"])(addCategory), Object(effects_["fork"])(updateCategory), Object(effects_["fork"])(deleteCategory)]);
 }
-// CONCATENATED MODULE: ./service/postApi.js
-function postApi_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+// EXTERNAL MODULE: ./service/postApi.js
+var postApi = __webpack_require__("/cYB");
 
-function postApi_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { postApi_ownKeys(Object(source), true).forEach(function (key) { postApi_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { postApi_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function postApi_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-const postApi = {
-  getAll: async () => await fetch(`${env_config["BACKEND_URL"]}/api/content/`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${Object(auth_utils["a" /* getCookie */])("token")}`
-    }
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    throw res;
-  }).catch(postApi_handleError),
-  getOne: async id => await fetch(`${env_config["BACKEND_URL"]}/api/content/${id}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${Object(auth_utils["a" /* getCookie */])("token")}`
-    }
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    throw res;
-  }).catch(postApi_handleError),
-  add: async (post) => await fetch(`${env_config["BACKEND_URL"]}/api/content/`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${Object(auth_utils["a" /* getCookie */])("token")}`
-    },
-    body: JSON.stringify(post)
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    throw res;
-  }).catch(postApi_handleError),
-  update: async (post) => await fetch(`${env_config["BACKEND_URL"]}/api/content/${post.id}`, {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${Object(auth_utils["a" /* getCookie */])("token")}`
-    },
-    body: JSON.stringify(post)
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    throw res;
-  }).catch(postApi_handleError),
-  delete: async (postId) => await fetch(`${env_config["BACKEND_URL"]}/api/content/${postId}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${Object(auth_utils["a" /* getCookie */])("token")}`
-    }
-  }).then(res => {
-    if (res.ok) {
-      return null;
-    }
-
-    throw res;
-  }).catch(postApi_handleError)
-};
-
-const postApi_handleError = res => {
-  if (res instanceof Error) {
-    throw Error('Network error');
-  }
-
-  let error = new Error(); // res.json().then((responseJson) => {
-  //     error = {
-  //         status: res.status,
-  //         statusText: res.statusText,
-  //         message: responseJson.detail || 'Application Error'
-  //     }
-  //     throw error
-  // })
-
-  if (res.status >= 400 && res.status < 500) {
-    console.log(res.text());
-    error = {
-      status: res.status,
-      statusText: res.statusText,
-      message: res.detail || 'Application Error'
-    };
-    throw error;
-  }
-
-  if (res.status >= 500) {
-    error = {
-      status: res.status,
-      statusText: res.statusText,
-      message: res.detail || 'Server Error'
-    };
-    throw error;
-  }
-
-  error = postApi_objectSpread(postApi_objectSpread({}, error), {}, {
-    status: res.status,
-    statusText: res.statusText,
-    message: res.detail || 'Error'
-  });
-  throw error;
-};
-
-/* harmony default export */ var service_postApi = (postApi);
 // CONCATENATED MODULE: ./redux/posts/saga.js
 
 
@@ -3296,7 +3332,7 @@ const postApi_handleError = res => {
 function* getAllPosts() {
   yield Object(effects_["takeLatest"])(posts_actions["a" /* default */].GET_ALL_POSTS_REQUEST, function* () {
     try {
-      const res = yield Object(effects_["call"])(service_postApi.getAll);
+      const res = yield Object(effects_["call"])(postApi["a" /* default */].getAll);
       yield Object(effects_["put"])({
         type: posts_actions["a" /* default */].GET_ALL_POSTS_SUCCESS,
         items: res
@@ -3312,7 +3348,7 @@ function* getAllPosts() {
 function* getPost() {
   yield Object(effects_["takeEvery"])(posts_actions["a" /* default */].GET_POST_REQUEST, function* (payload) {
     try {
-      const res = yield Object(effects_["call"])(service_postApi.getOne, payload.postId);
+      const res = yield Object(effects_["call"])(postApi["a" /* default */].getOne, payload.postId);
       yield Object(effects_["put"])({
         type: posts_actions["a" /* default */].GET_POST_SUCCESS,
         item: res
@@ -3328,7 +3364,7 @@ function* getPost() {
 function* addPost() {
   yield Object(effects_["takeEvery"])(posts_actions["a" /* default */].ADD_POST_REQUEST, function* (payload) {
     try {
-      const res = yield Object(effects_["call"])(service_postApi.add, payload.post);
+      const res = yield Object(effects_["call"])(postApi["a" /* default */].add, payload.post);
       Object(components["a" /* notification */])('success', 'New post created');
       yield Object(effects_["put"])({
         type: posts_actions["a" /* default */].ADD_POST_SUCCESS,
@@ -3346,7 +3382,7 @@ function* addPost() {
 function* updatePost() {
   yield Object(effects_["takeEvery"])(posts_actions["a" /* default */].UPDATE_POST_REQUEST, function* (payload) {
     try {
-      const res = yield Object(effects_["call"])(service_postApi.update, payload.post);
+      const res = yield Object(effects_["call"])(postApi["a" /* default */].update, payload.post);
       Object(components["a" /* notification */])('success', 'Post has been updated successfully');
       yield Object(effects_["put"])({
         type: posts_actions["a" /* default */].UPDATE_POST_SUCCESS,
@@ -3364,7 +3400,7 @@ function* updatePost() {
 function* deletePost() {
   yield Object(effects_["takeEvery"])(posts_actions["a" /* default */].DELETE_POST_REQUEST, function* (payload) {
     try {
-      yield Object(effects_["call"])(service_postApi.delete, payload.postId);
+      yield Object(effects_["call"])(postApi["a" /* default */].delete, payload.postId);
       Object(components["a" /* notification */])('warning', 'Post has been deleted successfully');
       yield Object(effects_["put"])({
         type: posts_actions["a" /* default */].DELETE_POST_SUCCESS,
@@ -4072,6 +4108,13 @@ module.exports = require("antd/lib/popover");
 /***/ (function(module, exports) {
 
 
+
+/***/ }),
+
+/***/ "3E2n":
+/***/ (function(module, exports) {
+
+module.exports = require("https-proxy-agent/dist/agent");
 
 /***/ }),
 
@@ -5311,11 +5354,8 @@ const blogActions = {
 /***/ (function(module, exports) {
 
 const prod = true;
-console.log("process.env.NODE_ENV", "production", prod);
 module.exports = {
-  BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: 'https://stars-website-react-2.ue.r.appspot.com',
-  // BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'https://stars-website-react-2.ue.r.appspot.com',
+  BACKEND_URL: prod ? 'https://stars-website-react-2.ue.r.appspot.com' : 'http://localhost:8000',
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
   GA_ID: "UA-129107246-1",
