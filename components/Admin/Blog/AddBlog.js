@@ -12,6 +12,7 @@ import {BACKEND_URL} from "../../../env-config";
 import {getCookie} from "@redux/authentication/auth.utils";
 import {UploadOutlined, InboxOutlined} from '@ant-design/icons';
 import {isServer} from "@iso/lib/helpers/isServer";
+import Auth from "@redux/authentication/reducer";
 
 
 const formItemLayout = {
@@ -42,42 +43,46 @@ const HtmlEditor = ({value = {}, onChange}) => {
     );
 };
 
-const props = {
-    name: 'file',
-    multiple: true,
-    action: `${BACKEND_URL}/api/media/create`,
-    listType: "picture",
-    maxCount: 1,
-    beforeUpload: (file) => {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
-        }
-        return isJpgOrPng && isLt2M;
-    },
-    onChange(info) {
-        const {status} = info.file;
-        if (status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully.`);
-        } else if (status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
 export default function AddBlog() {
+    const {profile} = useSelector(state => state.Auth)
     const dispatch = useDispatch();
+    let uploaderProps
 
-    useEffect(() => {
-        props.headers = {Authorization: "Bearer " + getCookie("token")}
-    }, [])
+    if (!isServer) {
+        uploaderProps = {
+            name: 'file',
+            multiple: true,
+            action: `${BACKEND_URL}/api/media/create`,
+            listType: "picture",
+            maxCount: 1,
+            headers: {Authorization: "Bearer " + getCookie("token")},
+            beforeUpload: (file) => {
+                const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+                if (!isJpgOrPng) {
+                    message.error('You can only upload JPG/PNG file!');
+                }
+                const isLt2M = file.size / 1024 / 1024 < 2;
+                if (!isLt2M) {
+                    message.error('Image must smaller than 2MB!');
+                }
+                return isJpgOrPng && isLt2M;
+            },
+            onChange(info) {
+                const {status, response} = info.file;
+                if (status !== 'uploading') {
+                    console.log(info.file, info.fileList);
+                }
+                if (status === 'done') {
+                    console.log("uploader_response", response)
+                    form.setFieldsValue({image: response.id})
+                    message.success(`${info.file.name} file uploaded successfully.`);
+                } else if (status === 'error') {
+                    message.error(`${info.file.name} file upload failed.`);
+                }
+            },
+        };
+    }
 
     const [form] = useForm();
 
@@ -90,7 +95,11 @@ export default function AddBlog() {
     }
 
     const onFinish = (values) => {
-        dispatch(blogActions.addBlog(values));
+        console.log("values", values, profile)
+        dispatch(blogActions.addBlog({
+            ...values,
+            author: profile.id
+        }));
     };
 
     return (
@@ -106,14 +115,14 @@ export default function AddBlog() {
                                 </Link>
                             </div>
                             <Form
-                                name="mainInfo"
                                 {...formItemLayout}
+                                form={form}
                                 onFinish={onFinish}
                                 onValuesChange={onValuesChange}
                                 initialValues={{
                                     title: '',
                                     body: '',
-                                    image: {}
+                                    image: null
                                 }}
                             >
                                 <Form.Item
@@ -144,8 +153,7 @@ export default function AddBlog() {
                                 <Form.Item name="image" hidden>
                                     <Input/>
                                 </Form.Item>
-                                <Dragger {...props}
-                                         headers={{Authorization: "Bearer " + !isServer && getCookie("token")}}>
+                                <Dragger {...uploaderProps}>
                                     <p className="ant-upload-drag-icon">
                                         <InboxOutlined/>
                                     </p>

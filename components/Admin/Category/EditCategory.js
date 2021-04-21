@@ -57,6 +57,7 @@ export default function EditCategory(props) {
                             {selectedItem.id === parseInt(categoryId) && selectedItem ? (
                                 <Form
                                     name="categoryForm"
+                                    form={form}
                                     {...formItemLayout}
                                     onFinish={onFinish}
                                     initialValues={{name: selectedItem.name,}}

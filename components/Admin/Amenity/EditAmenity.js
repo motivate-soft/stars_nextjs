@@ -67,7 +67,7 @@ export default function EditAmenity(props) {
                             </div>
                             {amenity ? (
                                 <Form
-                                    name="mainInfo"
+                                    name="amenityForm"
                                     {...formItemLayout}
                                 >
                                     <Form.Item
