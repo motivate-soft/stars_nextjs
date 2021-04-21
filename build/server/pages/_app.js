@@ -2151,9 +2151,10 @@ var auth_utils = __webpack_require__("vBVF");
 var components = __webpack_require__("OKMn");
 
 // CONCATENATED MODULE: ./shared/config/jwt.config.js
+const prod = true;
 /* harmony default export */ var jwt_config = ({
   enabled: true,
-  fetchUrl: "http://localhost:8000/api/rest-auth/token/obtain/",
+  fetchUrl: prod ? 'https://stars-website-react-2.ue.r.appspot.com/api/rest-auth/token/obtain/' : 'http://localhost:8000/api/rest-auth/token/obtain/',
   secretKey: "x=y#mma+9+3cixlanut$c3wnbjc)#^6qvg&jz)8p0^e3ybg&80"
 });
 // EXTERNAL MODULE: external "jwt-decode"
