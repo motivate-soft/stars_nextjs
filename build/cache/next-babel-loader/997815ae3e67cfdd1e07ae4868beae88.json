@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _DatePicker from \"antd/lib/date-picker\";\nimport AntDatePicker from './styles/datePicker.style';\nconst Datepicker = AntDatePicker(_DatePicker);\nconst DateRangepicker = AntDatePicker(_DatePicker.RangePicker);\nexport default Datepicker;\nexport { DateRangepicker };","map":null,"metadata":{},"sourceType":"module"}

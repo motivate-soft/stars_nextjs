@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Tabs from \"antd/lib/tabs\";\nimport AntTab from './styles/tab.style';\nimport WithDirection from '@iso/lib/helpers/rtl';\nconst WDTabs = AntTab(_Tabs);\nconst TabPane = _Tabs.TabPane;\nconst isoTabs = WithDirection(WDTabs);\nexport default isoTabs;\nexport { TabPane };","map":null,"metadata":{},"sourceType":"module"}
