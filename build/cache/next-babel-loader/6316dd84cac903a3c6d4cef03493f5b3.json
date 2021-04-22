@@ -1,1 +1,0 @@
-{"ast":null,"code":"var prod = true;\nexport default {\n  enabled: true,\n  fetchUrl: prod ? 'https://stars-website-react-2.ue.r.appspot.com/api/rest-auth/token/obtain/' : 'http://localhost:8000/api/rest-auth/token/obtain/',\n  secretKey: \"x=y#mma+9+3cixlanut$c3wnbjc)#^6qvg&jz)8p0^e3ybg&80\"\n};","map":null,"metadata":{},"sourceType":"module"}

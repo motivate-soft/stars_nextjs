@@ -1,16 +1,18 @@
-import styled from 'styled-components';
-import {themeGet} from '@styled-system/theme-get';
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
 import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
-import {palette} from "styled-tools";
-import room3 from "@iso/assets/images/room3.jpg"
-
+import { palette } from "styled-tools";
+import room3 from "@iso/assets/images/room3.jpg";
 
 const HomeWrapper = styled.div`
   .rental-solution-block {
     padding: 130px 0 50px;
+    @media (max-width: 991px) {
+      margin-top: 200px;
+    }
 
     h2 {
-      color: ${palette('primary', 0)};
+      color: ${palette("primary", 0)};
     }
 
     p {
@@ -44,7 +46,7 @@ const HomeWrapper = styled.div`
 
         h4 {
           margin-top: 0;
-          color: ${palette('primary', 0)}
+          color: ${palette("primary", 0)};
         }
 
         p {
@@ -68,7 +70,7 @@ const HomeWrapper = styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 10px
+          border-radius: 10px;
         }
       }
     }
@@ -76,7 +78,7 @@ const HomeWrapper = styled.div`
 
   .medical-travel-block {
     padding: 40px 0;
-    background: ${palette('primary', 1)};
+    background: ${palette("primary", 1)};
 
     h2 {
       text-align: center;
@@ -103,6 +105,24 @@ const HomeWrapper = styled.div`
         padding-left: 0;
       }
     }
+
+    button {
+      color: #ffffff;
+      background: transparent;
+      font-weight: bold;
+      font-size: 16px;
+      border: 2px solid #e8c36a;
+      border-radius: 10px;
+      line-height: 1.5;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: ${palette("primary", 0)};
+        background-color: #ffffff !important;
+        transition: 0.5s;
+      }
+    }
   }
 
   .insurance-block {
@@ -118,7 +138,7 @@ const HomeWrapper = styled.div`
 
       h2 {
         margin: 0 auto 33px;
-        color: ${palette('primary', 0)};
+        color: ${palette("primary", 0)};
       }
     }
 
@@ -135,7 +155,7 @@ const HomeWrapper = styled.div`
 
     h2 {
       margin: 0 auto 33px;
-      color: ${palette('primary', 0)};
+      color: ${palette("primary", 0)};
       line-height: 1.2;
     }
 
@@ -157,7 +177,15 @@ const HomeWrapper = styled.div`
   }
 
   .stars-background {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(${room3}) no-repeat center;
+    @media screen and (max-width: 992px) {
+      padding: 50px 0;
+    }
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.85)
+      ),
+      url(${room3}) no-repeat center;
     background-size: cover;
     padding: 145px 24px;
 
@@ -169,11 +197,11 @@ const HomeWrapper = styled.div`
       h2 {
         text-align: center;
         margin: 0 auto 76px;
-        color: ${palette('primary', 0)};
+        color: ${palette("primary", 0)};
       }
 
       h4 {
-        color: ${palette('gray', 2)} !important;
+        color: ${palette("gray", 2)} !important;
       }
 
       .stars-item {
@@ -209,18 +237,18 @@ const HomeWrapper = styled.div`
       h5 {
         font-size: 20px;
         font-weight: bold;
-        color: ${palette('gray', 2)} !important;
+        color: ${palette("gray", 2)} !important;
       }
     }
   }
 
   .stay-boston-block {
     padding: 77px 24px;
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
 
     h2 {
       margin: 0 auto 25px;
-      color: ${palette('primary', 0)};
+      color: ${palette("primary", 0)};
     }
 
     .stay-feature-item {
@@ -229,7 +257,7 @@ const HomeWrapper = styled.div`
       padding-bottom: 20px;
 
       svg {
-        fill: ${palette('primary', 0)};
+        fill: ${palette("primary", 0)};
         width: 16px;
         height: 16px;
         line-height: 30px;
@@ -262,7 +290,7 @@ const HomeWrapper = styled.div`
 
     h2 {
       margin: 0 auto 45px;
-      color: ${palette('primary', 0)};
+      color: ${palette("primary", 0)};
       text-align: center;
     }
 
@@ -285,7 +313,7 @@ const HomeWrapper = styled.div`
 
       &:hover {
         .bg-box {
-          opacity: .7;
+          opacity: 0.7;
         }
       }
 
@@ -301,7 +329,7 @@ const HomeWrapper = styled.div`
         font-size: 24px;
         line-height: 1;
         text-align: center;
-        color: ${palette('primary', 0)};
+        color: ${palette("primary", 0)};
       }
     }
 
@@ -314,6 +342,38 @@ const HomeWrapper = styled.div`
     }
   }
 
+  .look-rentals-block {
+    padding: 167px 0;
+    background-color: #f8f8f8;
+
+    h2 {
+      margin: 10px auto 30px;
+      color: ${palette("primary", 0)};
+    }
+
+    .title-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      min-width: 180px;
+    }
+
+    @media only screen and (max-width: 768px) {
+      padding: 50px 0;
+      .title-wrapper {
+        flex-direction: column;
+      }
+      a {
+        padding: 0;
+
+        button {
+          margin: 16px auto;
+        }
+      }
+    }
+  }
 
   .reviews-block {
     padding: 140px 24px;
@@ -321,9 +381,8 @@ const HomeWrapper = styled.div`
     h2 {
       margin: 0 auto 16px;
       text-align: center;
-      color: ${palette('primary', 0)};
+      color: ${palette("primary", 0)};
     }
-
 
     .carousel-container {
       position: relative;
@@ -384,9 +443,8 @@ const HomeWrapper = styled.div`
                       width: 20px;
                       height: 20px;
                       margin-right: 4px;
-                      fill: ${palette('primary', 0)};
+                      fill: ${palette("primary", 0)};
                     }
-
                   }
                 }
               }
@@ -397,10 +455,10 @@ const HomeWrapper = styled.div`
         .slick-arrow {
           width: 50px;
           height: 50px;
-          fill: ${palette('primary', 0)};
+          fill: ${palette("primary", 0)};
 
           path {
-            fill: ${palette('primary', 0)};
+            fill: ${palette("primary", 0)};
           }
 
           &.slick-prev {
@@ -446,6 +504,6 @@ const HomeWrapper = styled.div`
       }
     }
   }
-`
+`;
 
-export default HomeWrapper
+export default HomeWrapper;

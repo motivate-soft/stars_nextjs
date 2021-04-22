@@ -1,15 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const ContainerWrapper = styled.div`
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  ${props =>
+  ${(props) =>
     props.fullWidth &&
     css`
       width: 100%;
       max-width: none !important;
     `};
-  ${props =>
+  ${(props) =>
     (props.noGutter &&
       css`
         padding-left: 0;
@@ -25,7 +26,7 @@ const ContainerWrapper = styled.div`
       }
     `};
 
-  ${props =>
+  ${(props) =>
     props.fluid &&
     css`
       width: 100% !important;
@@ -35,6 +36,9 @@ const ContainerWrapper = styled.div`
         padding-right: 75px;
       }
     `}
+  @media (min-width: 576px) .container {
+    max-width: 540px;
+  }
   @media (min-width: 768px) {
     max-width: 750px;
     width: 100%;

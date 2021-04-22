@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import {themeGet} from '@styled-system/theme-get';
-import {palette} from "styled-tools";
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
+import { palette } from "styled-tools";
 
 const DescriptionWrapper = styled.div`
   padding: 0 0 30px;
 
   h3 {
-    color: ${palette('primary', 0)};
+    color: ${palette("primary", 0)};
   }
 
   .property-feature-icons-wrapper {
@@ -26,18 +26,18 @@ const DescriptionWrapper = styled.div`
 
   .property-room {
     max-width: 180px;
+    height: 100%;
     border-radius: 4px;
-    padding: 38px 36px 30px;
-    background-color: #F7F7F7;
+    padding: 30px 20px 30px;
+    background-color: #f7f7f7;
     margin: auto auto 20px;
     text-align: center;
-    svg{
+    svg {
       width: 80px;
       height: 80px;
-      fill: ${palette('primary',1)};
+      fill: ${palette("primary", 1)};
     }
   }
-
 `;
 
 export default DescriptionWrapper;

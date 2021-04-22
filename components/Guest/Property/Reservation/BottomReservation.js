@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { IoIosClose } from 'react-icons/io';
-import Rating from 'components/UI/Rating/Rating';
-import { Button, Modal } from 'antd';
-import StickyBooking from 'components/StickyBooking/StickyBooking';
-import Reservation from './Reservation';
+import React, { useState } from "react";
+import { IoIosClose } from "react-icons/io";
+import { Button, Modal } from "antd";
+import StickyBooking from "../StickyBooking/StickyBooking";
+import Reservation from "./Reservation";
 
-const BottomReservation = ({ title, price, rating, ratingCount }) => {
+const BottomReservation = (property) => {
+  const { name, price, min_month_price } = property;
   const [visible, setVisible] = useState(false);
+
+  console.log("BottomReservation", name, price, min_month_price);
 
   return (
     <>
       <StickyBooking
-        logo="/images/logo-alt.svg"
-        title={title}
+        title={name}
         price={price}
-        rating={
-          <Rating rating={rating} ratingCount={ratingCount} type="bulk" />
-        }
+        minMonthPrice={min_month_price}
         action={
           <Button type="primary" onClick={() => setVisible(true)}>
             Book
@@ -29,12 +28,12 @@ const BottomReservation = ({ title, price, rating, ratingCount }) => {
         onCancel={() => setVisible(false)}
         footer={null}
         maskStyle={{
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
         }}
         wrapClassName="reservation_modal"
         closable={false}
       >
-        <Reservation />
+        <Reservation property={property} />
         <Button onClick={() => setVisible(false)} className="close">
           <IoIosClose />
         </Button>

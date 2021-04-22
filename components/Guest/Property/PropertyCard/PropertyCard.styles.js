@@ -9,7 +9,7 @@ const PropertyCardWrapper = styled.div`
   padding: 0;
   max-width: 400px;
   min-height: 450px;
-  width: 100%;
+  width: calc(100% - 20px);
   height: 100%;
   border-radius: 8px;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
@@ -106,9 +106,11 @@ const PropertyCardWrapper = styled.div`
       justify-content: space-around;
       align-items: center;
 
-      .btn {
-        min-width: 8rem;
-        font-size: .875rem;
+      button {
+        min-width: 120px;
+        span {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -153,6 +155,6 @@ const PropertyCardWrapper = styled.div`
       }
     }
   }
-`
+`;
 
-export default PropertyCardWrapper
+export default PropertyCardWrapper;

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { IoIosClose } from 'react-icons/io';
-import Rating from 'components/UI/Rating/Rating';
-import { Button, Modal } from 'antd';
-import StickyBooking from 'components/StickyBooking/StickyBooking';
-import BookingWidget from './BookingWidget';
+import React, { useState } from "react";
+import { IoIosClose } from "react-icons/io";
+import { Button, Modal } from "antd";
+import StickyBooking from "../StickyBooking/StickyBooking";
+import BookingWidget from "./BookingWidget";
 
 const BottomReservation = ({ title, price, rating, ratingCount }) => {
   const [visible, setVisible] = useState(false);
@@ -29,7 +28,7 @@ const BottomReservation = ({ title, price, rating, ratingCount }) => {
         onCancel={() => setVisible(false)}
         footer={null}
         maskStyle={{
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
         }}
         wrapClassName="reservation_modal"
         closable={false}

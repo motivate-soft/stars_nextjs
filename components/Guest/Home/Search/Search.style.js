@@ -1,14 +1,19 @@
-import styled from 'styled-components';
-import {themeGet} from '@styled-system/theme-get';
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
 import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
-import {palette} from "styled-tools";
+import { palette } from "styled-tools";
 
 const BannerWrapper = styled.div`
   width: 100%;
   min-height: 70vh;
   position: relative;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3), transparent),
-  url(${bannerBackground1}) no-repeat center center;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.3),
+      transparent
+    ),
+    url(${bannerBackground1}) no-repeat center center;
 
   @media (max-width: 991px) {
     > div {
@@ -23,7 +28,7 @@ const BannerWrapper = styled.div`
 
   &:after {
     display: block;
-    content: '';
+    content: "";
     width: 100%;
     height: 60%;
     position: absolute;
@@ -45,31 +50,37 @@ export const SearchWrapper = styled.div`
   z-index: 1;
 
   h2 {
-    color: ${palette('primary', 0)}
+    color: ${palette("primary", 0)};
   }
 
   h6 {
+    font-family: "Raleway", sans-serif;
     margin-top: 20px;
     text-align: center;
   }
 
-  @media (min-width: 569px) and (max-width: 991px) {
-    width: 414px;
-    left: 30px;
+  @media (max-width: 991px) {
+    // margin-left: auto;
+    // margin-right: auto;
+    // left: 0;
+    // right: 0;
+    width: 500px;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    h2 {
+      font-size: 28px;
+    }
   }
 
   @media (max-width: 480px) {
     width: calc(100% - 30px);
-    padding: 15px;
-    left: 15px;
-
-    > p {
-      display: none;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    h2 {
+      font-size: 28px;
     }
-  }
-
-  h2 {
-    margin-bottom: 10px;
   }
 `;
 
@@ -78,12 +89,8 @@ export const FormWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   min-height: 60px;
 
-  .ant-row{
-    width: 100%;
-  }
-  
-  @media (max-width: 991px) {
-    flex-direction: column;
+  .ant-row {
+    flex-grow: 1;
   }
 
   @media (max-width: 480px) {
@@ -94,40 +101,23 @@ export const FormWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  
-  .search-form-buttons{
+
+  .search-form-buttons {
     display: flex;
     justify-content: space-between;
-    
+    height: 100%;
+
+    @media (max-width: 1200px) {
+      span {
+        font-size: 15px;
+      }
+    }
+
     @media (max-width: 991px) {
       flex-direction: column;
-    }
-
-    @media (max-width: 480px) {
-      margin-top: 10px;
-    }
-  }
-
-  /* submit button style */
-
-  button[type='submit'].ant-btn {
-    height: 60px;
-
-    @media (max-width: 991px) {
-      min-width: 100%;
-      border-radius: 0 0 3px 3px;
-    }
-
-    @media (max-width: 480px) {
-      height: 47px;
-    }
-
-    &::after {
-      display: none;
-    }
-
-    &:hover {
-      opacity: 0.85;
+      button:first-child {
+        margin-bottom: 20px;
+      }
     }
   }
 `;
@@ -139,7 +129,7 @@ export const ComponentWrapper = styled.div`
   height: 100%;
   align-items: center;
   position: relative;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 
   .target {
     right: 10px;
@@ -213,7 +203,7 @@ export const ComponentWrapper = styled.div`
             font-family: "Raleway", sans-serif;
             padding: 0;
             font-weight: 400;
-            color: #2C2C2C;
+            color: #2c2c2c;
             background: transparent;
 
             &.DateInput_input__focused {
@@ -221,8 +211,9 @@ export const ComponentWrapper = styled.div`
             }
 
             &::placeholder {
-              color: #2C2C2C !important;
+              color: #3a3a3a !important;
               font-weight: bold;
+              opacity: 1;
             }
           }
         }
@@ -272,32 +263,6 @@ export const ComponentWrapper = styled.div`
     max-width: 100%;
     position: relative;
 
-    &::before {
-      content: '';
-      width: 1px;
-      height: 20px;
-      display: inline-block;
-      position: absolute;
-      top: calc(50% - 10px);
-      right: auto;
-      left: 0;
-      z-index: 1;
-      background-color: ${themeGet('border.3', '#E6E6E6')};
-
-      @media (max-width: 991px) {
-        top: 0;
-        bottom: auto;
-        height: 1px;
-        width: calc(100% - 40px);
-        left: 20px;
-      }
-
-      @media (max-width: 480px) {
-        width: calc(100% - 30px);
-        left: 15px;
-      }
-    }
-
     /* popup handler style */
 
     .popup_handler {
@@ -314,14 +279,16 @@ export const ComponentWrapper = styled.div`
         box-shadow: none;
         font-weight: 400;
         font-size: 15px;
-        color: ${palette('text', 0)};
-        background-color: #F7F7F7;
-        
+        color: ${palette("text", 0)};
+        background-color: #f7f7f7;
+
         span {
+          font-family: "Raleway", sans-serif;
+          font-size: 15px;
+          font-weight: bold;
           display: flex;
           align-items: center;
-          color: #797979;
-          font-weight: bold;
+          color: #3a3a3a;
           height: 100%;
         }
 
@@ -380,7 +347,7 @@ export const ComponentWrapper = styled.div`
     &.user-friends {
       left: 15px;
       right: auto;
-      fill: ${palette('primary', 0)};
+      fill: ${palette("primary", 0)};
     }
 
     &.calendar {
@@ -402,7 +369,7 @@ export const ComponentWrapper = styled.div`
     &.caret-down {
       right: 12px;
       left: auto;
-      fill: ${palette('primary', 0)};
+      fill: ${palette("primary", 0)};
 
       @media (max-width: 991px) {
         right: 20px;
@@ -421,7 +388,7 @@ export const GuestWrapper = styled.div`
   strong {
     font-size: 15px;
     font-weight: 400;
-    color: ${themeGet('text.0', '#2C2C2C')};
+    color: ${themeGet("text.0", "#2C2C2C")};
   }
 `;
 

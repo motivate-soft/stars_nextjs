@@ -1,26 +1,26 @@
-import React, {useContext, useState} from "react";
-import {useRouter} from "next/router";
-import {Form, Input, Button, Row, Col, Select, Checkbox} from "antd";
+import React, { useContext, useState } from "react";
+import { useRouter } from "next/router";
+import { Form, Input, Button, Row, Col, Select, Checkbox } from "antd";
 import styled from "styled-components";
-import {BookingContext} from "@context/BookingProvider";
-import {notification} from "@iso/components";
+import { BookingContext } from "@context/BookingProvider";
+import { notification } from "@iso/components";
 import csc from "country-state-city";
-import {palette} from "styled-tools";
+import { palette } from "styled-tools";
 
 const countries = csc.getAllCountries();
-const Option = {Select};
+const Option = { Select };
 
 const formItemLayout = {
-    wrapperCol: {
-        sm: {
-            span: 24,
-        },
+  wrapperCol: {
+    sm: {
+      span: 24,
     },
+  },
 };
 
 const FormWrapper = styled.div`
   h3 {
-    color: ${palette('primary', 0)};
+    color: ${palette("primary", 0)};
   }
 
   .ant-select-selector {
@@ -29,11 +29,11 @@ const FormWrapper = styled.div`
     width: 100%;
     border: 2px solid #e4e7ea;
     border-radius: 4px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
     &:focus,
     &:active {
-      border: 2px solid ${palette('warning', 0)};
+      border: 2px solid ${palette("warning", 0)};
       box-shadow: none !important;
     }
   }
@@ -46,203 +46,220 @@ const FormWrapper = styled.div`
 `;
 
 function MailingAddressForm(props) {
-    const router = useRouter();
-    const {state, dispatch} = useContext(BookingContext);
-    const [form] = Form.useForm();
+  const router = useRouter();
+  const { state, dispatch } = useContext(BookingContext);
+  const [form] = Form.useForm();
 
-    console.log("BookingContext", state)
+  console.log("BookingContext", state);
 
-    const [stateOptions, setStateOptions] = useState([{
-        label: '---State---',
-        value: "default"
-    }])
-    const [cityOptions, setCityOptions] = useState([{
-        label: '---City---',
-        value: "default"
-    }])
+  const [stateOptions, setStateOptions] = useState([
+    {
+      label: "---State---",
+      value: "default",
+    },
+  ]);
+  const [cityOptions, setCityOptions] = useState([
+    {
+      label: "---City---",
+      value: "default",
+    },
+  ]);
 
-    const onCountryChange = (value) => {
-        let array = csc.getStatesOfCountry(value).map(state => ({
-            value: state.id,
-            label: state.name
-        }))
-        array.unshift({
-            label: '---State---',
-            value: "default"
-        })
-        form.resetFields(['state', 'city'])
-        setStateOptions(array)
-        // form.setFieldsValue({'country': value, 'state': 'default', city: 'default'})
+  const onCountryChange = (value) => {
+    let array = csc.getStatesOfCountry(value).map((state) => ({
+      value: state.id,
+      label: state.name,
+    }));
+    array.unshift({
+      label: "---State---",
+      value: "default",
+    });
+    form.resetFields(["state", "city"]);
+    setStateOptions(array);
+    // form.setFieldsValue({'country': value, 'state': 'default', city: 'default'})
+  };
+
+  const onStateChange = (value) => {
+    let array = csc.getCitiesOfState(value).map((city) => ({
+      value: city.id,
+      label: city.name,
+    }));
+    array.unshift({
+      label: "---City---",
+      value: "default",
+    });
+    form.resetFields(["city"]);
+    setCityOptions(array);
+    console.log("onStateChange", value, array);
+  };
+
+  const onFinish = (values) => {
+    if (state.checkinDate === null || state.checkoutDate === null) {
+      notification("warning", "Please select dates");
+      return;
+    }
+    if (state.adults === 0) {
+      notification("warning", "Please input number of guests");
+      return;
     }
 
-    const onStateChange = (value) => {
-        let array = csc.getCitiesOfState(value).map(city => ({
-            value: city.id,
-            label: city.name
-        }))
-        array.unshift({
-            label: '---City---',
-            value: "default"
-        })
-        form.resetFields(['city'])
-        setCityOptions(array)
-        console.log("onStateChange", value, array)
-    }
+    let countrySortName = csc.getCountryById(values.country).sortname;
+    let stateName = csc.getStateById(values.state).name;
+    let cityName =
+      values.city !== "default" ? csc.getCityById(values.city).name : "";
+    console.log("__onFinish", countrySortName, stateName, cityName);
 
-    const onFinish = (values) => {
-        if (state.checkinDate === null || state.checkoutDate === null) {
-            notification("warning", "Please select dates");
-            return;
-        }
-        if (state.adults === 0) {
-            notification("warning", "Please input number of guests");
-            return;
-        }
+    dispatch({
+      type: "UPDATE_BOOKING_INFORMATION",
+      payload: {
+        ...state,
+        billing: {
+          country: countrySortName,
+          state: stateName,
+          city: cityName,
+          street: values.street,
+          zipCode: values.zipCode,
+        },
+      },
+    });
+    router.push("/checkout-payment");
+  };
 
-        let countrySortName = csc.getCountryById(values.country).sortname
-        let stateName = csc.getStateById(values.state).name
-        let cityName = values.city !== "default" ? csc.getCityById(values.city).name : "";
-        console.log("__onFinish", countrySortName, stateName, cityName)
-
-        dispatch({
-            type: "UPDATE_BOOKING_INFORMATION",
-            payload: {
-                ...state,
-                billing: {
-                    country: countrySortName,
-                    state: stateName,
-                    city: cityName,
-                    street: values.street,
-                    zipCode: values.zipCode
+  return (
+    <FormWrapper>
+      <Form
+        {...formItemLayout}
+        form={form}
+        name="mailing-info"
+        className="mailing-form"
+        onFinish={onFinish}
+        initialValues={{
+          agreement: false,
+          country: "default",
+          state: "default",
+          city: "default",
+          street: "",
+          zipCode: "",
+        }}
+        scrollToFirstError
+      >
+        <Row gutter={[32, 32]}>
+          <Col sm={24} xs={24}>
+            <Form.Item
+              name="agreement"
+              valuePropName="checked"
+              rules={[
+                {
+                  validator: (_, value) =>
+                    value
+                      ? Promise.resolve()
+                      : Promise.reject(new Error("Should accept agreement")),
                 },
-            },
-        });
-        router.push("/checkout-payment");
-    };
-
-    return (
-        <FormWrapper>
-            <Form
-                {...formItemLayout}
-                form={form}
-                name="mailing-info"
-                className="mailing-form"
-                onFinish={onFinish}
-                initialValues={{
-                    agreement: false,
-                    country: "default",
-                    state: "default",
-                    city: "default",
-                    street: "",
-                    zipCode: "",
-                }}
-                scrollToFirstError
+              ]}
             >
-                <Row gutter={[32, 32]}>
-                    <Col sm={24}>
-                        <Form.Item
-                            name="agreement"
-                            valuePropName="checked"
-                            rules={[
-                                {
-                                    validator: (_, value) =>
-                                        value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
-                                },
-                            ]}
-                        >
-                            <Checkbox>
-                                I have read and agree to comply with all rental policies and
-                                terms.
-                            </Checkbox>
-                        </Form.Item>
-                        <h5>Mailing Address</h5>
-                    </Col>
-                    <Col lg={12} sm={24}>
-                        <Form.Item
-                            name="street"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "This field is required",
-                                },
-                            ]}
-                        >
-                            <Input size="large" placeholder="Street"/>
-                        </Form.Item>
-                    </Col>
-                    <Col lg={12} sm={24}>
-                        <Form.Item
-                            name="country"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "This field is required",
-                                },
-                            ]}
-                        >
-                            <Select placeholder="Country"
-                                    onChange={onCountryChange}
-                                    size="large"
-                                    defaultValue="default">
-                                <Option value="default">---Country---</Option>
-                                {
-                                    countries &&
-                                    countries.map((country, index) => (
-                                        <Option key={index} value={country.id}>
-                                            {country.name}
-                                        </Option>
-                                    ))
-                                }
-                            </Select>
-                        </Form.Item>
-                    </Col>
-                    <Col lg={8} sm={24}>
-                        <Form.Item
-                            name="state"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "This field is required",
-                                },
-                            ]}
-                        >
-                            <Select placeholder="State" size="large"
-                                    options={stateOptions}
-                                    defaultValue="default"
-                                    onChange={onStateChange}/>
-                        </Form.Item>
-                    </Col>
-                    <Col lg={8} sm={24}>
-                        <Form.Item
-                            name="city"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "This field is required",
-                                },
-                            ]}
-                        >
-                            <Select placeholder="City" size="large" options={cityOptions} defaultValue="default"/>
-                        </Form.Item>
-                    </Col>
-                    <Col lg={8} sm={24}>
-                        <Form.Item
-                            name="zipCode"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "This field is required",
-                                },
-                            ]}
-                        >
-                            <Input size="large" placeholder="Zip Code"/>
-                        </Form.Item>
-                    </Col>
-                </Row>
-                <Button type="secondary" htmlType="submit" size="large">Continue</Button>
-            </Form>
-        </FormWrapper>
-    );
+              <Checkbox>
+                I have read and agree to comply with all rental policies and
+                terms.
+              </Checkbox>
+            </Form.Item>
+            <h5>Mailing Address</h5>
+          </Col>
+          <Col lg={12} sm={24} xs={24}>
+            <Form.Item
+              name="street"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Input size="large" placeholder="Street" />
+            </Form.Item>
+          </Col>
+          <Col lg={12} sm={24} xs={24}>
+            <Form.Item
+              name="country"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Select
+                placeholder="Country"
+                onChange={onCountryChange}
+                size="large"
+                defaultValue="default"
+              >
+                <Option value="default">---Country---</Option>
+                {countries &&
+                  countries.map((country, index) => (
+                    <Option key={index} value={country.id}>
+                      {country.name}
+                    </Option>
+                  ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col lg={8} sm={24} xs={24}>
+            <Form.Item
+              name="state"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Select
+                placeholder="State"
+                size="large"
+                options={stateOptions}
+                defaultValue="default"
+                onChange={onStateChange}
+              />
+            </Form.Item>
+          </Col>
+          <Col lg={8} sm={24} xs={24}>
+            <Form.Item
+              name="city"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Select
+                placeholder="City"
+                size="large"
+                options={cityOptions}
+                defaultValue="default"
+              />
+            </Form.Item>
+          </Col>
+          <Col lg={8} sm={24} xs={24}>
+            <Form.Item
+              name="zipCode"
+              rules={[
+                {
+                  required: true,
+                  message: "This field is required",
+                },
+              ]}
+            >
+              <Input size="large" placeholder="Zip Code" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Button type="secondary" htmlType="submit" size="large">
+          Continue
+        </Button>
+      </Form>
+    </FormWrapper>
+  );
 }
 
 export default MailingAddressForm;

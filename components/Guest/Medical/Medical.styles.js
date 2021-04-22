@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {palette} from "styled-tools";
-
+import { palette } from "styled-tools";
 
 const MedicalWrapper = styled.div`
   .accommodation-block {
@@ -12,11 +11,13 @@ const MedicalWrapper = styled.div`
     }
   }
 
-  .medical-stays-block, .business-accommodation-block {
-    padding: 50px 0;
+  .medical-stays-block,
+  .business-accommodation-block {
+    padding-top: 50px;
+    padding-bottom: 50px;
 
     h2 {
-      color: ${palette('primary', 0)}
+      color: ${palette("primary", 0)};
     }
 
     .stars-icon {
@@ -48,26 +49,34 @@ const MedicalWrapper = styled.div`
       text-align: center;
 
       span {
-        color: ${palette('error', 0)};
+        color: ${palette("error", 0)};
       }
 
       a {
-        color: ${palette('primary', 0)};
+        color: ${palette("primary", 0)};
       }
     }
   }
 
   .medical-locations {
     padding: 50px 0;
-    background-color: #EEEEEE !important;
+    background-color: #eeeeee !important;
 
     .medical-locations-title {
       display: flex;
       justify-content: space-between;
 
       h2 {
-        color: ${palette('primary', 0)}
-
+        color: ${palette("primary", 0)};
+      }
+      @media (max-width: 768px) {
+        flex-direction: column;
+        h2 {
+          font-size: 28px;
+        }
+        button {
+          margin-bottom: 20px;
+        }
       }
     }
   }
@@ -94,7 +103,5 @@ const MedicalWrapper = styled.div`
       margin: 0 !important;
     }
   }
-
-
-`
-export default MedicalWrapper
+`;
+export default MedicalWrapper;

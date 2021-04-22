@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { ContentHolderWrapper } from './contentHolder.style';\nexport default (function (props) {\n  return __jsx(ContentHolderWrapper, {\n    className: \"isoExampleWrapper\",\n    style: props.style\n  }, props.children);\n});","map":null,"metadata":{},"sourceType":"module"}
