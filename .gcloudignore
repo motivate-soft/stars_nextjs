@@ -14,12 +14,3 @@ node_modules
 .vscode
 
 # Next.js source code
-components
-containers
-context
-pages
-redux
-service
-shared
-style
-styled

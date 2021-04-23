@@ -24,6 +24,52 @@ export const FieldWrapper = styled.div`
     margin-bottom: 25px;
   }
 
+  /* icon style */
+
+  > svg {
+    position: absolute;
+    z-index: 1;
+    top: auto;
+
+    &.map-marker,
+    &.calendar,
+    &.user-friends {
+      left: 15px;
+      right: auto;
+      fill: ${palette("primary", 0)};
+    }
+
+    &.calendar {
+      @media (max-width: 480px) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &.user-friends {
+      width: 17px;
+      height: 17px;
+      @media (max-width: 480px) {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &.caret-down {
+      right: 12px;
+      left: auto;
+      fill: ${palette("primary", 0)};
+
+      @media (max-width: 991px) {
+        right: 20px;
+      }
+
+      @media (max-width: 991px) {
+        right: 15px;
+      }
+    }
+  }
+
   /* date picker component style */
 
   .date_picker {

@@ -107,7 +107,6 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rheostat": "^4.1.1",
-    "rimraf": "^3.0.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.0",
     "styled-system": "^5.1.5",
@@ -116,19 +115,8 @@
     "swiper": "5.4.5",
     "uppy": "^1.21.0",
     "uuid": "^8.3.0",
-    "yup": "^0.32.9"
-  },
-  "scripts": {
-    "dev": "next -p 3030",
-    "start": "next start -p 8080",
-    "serve": "next start -p 8080",
-    "gcp-predeploy": "find ./build -name '\\[...*' -exec bash -c 'mv \"$1\" \"${1/.../@@@}\"' -- {} \\;",
-    "gcp-build": "find ./build -name '\\[@@@*' -exec bash -c 'mv \"$1\" \"${1/@@@/...}\"' -- {} \\;",
-    "build": "rm -rf ./build && next build",
-    "deploy": "npm run build && npm run gcp-predeploy && gcloud app deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
+    "yup": "^0.32.9",
+    "rimraf": "^3.0.2",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-styled-components": "^1.11.1",
     "cross-env": "^7.0.3",
@@ -141,5 +129,12 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "url-loader": "^4.1.1"
+  },
+  "scripts": {
+    "dev": "next -p 3030",
+    "start": "next start -p 8080",
+    "gcp-build": "rm -rf ./build && next build",
+    "build": "rm -rf ./build && next build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

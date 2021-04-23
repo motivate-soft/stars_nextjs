@@ -1,5 +1,5 @@
-import {createGlobalStyle} from 'styled-components';
-import {palette} from "styled-tools";
+import { createGlobalStyle } from "styled-components";
+import { palette } from "styled-tools";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -192,7 +192,27 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
-
+  
+  /*------------------------------------------*/
+  // style for 360 tour modal
+  /*------------------------------------------*/
+  .tour_modal{
+    .ant-modal {
+      top: 50px;
+      width: calc(100% - 40px) !important;
+      .ant-modal-content {
+        box-shadow: none;
+        padding: 20px;
+        background: transparent;
+        @media (max-width: 480px) {
+          padding: 40px 20px;
+        }
+  
+        .ant-modal-body {
+        }
+      }
+  }
+  
   /*------------------------------------------*/
   // style for react-phone-input2
   /*------------------------------------------*/
@@ -206,11 +226,11 @@ const GlobalStyle = createGlobalStyle`
 
       &:focus,
       &:active {
-        border: 2px solid ${palette('warning', 0)};
+        border: 2px solid ${palette("warning", 0)};
         box-shadow: none !important;
       }
     }
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

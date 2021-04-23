@@ -378,3 +378,20 @@ html[dir="rtl"] .dz-hidden-input {
 .ql-container {
   font-size: 16px !important;
 }
+
+.CookieConsent > div:nth-child(1) p {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+}
+
+.CookieConsent .accept-button {
+  color: #4e503b;
+  font-size: 16px;
+}
+
+.CookieConsent .decline-button {
+  color: #4e503b;
+  font-size: 16px;
+}

@@ -2,16 +2,16 @@ import React from 'react';
 import {Modal} from "antd";
 import Iframe from 'react-iframe';
 
-export default function TourModal({isModalShowing, setIsTourModalShowing, tour360}) {
+export default function TourModal({isModalShowing, setIsModalShowing, tour360}) {
     return (
         <Modal
             visible={isModalShowing}
-            onCancel={() => setIsTourModalShowing(false)}
+            onCancel={() => setIsModalShowing(false)}
             footer={null}
             maskStyle={{
                 backgroundColor: "rgba(255, 255, 255, 0.95)",
             }}
-            wrapClassName="image_gallery_modal"
+            wrapClassName="tour_modal"
         >
             {
                 tour360 &&
