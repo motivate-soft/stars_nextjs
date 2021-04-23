@@ -41,7 +41,8 @@ const PropertyCardWrapper = styled.div`
       h4 {
         font-weight: bold;
         margin: 0 auto;
-        color: white !important;
+        line-height: 32px;
+        color: #fff !important;
       }
     }
   }

@@ -36,6 +36,11 @@ const FormWrapper = styled.div`
       border: 2px solid ${palette("warning", 0)};
       box-shadow: none !important;
     }
+
+    span.ant-select-selection-item {
+      height: 48px;
+      line-height: 48px;
+    }
   }
 
   button {

@@ -98,7 +98,7 @@ export const AttachmentWrapper = styled.div`
 export const TaskName = styled.div`
   font-size: 20px;
   color: #323332;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
   margin-bottom: 30px;
 `;
@@ -106,7 +106,7 @@ export const TaskDescription = styled.div`
   font-size: 14px;
   line-height: 24px;
   color: #797979;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 400;
 `;
 export const CardDetailsWrapper = styled.div`

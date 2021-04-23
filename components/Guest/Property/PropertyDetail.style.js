@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import {themeGet} from '@styled-system/theme-get';
-import {palette} from "styled-tools";
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
+import { palette } from "styled-tools";
 
 const SinglePageWrapper = styled.div`
   padding-bottom: 56px;
@@ -9,9 +9,79 @@ const SinglePageWrapper = styled.div`
   }
 `;
 
+export const PropertyDetailWrapper = styled.div`
+  padding: 20px 0 100px;
+
+  h3 {
+    color: ${palette("warning", 0)};
+    margin-bottom: 30px;
+  }
+
+  .share-btn {
+    padding: 8px 16px !important;
+    border: 1px solid #e8c36a !important;
+    border-radius: 500px;
+    min-width: 7rem;
+    svg {
+      path {
+        fill: #707070 !important;
+      }
+    }
+    span {
+      color: #707070;
+    }
+  }
+`;
+
+export const BannerImageWrapper = styled.div`
+  position: relative;
+  margin: 120px 0 0;
+  padding-bottom: 0;
+  background-image: ${(props) => props.imageUrl};
+  background-color: #f2f2f3;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 450px;
+
+  .banner-buttons-wrapper {
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .ant-btn {
+      margin-bottom: 24px;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      height: 3rem;
+      background-color: #e8c36a;
+      border: 1px solid #e8c36a !important;
+      text-transform: uppercase;
+
+      border-radius: 10px;
+      min-width: 6rem;
+
+      &:first-child {
+        margin-right: 20px;
+
+        img {
+          height: 30px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    height: 406px;
+  }
+`;
 
 export const Title = styled.h2`
-  color: ${themeGet('text.0', '#2C2C2C')};
+  color: ${themeGet("text.0", "#2C2C2C")};
   font-size: 25px;
   line-height: 34px;
   font-weight: 700;
@@ -19,7 +89,7 @@ export const Title = styled.h2`
 `;
 
 export const Text = styled.p`
-  color: ${themeGet('text.0', '#2C2C2C')};
+  color: ${themeGet("text.0", "#2C2C2C")};
   font-size: 15px;
   line-height: 24px;
   font-weight: 400;
@@ -44,15 +114,14 @@ export const TobBarWrapper = styled.div`
 
       .scrollbar {
         box-shadow: none;
-        border-top: 1px solid #E6E6E6;
-        border-bottom: 1px solid #E6E6E6;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
 
         .scrollbar_left {
           margin-right: 25px;
           padding-left: 25px;
 
           a {
-            color: ${themeGet('text.0', '#2C2C2C')};
             font-size: 15px;
             padding: 28px 20px;
             text-transform: capitalize;
@@ -63,17 +132,21 @@ export const TobBarWrapper = styled.div`
             }
 
             @media (max-width: 1200px) {
-              padding: 18px 20px;
+              padding: 18px 10px;
+            }
+
+            @media (max-width: 567px) {
+              padding: 18px 5px;
             }
 
             &:hover {
-              color: ${palette('primary', 0)};
+              color: ${palette("primary", 0)};
             }
 
             &.active {
               font-weight: 700;
-              color: ${palette('primary', 0)};
-              border-bottom: 3px solid ${palette('primary', 0)};
+              color: ${palette("primary", 0)};
+              border-bottom: 3px solid ${palette("primary", 0)};
             }
           }
         }
@@ -102,7 +175,7 @@ export const TobBarWrapper = styled.div`
       .sticky-inner-wrapper {
         > div {
           border: 0;
-          border-top: 2px solid #E6E6E6;
+          border-top: 2px solid #e6e6e6;
           box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.16);
         }
       }
@@ -117,8 +190,8 @@ export const ButtonGroup = styled.div`
     height: 37px;
     min-width: 90px;
     padding: 0 5px;
-    border: 1px solid ${themeGet('border.3', '#E6E6E6')};
-    color: ${themeGet('text.0', '#2C2C2C')};
+    border: 1px solid ${themeGet("border.3", "#E6E6E6")};
+    color: ${themeGet("text.0", "#2C2C2C")};
     font-size: 15px;
     font-weight: 700;
     display: inline-flex;
@@ -133,7 +206,7 @@ export const ButtonGroup = styled.div`
 
       path {
         fill: transparent;
-        stroke: ${themeGet('text.0', '#2C2C2C')};
+        stroke: ${themeGet("text.0", "#2C2C2C")};
         stroke-width: 1.5px;
       }
     }
@@ -141,8 +214,8 @@ export const ButtonGroup = styled.div`
     &.active {
       svg {
         path {
-          stroke: ${themeGet('color.4', '#FC5C63')};
-          fill: ${themeGet('color.4', '#FC5C63')};
+          stroke: ${themeGet("color.4", "#FC5C63")};
+          fill: ${themeGet("color.4", "#FC5C63")};
         }
       }
     }
@@ -152,7 +225,7 @@ export const ButtonGroup = styled.div`
     }
 
     &:hover {
-      background-color: ${themeGet('color.2', '#F7F7F7')};
+      background-color: ${themeGet("color.2", "#F7F7F7")};
     }
 
     &:after {
@@ -196,7 +269,7 @@ export const PostImage = styled.div`
   }
 
   .image_gallery_button {
-    background: ${themeGet('color.1', '#ffffff')};
+    background: ${themeGet("color.1", "#ffffff")};
     border-radius: 3px;
     font-size: 15px;
     font-weight: 700;
@@ -210,8 +283,8 @@ export const PostImage = styled.div`
 
     &:hover,
     &:focus {
-      background: ${themeGet('color.2', '#F7F7F7')};
-      color: ${themeGet('text.0', '#2C2C2C')};
+      background: ${themeGet("color.2", "#F7F7F7")};
+      color: ${themeGet("text.0", "#2C2C2C")};
     }
   }
 `;

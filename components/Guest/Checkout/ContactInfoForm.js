@@ -6,7 +6,6 @@ import PhoneInput from "react-phone-input-2";
 import styled from "styled-components";
 import { BookingContext } from "@context/BookingProvider";
 import { notification } from "@iso/components";
-import { palette } from "styled-tools";
 import _ from "lodash";
 
 const formItemLayout = {
@@ -19,6 +18,16 @@ const formItemLayout = {
 
 const FormWrapper = styled.div`
   .checkout-contact-form {
+    .action-button-wrapper {
+      button {
+        margin-left: auto;
+        margin-bottom: 20px;
+      }
+
+      p {
+        text-align: end;
+      }
+    }
   }
 `;
 
@@ -100,7 +109,7 @@ export default function ContactInfoForm(props) {
         }}
         scrollToFirstError
       >
-        <Row gutter={[32, 32]}>
+        <Row gutter={32}>
           <Col lg={12} sm={24} xs={24}>
             <Form.Item
               name="firstName"
@@ -170,14 +179,16 @@ export default function ContactInfoForm(props) {
             </p>
           </Col>
           <Col lg={{ order: 2, span: 12 }} sm={{ order: 1, span: 24 }}>
-            <Button type="secondary" htmlType="submit" size="large">
-              Agree and Continue
-            </Button>
-            <p>
-              <Link href="/cancellation-policy" target="_blank">
-                <u>View Cancellation Policy</u>
-              </Link>
-            </p>
+            <div className="action-button-wrapper">
+              <Button type="secondary" htmlType="submit" size="large">
+                Agree and Continue
+              </Button>
+              <p>
+                <Link href="/cancellation-policy" target="_blank">
+                  <u>View Cancellation Policy</u>
+                </Link>
+              </p>
+            </div>
           </Col>
         </Row>
         <p>

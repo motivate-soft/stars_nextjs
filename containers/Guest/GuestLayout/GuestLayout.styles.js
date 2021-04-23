@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import {palette} from 'styled-theme';
+import styled from "styled-components";
+import { palette } from "styled-theme";
 
 const GuestAppHolder = styled.div`
   h1,
@@ -45,7 +45,7 @@ const GuestAppHolder = styled.div`
   }
 
   a {
-    color: ${palette('primary', 0)} !important;
+    color: ${palette("primary", 0)} !important;
   }
 
   span {
@@ -61,15 +61,29 @@ const GuestAppHolder = styled.div`
     padding: 6px 12px;
     border: 2px solid #e4e7ea;
     border-radius: 4px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
     &:focus,
     &:active {
-      border: 2px solid ${palette('warning', 0)};
+      border: 2px solid ${palette("warning", 0)};
       box-shadow: none !important;
     }
   }
 
+  .sticky_booking {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.16);
+  }
 `;
 
 export default GuestAppHolder;

@@ -5,7 +5,7 @@ const HeadingSecondary = styled.h2`
   margin: 10px 0;
   font-size: ${props => (props.size ? props.size : '16px')};
   color: ${props => (props.color ? props.color : '#788195')};
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
 `;
 

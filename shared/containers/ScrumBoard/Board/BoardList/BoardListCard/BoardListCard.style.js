@@ -14,7 +14,7 @@ export const Avatar = styled.img`
 `;
 
 export const InfoWrapper = styled.div`
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
 `;
 export const Title = styled.h2`

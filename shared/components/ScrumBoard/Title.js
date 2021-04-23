@@ -10,7 +10,7 @@ export default styled.h4`
   position: relative;
   font-size: 20px;
   color: #2d3446;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
   &:focus {
     outline: 2px solid ${colors.purple};

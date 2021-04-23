@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   font-size: 19px;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
   text-align: center;
   min-height: calc(100vh - 150px);

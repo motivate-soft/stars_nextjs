@@ -27,21 +27,21 @@ export const CommentListWrapper = styled.div`
     font-size: 16px;
     line-height: 30px;
     color: #788195;
-    font-family: 'Roboto';
+    font-family: 'Raleway';
     font-weight: 500;
   }
   .ant-comment-content-author-time > span {
     font-size: 14px;
     line-height: 30px;
     color: #8c90b5;
-    font-family: 'Roboto';
+    font-family: 'Raleway';
     font-weight: 400;
   }
   .ant-comment-content-detail {
     font-size: 14px;
     line-height: 22px;
     color: #797979;
-    font-family: 'Roboto';
+    font-family: 'Raleway';
     font-weight: 400;
   }
 `;

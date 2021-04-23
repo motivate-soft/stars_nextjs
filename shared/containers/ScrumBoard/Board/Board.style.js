@@ -21,7 +21,7 @@ export const AddListButton = styled.button`
   background-color: #f8f9fe;
   font-size: 16px;
   color: #788195;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
   margin: 8px;
   cursor: pointer;

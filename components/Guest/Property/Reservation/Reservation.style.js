@@ -10,7 +10,7 @@ const ReservationFormWrapper = styled.form`
 `;
 
 export const FieldWrapper = styled.div`
-  padding-left: 20px;
+  padding-left: 30px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -151,7 +151,7 @@ export const FieldWrapper = styled.div`
         border: 0;
         width: 100%;
         display: flex;
-        padding: 0 25px;
+        padding: 0 30px;
         font-size: 15px;
         font-weight: 400;
         min-height: 54px;
@@ -288,47 +288,9 @@ export const CardHeaderWrapper = styled.div`
   width: 100%;
 
   h3 {
-    color: ${palette("primary", 0)};
-
-    &.header-price {
-      color: ${palette("warning", 0)};
-    }
-  }
-
-  .ant-row {
-    position: relative;
-    display: flex;
-
-    .header-buttons-wrapper {
-      width: 100%;
-      position: absolute;
-      bottom: 10px;
-      display: flex;
-      justify-content: center;
-
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 12px;
-        border-radius: 10px;
-        background-color: ${palette("warning", 0)};
-
-        &:hover,
-        &:active {
-          color: ${palette("primary", 0)};
-          background-color: #ffffff !important;
-        }
-
-        &:first-child {
-          img {
-            height: 30px;
-          }
-
-          margin-right: 16px;
-        }
-      }
-    }
+    font-size: 26px;
+    font-family: Raleway, sans-serif;
+    color: ${palette("warning", 0)};
   }
 `;
 

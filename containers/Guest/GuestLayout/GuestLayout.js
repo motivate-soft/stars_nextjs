@@ -11,30 +11,28 @@ import CookieConsent from "react-cookie-consent";
 function GuestLayout({ children }) {
   return (
     <GuestAppHolder>
-      <div>
-        <TopNavigation />
-        {children}
-        <Footer />
-        <ChatWidget />
-        <CookieConsent
-          location="bottom"
-          buttonText="I understand"
-          cookieName="acceptPolicy"
-          style={{ background: "#2B373B" }}
-          buttonClasses={"accept-button"}
-          // enableDeclineButton
-          // declineButtonText="decline"
-          // declineButtonClasses={'decline-button'}
-          // onAccept={handleAccept}
-          expires={60}
-        >
-          <p>
-            This website uses cookies to enhance the user experience. <br />
-            Please read our full{" "}
-            <Link href="/cookie-policy"> Cookie Policy here</Link>
-          </p>
-        </CookieConsent>
-      </div>
+      <TopNavigation />
+      {children}
+      <Footer />
+      <ChatWidget />
+      <CookieConsent
+        location="bottom"
+        buttonText="I understand"
+        cookieName="acceptPolicy"
+        style={{ background: "#2B373B" }}
+        buttonClasses={"accept-button"}
+        // enableDeclineButton
+        // declineButtonText="decline"
+        // declineButtonClasses={'decline-button'}
+        // onAccept={handleAccept}
+        expires={60}
+      >
+        <p>
+          This website uses cookies to enhance the user experience. <br />
+          Please read our full{" "}
+          <Link href="/cookie-policy"> Cookie Policy here</Link>
+        </p>
+      </CookieConsent>
     </GuestAppHolder>
   );
 }

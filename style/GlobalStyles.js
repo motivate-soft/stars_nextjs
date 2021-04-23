@@ -24,15 +24,6 @@ const GlobalStyle = createGlobalStyle`
         .reservation_sidebar {
           box-shadow: 0 1px 10px rgba(0, 0, 0, 0.16);
 
-          header {
-            padding-top: 50px;
-            padding-bottom: 20px;
-            border-color: #EBEBEB;
-            @media only screen and (max-width: 375px) {
-              padding-top: 30px;
-            }
-          }
-
           .DateInput__small {
             width: 112px;
           }

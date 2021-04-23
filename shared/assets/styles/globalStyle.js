@@ -47,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
       .ant-select-dropdown-menu-item {
         padding: 8px 12px;
         color: #000000;
-        font-family: 'Roboto';
+        font-family: 'Raleway';
         font-weight: 400;
       }
     }
@@ -218,7 +218,7 @@ html,
 body,
 html a {
   margin-bottom: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);

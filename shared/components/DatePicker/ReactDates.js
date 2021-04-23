@@ -77,7 +77,8 @@ class DateRangePickerBox extends Component {
             noBorder,
             renderDayContents,
             isDayBlocked,
-            minimumNights
+            minimumNights,
+            displayFormat
         } = this.props;
 
         // Add all classs to an array **************
@@ -112,10 +113,9 @@ class DateRangePickerBox extends Component {
             noBorder,
             renderDayContents,
             isDayBlocked,
-            minimumNights
+            minimumNights,
+            displayFormat
         };
-
-        console.log("____startdate", startDate)
 
         return (
             <ReactDatesStyleWrapper className={addAllClasses.join(' ')}>

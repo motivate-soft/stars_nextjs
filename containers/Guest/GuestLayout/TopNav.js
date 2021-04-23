@@ -302,6 +302,13 @@ const navLinks = [
 
 const TopNavigation = () => {
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (window.location.hash === "") {
+      window.scrollTo({ top: 0 });
+    }
+  }, []);
+
   const hasPageYOffset = () => {
     if (process.browser) {
       return window.pageYOffset > 0 || document.documentElement.scrollTop > 0;

@@ -18,79 +18,12 @@ import Reservation from "@components/Guest/Property/Reservation/Reservation";
 import PropertyCard from "@components/Guest/Property/PropertyCard/PropertyCard";
 import BottomReservation from "./Reservation/BottomReservation";
 import ReactGA from "react-ga";
-import { palette } from "styled-tools";
 import { Element } from "react-scroll";
-import { useSelector } from "react-redux";
-
-const PropertyDetailWrapper = styled.div`
-  padding: 20px 0 100px;
-
-  h3 {
-    color: ${palette("primary", 0)};
-    margin-bottom: 30px;
-  }
-  .share-btn {
-    padding: 8px 16px !important;
-    border: 1px solid #e8c36a !important;
-    border-radius: 500px;
-    min-width: 7rem;
-    svg {
-      path {
-        fill: #707070 !important;
-      }
-    }
-    span {
-      color: #707070;
-    }
-  }
-`;
-
-export const BannerImageWrapper = styled.div`
-  position: relative;
-  margin: 120px 0 0;
-  padding-bottom: 0;
-  background-image: ${(props) => props.imageUrl};
-  background-color: #f2f2f3;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 450px;
-
-  .banner-buttons-wrapper {
-    display: flex;
-    height: 100%;
-    justify-content: flex-end;
-    align-items: flex-end;
-
-    .ant-btn {
-      margin-bottom: 24px;
-      padding: 8px 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      height: 3rem;
-      background-color: #e8c36a;
-      border: 1px solid #e8c36a !important;
-      text-transform: uppercase;
-
-      border-radius: 10px;
-      min-width: 6rem;
-
-      &:first-child {
-        margin-right: 20px;
-
-        img {
-          height: 30px;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 767px) {
-    height: 406px;
-  }
-`;
+import { isServer } from "@iso/lib/helpers/isServer";
+import {
+  PropertyDetailWrapper,
+  BannerImageWrapper,
+} from "./PropertyDetail.style";
 
 function PropertyDetail(props) {
   const { property } = props;
@@ -98,8 +31,6 @@ function PropertyDetail(props) {
   const [href, setHref] = useState("");
   const [isGalleryModalShowing, setIsGalleryModalShowing] = useState(false);
   const [isTourModalShowing, setIsTourModalShowing] = useState(false);
-
-  const { view } = useSelector((state) => state.App);
 
   if (isEmpty(property)) return <Loader />;
 
@@ -114,6 +45,13 @@ function PropertyDetail(props) {
     const path = window.location.href;
     setHref(path);
   }, [setHref]);
+
+  function getView() {
+    if (!isServer && window.innerWidth < 1201) {
+      return "MobileView";
+    }
+    return "DesktopView";
+  }
 
   return (
     <PropertyDetailWrapper>
@@ -183,7 +121,7 @@ function PropertyDetail(props) {
             </Element>
           </Col>
           <Col xl={8}>
-            {view !== "MobileView" ? (
+            {getView() !== "MobileView" ? (
               <Sticky
                 innerZ={999}
                 activeClass="isSticky"

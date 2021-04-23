@@ -179,7 +179,7 @@ function ReservationForm(props) {
           updateSearchData={(value) => updateSearchDataFunc(value)}
           isDayBlocked={(day) => isDayBlocked(day)}
           renderDayContents={(day) => renderDayContents(day)}
-          displayFormat={"MMM DD YYYY"}
+          displayFormat={"YYYY/MM/DD"}
           // checkinDateId="checkin-Id"
           // checkoutDateId="checkout-id"
           // checkinDatePlaceholderText="Check In"

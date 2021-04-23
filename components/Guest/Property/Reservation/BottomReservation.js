@@ -4,11 +4,9 @@ import { Button, Modal } from "antd";
 import StickyBooking from "../StickyBooking/StickyBooking";
 import Reservation from "./Reservation";
 
-const BottomReservation = (property) => {
+const BottomReservation = ({ property }) => {
   const { name, price, min_month_price } = property;
   const [visible, setVisible] = useState(false);
-
-  console.log("BottomReservation", name, price, min_month_price);
 
   return (
     <>
@@ -16,11 +14,7 @@ const BottomReservation = (property) => {
         title={name}
         price={price}
         minMonthPrice={min_month_price}
-        action={
-          <Button type="primary" onClick={() => setVisible(true)}>
-            Book
-          </Button>
-        }
+        onClickBook={() => setVisible(true)}
       />
 
       <Modal

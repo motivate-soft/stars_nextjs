@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Heading = styled.h2`
   font-size: 25px;
   color: #2d3446;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   font-weight: 500;
   margin-bottom: 51px;
 `;

@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import WithDirection from '@iso/lib/helpers/rtl';
-
+import styled from "styled-components";
+import WithDirection from "@iso/lib/helpers/rtl";
 
 const ReactDatesStyleWrapper = styled.div`
   display: flex;
@@ -27,13 +26,19 @@ const ReactDatesStyleWrapper = styled.div`
   }
 `;
 
-const ReactDateWrapper = ComponentName => styled(ComponentName)`
+const ReactDateWrapper = (ComponentName) => styled(ComponentName)`
   .isoReactDate {
     height: 100vh;
 
     .DateInput__display-text--focused {
       color: #fff;
       font-weight: 400;
+    }
+
+    .CalendarDay {
+      h6 {
+        font-size: 14px !important;
+      }
     }
 
     .CalendarDay--selected-start,
@@ -61,24 +66,24 @@ const ReactDateWrapper = ComponentName => styled(ComponentName)`
       .DayPickerNavigation--horizontal {
         .DayPickerNavigation__prev,
         .DayPickerNavigation__next {
-          -webkit-transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
-          -ms-transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
-          transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
+          -webkit-transform: ${(props) =>
+            props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
+          -ms-transform: ${(props) =>
+            props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
+          transform: ${(props) =>
+            props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
         }
       }
     }
 
     .DateRangePickerInput {
       .DateRangePickerInput__arrow {
-        -webkit-transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
-        -ms-transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
-        transform: ${props =>
-    props['data-rtl'] === 'rtl' ? 'rotate(180deg)' : 'inherit'};
+        -webkit-transform: ${(props) =>
+          props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
+        -ms-transform: ${(props) =>
+          props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
+        transform: ${(props) =>
+          props["data-rtl"] === "rtl" ? "rotate(180deg)" : "inherit"};
       }
     }
   }

@@ -128,7 +128,7 @@ function CheckoutPayment(props) {
       <Box as="section" className="checkout-payment-block">
         <Container>
           <Row gutter={[32, 32]}>
-            <Col lg={14} sm={24} xs={24}>
+            <Col xl={16} lg={14} sm={24} xs={24}>
               <div
                 style={{
                   display: "flex",
@@ -179,7 +179,7 @@ function CheckoutPayment(props) {
                 reservations.
               </p>
             </Col>
-            <Col lg={10} sm={24} xs={24}>
+            <Col xl={8} lg={10} sm={24} xs={24}>
               <BookingWidget disabled />
             </Col>
           </Row>

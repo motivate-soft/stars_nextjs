@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import {themeGet} from '@styled-system/theme-get';
-import {palette} from "styled-tools";
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
+import { palette } from "styled-tools";
 
 const ReservationFormWrapper = styled.form`
   padding: 0 30px 30px;
@@ -10,17 +10,64 @@ const ReservationFormWrapper = styled.form`
 `;
 
 export const FieldWrapper = styled.div`
+  padding-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  position: relative;
+  background-color: #f7f7f7;
   margin-bottom: 30px;
+
   @media (max-width: 375px) {
     margin-bottom: 25px;
   }
 
-  label {
-    font-size: 15px;
-    color: ${themeGet('text.0', '#2C2C2C')};
-    text-transform: capitalize;
-    margin-bottom: 7px;
-    display: block;
+  /* icon style */
+
+  > svg {
+    position: absolute;
+    z-index: 1;
+    top: auto;
+
+    &.map-marker,
+    &.calendar,
+    &.user-friends {
+      left: 15px;
+      right: auto;
+      fill: ${palette("primary", 0)};
+    }
+
+    &.calendar {
+      @media (max-width: 480px) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &.user-friends {
+      width: 17px;
+      height: 17px;
+      @media (max-width: 480px) {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &.caret-down {
+      right: 12px;
+      left: auto;
+      fill: ${palette("primary", 0)};
+
+      @media (max-width: 991px) {
+        right: 20px;
+      }
+
+      @media (max-width: 991px) {
+        right: 15px;
+      }
+    }
   }
 
   /* date picker component style */
@@ -48,12 +95,13 @@ export const FieldWrapper = styled.div`
         border-radius: 3px;
         align-items: center;
         justify-content: space-between;
-        color: ${themeGet('text.0', '#2C2C2C')};
-        background-color: ${themeGet('color.2', '#F7F7F7')};
+        color: ${themeGet("text.0", "#2C2C2C")};
+        background-color: ${themeGet("color.2", "#F7F7F7")};
 
         &::placeholder {
           font-size: 15px;
-          color: ${themeGet('text.0', '#2C2C2C')};
+          color: ${themeGet("text.0", "#2C2C2C")};
+          opacity: 1;
         }
 
         .DateInput {
@@ -85,7 +133,7 @@ export const FieldWrapper = styled.div`
 
               .CalendarMonth_caption {
                 font-size: 16px;
-                color: ${themeGet('text.0', '#2C2C2C')};
+                color: ${themeGet("text.0", "#2C2C2C")};
               }
             }
           }
@@ -103,15 +151,15 @@ export const FieldWrapper = styled.div`
         border: 0;
         width: 100%;
         display: flex;
-        padding: 0 25px;
+        padding: 0 30px;
         font-size: 15px;
         font-weight: 400;
         min-height: 54px;
         border-radius: 3px;
         align-items: center;
         justify-content: space-between;
-        color: ${themeGet('text.0', '#2C2C2C')};
-        background-color: ${themeGet('color.2', '#F7F7F7')};
+        color: ${themeGet("text.0", "#2C2C2C")};
+        background-color: ${themeGet("color.2", "#F7F7F7")};
 
         &::after {
           display: none;
@@ -130,7 +178,7 @@ export const FieldWrapper = styled.div`
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07);
 
         &::before {
-          content: '';
+          content: "";
           width: 14px;
           height: 14px;
           top: -8px;
@@ -138,9 +186,9 @@ export const FieldWrapper = styled.div`
           position: absolute;
           border-radius: 2px;
           transform: rotate(45deg);
-          background-color: ${themeGet('color.1', '#ffffff')};
-          border-top: 1px solid ${themeGet('border.3', '#E6E6E6')};
-          border-left: 1px solid ${themeGet('border.3', '#E6E6E6')};
+          background-color: ${themeGet("color.1", "#ffffff")};
+          border-top: 1px solid ${themeGet("border.3", "#E6E6E6")};
+          border-left: 1px solid ${themeGet("border.3", "#E6E6E6")};
         }
       }
     }
@@ -153,7 +201,7 @@ export const RoomGuestWrapper = styled.div`
   strong {
     font-size: 15px;
     font-weight: 400;
-    color: ${themeGet('text.0', '#2C2C2C')};
+    color: ${themeGet("text.0", "#2C2C2C")};
   }
 `;
 
@@ -188,15 +236,13 @@ export const BillWrapper = styled.div`
     li {
       font-size: 16px;
       margin-bottom: 16px;
-
     }
 
     &.cost-list {
       text-align: right;
-
     }
   }
-`
+`;
 
 export const FormActionArea = styled.div`
   display: flex;
@@ -209,8 +255,8 @@ export const FormActionArea = styled.div`
     color: #ffffff;
     font-size: 15px;
     font-weight: 700;
-    border-color: ${palette('primary', 0)};
-    background-color: ${palette('primary', 0)};
+    border-color: ${palette("primary", 0)};
+    background-color: ${palette("primary", 0)};
     transition: all 0.2s ease;
 
     &:hover,
@@ -219,8 +265,8 @@ export const FormActionArea = styled.div`
       opacity: 0.93;
     }
   }
-  
-  p{
+
+  p {
     margin-top: 20px;
   }
 `;
@@ -229,12 +275,11 @@ export const CardHeaderWrapper = styled.div`
   width: 100%;
 
   h3 {
-    color: ${palette('primary', 0)};
+    color: ${palette("primary", 0)};
 
     &.header-price {
-      color: ${palette('warning', 0)};
+      color: ${palette("warning", 0)};
     }
-
   }
 
   .ant-row {
@@ -254,10 +299,11 @@ export const CardHeaderWrapper = styled.div`
         align-items: center;
         font-size: 12px;
         border-radius: 10px;
-        background-color: ${palette('warning', 0)};
+        background-color: ${palette("warning", 0)};
 
-        &:hover, &:active {
-          color: ${palette('primary', 0)};
+        &:hover,
+        &:active {
+          color: ${palette("primary", 0)};
           background-color: #ffffff !important;
         }
 
@@ -269,10 +315,8 @@ export const CardHeaderWrapper = styled.div`
           margin-right: 16px;
         }
       }
-
     }
   }
-
-`
+`;
 
 export default ReservationFormWrapper;
