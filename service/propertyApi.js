@@ -1,6 +1,8 @@
 import { BACKEND_URL } from "../env-config";
 import { getCookie, logout } from "@redux/authentication/auth.utils";
 import { notification } from "@iso/components";
+import { handleError } from "./utils";
+
 import qs from "query-string";
 
 const propertyApi = {
@@ -139,53 +141,6 @@ const propertyApi = {
         throw res;
       })
       .catch(handleError),
-};
-
-const handleError = (res) => {
-  console.log("___handleError___", res);
-  if (res instanceof Error) {
-    throw Error("Network error");
-  }
-
-  let error = new Error();
-  // res.json().then((responseJson) => {
-  //     error = {
-  //         status: res.status,
-  //         statusText: res.statusText,
-  //         message: responseJson.detail || 'Application Error'
-  //     }
-  //     throw error
-  // })
-  if (res.status === 403) {
-    notification("warning", "Token not valid");
-    logout();
-  }
-
-  if (res.status >= 400 && res.status < 500) {
-    error = {
-      status: res.status,
-      statusText: res.statusText,
-      message: res.detail || "Application Error",
-    };
-    throw error;
-  }
-
-  if (res.status >= 500) {
-    error = {
-      status: res.status,
-      statusText: res.statusText,
-      message: res.detail || "Server Error",
-    };
-    throw error;
-  }
-
-  error = {
-    ...error,
-    status: res.status,
-    statusText: res.statusText,
-    message: res.detail || "Error",
-  };
-  throw error;
 };
 
 export default propertyApi;

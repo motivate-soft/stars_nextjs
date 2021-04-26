@@ -1,35 +1,18 @@
 import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
-import HttpsProxyAgent from "https-proxy-agent/dist/agent";
 
-const postApi = {
-  getAll: async () => {
-    const prod = process.env.NODE_ENV === "production";
-    if (prod) {
-      return await fetch(`${BACKEND_URL}/api/content/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        // agent: new HttpsProxyAgent('http://172.25.1.2:3129')
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw res;
-        })
-        .catch(handleError);
-    }
+const AUTH_URL = `${BACKEND_URL}/rest-auth`;
 
-    return await fetch(`${BACKEND_URL}/api/content/`, {
-      method: "GET",
+const authApi = {
+  jwtLogin: async (userInfo) =>
+    await fetch(`${AUTH_URL}/login/`, {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(userInfo),
     })
       .then((res) => {
         if (res.ok) {
@@ -37,11 +20,10 @@ const postApi = {
         }
         throw res;
       })
-      .catch(handleError);
-  },
+      .catch(handleError),
 
-  getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/content/${id}`, {
+  getProfile: async () =>
+    await fetch(`${AUTH_URL}/user/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -57,33 +39,15 @@ const postApi = {
       })
       .catch(handleError),
 
-  add: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  update: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/${post.id}`, {
+  updateProfile: async (userInfo) =>
+    await fetch(`${AUTH_URL}/user/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(userInfo),
     })
       .then((res) => {
         if (res.ok) {
@@ -93,22 +57,57 @@ const postApi = {
       })
       .catch(handleError),
 
-  delete: async (postId) =>
-    await fetch(`${BACKEND_URL}/api/content/${postId}`, {
-      method: "DELETE",
+  changePassword: async (userInfo) =>
+    await fetch(`${AUTH_URL}/password/change/`, {
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
+      body: JSON.stringify(userInfo),
     })
       .then((res) => {
         if (res.ok) {
-          return null;
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  passwordResetRequest: async (email) =>
+    await fetch(`${AUTH_URL}/password/reset/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  passwordResetConfirm: async (userInfo) =>
+    await fetch(`${AUTH_URL}/password/reset/confirm/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
         }
         throw res;
       })
       .catch(handleError),
 };
 
-export default postApi;
+export default authApi;

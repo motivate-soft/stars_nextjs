@@ -82,7 +82,6 @@ export const UserListWrapper = styled.div`
 export const SingeUserWrapper = styled.div`
   margin: 50px auto;
   padding: 20px;
-  background: #fff;
 
   .card-title-wrapper {
     display: flex;

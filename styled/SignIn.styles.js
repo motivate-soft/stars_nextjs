@@ -112,6 +112,7 @@ const SignInStyleWrapper = styled.div`
         margin-bottom: 10px;
         text-align: right;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover {
           color: ${palette('primary', 0)};

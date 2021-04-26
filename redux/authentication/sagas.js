@@ -1,63 +1,64 @@
-import {all, takeLatest, put, call, fork} from 'redux-saga/effects';
-import { logout, removeCookie, setCookie} from './auth.utils';
-import {notification} from '@iso/components';
-import JwtAuthentication from './jwtAuthentication';
-import actions from './actions';
+import { all, takeLatest, put, call, fork } from "redux-saga/effects";
+import { logout, removeCookie, setCookie } from "./auth.utils";
+import { notification } from "@iso/components";
+import actions from "./actions";
 import jwtDecode from "jwt-decode";
-
+import authApi from "./../../service/authApi";
 
 export function* jwtLoginRequest() {
-    yield takeLatest(actions.JWT_LOGIN_REQUEST_START, function* ({payload: {userInfo, history}}) {
-        try {
-            const res = yield call(JwtAuthentication.login, userInfo);
-            let token, profile;
-            if (res.access) {
-                token = res.access;
-                profile = jwtDecode(res.access);
-                notification('success', 'login success');
+  yield takeLatest(actions.JWT_LOGIN_REQUEST_START, function* ({
+    payload: { history, userInfo },
+  }) {
+    try {
+      const res = yield call(authApi.jwtLogin, userInfo);
+      let token, profile;
+      if (res.access_token) {
+        token = res.access_token;
+        profile = jwtDecode(token);
+        notification("success", "login success");
 
-                yield put({
-                    type: actions.LOGIN_REQUEST_SUCCESS,
-                    token,
-                    profile,
-                });
-            } else {
-                notification('warning', 'Response type is invalid');
-                yield put(actions.loginRequestFailure("Invalid server response"));
-            }
-        } catch (error) {
-            notification('error', error.message);
-            yield put(actions.loginRequestFailure(error.message));
-        }
-    });
+        yield put({
+          type: actions.LOGIN_REQUEST_SUCCESS,
+          token,
+          profile,
+        });
+      } else {
+        notification("warning", "Response type is invalid");
+        yield put(actions.loginRequestFailure("Invalid server response"));
+      }
+    } catch (error) {
+      notification("error", error.message);
+      yield put(actions.loginRequestFailure(error.message));
+    }
+  });
 }
 
 function* logoutRequest() {
-    try {
-        yield call(logout);
-        yield put(actions.logoutRequestSuccess());
-    } catch (error) {
-        yield put(actions.logoutRequestFailure(error));
-    }
+  try {
+    yield call(logout);
+    yield put(actions.logoutRequestSuccess());
+  } catch (error) {
+    yield put(actions.logoutRequestFailure(error));
+  }
 }
 
 export function* loginSuccess() {
-    yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
-        setCookie('login_saga', payload.token);
-        yield setCookie('token', payload.token);
-    });
+  yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
+    setCookie("login_saga", payload.token);
+    yield setCookie("token", payload.token);
+  });
 }
 
 export function* loginError() {
-    yield takeLatest(actions.LOGOUT_REQUEST_FAILURE, function* (payload) {
-        console.log("loginError", payload)
-    });
+  yield takeLatest(actions.LOGOUT_REQUEST_FAILURE, function* (payload) {
+    console.log("loginError", payload);
+  });
 }
 
 export function* onLogout() {
-    yield takeLatest(actions.LOGOUT_REQUEST_START, logoutRequest);
+  yield takeLatest(actions.LOGOUT_REQUEST_START, logoutRequest);
 }
 
 export default function* rootSaga() {
-    yield all([call(jwtLoginRequest), call(loginSuccess), call(onLogout)]);
+  yield all([call(jwtLoginRequest), call(loginSuccess), call(onLogout)]);
 }
