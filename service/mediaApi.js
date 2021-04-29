@@ -53,15 +53,15 @@ const mediaApi = {
       })
       .catch(handleError),
 
-  update: async (blog) =>
-    await fetch(`${BACKEND_URL}/api/media/${blog.id}`, {
+  update: async (media) =>
+    await fetch(`${BACKEND_URL}/api/media/${media.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(blog),
+      body: JSON.stringify(media),
     })
       .then((res) => {
         if (res.ok) {
@@ -71,8 +71,8 @@ const mediaApi = {
       })
       .catch(handleError),
 
-  delete: async (blogId) =>
-    await fetch(`${BACKEND_URL}/api/media/${blogId}`, {
+  delete: async (mediaId) =>
+    await fetch(`${BACKEND_URL}/api/media/${mediaId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

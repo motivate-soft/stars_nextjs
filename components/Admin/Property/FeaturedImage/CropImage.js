@@ -6,6 +6,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import { BACKEND_URL } from "../../../../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { notification } from "@iso/components";
+import { IoIosCrop } from "react-icons/io";
 
 const cropSetting = {
   unit: "%",
@@ -120,10 +121,8 @@ export default function CropImage(props) {
   // }
 
   return (
-    <div>
-      <Button type="primary" onClick={showModal}>
-        Crop
-      </Button>
+    <>
+      <IoIosCrop onClick={showModal} />
       <Modal
         visible={visible}
         className="crop-modal"
@@ -173,6 +172,6 @@ export default function CropImage(props) {
           </Row>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
