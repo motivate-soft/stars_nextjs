@@ -133,7 +133,7 @@
   },
   "scripts": {
     "dev": "next -p 3030",
-    "start": "next start -p 8080",
+    "start": "next start -p 3000",
     "gcp-build": "rm -rf ./build && next build",
     "build": "rm -rf ./build && next build",
     "test": "echo \"Error: no test specified\" && exit 1"
