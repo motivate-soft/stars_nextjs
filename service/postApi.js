@@ -7,7 +7,7 @@ const postApi = {
   getAll: async () => {
     const prod = process.env.NODE_ENV === "production";
     if (prod) {
-      return await fetch(`http://localhost:8000/api/content/`, {
+      return await fetch(`${BACKEND_URL}/api/content/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
