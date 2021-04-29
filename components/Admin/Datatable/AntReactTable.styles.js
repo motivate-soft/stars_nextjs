@@ -3,7 +3,8 @@ import { palette } from "styled-theme";
 
 const TableWrapper = styled.div`
   .reactTablePagination {
-    margin-left: auto;
+    display: flex;
+    justify-content: center;
   }
 
   table {
@@ -12,6 +13,9 @@ const TableWrapper = styled.div`
       background: ${palette("secondary", 0)};
 
       th {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         input {
           margin-top: 20px;
         }

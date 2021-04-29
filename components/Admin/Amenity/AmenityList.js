@@ -56,9 +56,10 @@ export default function AmenityList() {
       Header: "Image",
       accessor: "image",
       width: 300,
-      Cell: ({ row: { original } }) => (
-        <>{renderCell(original.image, "ImageCell", "file")}</>
-      ),
+      Cell: ({ row: { original } }) =>
+        original?.image &&
+        original.image?.file &&
+        renderCell(original.image, "ImageCell", "file"),
     },
     {
       Header: "Created At",

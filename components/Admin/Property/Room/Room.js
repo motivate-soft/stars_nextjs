@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Row, Col, Select } from "antd";
-import {CloseOutlined} from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 const formItemLayout = {
@@ -41,7 +41,7 @@ export default function Room(props) {
           bedType,
         }}
       >
-        <Row>
+        <Row gutter={[32, 16]}>
           <Col lg={10} sm={24}>
             <Form.Item label="Name" name="name" rules={[requiredRule]}>
               <Input />
@@ -72,8 +72,7 @@ export default function Room(props) {
             </Form.Item>
           </Col>
           <Col lg={4} sm={24}>
-            <CloseOutlined onClick={() => onRemoveRoom(id)}/>
-
+            <CloseOutlined onClick={() => onRemoveRoom(id)} />
           </Col>
         </Row>
       </Form>

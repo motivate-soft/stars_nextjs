@@ -2,28 +2,9 @@ import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
 
-const AUTH_URL = `${BACKEND_URL}/api/rest-auth`;
-
-const authApi = {
-  jwtLogin: async (userInfo) =>
-    await fetch(`${AUTH_URL}/login/`, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  getProfile: async () =>
-    await fetch(`${AUTH_URL}/user/`, {
+const mediaApi = {
+  getAll: async () =>
+    await fetch(`${BACKEND_URL}/api/media/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -39,15 +20,48 @@ const authApi = {
       })
       .catch(handleError),
 
-  updateProfile: async (userInfo) =>
-    await fetch(`${AUTH_URL}/user/`, {
+  getOne: async (id) =>
+    await fetch(`${BACKEND_URL}/api/media/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  add: async (body) =>
+    await fetch(`${BACKEND_URL}/api/media/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+      body,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  update: async (blog) =>
+    await fetch(`${BACKEND_URL}/api/media/${blog.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(blog),
     })
       .then((res) => {
         if (res.ok) {
@@ -57,57 +71,22 @@ const authApi = {
       })
       .catch(handleError),
 
-  changePassword: async (userInfo) =>
-    await fetch(`${AUTH_URL}/password/change/`, {
-      method: "POST",
+  delete: async (blogId) =>
+    await fetch(`${BACKEND_URL}/api/media/${blogId}`, {
+      method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(userInfo),
     })
       .then((res) => {
         if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  passwordResetRequest: async (email) =>
-    await fetch(`${AUTH_URL}/password/reset/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(email),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  passwordResetConfirm: async (userInfo) =>
-    await fetch(`${AUTH_URL}/password/reset/confirm/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+          return null;
         }
         throw res;
       })
       .catch(handleError),
 };
 
-export default authApi;
+export default mediaApi;

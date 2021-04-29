@@ -6,7 +6,8 @@ import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import ContentHolder from "@iso/components/utility/contentHolder";
 import DropzoneWrapper from "./Dropzone.styles";
 import { getCookie } from "@redux/authentication/auth.utils";
-import {BACKEND_URL} from "../../../../env-config";
+import { BACKEND_URL } from "../../../../env-config";
+import mediaApi from "./../../../../service/mediaApi";
 
 export default (props) => {
   const { onUploadSuccess } = props;
@@ -32,21 +33,15 @@ export default (props) => {
   };
 
   async function onAddedFile(file) {
-    notification("success", `${file.name} added`);
     const body = new FormData();
     body.append("file", file);
-
-    const res = await fetch(`${BACKEND_URL}/api/media/create`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + getCookie("token"),
-      },
-      body,
-    })
-      .then((res) => res.json())
-      .then((res) => res)
-      .catch((error) => error);
-    onUploadSuccess(res);
+    try {
+      const res = await mediaApi.add(body);
+      notification("success", `${file.name} has been uploaded`);
+      onUploadSuccess(res);
+    } catch (error) {
+      notification("warning", `Failed to upload ${file.name} `);
+    }
   }
 
   // async function handleAddImage(selectedFiles) {

@@ -9,7 +9,7 @@ import {
 import actions from "./actions";
 import amenityApi from "../../service/amenityApi";
 import {notification} from "@iso/components";
-import {Router} from "next/router";
+import Router from "next/router";
 
 
 export function* getAllAmenities() {

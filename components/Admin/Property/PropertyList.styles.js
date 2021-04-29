@@ -48,6 +48,20 @@ const CardWrapper = styled.div`
 `;
 
 export const SinglePropertyWrapper = styled.div`
+  .property-detail-tab {
+    .ant-tabs-tab {
+      > div:before {
+        display: inline-block;
+        margin-right: 4px;
+        color: #ff4d4f;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: "*";
+      }
+    }
+  }
+
   .property-detail-actions {
     margin: 20px;
     background: #fff;

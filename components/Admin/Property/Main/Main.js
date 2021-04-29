@@ -36,7 +36,7 @@ export default function Main(props) {
     return (
         <div>
             <Form
-                name="mainInfo"
+                name="mainInfoForm"
                 {...formItemLayout}
                 onValuesChange={onValuesChange}
                 onFinish={onFinish}
