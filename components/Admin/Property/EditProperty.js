@@ -4,7 +4,7 @@ import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import Tabs, { TabPane } from "@iso/components/uielements/tabs";
 import Location from "@components/Admin/Property/Location/Location";
 import basicStyle from "@iso/assets/styles/constants";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, notification } from "antd";
 import Setting from "@components/Admin/Property/Setting/Setting";
 import Main from "@components/Admin/Property/Main/Main";
 import Amenity from "@components/Admin/Property/Amenity/Amenity";
@@ -19,24 +19,24 @@ import PricingCalendar from "@components/Admin/Property/PricingCalendar/PricingC
 import SimilarProperty from "@components/Admin/Property/SimilarProperty/SimilarProperty";
 import { SinglePropertyWrapper } from "@components/Admin/Property/PropertyList.styles";
 
-function uploadCallback(file) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://api.imgur.com/3/image");
-    xhr.setRequestHeader("Authorization", "Client-ID 8d26ccd12712fca");
-    const data = new FormData();
-    data.append("image", file);
-    xhr.send(data);
-    xhr.addEventListener("load", () => {
-      const response = JSON.parse(xhr.responseText);
-      resolve(response);
-    });
-    xhr.addEventListener("error", () => {
-      const error = JSON.parse(xhr.responseText);
-      reject(error);
-    });
-  });
-}
+// function uploadCallback(file) {
+//   return new Promise((resolve, reject) => {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("POST", "https://api.imgur.com/3/image");
+//     xhr.setRequestHeader("Authorization", "Client-ID 8d26ccd12712fca");
+//     const data = new FormData();
+//     data.append("image", file);
+//     xhr.send(data);
+//     xhr.addEventListener("load", () => {
+//       const response = JSON.parse(xhr.responseText);
+//       resolve(response);
+//     });
+//     xhr.addEventListener("error", () => {
+//       const error = JSON.parse(xhr.responseText);
+//       reject(error);
+//     });
+//   });
+// }
 
 const newProperty = {
   name: "",
@@ -71,20 +71,21 @@ const newProperty = {
   petsConsidered: true,
 };
 
+const editorOption = {
+  style: { width: "90%", height: "70%" },
+  toolbarClassName: "home-toolbar",
+  wrapperClassName: "home-wrapper",
+  editorClassName: "home-editor",
+  // uploadCallback: uploadCallback,
+  // toolbar: { image: { uploadCallback: uploadCallback } },
+};
+
 export default function EditProperty(props) {
   const { propertyId } = props;
   const [state, setState] = React.useState(newProperty);
 
   const dispatch = useDispatch();
   const { selectedItem, loading } = useSelector((state) => state.Properties);
-  const editorOption = {
-    style: { width: "90%", height: "70%" },
-    toolbarClassName: "home-toolbar",
-    wrapperClassName: "home-wrapper",
-    editorClassName: "home-editor",
-    uploadCallback: uploadCallback,
-    toolbar: { image: { uploadCallback: uploadCallback } },
-  };
 
   useEffect(() => {
     dispatch(propertyActions.getProperty(propertyId));
@@ -126,7 +127,9 @@ export default function EditProperty(props) {
         })),
         amenities: selectedItem.amenities,
         featuredImg: selectedItem.featured_img,
-        galleryImgs: selectedItem.gallery_imgs,
+        galleryImgs: selectedItem?.gallery_imgs.sort(
+          (a, b) => a.order > b.order
+        ),
       });
     }
   }, [selectedItem]);
@@ -333,6 +336,14 @@ export default function EditProperty(props) {
     setState({ ...state, galleryImgs });
   }
 
+  function handleDeleteSuccess(imageId) {
+    const { galleryImgs } = state;
+    setState({
+      ...state,
+      galleryImgs: galleryImgs.filter((item) => item.id !== imageId),
+    });
+  }
+
   function handleSortEnd({ oldIndex, newIndex }) {
     const newArray = arrayMove(state.galleryImgs, oldIndex, newIndex);
     setState({
@@ -345,6 +356,7 @@ export default function EditProperty(props) {
   }
 
   function handleSelectFeatured(image) {
+    console.log("handleSelectFeatured", image);
     setState({ ...state, featuredImg: image });
   }
 
@@ -388,15 +400,19 @@ export default function EditProperty(props) {
               )}
 
               <Gallery
+                propertyId={selectedItem.id ? selectedItem.id : null}
                 items={state.galleryImgs}
                 onSortEnd={handleSortEnd}
                 onUploadSuccess={handleUploadSuccess}
+                onDeleteSucess={handleDeleteSuccess}
               />
               <FeaturedImage
+                propertyId={selectedItem.id ? selectedItem.id : null}
                 items={state.galleryImgs}
                 selectedItem={state.featuredImg}
                 onUploadSuccess={handleUploadSuccess}
-                onSelectImage={handleSelectFeatured}
+                onDeleteSucess={handleDeleteSuccess}
+                onSelect={handleSelectFeatured}
               />
             </div>
           </Col>

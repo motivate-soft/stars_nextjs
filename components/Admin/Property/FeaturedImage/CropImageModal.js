@@ -1,12 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Button, Row, Col, Modal } from "antd";
+import { Row, Col, Modal } from "antd";
 import Box from "@iso/ui/Box/Box";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { BACKEND_URL } from "../../../../env-config";
-import { getCookie } from "@redux/authentication/auth.utils";
-import { notification } from "@iso/components";
-import { IoIosCrop } from "react-icons/io";
 
 const cropSetting = {
   unit: "%",
@@ -15,22 +11,13 @@ const cropSetting = {
   // aspect: 16 / 9,
 };
 
-export default function CropImage(props) {
-  const { imageTitle, imagePath, onUploadSuccess } = props;
+export default function CropImageModal(props) {
+  const { imagePath, show, onSave, onCancel } = props;
 
   const [crop, setCrop] = useState(cropSetting);
   const [croppedImage, setCroppedImage] = useState(null);
-  const [visible, setVisible] = useState(false);
 
   const imageRef = useRef(null);
-
-  function showModal() {
-    setVisible(true);
-  }
-
-  function handleCancel() {
-    setVisible(false);
-  }
 
   function onImageLoaded(image) {
     imageRef.current = image;
@@ -92,56 +79,15 @@ export default function CropImage(props) {
     // })
   }
 
-  function handleSaveCroppedImage(image) {
-    setVisible(false);
-    const media = {
-      title: imageTitle,
-      imageData: croppedImage,
-    };
-
-    fetch(`${BACKEND_URL}/api/media/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
-      },
-      body: JSON.stringify(media),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("handleSaveCroppedImage", res);
-        onUploadSuccess(res);
-        notification("success", "Cropped image saved!");
-      })
-      .catch((error) => error);
-  }
-
-  // function handleDeleteImage(id) {
-  // }
-
   return (
     <>
-      <IoIosCrop onClick={showModal} />
       <Modal
-        visible={visible}
+        visible={show}
         className="crop-modal"
         title="Crop image"
         okText="Save"
-        onOk={handleSaveCroppedImage}
-        onCancel={handleCancel}
-        // footer={[
-        //     <Button key="save" type="primary" onClick={handleSaveCroppedImage}>
-        //         Save
-        //     </Button>,
-        //     <Button
-        //         key="cancel"
-        //         type="default"
-        //         onClick={handleCancel}
-        //     >
-        //         Cancel
-        //     </Button>,
-        // ]}
+        onOk={() => onSave(croppedImage)}
+        onCancel={onCancel}
       >
         <Box>
           <Row>

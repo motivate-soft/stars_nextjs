@@ -9,7 +9,13 @@ import Dropzone from "../Dropzone/Dropzone";
 import SortableMediaGallery from "./SortableMediaGallery";
 
 export default function Gallery(props) {
-  const { items, onSortEnd, onUploadSuccess } = props;
+  const {
+    propertyId,
+    items,
+    onSortEnd,
+    onUploadSuccess,
+    onDeleteSucess,
+  } = props;
 
   const [visible, setVisible] = useState(false);
 
@@ -24,7 +30,7 @@ export default function Gallery(props) {
   return (
     <div>
       <Button type="primary" onClick={showModal}>
-        {items?.length >0 ? "Edit Gallery": "Attach Gallery"}
+        {items?.length > 0 ? "Edit Gallery" : "Attach Gallery"}
       </Button>
       <Modal
         visible={visible}
@@ -39,12 +45,21 @@ export default function Gallery(props) {
         >
           <TabPane tab="Upload" key="upload">
             <DropzoneWrapper>
-              <Dropzone onUploadSuccess={onUploadSuccess} />
+              <Dropzone
+                propertyId={propertyId}
+                onUploadSuccess={onUploadSuccess}
+              />
             </DropzoneWrapper>
           </TabPane>
           <TabPane tab="Gallery" key="gallery">
             <GalleryWrapper>
-              <SortableMediaGallery items={items} onSortEnd={onSortEnd} />
+              <SortableMediaGallery
+                propertyId={propertyId}
+                items={items}
+                onSortEnd={onSortEnd}
+                onUploadSuccess={onUploadSuccess}
+                onDeleteSucess={onDeleteSucess}
+              />
             </GalleryWrapper>
           </TabPane>
         </Tabs>

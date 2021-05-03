@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { palette } from "styled-theme";
 
 const GalleryWrapper = styled.div`
+  height: 60vh;
+  overflow-y: scroll;
+
   .ant-col {
     padding: 15px;
   }
@@ -27,13 +30,6 @@ const GalleryWrapper = styled.div`
       0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .media-scroll-gallery {
-    overflow: scroll !important;
-    height: 60vh;
-    border: 2px solid #eeeeee;
-    align-items: start !important;
   }
 `;
 

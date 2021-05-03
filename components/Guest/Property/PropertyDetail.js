@@ -123,7 +123,7 @@ function PropertyDetail(props) {
           <Col xl={8}>
             {getView() !== "MobileView" ? (
               <Sticky
-                innerZ={999}
+                innerZ={900}
                 activeClass="isSticky"
                 top={202}
                 bottomBoundary="#transit"

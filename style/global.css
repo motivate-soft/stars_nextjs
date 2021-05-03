@@ -263,9 +263,13 @@ html[dir="rtl"] .dz-hidden-input {
 /*.sticky-inner-wrapper {*/
 /*    z-index: 2000 !important;*/
 /*}*/
-
+.ant-modal-mask,
 .ant-modal-wrap {
-  z-index: 9999;
+  z-index: 3000;
+}
+
+.ant-popconfirm {
+  z-index: 5000;
 }
 
 .ant-btn-lg {
@@ -419,4 +423,8 @@ html[dir="rtl"] .dz-hidden-input {
 
 .CalendarDay h6 {
   font-size: 14px !important;
+}
+
+.crop-modal .ant-modal-body img {
+  max-width: 100%;
 }

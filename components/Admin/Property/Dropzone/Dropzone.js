@@ -10,7 +10,7 @@ import { BACKEND_URL } from "../../../../env-config";
 import mediaApi from "./../../../../service/mediaApi";
 
 export default (props) => {
-  const { onUploadSuccess } = props;
+  const { propertyId, onUploadSuccess } = props;
 
   const componentConfig = {
     iconFiletypes: [".jpg", ".png", ".gif"],
@@ -35,6 +35,10 @@ export default (props) => {
   async function onAddedFile(file) {
     const body = new FormData();
     body.append("file", file);
+
+    if (propertyId) {
+      body.append("property", propertyId);
+    }
     try {
       const res = await mediaApi.add(body);
       notification("success", `${file.name} has been uploaded`);

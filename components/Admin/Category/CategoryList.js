@@ -87,7 +87,7 @@ export default function CategoryList() {
     {
       Header: "Action",
       accessor: "action",
-      minWidth: 300,
+      minWidth: 200,
       Cell: ({ row: { original } }) => (
         <div className="opt-cell">
           <Link href={`/admin/category?id=${original.id}`}>

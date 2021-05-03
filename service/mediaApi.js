@@ -52,6 +52,24 @@ const mediaApi = {
         throw res;
       })
       .catch(handleError),
+      
+  addCrop: async (media) =>
+    await fetch(`${BACKEND_URL}/api/media/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+      body: JSON.stringify(media),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
 
   update: async (media) =>
     await fetch(`${BACKEND_URL}/api/media/${media.id}`, {

@@ -252,6 +252,14 @@ export default function AddProperty() {
     setState({ ...state, galleryImgs });
   }
 
+  function handleDeleteSuccess(imageId) {
+    const { galleryImgs } = state;
+    setState({
+      ...state,
+      galleryImgs: galleryImgs.filter((item) => item.id !== imageId),
+    });
+  }
+
   function handleSortEnd({ oldIndex, newIndex }) {
     const newArray = arrayMove(state.galleryImgs, oldIndex, newIndex);
     setState({
@@ -305,12 +313,14 @@ export default function AddProperty() {
                 items={state.galleryImgs}
                 onSortEnd={handleSortEnd}
                 onUploadSuccess={handleUploadSuccess}
+                onDeleteSucess={handleDeleteSuccess}
               />
               <FeaturedImage
                 items={state.galleryImgs}
                 selectedItem={state.featuredImg}
                 onUploadSuccess={handleUploadSuccess}
-                onSelectImage={handleSelectFeatured}
+                onDeleteSucess={handleDeleteSuccess}
+                onSelect={handleSelectFeatured}
               />
             </div>
           </Col>

@@ -55,7 +55,7 @@ const propertyApi = {
       .catch(handleError),
 
   add: async (property) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/`, {
+    await fetch(`${BACKEND_URL}/api/accommodation/property`, {
       method: "POST",
       headers: {
         Accept: "application/json",
