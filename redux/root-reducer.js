@@ -13,6 +13,7 @@ import Categories from "@redux/categories/reducer";
 import Amenities from "@redux/amenities/reducer";
 import Posts from "@redux/posts/reducer";
 import Blogs from "@redux/blogs/reducer";
+import Tags from "@redux/tags/reducer";
 
 export default combineReducers({
   Auth,
@@ -28,5 +29,6 @@ export default combineReducers({
   modal,
   quiz,
   profile,
-  Blogs
+  Blogs,
+  Tags
 });

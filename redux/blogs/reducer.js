@@ -7,7 +7,7 @@ const initState = {
   loading: false,
 };
 
-export default function propertiesReducer(state = initState, action) {
+export default function blogsReducer(state = initState, action) {
   switch (action.type) {
     // List
     case blogActions.GET_ALL_BLOGS_REQUEST:

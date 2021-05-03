@@ -25,7 +25,7 @@ import {
   SidebarPagesIcon,
   SidebarGithubIcon,
   SidebarBlankIcon,
-  SidebarTextIcon
+  SidebarTextIcon,
 } from "@iso/config/icon.config";
 
 export default [
@@ -68,9 +68,18 @@ export default [
   },
   {
     key: "blog",
-    path: "/blog",
     label: "sidebar.blogs",
-    leftIcon: <SidebarBlankIcon size={19} />,
+    leftIcon: <SidebarNotesIcon size={19} />,
+    children: [
+      {
+        key: "tag",
+        label: "tag",
+      },
+      {
+        key: "blog",
+        label: "blog",
+      },
+    ],
   },
   {
     key: "blank_page",

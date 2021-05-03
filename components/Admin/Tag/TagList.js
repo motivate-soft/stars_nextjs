@@ -16,9 +16,9 @@ import {
 } from "@iso/components/Tables/HelperCells";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import TableWrapper from "@iso/containers/Tables/AntTables/AntTables.styles";
-import { CategoryListWrapper } from "./Category.styles";
+import { TagListWrapper } from "./Tag.styles";
 import Loader from "@iso/components/utility/loader";
-import categoryActions from "@redux/categories/actions";
+import tagActions from "@redux/tags/actions";
 import { useDispatch, useSelector } from "react-redux";
 import AntReactTable from "../Datatable/AntReactTable";
 
@@ -36,12 +36,12 @@ const renderCell = (object, type, key) => {
   }
 };
 
-export default function CategoryList() {
+export default function TagList() {
   const dispatch = useDispatch();
-  const { items, loading } = useSelector((state) => state.Categories);
+  const { items, loading } = useSelector((state) => state.Tags);
 
   useEffect(() => {
-    dispatch(categoryActions.getAllCategories());
+    dispatch(tagActions.getAllTags());
   }, []);
 
   const columns = [
@@ -50,18 +50,8 @@ export default function CategoryList() {
       accessor: "name",
       sortType: "basic",
       Cell: ({ row: { original } }) => (
-        <Link href={`/admin/category?id=${original.id}`}>{original.name}</Link>
+        <Link href={`/admin/tag?id=${original.id}`}>{original.name}</Link>
       ),
-    },
-    {
-      Header: "Created At",
-      accessor: "created_date",
-      sortType: "basic",
-    },
-    {
-      Header: "Updated At",
-      accessor: "updated_date",
-      sortType: "basic",
     },
     {
       Header: "Action",
@@ -69,7 +59,7 @@ export default function CategoryList() {
       minWidth: 200,
       Cell: ({ row: { original } }) => (
         <div className="opt-cell">
-          <Link href={`/admin/category?id=${original.id}`}>
+          <Link href={`/admin/tag?id=${original.id}`}>
             <EditOutlined />
           </Link>
           <Popconfirm
@@ -83,27 +73,27 @@ export default function CategoryList() {
     },
   ];
 
-  function onDeleteCell(categoryId) {
-    dispatch(categoryActions.deleteCategory(categoryId));
+  function onDeleteCell(tagId) {
+    dispatch(tagActions.deleteTag(tagId));
   }
 
   return (
     <LayoutWrapper>
-      <PageHeader>Category</PageHeader>
+      <PageHeader>Tag</PageHeader>
       <Box>
-        <CategoryListWrapper>
-          <div className="categoryTableBtn">
-            <Link href={`category?id=1234`}>
+        <TagListWrapper>
+          <div className="tagTableBtn">
+            <Link href={`tag?id=new`}>
               <a>
-                <Button type="primary" className="mateAddCategoryBtn">
-                  Add Category
+                <Button type="primary" className="mateAddTagBtn">
+                  Add Tag
                 </Button>
               </a>
             </Link>
           </div>
           {loading && <Loader />}
           {items && (
-            <div className="categoryTable">
+            <div className="tagTable">
               <Scrollbars
                 style={{ width: "100%", height: "calc(60vh - 70px)" }}
               >
@@ -111,7 +101,7 @@ export default function CategoryList() {
               </Scrollbars>
             </div>
           )}
-        </CategoryListWrapper>
+        </TagListWrapper>
       </Box>
     </LayoutWrapper>
   );
