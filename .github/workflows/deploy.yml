@@ -19,5 +19,5 @@ steps:
 			  aws-region: us-east-2
 			  instance-ids: ${{ secrets.INSTANCE_ID  }}
 			  comment: Deploy the master branch
-			  working-directory: var/starsofboston/stars_nextjs
+			  working-directory: /var/starsofboston/stars_nextjs
 			  command: /bin/sh ./deploy.sh
