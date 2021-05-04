@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "@iso/components/utility/loader";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
-import { Button, Col, Form, Input, Row, Upload, message } from "antd";
+import { Button, Col, Form, Input, Select, Row, Upload, message } from "antd";
 import Editor from "@components/Admin/Property/Editor/Editor";
 import Link from "next/link";
 import blogActions from "@redux/blogs/actions";
 import { SingeBlogWrapper } from "@components/Admin/Blog/Blog.styles";
 import { BACKEND_URL } from "../../../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
-import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 import { isServer } from "@iso/lib/helpers/isServer";
 import Auth from "@redux/authentication/reducer";
+import tagApi from "./../../../service/tagApi";
 
 const formItemLayout = {
   labelCol: {
@@ -44,8 +45,13 @@ const HtmlEditor = ({ value = {}, onChange }) => {
 
 export default function AddBlog() {
   const { profile } = useSelector((state) => state.Auth);
+  const [tags, setTags] = useState(null);
   const dispatch = useDispatch();
   let uploaderProps;
+
+  useEffect(() => {
+    fetchTags();
+  }, []);
 
   if (!isServer) {
     uploaderProps = {
@@ -74,7 +80,7 @@ export default function AddBlog() {
         }
         if (status === "done") {
           console.log("uploader_response", response);
-          form.setFieldsValue({ image: response.id });
+          // form.setFieldsValue({ image: response.id });
           message.success(`${info.file.name} file uploaded successfully.`);
         } else if (status === "error") {
           message.error(`${info.file.name} file upload failed.`);
@@ -85,6 +91,24 @@ export default function AddBlog() {
 
   const [form] = useForm();
 
+  async function fetchTags() {
+    try {
+      const res = await tagApi.getAll();
+      console.log("res", res);
+      setTags(res);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  const normFile = (e) => {
+    console.log("Upload event:", e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  };
+
   function onReset() {
     form.resetFields();
   }
@@ -94,10 +118,19 @@ export default function AddBlog() {
   }
 
   const onFinish = (values) => {
-    console.log("values", values, profile);
+    console.log(
+      "values",
+      {
+        ...values,
+        image: values.image.file.response.id,
+        author: profile.id,
+      },
+      profile
+    );
     dispatch(
       blogActions.addBlog({
         ...values,
+        image: values.image.file.response.id,
         author: profile.id,
       })
     );
@@ -124,6 +157,7 @@ export default function AddBlog() {
                   title: "",
                   body: "",
                   image: null,
+                  tags: [],
                 }}
               >
                 <Form.Item
@@ -151,18 +185,52 @@ export default function AddBlog() {
                   <HtmlEditor />
                 </Form.Item>
 
-                <Form.Item name="image" label="CoverImage" hidden>
-                  <Input />
+                <Row className="ant-form-item">
+                  <Col span={24} className="ant-form-item-label">
+                    <label
+                      for="body"
+                      class="ant-form-item-required"
+                      title="Content"
+                    >
+                      Cover image
+                    </label>
+                  </Col>
+                </Row>
+                <Form.Item
+                  name="image"
+                  label="Cover image"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Dragger {...uploaderProps}>
+                    <p className="ant-upload-drag-icon">
+                      <UploadOutlined />
+                    </p>
+                    <p className="ant-upload-text">
+                      Click or drag file to this area to upload
+                    </p>
+                  </Dragger>
                 </Form.Item>
-                
-                <Dragger {...uploaderProps}>
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">
-                    Click or drag file to this area to upload
-                  </p>
-                </Dragger>
+
+                <Form.Item
+                  name="tags"
+                  label="Tags"
+                  hasFeedback
+                  rules={[{ required: true, message: "Please select tags" }]}
+                >
+                  <Select
+                    mode="multiple"
+                    allowClear
+                    style={{ width: "100%" }}
+                    placeholder="Please select tag"
+                  >
+                    {tags &&
+                      tags?.length > 0 &&
+                      tags.map((tag) => (
+                        <Option key={tag.name}>{tag.name}</Option>
+                      ))}
+                  </Select>
+                </Form.Item>
                 <div className="blog-actions-wrapper">
                   <Button type="primary" htmlType="submit">
                     Save
