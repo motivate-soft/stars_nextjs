@@ -41,7 +41,6 @@ export default function SignInPage(props) {
               <Logo />
             </Link>
           </div>
-          "CI/CD works"
           <Form
             {...formItemLayout}
             form={form}
