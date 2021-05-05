@@ -2,9 +2,10 @@ import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
 
+const blogUrl = `${BACKEND_URL}/api/blog/post/`;
 const blogApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/blog/`, {
+    await fetch(blogUrl, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +22,7 @@ const blogApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/blog/${id}`, {
+    await fetch(blogUrl + id, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +39,7 @@ const blogApi = {
       .catch(handleError),
 
   add: async (blog) =>
-    await fetch(`${BACKEND_URL}/api/blog/`, {
+    await fetch(blogUrl, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -56,7 +57,7 @@ const blogApi = {
       .catch(handleError),
 
   update: async (blog) =>
-    await fetch(`${BACKEND_URL}/api/blog/${blog.id}`, {
+    await fetch(blogUrl + id, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -74,7 +75,7 @@ const blogApi = {
       .catch(handleError),
 
   delete: async (blogId) =>
-    await fetch(`${BACKEND_URL}/api/blog/${blogId}`, {
+    await fetch(blogUrl + id, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

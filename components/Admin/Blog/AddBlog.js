@@ -118,20 +118,12 @@ export default function AddBlog() {
   }
 
   const onFinish = (values) => {
-    console.log(
-      "values",
-      {
-        ...values,
-        image: values.image.file.response.id,
-        author: profile.id,
-      },
-      profile
-    );
+    console.log("values", values.image[0].response.id);
     dispatch(
       blogActions.addBlog({
         ...values,
-        image: values.image.file.response.id,
-        author: profile.id,
+        image: values.image[0].response.id,
+        author: profile.user_id,
       })
     );
   };
@@ -155,7 +147,7 @@ export default function AddBlog() {
                 onValuesChange={onValuesChange}
                 initialValues={{
                   title: "",
-                  body: "",
+                  content: "",
                   image: null,
                   tags: [],
                 }}
@@ -174,7 +166,7 @@ export default function AddBlog() {
                 </Form.Item>
                 <Form.Item
                   label="Content"
-                  name="body"
+                  name="content"
                   rules={[
                     {
                       required: true,
@@ -185,17 +177,17 @@ export default function AddBlog() {
                   <HtmlEditor />
                 </Form.Item>
 
-                <Row className="ant-form-item">
+                {/* <Row className="ant-form-item">
                   <Col span={24} className="ant-form-item-label">
                     <label
-                      for="body"
+                      for="content"
                       class="ant-form-item-required"
                       title="Content"
                     >
                       Cover image
                     </label>
                   </Col>
-                </Row>
+                </Row> */}
                 <Form.Item
                   name="image"
                   label="Cover image"
@@ -227,7 +219,7 @@ export default function AddBlog() {
                     {tags &&
                       tags?.length > 0 &&
                       tags.map((tag) => (
-                        <Option key={tag.name}>{tag.name}</Option>
+                        <Option key={tag.id}>{tag.name}</Option>
                       ))}
                   </Select>
                 </Form.Item>

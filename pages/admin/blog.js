@@ -23,16 +23,14 @@ export default withRouter(
     return (
       <>
         <Head>
-          <title>Blog listing</title>
+          <title>Blog</title>
         </Head>
         <DashboardLayout>
+          {blogId ? (
             <SingleBlog blogId={blogId} redirectPath={redirectPath} />
-
-          {/*  {blogId ? (*/}
-          {/*  <SingleBlog blogId={blogId} redirectPath={redirectPath} />*/}
-          {/*) : (*/}
-          {/*  <BlogList />*/}
-          {/*)}*/}
+          ) : (
+            <BlogList />
+          )}
         </DashboardLayout>
       </>
     );
