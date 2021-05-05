@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "@iso/components/utility/loader";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
 import { Button, Col, Form, Input, Select, Row, Upload, message } from "antd";
@@ -9,10 +8,8 @@ import Link from "next/link";
 import blogActions from "@redux/blogs/actions";
 import { SingeBlogWrapper } from "@components/Admin/Blog/Blog.styles";
 import { BACKEND_URL } from "../../../env-config";
-import { getCookie } from "@redux/authentication/auth.utils";
+import cookie from "js-cookie";
 import { UploadOutlined } from "@ant-design/icons";
-import { isServer } from "@iso/lib/helpers/isServer";
-import Auth from "@redux/authentication/reducer";
 import tagApi from "./../../../service/tagApi";
 
 const formItemLayout = {
@@ -26,6 +23,38 @@ const formItemLayout = {
 const { useForm } = Form;
 const { Dragger } = Upload;
 
+const uploaderProps = {
+  name: "file",
+  multiple: true,
+  action: `${BACKEND_URL}/api/media/`,
+  listType: "picture",
+  maxCount: 1,
+  beforeUpload: (file) => {
+    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+    if (!isJpgOrPng) {
+      message.error("You can only upload JPG/PNG file!");
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error("Image must smaller than 2MB!");
+    }
+    return isJpgOrPng && isLt2M;
+  },
+  onChange(info) {
+    const { status, response } = info.file;
+    if (status !== "uploading") {
+      console.log(info.file, info.fileList);
+    }
+    if (status === "done") {
+      console.log("uploader_response", response);
+      // form.setFieldsValue({ image: response.id });
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
+
 const HtmlEditor = ({ value = {}, onChange }) => {
   const triggerChange = (changedValue) => {
     onChange(changedValue);
@@ -34,9 +63,6 @@ const HtmlEditor = ({ value = {}, onChange }) => {
   return (
     <Editor
       style={{ width: "90%", height: "70%" }}
-      toolbarClassName="home-toolbar"
-      wrapperClassName="home-wrapper"
-      editorClassName="home-editor"
       html={value}
       onEditorStateChange={(html) => triggerChange(html)}
     />
@@ -47,47 +73,10 @@ export default function AddBlog() {
   const { profile } = useSelector((state) => state.Auth);
   const [tags, setTags] = useState(null);
   const dispatch = useDispatch();
-  let uploaderProps;
 
   useEffect(() => {
     fetchTags();
   }, []);
-
-  if (!isServer) {
-    uploaderProps = {
-      name: "file",
-      multiple: true,
-      action: `${BACKEND_URL}/api/media/`,
-      listType: "picture",
-      maxCount: 1,
-      headers: { Authorization: "Bearer " + getCookie("token") },
-      beforeUpload: (file) => {
-        const isJpgOrPng =
-          file.type === "image/jpeg" || file.type === "image/png";
-        if (!isJpgOrPng) {
-          message.error("You can only upload JPG/PNG file!");
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-          message.error("Image must smaller than 2MB!");
-        }
-        return isJpgOrPng && isLt2M;
-      },
-      onChange(info) {
-        const { status, response } = info.file;
-        if (status !== "uploading") {
-          console.log(info.file, info.fileList);
-        }
-        if (status === "done") {
-          console.log("uploader_response", response);
-          // form.setFieldsValue({ image: response.id });
-          message.success(`${info.file.name} file uploaded successfully.`);
-        } else if (status === "error") {
-          message.error(`${info.file.name} file upload failed.`);
-        }
-      },
-    };
-  }
 
   const [form] = useForm();
 
@@ -176,25 +165,18 @@ export default function AddBlog() {
                 >
                   <HtmlEditor />
                 </Form.Item>
-
-                {/* <Row className="ant-form-item">
-                  <Col span={24} className="ant-form-item-label">
-                    <label
-                      for="content"
-                      class="ant-form-item-required"
-                      title="Content"
-                    >
-                      Cover image
-                    </label>
-                  </Col>
-                </Row> */}
                 <Form.Item
                   name="image"
                   label="Cover image"
                   valuePropName="fileList"
                   getValueFromEvent={normFile}
                 >
-                  <Dragger {...uploaderProps}>
+                  <Dragger
+                    {...uploaderProps}
+                    headers={{
+                      Authorization: "Bearer " + cookie.get("token"),
+                    }}
+                  >
                     <p className="ant-upload-drag-icon">
                       <UploadOutlined />
                     </p>

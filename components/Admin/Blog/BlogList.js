@@ -50,18 +50,16 @@ export default function BlogList() {
       accessor: "title",
       sortType: "basic",
       Cell: ({ row: { original } }) => (
-        <Link href={`/admin/blog?id=${original.id}`}>{original.name}</Link>
+        <Link href={`/admin/blog?id=${original.id}`}>{original.title}</Link>
       ),
     },
-    // {
-    //   Header: "Image",
-    //   accessor: "image",
-    //   width: 300,
-    //   Cell: ({ row: { original } }) =>
-    //     original?.image &&
-    //     original.image?.file &&
-    //     renderCell(original.image, "ImageCell", "file"),
-    // },
+    {
+      Header: "Image",
+      accessor: "image",
+      width: 300,
+      Cell: ({ row: { original } }) =>
+        renderCell(original, "ImageCell", "image"),
+    },
     {
       Header: "Created At",
       accessor: "created_date",
@@ -110,7 +108,7 @@ export default function BlogList() {
               </a>
             </Link>
           </div>
-          {/* {loading && <Loader />}
+          {loading && <Loader />}
           {items && (
             <div className="blogTable">
               <Scrollbars
@@ -119,7 +117,7 @@ export default function BlogList() {
                 <AntReactTable columns={columns} data={items} />
               </Scrollbars>
             </div>
-          )} */}
+          )}
         </BlogListWrapper>
       </Box>
     </LayoutWrapper>

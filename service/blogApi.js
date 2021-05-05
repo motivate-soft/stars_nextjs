@@ -57,7 +57,7 @@ const blogApi = {
       .catch(handleError),
 
   update: async (blog) =>
-    await fetch(blogUrl + id, {
+    await fetch(blogUrl + blogId, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -75,7 +75,7 @@ const blogApi = {
       .catch(handleError),
 
   delete: async (blogId) =>
-    await fetch(blogUrl + id, {
+    await fetch(blogUrl + blogId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
