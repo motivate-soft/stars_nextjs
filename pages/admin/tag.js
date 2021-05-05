@@ -1,16 +1,16 @@
 import React from "react";
 import Head from "next/head";
 import DashboardLayout from "../../containers/Admin/DashboardLayout/DashboardLayout";
-import BlogList from "@components/Admin/Blog/BlogList";
+import TagList from "@components/Admin/Tag/TagList";
 import { withRouter } from "next/router";
 import { withAuthSync } from "@redux/authentication/auth.utils";
-import SingleBlog from "@components/Admin/Blog/SingleBlog";
+import SingleTag from "@components/Admin/Tag/SingleTag";
 
-const getBlogId = (props) => {
+const getTagId = (props) => {
   try {
     const { router } = props;
     return {
-      blogId: router.query.id,
+      tagId: router.query.id,
       redirectPath: router.pathname,
     };
   } catch (e) {}
@@ -18,18 +18,18 @@ const getBlogId = (props) => {
 
 export default withRouter(
   withAuthSync((props) => {
-    let { blogId, redirectPath } = getBlogId(props);
+    let { tagId, redirectPath } = getTagId(props);
 
     return (
       <>
         <Head>
-          <title>Blog</title>
+          <title>Tag listing</title>
         </Head>
         <DashboardLayout>
-          {blogId ? (
-            <SingleBlog blogId={blogId} redirectPath={redirectPath} />
+          {tagId ? (
+            <SingleTag tagId={tagId} redirectPath={redirectPath} />
           ) : (
-            <BlogList />
+            <TagList />
           )}
         </DashboardLayout>
       </>

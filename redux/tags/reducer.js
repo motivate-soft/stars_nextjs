@@ -1,4 +1,4 @@
-import categoryActions from "./actions";
+import tagActions from "./actions";
 
 const initState = {
   items: [],
@@ -7,22 +7,22 @@ const initState = {
   loading: false,
 };
 
-export default function categoriesReducer(state = initState, action) {
+export default function tagsReducer(state = initState, action) {
   switch (action.type) {
     // List
-    case categoryActions.GET_ALL_CATEGORIES_REQUEST:
+    case tagActions.GET_ALL_TAGS_REQUEST:
       return {
         ...state,
         items: [],
         loading: true,
       };
-    case categoryActions.GET_ALL_CATEGORIES_SUCCESS:
+    case tagActions.GET_ALL_TAGS_SUCCESS:
       return {
         ...state,
         items: action.items,
         loading: false,
       };
-    case categoryActions.GET_ALL_CATEGORIES_FAILURE:
+    case tagActions.GET_ALL_TAGS_FAILURE:
       return {
         ...state,
         items: [],
@@ -31,18 +31,18 @@ export default function categoriesReducer(state = initState, action) {
       };
 
     // Get one
-    case categoryActions.GET_CATEGORY_REQUEST:
+    case tagActions.GET_TAG_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case categoryActions.GET_CATEGORY_SUCCESS:
+    case tagActions.GET_TAG_SUCCESS:
       return {
         ...state,
         selectedItem: action.item,
         loading: false,
       };
-    case categoryActions.GET_CATEGORY_FAILURE:
+    case tagActions.GET_TAG_FAILURE:
       return {
         ...state,
         selectedItem: null,
@@ -50,12 +50,12 @@ export default function categoriesReducer(state = initState, action) {
         loading: false,
       };
     // Add
-    case categoryActions.ADD_CATEGORY_REQUEST:
+    case tagActions.ADD_TAG_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case categoryActions.ADD_CATEGORY_SUCCESS:
+    case tagActions.ADD_TAG_SUCCESS:
       state.items.push(action.item);
       return {
         ...state,
@@ -63,19 +63,19 @@ export default function categoriesReducer(state = initState, action) {
         selectedItem: action.item,
         loading: false,
       };
-    case categoryActions.ADD_CATEGORY_FAILURE:
+    case tagActions.ADD_TAG_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false,
       };
     // Update
-    case categoryActions.UPDATE_CATEGORY_REQUEST:
+    case tagActions.UPDATE_TAG_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case categoryActions.UPDATE_CATEGORY_SUCCESS:
+    case tagActions.UPDATE_TAG_SUCCESS:
       return {
         ...state,
         // items: state.items.map((item) => {
@@ -86,25 +86,25 @@ export default function categoriesReducer(state = initState, action) {
         selectedItem: action.item,
         loading: false,
       };
-    case categoryActions.UPDATE_CATEGORY_FAILURE:
+    case tagActions.UPDATE_TAG_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false,
       };
     // Delete
-    case categoryActions.DELETE_CATEGORY_REQUEST:
+    case tagActions.DELETE_TAG_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case categoryActions.DELETE_CATEGORY_SUCCESS:
+    case tagActions.DELETE_TAG_SUCCESS:
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.categoryId),
+        items: state.items.filter((item) => item.id !== action.tagId),
         loading: false,
       };
-    case categoryActions.DELETE_CATEGORY_FAILURE:
+    case tagActions.DELETE_TAG_FAILURE:
       return {
         ...state,
         error: action.error,

@@ -2,10 +2,9 @@ import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
 
-const blogUrl = `${BACKEND_URL}/api/blog/post/`;
-const blogApi = {
+const tagApi = {
   getAll: async () =>
-    await fetch(blogUrl, {
+    await fetch(`${BACKEND_URL}/api/blog/tag/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -22,7 +21,7 @@ const blogApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(blogUrl + id, {
+    await fetch(`${BACKEND_URL}/api/blog/tag/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,15 +37,15 @@ const blogApi = {
       })
       .catch(handleError),
 
-  add: async (blog) =>
-    await fetch(blogUrl, {
+  add: async (tag) =>
+    await fetch(`${BACKEND_URL}/api/blog/tag/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(blog),
+      body: JSON.stringify(tag),
     })
       .then((res) => {
         if (res.ok) {
@@ -56,15 +55,15 @@ const blogApi = {
       })
       .catch(handleError),
 
-  update: async (blog) =>
-    await fetch(blogUrl + blogId, {
+  update: async (tag) =>
+    await fetch(`${BACKEND_URL}/api/blog/tag/${tag.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("token")}`,
       },
-      body: JSON.stringify(blog),
+      body: JSON.stringify(tag),
     })
       .then((res) => {
         if (res.ok) {
@@ -74,8 +73,8 @@ const blogApi = {
       })
       .catch(handleError),
 
-  delete: async (blogId) =>
-    await fetch(blogUrl + blogId, {
+  delete: async (tagId) =>
+    await fetch(`${BACKEND_URL}/api/blog/tag/${tagId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -92,4 +91,4 @@ const blogApi = {
       .catch(handleError),
 };
 
-export default blogApi;
+export default tagApi;

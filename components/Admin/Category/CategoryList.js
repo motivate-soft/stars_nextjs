@@ -36,27 +36,6 @@ const renderCell = (object, type, key) => {
   }
 };
 
-const tableColumns = [
-  {
-    title: "Name",
-    key: "name",
-    width: 100,
-    render: (object) => renderCell(object, "TextCell", "name"),
-  },
-  {
-    title: "Created At",
-    key: "created_date",
-    width: 200,
-    render: (object) => renderCell(object, "DateCell", "created_date"),
-  },
-  {
-    title: "Updated At",
-    key: "updated_date",
-    width: 200,
-    render: (object) => renderCell(object, "DateCell", "updated_date"),
-  },
-];
-
 export default function CategoryList() {
   const dispatch = useDispatch();
   const { items, loading } = useSelector((state) => state.Categories);

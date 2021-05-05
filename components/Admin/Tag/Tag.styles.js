@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { palette } from "styled-theme";
-import WithDirection from "@iso/lib/helpers/rtl";
 
-export const BlogListWrapper = styled.div`
+export const TagListWrapper = styled.div`
   width: auto;
   overflow: inherit;
   position: relative;
 
-  .categoryTableBtn {
+  .tagTableBtn {
     display: flex;
     margin-bottom: 20px;
     a {
@@ -16,7 +15,7 @@ export const BlogListWrapper = styled.div`
   }
 `;
 
-export const SingeBlogWrapper = styled.div`
+export const SingeTagWrapper = styled.div`
   margin: 50px auto;
   padding: 20px;
   background: #fff;

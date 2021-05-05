@@ -15,10 +15,10 @@ import {
   TextCell,
 } from "@iso/components/Tables/HelperCells";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { BlogListWrapper } from "./Blog.styles";
+import TableWrapper from "@iso/containers/Tables/AntTables/AntTables.styles";
+import { TagListWrapper } from "./Tag.styles";
 import Loader from "@iso/components/utility/loader";
-import blogActions from "@redux/blogs/actions";
-
+import tagActions from "@redux/tags/actions";
 import { useDispatch, useSelector } from "react-redux";
 import AntReactTable from "../Datatable/AntReactTable";
 
@@ -36,39 +36,22 @@ const renderCell = (object, type, key) => {
   }
 };
 
-export default function BlogList() {
+export default function TagList() {
   const dispatch = useDispatch();
-  const { items, loading } = useSelector((state) => state.Blogs);
+  const { items, loading } = useSelector((state) => state.Tags);
 
   useEffect(() => {
-    dispatch(blogActions.getAllBlogs());
+    dispatch(tagActions.getAllTags());
   }, []);
 
   const columns = [
     {
-      Header: "Title",
-      accessor: "title",
+      Header: "Name",
+      accessor: "name",
       sortType: "basic",
       Cell: ({ row: { original } }) => (
-        <Link href={`/admin/blog?id=${original.id}`}>{original.title}</Link>
+        <Link href={`/admin/tag?id=${original.id}`}>{original.name}</Link>
       ),
-    },
-    {
-      Header: "Image",
-      accessor: "image",
-      width: 300,
-      Cell: ({ row: { original } }) =>
-        renderCell(original, "ImageCell", "image"),
-    },
-    {
-      Header: "Created At",
-      accessor: "created_date",
-      sortType: "basic",
-    },
-    {
-      Header: "Updated At",
-      accessor: "updated_date",
-      sortType: "basic",
     },
     {
       Header: "Action",
@@ -76,7 +59,7 @@ export default function BlogList() {
       minWidth: 200,
       Cell: ({ row: { original } }) => (
         <div className="opt-cell">
-          <Link href={`/admin/blog?id=${original.id}`}>
+          <Link href={`/admin/tag?id=${original.id}`}>
             <EditOutlined />
           </Link>
           <Popconfirm
@@ -90,27 +73,27 @@ export default function BlogList() {
     },
   ];
 
-  function onDeleteCell(blogId) {
-    dispatch(blogActions.deleteBlog(blogId));
+  function onDeleteCell(tagId) {
+    dispatch(tagActions.deleteTag(tagId));
   }
 
   return (
     <LayoutWrapper>
-      <PageHeader>Blog</PageHeader>
+      <PageHeader>Tag</PageHeader>
       <Box>
-        <BlogListWrapper>
-          <div className="blogTableBtn">
-            <Link href={`blog?id=1234`}>
+        <TagListWrapper>
+          <div className="tagTableBtn">
+            <Link href={`tag?id=new`}>
               <a>
-                <Button type="primary" className="mateAddBlogBtn">
-                  Add Blog
+                <Button type="primary" className="mateAddTagBtn">
+                  Add Tag
                 </Button>
               </a>
             </Link>
           </div>
           {loading && <Loader />}
           {items && (
-            <div className="blogTable">
+            <div className="tagTable">
               <Scrollbars
                 style={{ width: "100%", height: "calc(60vh - 70px)" }}
               >
@@ -118,7 +101,7 @@ export default function BlogList() {
               </Scrollbars>
             </div>
           )}
-        </BlogListWrapper>
+        </TagListWrapper>
       </Box>
     </LayoutWrapper>
   );

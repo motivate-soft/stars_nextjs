@@ -7,7 +7,7 @@ const initState = {
   loading: false,
 };
 
-export default function propertiesReducer(state = initState, action) {
+export default function blogsReducer(state = initState, action) {
   switch (action.type) {
     // List
     case blogActions.GET_ALL_BLOGS_REQUEST:
@@ -50,6 +50,7 @@ export default function propertiesReducer(state = initState, action) {
         error: action.error,
         loading: false,
       };
+
     // Add
     case blogActions.ADD_BLOG_REQUEST:
       return {
@@ -57,11 +58,8 @@ export default function propertiesReducer(state = initState, action) {
         loading: true,
       };
     case blogActions.ADD_BLOG_SUCCESS:
-      state.items.push(action.item);
-
       return {
         ...state,
-        items: items,
         selectedItem: action.item,
         loading: false,
       };
@@ -80,11 +78,6 @@ export default function propertiesReducer(state = initState, action) {
     case blogActions.UPDATE_BLOG_SUCCESS:
       return {
         ...state,
-        // items: state.items.map((item) => {
-        //   if (item.id === action.item.id) {
-        //     item = action.item;
-        //   }
-        // }),
         selectedItem: action.item,
         loading: false,
       };
