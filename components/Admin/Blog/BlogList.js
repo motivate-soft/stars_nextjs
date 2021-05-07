@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import clone from "clone";
 import Link from "next/link";
 import Box from "@iso/components/utility/box";
-import HelperText from "@iso/components/utility/helper-text";
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import PageHeader from "@iso/components/utility/pageHeader";
 import Scrollbars from "@iso/components/utility/customScrollBar";
@@ -61,13 +59,13 @@ export default function BlogList() {
         renderCell(original, "ImageCell", "image"),
     },
     {
-      Header: "Created At",
-      accessor: "created_date",
+      Header: "Created by",
+      accessor: "author_full_name",
       sortType: "basic",
     },
     {
-      Header: "Updated At",
-      accessor: "updated_date",
+      Header: "Published On",
+      accessor: "published_on",
       sortType: "basic",
     },
     {
@@ -100,7 +98,7 @@ export default function BlogList() {
       <Box>
         <BlogListWrapper>
           <div className="blogTableBtn">
-            <Link href={`blog?id=1234`}>
+            <Link href={`blog?id=new`}>
               <a>
                 <Button type="primary" className="mateAddBlogBtn">
                   Add Blog

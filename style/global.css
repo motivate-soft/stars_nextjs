@@ -423,7 +423,6 @@ html[dir="rtl"] .dz-hidden-input {
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  width: 100%;
   left: 0;
   bottom: 0;
   z-index: 9999;
@@ -438,4 +437,8 @@ html[dir="rtl"] .dz-hidden-input {
 
 .crop-modal .ant-modal-body img {
   max-width: 100%;
+}
+
+.property-gallery-wrapper{
+
 }

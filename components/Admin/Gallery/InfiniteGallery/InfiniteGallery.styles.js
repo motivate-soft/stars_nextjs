@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { palette } from "styled-theme";
 
-const GalleryWrapper = styled.div`
-  height: 60vh;
-  overflow-y: scroll;
-
+const InfiniteGalleryWrapper = styled.div`
   .ant-col {
     padding: 15px;
   }
@@ -33,4 +30,4 @@ const GalleryWrapper = styled.div`
   }
 `;
 
-export default GalleryWrapper;
+export default InfiniteGalleryWrapper;

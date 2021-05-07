@@ -14,7 +14,7 @@ function BlogCard(props) {
     "post-card--size--lg": layout === "grid-lg",
     "post-card--size--sm": layout === "list-sm",
   });
-  
+
   const categories = post.categories.map((category, index) => (
     <Link key={index} href="/">
       {category}
@@ -24,7 +24,7 @@ function BlogCard(props) {
   return (
     <BlogCardWrapper className={cardClasses}>
       <div className="post-card__image">
-        <Link href="/blog/post-classic">
+        <Link href={`/blog/${post.slug}`}>
           <img src={post.image} alt="" />
         </Link>
       </div>
@@ -33,14 +33,13 @@ function BlogCard(props) {
         <div className="post-card__name">
           <Link href="/blog/post-classic">{post.title}</Link>
         </div>
-        <div className="post-card__date">{post.date}</div>
-        <div className="post-card__content">
-          In one general sense, philosophy is associated with wisdom,
-          intellectual culture and a search for knowledge. In that sense, all
-          cultures...
-        </div>
+        <div className="post-card__date">{post.published_date}</div>
+        <div dangerouslySetInnerHTML={{ __html: posts.content }} />
         <div className="post-card__read-more">
-          <Link href="/" className="btn btn-secondary btn-sm">
+          <Link
+            href={`/blog/${post.slug}`}
+            className="btn btn-secondary btn-sm"
+          >
             Read More
           </Link>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { Row, Col } from "antd";
-import AdminGalleryImage from "./../AdminGalleryImage/AdminGalleryImage";
+import GalleryMedia from "../../Gallery/GalleryImage/GalleryMedia";
 
 export default class SortableMediaGallery extends React.Component {
   render() {
@@ -16,7 +16,7 @@ export default class SortableMediaGallery extends React.Component {
     const SortableItem = SortableElement(({ item }) => {
       return (
         <Col lg={4} sm={6}>
-          <AdminGalleryImage
+          <GalleryMedia
             propertyId={propertyId}
             image={item}
             onUploadSuccess={onUploadSuccess}

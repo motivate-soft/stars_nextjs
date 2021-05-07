@@ -53,6 +53,7 @@ export function* addAmenity() {
         try {
             const res = yield call(amenityApi.add, payload.amenity);
             notification('success', 'New amenity has been created successfully');
+            Router.push('/admin/amenity')
 
             yield put({
                 type: actions.ADD_AMENITY_SUCCESS,
@@ -73,6 +74,7 @@ export function* updateAmenity() {
         try {
             const res = yield call(amenityApi.update, payload.amenity);
             notification('success', 'Amenity has been updated successfully');
+            Router.push('/admin/amenity')
             yield put({
                 type: actions.UPDATE_AMENITY_SUCCESS,
                 item: res,

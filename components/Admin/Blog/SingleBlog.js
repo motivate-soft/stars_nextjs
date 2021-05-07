@@ -4,7 +4,7 @@ import EditBlog from "./EditBlog";
 
 export default function SingleBlog(props) {
   const { blogId } = props;
-  if (blogId === "1234") {
+  if (blogId === "new") {
     return <AddBlog />;
   }
   return <EditBlog blogId={blogId} />;

@@ -3,7 +3,7 @@ import {Button, Form, Input, Row, Col} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import amenityActions from "@redux/amenities/actions";
 import Container from "@iso/ui/UI/Container/Container";
-import AmenityMediaManager from "@components/Admin/Amenity/AmenityImage/AmenityMediaManager";
+import AmenityMediaManager from "@components/Admin/Amenity/AmenityMediaManager/AmenityMediaManager";
 import Box from "@iso/ui/Box/Box";
 import Loader from '@iso/components/utility/loader';
 import Link from "next/link";

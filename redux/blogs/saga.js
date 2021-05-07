@@ -9,6 +9,7 @@ import {
 import actions from "./actions";
 import {notification} from "@iso/components";
 import blogApi from "../../service/blogApi";
+import Router from "next/router";
 
 
 export function* getAllBlogs() {
@@ -52,6 +53,7 @@ export function* addBlog() {
         try {
             const res = yield call(blogApi.add, payload.blog);
             notification('success', 'New blog created');
+            Router.push('/admin/blog')
 
             yield put({
                 type: actions.ADD_BLOG_SUCCESS,
@@ -72,6 +74,8 @@ export function* updateBlog() {
         try {
             const res = yield call(blogApi.update, payload.blog);
             notification('success', 'Blog has been updated successfully');
+            Router.push('/admin/blog')
+
             yield put({
                 type: actions.UPDATE_BLOG_SUCCESS,
                 item: res,
@@ -91,6 +95,7 @@ export function* deleteBlog() {
         try {
             yield call(blogApi.delete, payload.blogId);
             notification('warning', 'Blog has been deleted successfully');
+            Router.push('/admin/blog')
 
             yield put({
                 type: actions.DELETE_BLOG_SUCCESS,

@@ -4,7 +4,7 @@ import EditProperty from "./EditProperty";
 
 export default function SingleProperty(props) {
   const { propertyId } = props;
-  if (propertyId !== "1234") {
+  if (propertyId !== "new") {
     return <EditProperty propertyId={propertyId} />;
   }
   return <AddProperty />;

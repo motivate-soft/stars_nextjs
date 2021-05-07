@@ -106,7 +106,7 @@ export default function AddBlog() {
     console.log("AddBlog_onValuesChange", changedValues, allValues);
   }
 
-  const onFinish = (values) => {
+  function onFinish(values) {
     console.log("values", values.image[0].response.id);
     dispatch(
       blogActions.addBlog({
@@ -115,7 +115,7 @@ export default function AddBlog() {
         author: profile.user_id,
       })
     );
-  };
+  }
 
   return (
     <Box>

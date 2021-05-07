@@ -3,11 +3,27 @@ import postsData from "./postsData";
 import BlogCard from "./../BlogCard/BlogCard";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
+import Posts from "./../../../../shared/containers/Profile/Posts/Posts";
+import blogApi from "./../../../../service/blogApi";
 
 function BlogList(props) {
   let layout = "grid";
+  const [blogs, setBlogs] = useState(null);
 
-  const postsList = postsData.map((post) => {
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  async function fetchBlogs() {
+    try {
+      const res = await blogApi.getAll();
+      setBlogs(res);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  const postsList = blogs.map((post) => {
     const postLayout = {
       classic: "grid-lg",
       grid: "grid-nl",
@@ -32,14 +48,6 @@ function BlogList(props) {
             >
               <div className="posts-list__body">{postsList}</div>
             </div>
-            {/* <div className="posts-view__pagination">
-          <Pagination
-            current={page}
-            siblings={2}
-            total={10}
-            onPageChange={this.handlePageChange}
-          />
-        </div> */}
           </div>
         </div>
       </Container>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import Tabs, { TabPane } from "@iso/components/uielements/tabs";
 import Editor from "@iso/components/uielements/editor";
@@ -10,13 +11,12 @@ import Setting from "@components/Admin/Property/Setting/Setting";
 import Main from "@components/Admin/Property/Main/Main";
 import Amenity from "@components/Admin/Property/Amenity/Amenity";
 import Rooms from "@components/Admin/Property/Room/Rooms";
-import Gallery from "@components/Admin/Property/Gallery/Gallery";
-import FeaturedImage from "@components/Admin/Property/FeaturedImage/FeaturedImage";
 import SimilarProperty from "@components/Admin/Property/SimilarProperty/SimilarProperty";
 import { useDispatch } from "react-redux";
 import propertyActions from "@redux/properties/actions";
 import { SinglePropertyWrapper } from "@components/Admin/Property/PropertyList.styles";
-import Link from "next/link";
+import FeaturedImageManager from "@components/Admin/Property/FeaturedImageManager/FeaturedImageManager";
+import GalleryManager from "@components/Admin/Property/GalleryManager/GalleryManager";
 
 const newProperty = {
   name: "",
@@ -309,13 +309,13 @@ export default function AddProperty() {
                 category={state.category}
                 onValuesChange={handleMainInfoChange}
               />
-              <Gallery
+              <GalleryManager
                 items={state.galleryImgs}
                 onSortEnd={handleSortEnd}
                 onUploadSuccess={handleUploadSuccess}
                 onDeleteSucess={handleDeleteSuccess}
               />
-              <FeaturedImage
+              <FeaturedImageManager
                 items={state.galleryImgs}
                 selectedItem={state.featuredImg}
                 onUploadSuccess={handleUploadSuccess}

@@ -80,7 +80,7 @@ export default function PropertyList() {
       <Box>
         <CardWrapper>
           <div className="propertyTableBtn">
-            <Link href={`property?id=1234`}>
+            <Link href={`property?id=new`}>
               <a>
                 <Button type="primary" className="addPropertyBtn">
                   Add Property

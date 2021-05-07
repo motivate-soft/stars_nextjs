@@ -24,6 +24,9 @@ export const SingeBlogWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  .cover-image{
+    max-width: 300px;
+  }
   button {
     margin-right: 20px;
   }

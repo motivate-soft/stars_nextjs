@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import CropImageModal from "@components/Admin/Property/FeaturedImage/CropImageModal";
 import { IoIosCrop, IoIosTrash, IoMdCheckmark } from "react-icons/io";
 import { notification } from "@iso/components";
 import mediaApi from "../../../../service/mediaApi";
 import Popconfirm from "@iso/components/Feedback/Popconfirm";
 import classNames from "classnames";
-import AdminGalleryImageWrapper from "./AdminGalleryImage.styles";
+import AdminGalleryImageWrapper from "./GalleryMedia.styles";
 import { PropTypes } from "prop-types";
+import CropImageModal from "@components/Admin/Gallery/GalleryImage/CropImageModal";
 
-export default function AdminGalleryImage(props) {
+export default function GalleryMedia(props) {
   const {
     propertyId,
     image,
@@ -110,7 +110,7 @@ export default function AdminGalleryImage(props) {
   );
 }
 
-AdminGalleryImage.prototype = {
+GalleryMedia.prototype = {
   propertyId: PropTypes.number,
   image: PropTypes.object,
   selected: PropTypes.bool,
@@ -120,6 +120,6 @@ AdminGalleryImage.prototype = {
   onDeleteSucess: PropTypes.func,
 };
 
-AdminGalleryImage.defaultProps = {
+GalleryMedia.defaultProps = {
   showSelectButton: false,
 };

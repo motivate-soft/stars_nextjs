@@ -39,7 +39,6 @@ export default function blogsReducer(state = initState, action) {
     case blogActions.GET_BLOG_SUCCESS:
       return {
         ...state,
-        items: items,
         selectedItem: action.item,
         loading: false,
       };
