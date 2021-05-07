@@ -65,7 +65,7 @@ export default function BlogList() {
     },
     {
       Header: "Published On",
-      accessor: "published_on",
+      accessor: "published_date",
       sortType: "basic",
     },
     {
