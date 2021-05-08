@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { palette } from "styled-theme";
 
 const PaginationWrapper = styled.div`
+  margin-top: 50px;
   .pagination {
     margin-bottom: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
   }
   .page-link {
     font-weight: $font-weight-medium;
@@ -22,8 +25,7 @@ const PaginationWrapper = styled.div`
   .page-link:hover,
   .page-link:focus {
     box-shadow: none;
-    background: ${palette("primary", 1)};
-    color: ${palette("primary", 1)};
+    background: #ebebeb;
   }
   .page-link--with-arrow {
     width: 29px;
@@ -33,6 +35,7 @@ const PaginationWrapper = styled.div`
       position: absolute;
       fill: currentColor;
       top: 10px;
+      left: 7px;
 
       @include direction {
         transform: scaleX(1 * $transform-direction);
@@ -64,14 +67,12 @@ const PaginationWrapper = styled.div`
     }
   }
   .page-item.active .page-link {
-    background: $pagination-current-bg;
-    color: $pagination-current-font-color;
+    background: ${palette("primary", 0)};
     cursor: default;
     z-index: 2;
   }
   .page-item.disabled .page-link {
-    background: $pagination-disabled-bg;
-    color: $pagination-disabled-font-color;
+    background: transparent;
   }
 `;
 

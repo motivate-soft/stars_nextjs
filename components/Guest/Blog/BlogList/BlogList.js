@@ -12,8 +12,9 @@ import BlogListWrapper from "./BlogList.styles";
 function BlogList(props) {
   const layout = "list";
 
-  const [current, setCurrent] = useState(1);
-  const [total, setTotal] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(null);
+  const [pageSize, setPageSize] = useState(10);
   const [blogs, setBlogs] = useState(null);
 
   useEffect(() => {
@@ -22,12 +23,16 @@ function BlogList(props) {
 
   useEffect(() => {
     fetchBlogs();
-  }, [current]);
+  }, [currentPage, pageSize]);
 
   async function fetchBlogs() {
     try {
-      const res = await blogApi.getListing();
-      setTotal(res.count);
+      const query = {
+        page: currentPage,
+        page_size: pageSize,
+      };
+      const res = await blogApi.getListing(query);
+      setTotalPage(Math.ceil(res.count / pageSize));
       setBlogs(res.results);
     } catch (error) {
       console.log("error", error);
@@ -35,7 +40,8 @@ function BlogList(props) {
   }
 
   function handlePageChange(page) {
-    setCurrent(page);
+    console.log("handlePageChange", page);
+    setCurrentPage(page);
   }
 
   function renderBlogLists() {
@@ -68,16 +74,14 @@ function BlogList(props) {
           <Row>
             <Col span={24} lg={16}>
               <div className="block">
-                <div
-                  className={`blogs-list blogs-list--layout--${layout}`}
-                >
+                <div className={`blogs-list blogs-list--layout--${layout}`}>
                   <div className="blogs-list__body">{renderBlogLists()}</div>
                 </div>
                 <div className="blogs-view__pagination">
                   <Pagination
-                    current={current}
-                    siblings={2}
-                    total={total}
+                    current={currentPage}
+                    // siblings={2}
+                    total={totalPage}
                     onPageChange={handlePageChange}
                   />
                 </div>

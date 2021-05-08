@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "@iso/components/uielements/button";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -6,8 +6,25 @@ import Link from "next/link";
 import { BlogCardWrapper } from "./BlogCard.styles";
 import moment from "moment";
 
+const MAX_LENGTH_LIMIT = 100;
+
 function BlogCard(props) {
   const { post, layout } = props;
+  const [summary, setSummary] = useState(null);
+  const blogRef = useRef(null);
+
+  useEffect(() => {
+    let text = blogRef.current.innerText;
+    if (text.length > MAX_LENGTH_LIMIT) {
+      text = text.substring(0, MAX_LENGTH_LIMIT) + "...";
+      console.log(
+        "text.substring(0, MAX_LENGTH_LIMIT)",
+        text.substring(0, MAX_LENGTH_LIMIT)
+      );
+    }
+    setSummary(text);
+  }, [post]);
+
   const cardClasses = classNames("blog-card", {
     "blog-card--layout--grid": ["grid-nl", "grid-lg"].includes(layout),
     "blog-card--layout--list": ["list-nl", "list-sm"].includes(layout),
@@ -24,6 +41,11 @@ function BlogCard(props) {
 
   return (
     <BlogCardWrapper>
+      <div
+        style={{ display: "none" }}
+        ref={blogRef}
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
       <div className={cardClasses}>
         <div className="blog-card__image">
           <Link href={`/blog/${post.slug}`}>
@@ -31,14 +53,13 @@ function BlogCard(props) {
           </Link>
         </div>
         <div className="blog-card__info">
-          {/* <div className="blog-card__category">{tags}</div> */}
           <div className="blog-card__name">
             <Link href="/blog/blog-classic">{post.title}</Link>
           </div>
           <div className="blog-card__date">
             {moment(post.published_date).format("MMM DD YYYY")}
           </div>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="blog-card__content">{summary}</div>
           <div className="blog-card__read-more">
             <Link
               href={`/blog/${post.slug}`}

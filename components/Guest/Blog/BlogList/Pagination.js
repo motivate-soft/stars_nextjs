@@ -39,6 +39,8 @@ class Pagination extends Component {
 
   render() {
     const { current, total } = this.props;
+    console.log("Pagination", total, current);
+
     const firstLinkClasses = classNames("page-item", {
       disabled: current <= 1,
     });
@@ -59,7 +61,6 @@ class Pagination extends Component {
             onClick={() => this.setPage(page)}
           >
             {page}
-            {page === current && <span className="sr-only">(current)</span>}
           </button>
         </li>
       );
@@ -67,7 +68,7 @@ class Pagination extends Component {
 
     return (
       <PaginationWrapper>
-        <ul className="pagination justify-content-center">
+        <ul className="pagination">
           <li className={firstLinkClasses}>
             <button
               type="button"
