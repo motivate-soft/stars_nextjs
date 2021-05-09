@@ -18,6 +18,12 @@ const BlogListWrapper = styled.div`
       margin: 20px 0;
     }
   }
+  .block {
+    margin-bottom: 46px;
+  }
+  .block-sidebar__item {
+    margin-bottom: 30px;
+  }
 `;
 
 export default BlogListWrapper;

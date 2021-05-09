@@ -8,6 +8,7 @@ import { Row, Col } from "antd";
 import WidgetSearch from "./WidgetSearch";
 import WidgetTags from "./WidgetTags";
 import BlogListWrapper from "./BlogList.styles";
+import tagApi from "service/tagApi";
 
 function BlogList(props) {
   const layout = "list";
@@ -16,6 +17,7 @@ function BlogList(props) {
   const [totalPage, setTotalPage] = useState(null);
   const [pageSize, setPageSize] = useState(10);
   const [blogs, setBlogs] = useState(null);
+  const [tags, setTags] = useState(null);
 
   useEffect(() => {
     fetchBlogs();
@@ -23,6 +25,7 @@ function BlogList(props) {
 
   useEffect(() => {
     fetchBlogs();
+    fetchTags();
   }, [currentPage, pageSize]);
 
   async function fetchBlogs() {
@@ -34,6 +37,15 @@ function BlogList(props) {
       const res = await blogApi.getListing(query);
       setTotalPage(Math.ceil(res.count / pageSize));
       setBlogs(res.results);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchTags() {
+    try {
+      const res = await tagApi.getAll();
+      setTags(res);
     } catch (error) {
       console.log("error", error);
     }
@@ -95,7 +107,7 @@ function BlogList(props) {
                   <WidgetSearch />
                 </div>
                 <div className="block-sidebar__item">
-                  <WidgetTags />
+                  <WidgetTags tags={tags} />
                 </div>
               </div>
             </Col>

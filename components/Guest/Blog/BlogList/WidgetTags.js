@@ -1,28 +1,22 @@
 // react
 import React from "react";
 import Link from "next/link";
+import WidgetTagsWrapper from "./WidgetTags.styles";
 
-function WidgetTags() {
+function WidgetTags({ tags }) {
   return (
-    <div className="widget-tags widget">
-      <h4 className="widget__title">Tags Cloud</h4>
-      <div className="tags tags--lg">
-        <div className="tags__list">
-          <Link href="/">Promotion</Link>
-          <Link href="/">Power Tool</Link>
-          <Link href="/">New Arrivals</Link>
-          <Link href="/">Screwdriver</Link>
-          <Link href="/">Wrench</Link>
-          <Link href="/">Mounts</Link>
-          <Link href="/">Electrodes</Link>
-          <Link href="/">Chainsaws</Link>
-          <Link href="/">Manometers</Link>
-          <Link href="/">Nails</Link>
-          <Link href="/">Air Guns</Link>
-          <Link href="/">Cutting Discs</Link>
+    <WidgetTagsWrapper>
+      <div className="widget-tags widget">
+        <h4 className="widget__title">Tags Cloud</h4>
+        <div className="tags tags--lg">
+          <div className="tags__list">
+            {tags &&
+              tags.length > 0 &&
+              tags.map((tag, index) => <Link href="/">{tag.name}</Link>)}
+          </div>
         </div>
       </div>
-    </div>
+    </WidgetTagsWrapper>
   );
 }
 

@@ -54,7 +54,7 @@ function BlogCard(props) {
         </div>
         <div className="blog-card__info">
           <div className="blog-card__name">
-            <Link href="/blog/blog-classic">{post.title}</Link>
+            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
           </div>
           <div className="blog-card__date">
             {moment(post.published_date).format("MMM DD YYYY")}
