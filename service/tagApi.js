@@ -9,7 +9,22 @@ const tagApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  getBySlug: async (slug) =>
+    await fetch(`${BACKEND_URL}/api/blog/tag/${slug}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {

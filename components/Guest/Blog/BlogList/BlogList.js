@@ -11,13 +11,13 @@ import BlogListWrapper from "./BlogList.styles";
 import tagApi from "service/tagApi";
 
 function BlogList(props) {
+  const { tag } = props;
   const layout = "list";
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
   const [pageSize, setPageSize] = useState(10);
   const [blogs, setBlogs] = useState(null);
-  const [tags, setTags] = useState(null);
 
   useEffect(() => {
     fetchBlogs();
@@ -25,27 +25,28 @@ function BlogList(props) {
 
   useEffect(() => {
     fetchBlogs();
-    fetchTags();
   }, [currentPage, pageSize]);
 
   async function fetchBlogs() {
     try {
-      const query = {
-        page: currentPage,
-        page_size: pageSize,
-      };
-      const res = await blogApi.getListing(query);
+      let query, res;
+      if (tag) {
+        query = {
+          tags: tag.id,
+          page: currentPage,
+          page_size: pageSize,
+        };
+        res = await blogApi.getListing(query);
+      } else {
+        query = {
+          page: currentPage,
+          page_size: pageSize,
+        };
+        res = await blogApi.getListing(query);
+      }
+
       setTotalPage(Math.ceil(res.count / pageSize));
       setBlogs(res.results);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  async function fetchTags() {
-    try {
-      const res = await tagApi.getAll();
-      setTags(res);
     } catch (error) {
       console.log("error", error);
     }
@@ -92,7 +93,7 @@ function BlogList(props) {
                 <div className="blogs-view__pagination">
                   <Pagination
                     current={currentPage}
-                    // siblings={2}
+                    siblings={2}
                     total={totalPage}
                     onPageChange={handlePageChange}
                   />
@@ -107,7 +108,7 @@ function BlogList(props) {
                   <WidgetSearch />
                 </div>
                 <div className="block-sidebar__item">
-                  <WidgetTags tags={tags} />
+                  <WidgetTags />
                 </div>
               </div>
             </Col>
