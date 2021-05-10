@@ -140,5 +140,10 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "url-loader": "^4.1.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IE 10"
+  ]
 }
