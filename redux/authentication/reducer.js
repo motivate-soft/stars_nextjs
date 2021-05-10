@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import {checkExpirity, getCookie, removeCookie} from "@redux/authentication/auth.utils";
 import authActions from "@redux/authentication/actions";
 
@@ -34,7 +33,6 @@ if (process.browser) {
 export default function authReducer(state = initState, action) {
     switch (action.type) {
         case authActions.LOGIN_REQUEST_SUCCESS:
-            Router.replace('/admin');
             return {...state, idToken: action.token, profile: action.profile};
         case authActions.LOGOUT_REQUEST_FAILURE:
         case authActions.LOGIN_REQUEST_FAILURE:
@@ -44,7 +42,6 @@ export default function authReducer(state = initState, action) {
                 error: action.payload,
             };
         case authActions.LOGOUT_REQUEST_SUCCESS:
-            Router.replace('/admin/signin');
             return initState;
         default:
             return state;

@@ -4,6 +4,7 @@ import { notification } from "@iso/components";
 import actions from "./actions";
 import jwtDecode from "jwt-decode";
 import authApi from "./../../service/authApi";
+import Router from "next/router";
 
 export function* jwtLoginRequest() {
   yield takeLatest(actions.JWT_LOGIN_REQUEST_START, function* ({
@@ -16,7 +17,7 @@ export function* jwtLoginRequest() {
         token = res.access_token;
         profile = jwtDecode(token);
         notification("success", "login success");
-
+        Router.replace("/admin");
         yield put({
           type: actions.LOGIN_REQUEST_SUCCESS,
           token,
@@ -45,6 +46,7 @@ function* logoutRequest() {
 export function* loginSuccess() {
   yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
     setCookie("login_saga", payload.token);
+    Router.push("/admin/signin");
     yield setCookie("token", payload.token);
   });
 }
