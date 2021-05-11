@@ -15,13 +15,11 @@ export function* getAllProperties() {
   yield takeLatest(actions.GET_ALL_PROPERTIES_REQUEST, function* () {
     try {
       const res = yield call(propertyApi.getAll);
-      console.log("___try", res);
       yield put({
         type: actions.GET_ALL_PROPERTIES_SUCCESS,
         items: res,
       });
     } catch (error) {
-      console.log("___catch", error);
       yield put({
         type: actions.GET_ALL_PROPERTIES_FAILURE,
         error: error.message,
