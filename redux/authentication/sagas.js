@@ -18,8 +18,10 @@ export function* jwtLoginRequest() {
         profile = jwtDecode(token);
         notification("success", "login success");
         console.log("jwtLoginRequest", history);
-        
-        history.push("/admin");
+
+        yield call(Router.push, "/admin");
+        // history.push("/admin");
+        // Router.push("/admin");
 
         yield put({
           type: actions.LOGIN_REQUEST_SUCCESS,
