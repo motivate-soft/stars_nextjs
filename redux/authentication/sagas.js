@@ -17,8 +17,7 @@ export function* jwtLoginRequest() {
         token = res.access_token;
         profile = jwtDecode(token);
         notification("success", "login success");
-        // yield call(Router.push, "/admin");
-        history.push("/admin");
+
         yield put({
           type: actions.LOGIN_REQUEST_SUCCESS,
           token,
@@ -46,9 +45,7 @@ function* logoutRequest() {
 
 export function* loginSuccess() {
   yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
-    setCookie("login_saga", payload.token);
-    yield call(Router.push, "/admin/signin");
-
+    yield call(Router.push, "/admin");
     yield setCookie("token", payload.token);
   });
 }

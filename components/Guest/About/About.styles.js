@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import {palette} from "styled-tools";
+import { palette } from "styled-tools";
 
 const AboutWrapper = styled.div`
   h2 {
-    color: ${palette('primary', 0)}
+    color: ${palette("primary", 0)};
   }
 
   .check-boston-block {
@@ -26,9 +26,13 @@ const AboutWrapper = styled.div`
 
   .press-block {
     padding: 50px 0;
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
 
     h2 {
+      text-align: center;
+    }
+
+    p {
       text-align: center;
     }
   }
@@ -46,11 +50,10 @@ const AboutWrapper = styled.div`
     .social-icons-group {
       svg {
         margin: 8px;
-        fill: ${palette('warning', 0)};
+        fill: ${palette("warning", 0)};
       }
     }
   }
+`;
 
-`
-
-export default AboutWrapper
+export default AboutWrapper;

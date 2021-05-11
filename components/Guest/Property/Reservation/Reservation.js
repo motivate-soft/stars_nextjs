@@ -8,7 +8,7 @@ const CardHeader = ({ price, minMonthPrice }) => {
     <CardHeaderWrapper>
       <h3>
         Starting at
-        <br />${price}/night,${minMonthPrice}/month
+        <br />${price}/night, ${minMonthPrice}/month
       </h3>
     </CardHeaderWrapper>
   );

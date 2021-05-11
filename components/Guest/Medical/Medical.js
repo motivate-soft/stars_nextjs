@@ -26,22 +26,17 @@ function Medical(props) {
     getLocationListing();
   }, []);
 
-  useEffect(() => {
-    console.log("properties", properties);
-  }, [properties]);
-
   async function getLocationListing() {
-    let properties;
     try {
-      const response = await fetch(
+      const res = await fetch(
         `${BACKEND_URL}/api/accommodation/property/locations`
       );
-      properties = await response.json();
-    } catch (e) {
-      properties = [];
+      const array = await res.json();
+      console.log("array", array);
+      setProperties(array);
+    } catch (error) {
+      error.log("error", error);
     }
-
-    setProperties(properties);
   }
 
   return (
@@ -102,11 +97,8 @@ function Medical(props) {
               </div>
             </Col>
             <p className="partner-link-text">
-              <span>*</span> Stars of Boston partners with{" "}
-              <Link href="/coming-soon" target="_blank">
-                Private Home Care
-              </Link>{" "}
-              to provide these services.
+              <span>*</span> Stars of Boston partners with Private Home Care to
+              provide these services.
             </p>
           </Row>
         </Container>
@@ -122,7 +114,7 @@ function Medical(props) {
                 </Link>
               </div>
             </div>
-            {properties && <AccommodationsMap properties={properties} />}
+            <AccommodationsMap properties={properties} />
           </Container>
         </div>
 

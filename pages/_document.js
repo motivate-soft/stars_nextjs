@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { GOOGLE_MAP_API_KEY } from "../env-config";
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx) {
@@ -56,7 +57,9 @@ export default class CustomDocument extends Document {
             rel="stylesheet"
           />
 
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCijXJZhd5zTCfVlViXKWVGOn1d9hJmVTI&libraries=places"></script>
+          <script
+            src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}
+          ></script>
         </Head>
         <body>
           <Main />

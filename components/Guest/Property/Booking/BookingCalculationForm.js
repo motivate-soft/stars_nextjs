@@ -266,13 +266,13 @@ function BookingCalculationForm({ property, disabled }) {
         <FaRegCalendar className="calendar" />
         <DateRangePickerBox
           disabled={disabled}
+          showClearDates={!disabled}
           startDate={formState.checkinDate}
           endDate={formState.checkoutDate}
           startDatePlaceholderText="Check In"
           endDatePlaceholderText="Check Out"
           startDateId="startDateId-id"
           endDateId="endDateId-id"
-          showClearDates
           small
           minimumNights={min_sleeps}
           numberOfMonths={1}

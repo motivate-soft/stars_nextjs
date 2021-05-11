@@ -35,8 +35,23 @@ function About(props) {
       </Container>
       <Box as="section" className="press-block">
         <Container>
-          {/*<EditPost index={95} size="lg" posts={posts}/>*/}
-          <EditPost index={45} size="lg" posts={posts} />
+          <EditPost index={95} size="lg" posts={posts} />
+          {/* <EditPost index={45} size="lg" posts={posts} /> */}
+          <h2 className="text-blue">Our Team</h2>
+          <p className="mb-5">
+            Hello! We are small local team with diverse backgrounds, and
+            lifetime residents of this amazing city so we have inside
+            information and suggestions for your planned visit, short or long.
+            Meet also the latest addition to our team, Cisco the bike rider, and
+            follow his personal{" "}
+            <a
+              target="_blank"
+              href={"//www.instagram.com/where.is.cisco/?hl=en"}
+              className="instagram-link"
+            >
+              Instagram page
+            </a>
+          </p>
         </Container>
       </Box>
       <Container className="contact-info-block">
