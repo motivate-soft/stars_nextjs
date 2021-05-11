@@ -17,7 +17,9 @@ export function* jwtLoginRequest() {
         token = res.access_token;
         profile = jwtDecode(token);
         notification("success", "login success");
-        Router.push("/admin");
+        console.log("jwtLoginRequest", history);
+        
+        history.push("/admin");
 
         yield put({
           type: actions.LOGIN_REQUEST_SUCCESS,
