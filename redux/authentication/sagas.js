@@ -19,7 +19,7 @@ export function* jwtLoginRequest() {
         notification("success", "login success");
         console.log("jwtLoginRequest", history);
 
-        yield call(Router.replace, "/admin/property");
+        // yield call(Router.replace, "/admin/property");
         // yield call(Router.push, "/admin");
         // history.push("/admin");
         // Router.push("/admin");
@@ -52,6 +52,7 @@ function* logoutRequest() {
 export function* loginSuccess() {
   yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
     yield setCookie("token", payload.token);
+    yield call(Router.push, "/admin/property");
   });
 }
 
