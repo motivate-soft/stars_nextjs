@@ -19,7 +19,8 @@ export function* jwtLoginRequest() {
         notification("success", "login success");
         console.log("jwtLoginRequest", history);
 
-        yield call(Router.push, "/admin");
+        yield call(Router.replace, "/admin");
+        // yield call(Router.push, "/admin");
         // history.push("/admin");
         // Router.push("/admin");
 
