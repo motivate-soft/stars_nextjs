@@ -14,15 +14,10 @@ const WidgetSearchWrapper = styled.div`
       height: 100%;
       width: 100%;
       background: transparent;
-      border: none;
       padding-top: 10px;
       padding-bottom: 10px;
       color: inherit;
       transition: fill 0.2s;
-
-      &:hover {
-        border: 2px solid #e8c36a;
-      }
     }
     .widget-search__button {
       position: absolute;

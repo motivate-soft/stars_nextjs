@@ -11,6 +11,11 @@ const BlogListWrapper = styled.div`
       margin: -20px 0;
       display: flex;
       flex-wrap: wrap;
+      h5 {
+        margin: auto;
+        display: flex;
+        text-align: center;
+      }
     }
 
     .blogs-list__item {
