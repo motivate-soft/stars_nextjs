@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import Auth from "./authentication/reducer";
 import App from "@iso/redux/app/reducer";
-import Contacts from "@iso/redux/contacts/reducer";
 import ThemeSwitcher from "@iso/redux/themeSwitcher/reducer";
 import LanguageSwitcher from "@iso/redux/languageSwitcher/reducer";
 import modal from "@iso/redux/modal/reducer";
@@ -25,7 +24,6 @@ export default combineReducers({
   Amenities,
   Categories,
   Posts,
-  Contacts,
   modal,
   quiz,
   profile,

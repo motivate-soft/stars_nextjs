@@ -54,7 +54,7 @@ export function* loginSuccess() {
     console.log("*loginSuccess", payload, Router);
 
     yield setCookie("token", payload.token);
-    yield call(Router.push, "/admin/property");
+    //yield call(Router.push, "/admin/property");
   });
 }
 

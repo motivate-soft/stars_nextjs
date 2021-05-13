@@ -6,8 +6,9 @@ import { handleError } from "./utils";
 import qs from "query-string";
 
 const propertyApi = {
-  getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/`, {
+  getAll: async () => {
+    console.log("propertyApi:getCookie", getCookie);
+    return await fetch(`${BACKEND_URL}/api/accommodation/property/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +22,8 @@ const propertyApi = {
         }
         throw res;
       })
-      .catch(handleError),
+      .catch(handleError);
+  },
 
   getListing: async (queryObj) =>
     fetch(

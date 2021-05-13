@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import IntlMessages from "@iso/components/utility/intlMessages";
 import SignInStyleWrapper from "../../styled/SignIn.styles";
 import { Form, Input, Button, Row, Col } from "antd";
 import authActions from "../../redux/authentication/actions";
 import Logo from "@containers/Guest/Logo/Logo";
+import Router from "next/router";
 
 const formItemLayout = {
   wrapperCol: {
@@ -23,7 +24,13 @@ export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();
   const [form] = Form.useForm();
-
+  const { idToken } = useSelector((state) => state.Auth);
+  console.log("Sigin:Auth", Auth);
+  console.log("Sigin", props);
+  
+  if (idToken !== null) {
+    Router.push("/admin/property");
+  }
   const onFinish = (values) => {
     const userInfo = {
       username: values.username,
