@@ -46,7 +46,7 @@ const postApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -63,7 +63,7 @@ const postApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(post),
     })
@@ -81,7 +81,7 @@ const postApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(post),
     })
@@ -99,7 +99,7 @@ const postApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {

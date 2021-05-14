@@ -18,7 +18,7 @@ export const handleError = (res) => {
   if (res.status >= 400 && res.status < 500) {
     if (res.status === 403) {
       notification("warning", "Given token is no longer valid");
-      removeCookie("token");
+      removeCookie("accessToken");
     }
 
     error = {

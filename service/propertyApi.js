@@ -13,7 +13,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -45,7 +45,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -62,7 +62,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(property),
     })
@@ -80,7 +80,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(property),
     })
@@ -98,7 +98,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -115,7 +115,7 @@ const propertyApi = {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${getCookie("token")}`,
+          Authorization: `Bearer ${getCookie("accessToken")}`,
         },
       }
     )
@@ -132,7 +132,7 @@ const propertyApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(pricing),
     })

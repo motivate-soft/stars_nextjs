@@ -9,7 +9,7 @@ const categoryApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -26,7 +26,7 @@ const categoryApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -43,7 +43,7 @@ const categoryApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(category),
     })
@@ -61,7 +61,7 @@ const categoryApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(category),
     })
@@ -79,7 +79,7 @@ const categoryApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {

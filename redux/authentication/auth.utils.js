@@ -1,135 +1,139 @@
-import {useEffect} from 'react';
-import Router from 'next/router';
-import nextCookie from 'next-cookies';
-import cookie from 'js-cookie';
+import { useEffect } from "react";
+import Router from "next/router";
+import nextCookie from "next-cookies";
+import cookie from "js-cookie";
 import jwtDecode from "jwt-decode";
 
-export const checkExpirity = token => {
-    if (!token) {
-        return {
-            error: 'not matched',
-        };
-    }
-    try {
-        const profile = jwtDecode(token);
+export const checkExpirity = (token) => {
+  const {
+    email,
+    username,
+    first_name,
+    last_name,
+    role,
+    user_id,
+    exp,
+  } = jwtDecode(token);
 
-        const expiredAt = profile.exp * 1000;
-
-        if (expiredAt > new Date().getTime()) {
-            return {
-                profile,
-                token,
-                expiredAt: new Date(expiredAt),
-            };
-        } else {
-            return { error: 'Token expired' };
-        }
-    } catch (e) {
-        return { error: 'Server Error' };
-    }
+  const profile = {
+    email,
+    username,
+    first_name,
+    last_name,
+    role,
+    user_id,
+  };
+  if (exp * 1000 > new Date().getTime()) {
+    return {
+      expiredAt: new Date(exp * 1000),
+      profile,
+    };
+  } else {
+    return { error: "Token expired" };
+  }
 };
 
-export const setCookie = (key, value) => {
-    if (process.browser) {
-        cookie.set(key, value, {
-            expires: 1,
-            path: '/',
-        });
-    }
+export const setCookie = (key, value, expires) => {
+  if (process.browser) {
+    cookie.set(key, value, {
+      expires: expires ? expires : 1,
+      path: "/",
+    });
+  }
 };
 
-export const removeCookie = key => {
-    if (process.browser) {
-        cookie.remove(key, {
-            expires: 1,
-        });
-    }
+export const removeCookie = (key) => {
+  if (process.browser) {
+    cookie.remove(key);
+  }
 };
 
 export const getCookie = (key, req) => {
-    return process.browser
-        ? getCookieFromBrowser(key)
-        : getCookieFromServer(key, req);
+  return process.browser
+    ? getCookieFromBrowser(key)
+    : getCookieFromServer(key, req);
 };
 
-const getCookieFromBrowser = key => {
-    return cookie.get(key);
+const getCookieFromBrowser = (key) => {
+  return cookie.get(key);
 };
 
 const getCookieFromServer = (key, req) => {
-    if (!req.headers.cookie) {
-        return undefined;
-    }
-    const rawCookie = req.headers.cookie
-        .split(';')
-        .find(c => c.trim().startsWith(`${key}=`));
-    if (!rawCookie) {
-        return undefined;
-    }
-    return rawCookie.split('=')[1];
+  if (!req.headers.cookie) {
+    return undefined;
+  }
+  const rawCookie = req.headers.cookie
+    .split(";")
+    .find((c) => c.trim().startsWith(`${key}=`));
+  if (!rawCookie) {
+    return undefined;
+  }
+  return rawCookie.split("=")[1];
 };
 
-// export const login = ({token}) => {
-//     cookie.set('token', token, {expires: 1});
-//     Router.push('/admin');
-// };
+export const auth = (ctx) => {
+  const { accessToken } = nextCookie(ctx);
+  console.log("auth.utils:ctx", ctx);
+  console.log("auth.utils:ctx:accessToken", accessToken);
 
-export const auth = ctx => {
-    const {token} = nextCookie(ctx);
-    /*
-     * If `ctx.req` is available it means we are on the server.
-     * Additionally if there's no token it means the user is not logged in.
-     */
-    if (ctx.req && !token) {
-        ctx.res.writeHead(302, {Location: '/admin/signin'});
-        ctx.res.end();
-    }
+  /*
+   * If `ctx.req` is available it means we are on the server.
+   * Additionally if there's no accessToken it means the user is not logged in.
+   */
+  if (ctx.req && !accessToken) {
+    console.log("auth.utils:redirect:server");
 
-    // We already checked for server. This should only happen on client.
-    if (!token) {
-        Router.push('/admin/signin');
-    }
+    ctx.res.writeHead(302, { Location: "/admin/signin" });
+    ctx.res.end();
+  }
 
-    return token;
+  // We already checked for server. This should only happen on client.
+  if (!accessToken) {
+    console.log("auth.utils:redirect:client");
+
+    Router.push("/admin/signin");
+  }
+
+  return accessToken;
 };
 
 export const logout = () => {
-    cookie.remove('token');
-    // to support logging out from all windows
-    window.localStorage.setItem('logout', Date.now());
-    Router.push('/admin/signin');
+  cookie.remove("accessToken");
+  // to support logging out from all windows
+  window.localStorage.setItem("logout", Date.now());
+  Router.push("/admin/signin");
 };
 
-export const withAuthSync = WrappedComponent => {
-    const Wrapper = props => {
-        const syncLogout = event => {
-            if (event.key === 'logout') {
-                console.log('logged out from storage!');
-                Router.push('/admin/signin');
-            }
-        };
-
-        useEffect(() => {
-            window.addEventListener('storage', syncLogout);
-
-            return () => {
-                window.removeEventListener('storage', syncLogout);
-                window.localStorage.removeItem('logout');
-            };
-        }, [null]);
-
-        return <WrappedComponent {...props} />;
+export const withAuthSync = (WrappedComponent) => {
+  const Wrapper = (props) => {
+    const syncLogout = (event) => {
+      if (event.key === "logout") {
+        console.log("logged out from storage!");
+        Router.push("/admin/signin");
+      }
     };
 
-    Wrapper.getInitialProps = async ctx => {
-        const token = auth(ctx);
+    useEffect(() => {
+      window.addEventListener("storage", syncLogout);
 
-        const componentProps =
-            WrappedComponent.getInitialProps &&
-            (await WrappedComponent.getInitialProps(ctx));
+      return () => {
+        window.removeEventListener("storage", syncLogout);
+        window.localStorage.removeItem("logout");
+      };
+    }, [null]);
 
-        return {...componentProps, token};
-    };
+    return <WrappedComponent {...props} />;
+  };
 
-    return Wrapper;
+  Wrapper.getInitialProps = async (ctx) => {
+    const accessToken = auth(ctx);
+
+    const componentProps =
+      WrappedComponent.getInitialProps &&
+      (await WrappedComponent.getInitialProps(ctx));
+
+    return { ...componentProps, accessToken };
+  };
+
+  return Wrapper;
 };

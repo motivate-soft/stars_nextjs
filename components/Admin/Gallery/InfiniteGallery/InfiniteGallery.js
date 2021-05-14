@@ -23,7 +23,7 @@ export default function InfiniteGallery(props) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                authorization: `Bearer ${getCookie("token")}`,
+                authorization: `Bearer ${getCookie("accessToken")}`,
             },
         })
             .then((res) => {
@@ -53,7 +53,7 @@ export default function InfiniteGallery(props) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                authorization: `Bearer ${getCookie("token")}`,
+                authorization: `Bearer ${getCookie("accessToken")}`,
             },
         })
             .then((res) => {

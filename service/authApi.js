@@ -28,7 +28,7 @@ const authApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -45,7 +45,7 @@ const authApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(userInfo),
     })
@@ -63,7 +63,7 @@ const authApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(userInfo),
     })

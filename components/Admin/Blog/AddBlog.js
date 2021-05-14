@@ -174,7 +174,7 @@ export default function AddBlog() {
                   <Dragger
                     {...uploaderProps}
                     headers={{
-                      Authorization: "Bearer " + cookie.get("token"),
+                      Authorization: "Bearer " + cookie.get("accessToken"),
                     }}
                   >
                     <p className="ant-upload-drag-icon">

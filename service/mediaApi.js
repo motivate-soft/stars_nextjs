@@ -9,7 +9,7 @@ const mediaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -26,7 +26,7 @@ const mediaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {
@@ -41,7 +41,7 @@ const mediaApi = {
     await fetch(`${BACKEND_URL}/api/media/`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body,
     })
@@ -59,7 +59,7 @@ const mediaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(media),
     })
@@ -77,7 +77,7 @@ const mediaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(media),
     })
@@ -95,7 +95,7 @@ const mediaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("token")}`,
+        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {

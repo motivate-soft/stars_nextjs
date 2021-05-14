@@ -21,7 +21,8 @@ function configureStore(initialState = {}) {
     rootReducer,
 
     initialState,
-    bindMiddleware([thunk, logger, sagaMiddleware])
+    bindMiddleware([thunk, sagaMiddleware])
+    // bindMiddleware([thunk, logger, sagaMiddleware])
   );
 
   store.runSaga = () => {

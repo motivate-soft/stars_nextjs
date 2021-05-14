@@ -12,27 +12,51 @@ export function* jwtLoginRequest() {
   }) {
     try {
       const res = yield call(authApi.jwtLogin, userInfo);
-      let token, profile;
-      if (res.access_token) {
-        token = res.access_token;
-        profile = jwtDecode(token);
-        notification("success", "login success");
-        console.log("*jwtLoginRequest", history);
+      const { access_token, refresh_token } = res;
 
-        // yield call(Router.replace, "/admin/property");
-        // yield call(Router.push, "/admin");
-        // history.push("/admin");
-        // Router.push("/admin");
-
-        yield put({
-          type: actions.LOGIN_REQUEST_SUCCESS,
-          token,
-          profile,
-        });
-      } else {
+      if (!access_token) {
         notification("warning", "Response type is invalid");
         yield put(actions.loginRequestFailure("Invalid server response"));
+        return;
       }
+
+      const {
+        email,
+        username,
+        first_name,
+        last_name,
+        role,
+        user_id,
+      } = jwtDecode(access_token);
+
+      const profile = {
+        email,
+        username,
+        first_name,
+        last_name,
+        role,
+        user_id,
+      };
+
+      notification("success", "login success");
+
+      console.log("*jwtLoginRequest:access_token", access_token);
+      console.log("*jwtLoginRequest:user profile", profile);
+
+      // yield call(Router.replace, "/admin/property");
+      // yield call(Router.push, "/admin");
+      // history.push("/admin");
+      // Router.push("/admin");
+      const payload = {
+        accessToken: access_token,
+        refreshToken: refresh_token,
+        profile,
+      };
+
+      yield put({
+        type: actions.LOGIN_REQUEST_SUCCESS,
+        payload,
+      });
     } catch (error) {
       notification("error", error.message);
       yield put(actions.loginRequestFailure(error.message));
@@ -50,11 +74,33 @@ function* logoutRequest() {
 }
 
 export function* loginSuccess() {
-  yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* (payload) {
-    console.log("*loginSuccess", payload, Router);
+  yield takeLatest(actions.LOGIN_REQUEST_SUCCESS, function* ({ payload }) {
+    // set Cookies
+    yield setCookie(
+      "accessToken",
+      payload.accessToken,
+      new Date(jwtDecode(payload.accessToken).exp * 1000)
+    );
 
-    yield setCookie("token", payload.token);
-    //yield call(Router.push, "/admin/property");
+    yield setCookie(
+      "refreshToken",
+      payload.refreshToken,
+      new Date(jwtDecode(payload.refreshToken).exp * 1000)
+    );
+
+    console.log("*loginSuccess:payload", payload);
+    console.log(
+      "*loginSuccess:accessToken:expires",
+      jwtDecode(payload.accessToken)
+    );
+    console.log(
+      "*loginSuccess:refreshToken:expires",
+      jwtDecode(payload.refreshToken)
+    );
+    console.log("*loginSuccess:Router", Router);
+
+    // Redirect to page
+    yield call(Router.push, "/admin/property");
   });
 }
 
