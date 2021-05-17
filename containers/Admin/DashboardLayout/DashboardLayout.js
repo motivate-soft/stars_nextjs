@@ -15,6 +15,7 @@ const { Content, Footer } = Layout;
 export default function DashboardLayout({ children }) {
   const { idToken } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (idToken === null) {
       populateAuth();
@@ -29,7 +30,7 @@ export default function DashboardLayout({ children }) {
       console.log("DashboardLayout:populateAuthe", res);
       if (res.expiredAt) {
         dispatch(
-          authActions.loginRequestSuccess({
+          authActions.syncLogin({
             accessToken,
             refreshToken,
             profile: res.profile,

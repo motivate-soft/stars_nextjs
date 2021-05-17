@@ -29,6 +29,7 @@ let initState = {
 export default function authReducer(state = initState, action) {
   switch (action.type) {
     case authActions.LOGIN_REQUEST_SUCCESS:
+    case authActions.SYNC_LOGIN_SUCCESS:
       return {
         ...state,
         idToken: action.payload.accessToken,

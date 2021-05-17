@@ -6,7 +6,7 @@ import room3 from "@iso/assets/images/room3.jpg";
 
 const HomeWrapper = styled.div`
   .rental-solution-block {
-    padding: 130px 0 50px;
+    padding: 180px 0 50px;
     @media (max-width: 991px) {
       margin-top: 200px;
     }

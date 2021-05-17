@@ -7,12 +7,7 @@ const BannerWrapper = styled.div`
   width: 100%;
   min-height: 70vh;
   position: relative;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.3),
-      transparent
-    ),
+  background: linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0.3), transparent),
     url(${bannerBackground1}) no-repeat center center;
 
   @media (max-width: 991px) {
@@ -33,7 +28,6 @@ const BannerWrapper = styled.div`
     height: 60%;
     position: absolute;
     bottom: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
     pointer-events: none;
     z-index: 0;
   }
@@ -41,13 +35,14 @@ const BannerWrapper = styled.div`
 
 export const SearchWrapper = styled.div`
   width: calc(100% - 60px);
-  padding: 28px 30px 30px;
+  padding: 20px 30px 30px;
   border-radius: 6px;
-  background-color: #ffffff;
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
+  background: hsla(0, 0%, 100%, 0.85);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.16);
   position: absolute;
-  bottom: -100px;
   z-index: 1;
+  bottom: 0;
+  transform: translateY(60%);
 
   h2 {
     color: ${palette("primary", 0)};
