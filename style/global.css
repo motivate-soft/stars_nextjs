@@ -23,7 +23,7 @@ html a {
 
 * {
   font-family: "Raleway", sans-serif;
- /* Raleway font number issue */
+  /* Raleway font number issue */
   font-variant-numeric: lining-nums;
   -moz-font-feature-settings: "lnum" 1;
   -moz-font-feature-settings: "lnum=1";
@@ -439,6 +439,6 @@ html[dir="rtl"] .dz-hidden-input {
   max-width: 100%;
 }
 
-.property-gallery-wrapper{
-
+.ant-picker-dropdown-range {
+  z-index: 4000;
 }

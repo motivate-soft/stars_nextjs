@@ -424,7 +424,11 @@ export default function EditProperty(props) {
             >
               {["description", "neighbourhood", "transit"].map((item) => (
                 <TabPane
-                  tab={item.charAt(0).toUpperCase() + item.slice(1)}
+                  tab={
+                    item === "neighbourhood"
+                      ? "Neighborhood"
+                      : item.charAt(0).toUpperCase() + item.slice(1)
+                  }
                   key={item}
                 >
                   {state?.[item] && (

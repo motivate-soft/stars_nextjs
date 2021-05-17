@@ -22,6 +22,7 @@ function ReservationForm(props) {
     propertySlug,
     bookervilleId,
     price,
+    minSleeps,
     checkedDates,
     pricingItems,
   } = props;
@@ -112,9 +113,11 @@ function ReservationForm(props) {
         );
       } else {
         pricingItems.map((item) => {
+          const sDay = convertDate(moment(day).toDate());
+          console.log("pricingItems", moment(sDay), item);
           if (
-            moment(day) > moment(new Date(item.start_date)) &&
-            moment(day) < moment(new Date(item.end_date))
+            moment(sDay).isSameOrAfter(moment(item.start_date), "day") &&
+            moment(sDay).isSameOrBefore(moment(item.end_date), "day")
           ) {
             dayPrice = item.price;
           }
@@ -122,11 +125,18 @@ function ReservationForm(props) {
         return (
           <div className="date">
             <h6>{day.format("D")}</h6>
-            <span>${price}</span>
+            <span>${dayPrice}</span>
           </div>
         );
       }
     }
+  };
+
+  const convertDate = (date) => {
+    const offset = date.getTimezoneOffset();
+    console.log("offset", offset);
+    const newDate = new Date(date.getTime() - offset * 60 * 1000);
+    return newDate.toISOString().split("T")[0];
   };
 
   const handleSubmit = (e) => {
@@ -177,6 +187,7 @@ function ReservationForm(props) {
           small
           numberOfMonths={1}
           updateSearchData={(value) => updateSearchDataFunc(value)}
+          minimumNights={minSleeps}
           isDayBlocked={(day) => isDayBlocked(day)}
           renderDayContents={(day) => renderDayContents(day)}
           displayFormat={"YYYY/MM/DD"}

@@ -7,7 +7,7 @@ import { CalendarModalBody } from "./Calendar.styles";
 
 import DeleteButton from "./DeleteButton";
 const RangePicker = DateRangepicker;
-
+const dateFormat = "YYYY-MM-DD";
 const localeDatePicker = {
   lang: {
     placeholder: "Select date",
@@ -25,7 +25,7 @@ const localeDatePicker = {
     yearSelect: "Choose a year",
     decadeSelect: "Choose a decade",
     yearFormat: "YYYY",
-    dateFormat: "M/D/YYYY",
+    dateFormat: "YYYY-MM-DD",
     dayFormat: "D",
     dateTimeFormat: "M/D/YYYY HH:mm:ss",
     monthFormat: "MMMM",
@@ -38,10 +38,7 @@ const localeDatePicker = {
     nextDecade: "Next decade",
     previousCentury: "Last century",
     nextCentury: "Next century",
-  },
-  timePickerLocale: {
-    placeholder: "Select time",
-  },
+  }
 };
 export default function (props) {
   const { modalVisible, modalData, onModalDataChange } = props;
@@ -58,11 +55,14 @@ export default function (props) {
 
   const visible = !!modalVisible;
   if (!visible) return null;
-  console.log("__modalData__", modalData);
-  
+
   const price = modalData && modalData.price ? modalData.price : "";
-  const start = modalData && modalData.start ? moment(modalData.start) : "";
-  const end = modalData && modalData.end ? moment(modalData.end) : "";
+  const start =
+    modalData && modalData.start ? moment(modalData.start, dateFormat) : "";
+  const end =
+    modalData && modalData.end ? moment(modalData.end, dateFormat) : "";
+
+  console.log("__modalData__", modalData);
 
   const onChangePrice = (event) => {
     console.log("onChangePrice", event);
@@ -98,16 +98,20 @@ export default function (props) {
           </div>
           <div className="isoCalendarDatePicker">
             <RangePicker
-              locale={localeDatePicker}
+              // locale={localeDatePicker}
               ranges={{
                 Today: [moment(), moment()],
                 "This Month": [moment(), moment().endOf("month")],
               }}
               value={[start, end]}
-              showTime
-              format="YYYY/MM/DD HH:mm:ss"
+              format={dateFormat}
               onChange={onChangeFromTimePicker}
             />
+            {/* <RangePicker
+              value={[start, end]}
+              format={dateFormat}
+              locale={localeDatePicker}
+            /> */}
             <DeleteButton handleDelete={handleDelete} />
           </div>
         </CalendarModalBody>
