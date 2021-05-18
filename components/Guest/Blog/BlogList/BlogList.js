@@ -54,6 +54,12 @@ function BlogList(props) {
       const res = await blogApi.getListing(query);
 
       setTotalPage(Math.ceil(res.count / pageSize));
+      console.log(
+        "setTotalPage",
+        res,
+        pageSize,
+        Math.ceil(res.count / pageSize)
+      );
       setLoading(false);
       setBlogs(res.results);
     } catch (error) {

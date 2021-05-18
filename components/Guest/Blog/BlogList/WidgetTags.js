@@ -7,10 +7,13 @@ import tagApi from "service/tagApi";
 import { Button, Select, Input } from "antd";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
+const { Option } = Select;
+
 function WidgetTags(props) {
   const { tags, onChangeTags } = props;
   const [isEditting, setIsEditting] = useState(false);
   const [tagOptions, setTagOptions] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     fetchTags();
@@ -39,6 +42,12 @@ function WidgetTags(props) {
     setIsEditting(false);
   }
 
+  function handleAddTag() {
+    tags.push(parseInt(selected));
+    setSelected(null);
+    onChangeTags(tags);
+  }
+
   function handleRemoveTag(tagId) {
     const newTags = tags.filter((tag) => tag !== tagId);
     onChangeTags(newTags);
@@ -46,10 +55,31 @@ function WidgetTags(props) {
 
   function renderEditForm() {
     if (!isEditting) return null;
+    if (tags.length === tagOptions.length) {
+      return null;
+    }
+
+    const filteredTagOptions = tagOptions.filter(
+      (option) => tags.indexOf(option.id) === -1
+    );
+
     return (
       <div className="tag__search__form">
-        <Input type="text" />
-        <Button type="primary" onClick={hideEditForm}>
+        <Select
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Select tag to add"
+          value={selected}
+          onChange={(value) => {
+            setSelected(value);
+          }}
+        >
+          {filteredTagOptions &&
+            filteredTagOptions.map((option) => (
+              <Option key={option.id}>{option.name}</Option>
+            ))}
+        </Select>
+        <Button type="primary" onClick={handleAddTag}>
           Add
         </Button>
       </div>

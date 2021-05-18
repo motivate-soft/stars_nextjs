@@ -20,6 +20,7 @@ const formItemLayout = {
     span: 24,
   },
 };
+const { Option } = Select;
 const { useForm } = Form;
 const { Dragger } = Upload;
 
