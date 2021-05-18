@@ -5,6 +5,9 @@ import { palette } from "styled-tools";
 import room3 from "@iso/assets/images/room3.jpg";
 
 const HomeWrapper = styled.div`
+  a.ant-btn {
+    padding: 0;
+  }
   .rental-solution-block {
     padding: 180px 0 50px;
     @media (max-width: 991px) {
@@ -55,6 +58,7 @@ const HomeWrapper = styled.div`
 
         a {
           margin: auto 0 0 auto;
+          padding: 0;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -106,19 +110,20 @@ const HomeWrapper = styled.div`
       }
     }
 
-    button {
-      color: #ffffff;
+    a.ant-btn {
+      color: #ffffff !important;
       background: transparent;
       font-weight: bold;
       font-size: 16px;
       border: 2px solid #e8c36a;
       border-radius: 10px;
       line-height: 1.5;
+      max-width: 250px;
 
       &:hover,
       &:active,
       &:focus {
-        color: ${palette("primary", 0)};
+        color: ${palette("primary", 0)}!important;
         background-color: #ffffff !important;
         transition: 0.5s;
       }
@@ -167,8 +172,8 @@ const HomeWrapper = styled.div`
       height: auto;
     }
 
-    .ant-btn {
-      min-width: 240px;
+    a.ant-btn {
+      max-width: 240px;
     }
 
     @media (max-width: 992px) {
@@ -356,8 +361,9 @@ const HomeWrapper = styled.div`
       justify-content: space-between;
     }
 
-    button {
+    a.ant-btn {
       min-width: 180px;
+      margin-bottom: auto;
     }
 
     @media only screen and (max-width: 768px) {

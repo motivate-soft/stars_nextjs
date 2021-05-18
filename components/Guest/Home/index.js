@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import HomePageSearch from "@components/Guest/Home/Search/HomePageSearch";
+import HomeBanner from "@components/Guest/Home/Search/HomeBanner";
 import Container from "@iso/ui/UI/Container/Container";
 import Link from "next/link";
 import room1 from "@iso/assets/images/room1.jpg";
@@ -58,37 +58,9 @@ function Home({ posts }) {
     }
   }
 
-  function gotoListingPage(category) {
-    let query = {
-      category: category,
-    };
-
-    dispatch({
-      type: "UPDATE_QUERY",
-      payload: {
-        ...state,
-        category: category,
-      },
-    });
-
-    if (process.browser) {
-      Router.push(
-        {
-          pathname: `/listing`,
-          query: query,
-        },
-        {
-          pathname: `/listing`,
-          query: query,
-        },
-        { shallow: true }
-      );
-    }
-  }
-
   return (
     <HomeWrapper>
-      <HomePageSearch posts={posts} />
+      <HomeBanner posts={posts} />
       <Box as="section" className="rental-solution-block">
         <Container>
           <EditPost index={0} posts={posts} size="lg" />
@@ -98,13 +70,12 @@ function Home({ posts }) {
                 <img src={room1} alt="private rooom" />
                 <div className="solution-content">
                   <EditPost index={1} posts={posts} />
-                  <Button
-                    type="secondary"
-                    size="large"
-                    onClick={() => gotoListingPage("Private Rooms")}
+                  <a
+                    className="ant-btn ant-btn-secondary ant-btn-lg"
+                    href="/listing?category=private-rooms"
                   >
                     Explore
-                  </Button>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -113,13 +84,12 @@ function Home({ posts }) {
                 <img src={room2} alt="apartments" />
                 <div className="solution-content">
                   <EditPost index={2} posts={posts} />
-                  <Button
-                    type="secondary"
-                    size="large"
-                    onClick={() => gotoListingPage("Studios")}
+                  <a
+                    className="ant-btn ant-btn-secondary ant-btn-lg"
+                    href="/listing?category=studios"
                   >
                     Explore
-                  </Button>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -128,13 +98,12 @@ function Home({ posts }) {
                 <img src={room3} alt="homes" />
                 <div className="solution-content">
                   <EditPost index={3} posts={posts} />
-                  <Button
-                    type="secondary"
-                    size="large"
-                    onClick={() => gotoListingPage("3-Bedrooms")}
+                  <a
+                    className="ant-btn ant-btn-secondary ant-btn-lg"
+                    href="/listing?category=3-bedrooms"
                   >
                     Explore
-                  </Button>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -152,9 +121,9 @@ function Home({ posts }) {
               <div className="texts-block">
                 <EditPost index={29} posts={posts} content />
                 <Link href="/listing">
-                  <Button type="secondary" size="large">
+                  <a className="ant-btn ant-btn-secondary ant-btn-lg">
                     Explore Our Apartments
-                  </Button>
+                  </a>
                 </Link>
               </div>
             </Col>
@@ -181,9 +150,9 @@ function Home({ posts }) {
             <Col lg={10} sm={24} xs={24}>
               <EditPost index={4} posts={posts} size="lg" />
               <Link href="/listing">
-                <Button type="secondary" size="large">
+                <a className="ant-btn ant-btn-secondary ant-btn-lg">
                   Read more
-                </Button>
+                </a>
               </Link>
             </Col>
             <Col lg={14} sm={24} xs={24}>
@@ -359,9 +328,9 @@ function Home({ posts }) {
                   </div>
                 </Col>
                 <Link href="/about">
-                  <button className="ant-btn-secondary ant-btn-lg">
+                  <a className="ant-btn ant-btn-secondary ant-btn-lg">
                     More about us
-                  </button>
+                  </a>
                 </Link>
               </Row>
             </Col>
@@ -381,7 +350,9 @@ function Home({ posts }) {
                   className="bg-box"
                   style={{ backgroundImage: `url(${BostonImage})` }}
                 />
-                <Link href={`/locations#boston`}>Boston</Link>
+                <Link href={`/locations#boston`}>
+                  <a>Boston</a>
+                </Link>
               </div>
             </Col>
             <Col lg={6} md={6} xs={24}>
@@ -390,7 +361,9 @@ function Home({ posts }) {
                   className="bg-box"
                   style={{ backgroundImage: `url(${BrooklineImage})` }}
                 />
-                <Link href={`/locations#brookline`}>Brookline</Link>
+                <Link href={`/locations#brookline`}>
+                  <a>Brookline</a>
+                </Link>
               </div>
             </Col>
             <Col lg={6} md={6} xs={24}>
@@ -399,7 +372,9 @@ function Home({ posts }) {
                   className="bg-box"
                   style={{ backgroundImage: `url(${CambridgeImage})` }}
                 />
-                <Link href={`/locations#cambridge`}>Cambridge</Link>
+                <Link href={`/locations#cambridge`}>
+                  <a>Cambridge</a>
+                </Link>
               </div>
             </Col>
             <Col lg={6} md={6} xs={24}>
@@ -408,7 +383,9 @@ function Home({ posts }) {
                   className="bg-box"
                   style={{ backgroundImage: `url(${QuincyImage})` }}
                 />
-                <Link href={`/locations#quincy`}>Quincy</Link>
+                <Link href={`/locations#quincy`}>
+                  <a>Quincy</a>
+                </Link>
               </div>
             </Col>
           </Row>
@@ -422,9 +399,7 @@ function Home({ posts }) {
               <h2>Take a look at our rentals</h2>
             </div>
             <Link href="/listing">
-              <Button type="secondary" size="large">
-                Read More
-              </Button>
+              <a className="ant-btn ant-btn-secondary ant-btn-lg">Read More</a>
             </Link>
           </div>
           <Row gutter={[32, 32]}>

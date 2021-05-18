@@ -1,13 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import Router, { useRouter } from "next/router";
 import { Button, Col, Row } from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
 import Tabs, { TabPane } from "@iso/components/uielements/tabs";
 import PropertyCard from "@components/Guest/Property/PropertyCard/PropertyCard";
+import PropertyListingWrapper from "./PropertyListing.styles";
 import ListingPageSearch from "@components/Guest/Listing/Search/ListingPageSearch";
 import { BookingContext } from "@context/BookingProvider";
+import { SearchContext } from "@context/SearchProvider";
 import ReactGA from "react-ga";
-import PropertyListingWrapper from "./PropertyListing.styles";
+import qs from "query-string";
 
 const categories = [
   {
@@ -43,19 +46,90 @@ const categories = [
 ];
 
 function PropertyListing(props) {
-  // const {items, categories, category} = props
-  const { items, category } = props;
-  const { state, dispatch } = useContext(BookingContext);
+  const { items } = props;
+  const [category, setCategory] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const { state: searchState, dispatch: dispatchSearch } = useContext(
+    SearchContext
+  );
+  const { state: bookingState, dispatch: dispatchBooking } = useContext(
+    BookingContext
+  );
+
+  const router = useRouter();
 
   useEffect(() => {
     ReactGA.event({
       category: "engagement",
       action: "view_item_list",
     });
-    dispatch({
+
+    dispatchBooking({
       type: "RESET_BOOKING_INFORMATION",
     });
   }, []);
+
+  useEffect(() => {
+    if (!searchState.category) {
+      setCategory(null);
+    }
+  }, [searchState]);
+
+  useEffect(() => {
+    if (Object.keys(router.query).includes("category")) {
+      const activeCategorySlug = router.query.category;
+      const index = categories.findIndex(
+        (item) => item.slug === activeCategorySlug
+      );
+      if (index > -1) {
+        setCategory(activeCategorySlug);
+      } else {
+        setCategory(null);
+      }
+    }
+  }, [router.query]);
+
+  function handleTabClick(key, e) {
+    console.log("handleTabClick", key, searchState);
+
+    if (key === "all") {
+      key = null;
+      setCategory(null);
+    }
+
+    const query = {
+      ...searchState,
+      category: key,
+    };
+
+    for (const key in query) {
+      if (query[key] === "" || query[key] === null || query[key] === 0) {
+        delete query[key];
+      }
+    }
+
+    dispatchSearch({
+      type: "UPDATE_QUERY",
+      payload: {
+        ...searchState,
+        category: key,
+      },
+    });
+
+    if (process.browser) {
+      Router.push(
+        {
+          pathname: `/listing`,
+          query: query,
+        },
+        {
+          pathname: `/listing`,
+          query: query,
+        }
+      );
+    }
+  }
 
   return (
     <PropertyListingWrapper>
@@ -64,7 +138,10 @@ function PropertyListing(props) {
       </Box>
       <Box as="section" className="property-listing-block">
         <Container>
-          <Tabs defaultActiveKey={category ? category : "all"}>
+          <Tabs
+            activeKey={category ? category : "all"}
+            onTabClick={handleTabClick}
+          >
             <TabPane tab="All" key="all">
               <Row gutter={[32, 32]}>
                 {categories &&

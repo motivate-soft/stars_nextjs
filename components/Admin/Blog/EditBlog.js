@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "@iso/components/utility/loader";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
-import { Button, Col, Form, Input, Select, Row, Upload, message } from "antd";
+import { Button, Col, Form, Input, Select, Row } from "antd";
 import Editor from "@components/Admin/Property/Editor/Editor";
 import Link from "next/link";
 import blogActions from "@redux/blogs/actions";
@@ -19,6 +19,8 @@ const formItemLayout = {
     span: 24,
   },
 };
+
+const { Option } = Select;
 
 const HtmlEditor = ({ value = {}, onChange }) => {
   const triggerChange = (changedValue) => {

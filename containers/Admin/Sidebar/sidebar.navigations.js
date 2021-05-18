@@ -73,11 +73,11 @@ export default [
     children: [
       {
         key: "tag",
-        label: "tag",
+        label: "sidebar.tag",
       },
       {
         key: "blog",
-        label: "blog",
+        label: "sidebar.blog",
       },
     ],
   },

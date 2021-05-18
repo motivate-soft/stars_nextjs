@@ -4,11 +4,14 @@ import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
 import { palette } from "styled-tools";
 
 const BannerWrapper = styled.div`
+  display: flex;
   width: 100%;
-  min-height: 70vh;
+  max-height: 600px;
+  height: 70vh;
   position: relative;
   background: linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0.3), transparent),
     url(${bannerBackground1}) no-repeat center center;
+  background-size: cover;
 
   @media (max-width: 991px) {
     > div {
@@ -18,7 +21,7 @@ const BannerWrapper = styled.div`
 
   > div {
     position: relative;
-    min-height: 70vh;
+    height: 100%;
   }
 
   &:after {
@@ -46,6 +49,7 @@ export const SearchWrapper = styled.div`
 
   h2 {
     color: ${palette("primary", 0)};
+    line-height: 1.2;
   }
 
   h6 {

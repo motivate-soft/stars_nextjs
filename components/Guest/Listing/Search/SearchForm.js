@@ -66,6 +66,7 @@ const SearchForm = () => {
         checkout_date: null,
         children: null,
         adults: null,
+        category: null,
       },
     });
     Router.push(

@@ -5,7 +5,7 @@ import Container from "@iso/ui/UI/Container/Container";
 import Link from 'next/link';
 import EditPost from "@components/Common/PostBlock/EditPost";
 
-const HomePageSearch = ({posts}) => {
+const HomeBanner = ({posts}) => {
     return (
         <BannerWrapper>
             <Container>
@@ -22,4 +22,4 @@ const HomePageSearch = ({posts}) => {
     );
 };
 
-export default HomePageSearch;
+export default HomeBanner;

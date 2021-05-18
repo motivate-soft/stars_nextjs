@@ -43,6 +43,7 @@ const WidgetTagsWrapper = styled.div`
         line-height: 18px;
         .tag {
           margin-right: 8px;
+          margin-bottom: 8px;
           display: flex;
           padding: 4px 8px;
           background: #e1ecf4;
