@@ -435,6 +435,10 @@ html[dir="rtl"] .dz-hidden-input {
   font-size: 14px !important;
 }
 
+.CalendarDay.CalendarDay__today {
+  background: #00a699;
+}
+
 .crop-modal .ant-modal-body img {
   max-width: 100%;
 }
