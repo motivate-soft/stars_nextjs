@@ -112,6 +112,7 @@
     "rheostat": "^4.1.1",
     "rimraf": "^3.0.2",
     "slick-carousel": "^1.8.1",
+    "slugify": "^1.5.3",
     "styled-components": "^5.2.0",
     "styled-system": "^5.1.5",
     "styled-theme": "^0.3.3",

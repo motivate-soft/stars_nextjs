@@ -4,7 +4,7 @@ import EditPost from "./EditPost";
 
 export default function SinglePost(props) {
   const { postId } = props;
-  if (postId !== "1234") {
+  if (postId !== "new") {
     return <EditPost postId={postId} />;
   }
   return null;
