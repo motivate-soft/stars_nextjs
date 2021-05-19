@@ -107,8 +107,9 @@ const PropertyCardWrapper = styled.div`
       justify-content: space-around;
       align-items: center;
 
-      button {
+      a {
         min-width: 120px;
+        padding: 0 16px;
         span {
           font-size: 14px;
         }

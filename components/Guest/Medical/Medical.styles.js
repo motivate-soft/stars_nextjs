@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { palette } from "styled-tools";
 
 const MedicalWrapper = styled.div`
+  a.ant-btn {
+    padding: 0 16px;
+  }
   .accommodation-block {
     padding: 0 0 100px;
 
@@ -18,6 +21,11 @@ const MedicalWrapper = styled.div`
 
     h2 {
       color: ${palette("primary", 0)};
+    }
+
+    a.ant-btn {
+      display: inline-block;
+      line-height: 48px;
     }
 
     .stars-icon {

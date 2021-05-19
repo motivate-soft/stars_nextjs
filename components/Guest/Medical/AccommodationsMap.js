@@ -86,7 +86,7 @@ class AccommodationsMap extends Component {
                     label: item.slug,
                     draggable: false,
                     title: item.name,
-                    www: `/property/${item.slug}`
+                    www: `/listing/${item.slug}`
                 });
             });
             this.setState({

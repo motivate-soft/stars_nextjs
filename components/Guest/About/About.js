@@ -20,9 +20,9 @@ function About(props) {
           <Col lg={12} sm={24} xs={24}>
             <EditPost index={44} size="lg" posts={posts} />
             <Link href="/locations#boston">
-              <Button type="secondary" size="large">
+              <a className="ant-btn ant-btn-secondary ant-btn-lg">
                 CHECK OUT BOSTON
-              </Button>
+              </a>
             </Link>
           </Col>
           <Col lg={12} sm={24} xs={24}>

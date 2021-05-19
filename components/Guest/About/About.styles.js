@@ -9,6 +9,12 @@ const AboutWrapper = styled.div`
   .check-boston-block {
     padding: 50px 0;
 
+    a.ant-btn {
+      display: inline-block;
+      line-height: 48px;
+      padding: 0 16px;
+    }
+
     .image-wrapper {
       width: 90%;
       padding-top: 80%;

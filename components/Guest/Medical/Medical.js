@@ -48,9 +48,9 @@ function Medical(props) {
             <Col lg={12} sm={24} xs={24}>
               <EditPost index={35} size="lg" posts={posts} />
               <Link href="/listing">
-                <Button type="secondary" size="large">
+                <a className="ant-btn ant-btn-secondary ant-btn-lg">
                   EXPLORE OUR MEDICAL ACCOMMODATIONS
-                </Button>
+                </a>
               </Link>
             </Col>
             <Col lg={12} sm={24} xs={24}>
@@ -108,9 +108,9 @@ function Medical(props) {
               <h2>Explore Our Medical Accommodations</h2>
               <div>
                 <Link href="/listing">
-                  <Button type="secondary" size="large">
+                  <a className="ant-btn ant-btn-secondary ant-btn-lg">
                     BROWSE RENTALS
-                  </Button>
+                  </a>
                 </Link>
               </div>
             </div>
@@ -129,9 +129,9 @@ function Medical(props) {
             <Col lg={12} sm={24} xs={24}>
               <EditPost index={36} size="lg" posts={posts} />
               <Link href="/listing">
-                <Button type="secondary" size="large">
+                <a className="ant-btn ant-btn-secondary ant-btn-lg">
                   EXPLORE OUR CORPORATE ACCOMMODATIONS
-                </Button>
+                </a>
               </Link>
             </Col>
           </Row>
