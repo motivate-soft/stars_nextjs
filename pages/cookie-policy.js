@@ -17,7 +17,7 @@ export default function CookiePolicyPage(props) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     let posts;
 
     try {

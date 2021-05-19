@@ -17,7 +17,7 @@ export default function HomePage(props) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     let posts;
 
     try {
