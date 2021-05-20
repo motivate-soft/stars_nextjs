@@ -50,6 +50,7 @@ export const SearchWrapper = styled.div`
   h2 {
     color: ${palette("primary", 0)};
     line-height: 1.2;
+    margin-bottom: 8px;
   }
 
   h6 {
