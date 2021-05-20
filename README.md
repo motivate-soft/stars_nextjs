@@ -17,8 +17,18 @@ npm start
 ```
 Nextjs app starts on [localhost:8080](http://localhost:8080)
 
-## Deploy to google app engine
+## Restart EC2 pm2 service
+connect to server with putty
 
 ```
-npm run deploy
+cd /var/starsofboston/stars_nextjs
+sudo git pull origin master
+sudo npm install --legacy-peer-deps 
+sudo npm run build
+sudo pm2 restart next
+```
+
+OR run just one command
+```
+/bin/sh ./deploy.sh
 ```
