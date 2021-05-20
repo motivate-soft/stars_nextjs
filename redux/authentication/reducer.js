@@ -11,21 +11,6 @@ let initState = {
   error: null,
 };
 
-// if (process.browser) {
-//   const token = getCookie("accessToken");
-//   if (token) {
-//     const res = checkExpirity(token);
-//     console.log("authReducer:initstate", res);
-//     if (res.expiredAt) {
-//       initState = {
-//         ...initState,
-//         idToken: token,
-//         profile: res.profile,
-//       };
-//     }
-//   }
-// }
-
 export default function authReducer(state = initState, action) {
   switch (action.type) {
     case authActions.LOGIN_REQUEST_SUCCESS:

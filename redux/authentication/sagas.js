@@ -43,10 +43,6 @@ export function* jwtLoginRequest() {
       console.log("*jwtLoginRequest:access_token", access_token);
       console.log("*jwtLoginRequest:user profile", profile);
 
-      // yield call(Router.replace, "/admin/property");
-      // yield call(Router.push, "/admin");
-      // history.push("/admin");
-      // Router.push("/admin");
       const payload = {
         accessToken: access_token,
         refreshToken: refresh_token,
