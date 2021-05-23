@@ -1,4 +1,4 @@
-import amenityActions from "./actions";
+import metaActions from "./actions";
 
 const initState = {
   items: [],
@@ -7,22 +7,22 @@ const initState = {
   loading: false,
 };
 
-export default function amenitiesReducer(state = initState, action) {
+export default function metaReducer(state = initState, action) {
   switch (action.type) {
     // List
-    case amenityActions.GET_ALL_AMENITIES_REQUEST:
+    case metaActions.GET_ALL_METAS_REQUEST:
       return {
         ...state,
         items: [],
         loading: true,
       };
-    case amenityActions.GET_ALL_AMENITIES_SUCCESS:
+    case metaActions.GET_ALL_METAS_SUCCESS:
       return {
         ...state,
         items: action.items,
         loading: false,
       };
-    case amenityActions.GET_ALL_AMENITIES_FAILURE:
+    case metaActions.GET_ALL_METAS_FAILURE:
       return {
         ...state,
         items: [],
@@ -31,54 +31,52 @@ export default function amenitiesReducer(state = initState, action) {
       };
 
     // Get one
-    case amenityActions.GET_AMENITY_REQUEST:
+    case metaActions.GET_META_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case amenityActions.GET_AMENITY_SUCCESS:
+    case metaActions.GET_META_SUCCESS:
       return {
         ...state,
-        items: items,
         selectedItem: action.item,
         loading: false,
       };
-    case amenityActions.GET_AMENITY_FAILURE:
+    case metaActions.GET_META_FAILURE:
       return {
         ...state,
         selectedItem: null,
         error: action.error,
         loading: false,
       };
+
     // Add
-    case amenityActions.ADD_AMENITY_REQUEST:
+    case metaActions.ADD_META_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case amenityActions.ADD_AMENITY_SUCCESS:
-      const { items } = state;
-      items.push(action.item);
-
+    case metaActions.ADD_META_SUCCESS:
+      state.items.push(action.item);
       return {
         ...state,
         items: items,
         selectedItem: action.item,
         loading: false,
       };
-    case amenityActions.ADD_AMENITY_FAILURE:
+    case metaActions.ADD_META_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false,
       };
     // Update
-    case amenityActions.UPDATE_AMENITY_REQUEST:
+    case metaActions.UPDATE_META_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case amenityActions.UPDATE_AMENITY_SUCCESS:
+    case metaActions.UPDATE_META_SUCCESS:
       return {
         ...state,
         // items: state.items.map((item) => {
@@ -89,25 +87,25 @@ export default function amenitiesReducer(state = initState, action) {
         selectedItem: action.item,
         loading: false,
       };
-    case amenityActions.UPDATE_AMENITY_FAILURE:
+    case metaActions.UPDATE_META_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false,
       };
     // Delete
-    case amenityActions.DELETE_AMENITY_REQUEST:
+    case metaActions.DELETE_META_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case amenityActions.DELETE_AMENITY_SUCCESS:
+    case metaActions.DELETE_META_SUCCESS:
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.amenityId),
+        items: state.items.filter((item) => item.id !== action.metaId),
         loading: false,
       };
-    case amenityActions.DELETE_AMENITY_FAILURE:
+    case metaActions.DELETE_META_FAILURE:
       return {
         ...state,
         error: action.error,

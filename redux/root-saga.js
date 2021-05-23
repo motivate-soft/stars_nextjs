@@ -7,6 +7,7 @@ import categorySagas from "@redux/categories/saga";
 import postSagas from "@redux/posts/saga";
 import blogSagas from "@redux/blogs/saga";
 import tagSagas from "@redux/tags/saga";
+import metaSagas from "@redux/meta/saga";
 
 export default function* rootSaga(getState) {
   yield all([
@@ -18,5 +19,6 @@ export default function* rootSaga(getState) {
     postSagas(),
     blogSagas(),
     tagSagas(),
+    metaSagas(),
   ]);
 }

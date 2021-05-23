@@ -26,6 +26,8 @@ import {
   SidebarGithubIcon,
   SidebarBlankIcon,
   SidebarTextIcon,
+  SidebarPostIcon,
+  EditIcon
 } from "@iso/config/icon.config";
 
 export default [
@@ -64,7 +66,7 @@ export default [
     key: "post",
     path: "/post",
     label: "sidebar.posts",
-    leftIcon: <SidebarBlankIcon size={19} />,
+    leftIcon: <SidebarPostIcon size={19} />,
   },
   {
     key: "blog",
@@ -82,8 +84,14 @@ export default [
     ],
   },
   {
-    key: "blank_page",
-    label: "sidebar.blankPage",
-    leftIcon: <SidebarBlankIcon size={19} />,
+    key: "meta",
+    path: "/meta",
+    label: "sidebar.meta",
+    leftIcon: <EditIcon size={19} />,
   },
+  // {
+  //   key: "blank_page",
+  //   label: "sidebar.blankPage",
+  //   leftIcon: <SidebarBlankIcon size={19} />,
+  // },
 ];

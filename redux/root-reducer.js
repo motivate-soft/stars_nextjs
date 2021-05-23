@@ -4,7 +4,6 @@ import App from "@iso/redux/app/reducer";
 import ThemeSwitcher from "@iso/redux/themeSwitcher/reducer";
 import LanguageSwitcher from "@iso/redux/languageSwitcher/reducer";
 import modal from "@iso/redux/modal/reducer";
-import quiz from "@iso/redux/quiz/reducer";
 import profile from "@iso/redux/profile/reducer";
 import Users from "@redux/users/reducer";
 import Properties from "@redux/properties/reducer";
@@ -13,6 +12,7 @@ import Amenities from "@redux/amenities/reducer";
 import Posts from "@redux/posts/reducer";
 import Blogs from "@redux/blogs/reducer";
 import Tags from "@redux/tags/reducer";
+import Meta from "@redux/meta/reducer";
 
 export default combineReducers({
   Auth,
@@ -25,8 +25,8 @@ export default combineReducers({
   Categories,
   Posts,
   modal,
-  quiz,
   profile,
   Blogs,
-  Tags
+  Tags,
+  Meta,
 });

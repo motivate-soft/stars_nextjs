@@ -1,0 +1,38 @@
+const metaActions = {
+  GET_ALL_METAS_REQUEST: "GET_ALL_METAS_REQUEST",
+  GET_ALL_METAS_SUCCESS: "GET_ALL_METAS_SUCCESS",
+  GET_ALL_METAS_FAILURE: "GET_ALL_METAS_FAILURE",
+  GET_META_REQUEST: "GET_META_REQUEST",
+  GET_META_SUCCESS: "GET_META_SUCCESS",
+  GET_META_FAILURE: "GET_META_FAILURE",
+  ADD_META_REQUEST: "ADD_META_REQUEST",
+  ADD_META_SUCCESS: "ADD_META_SUCCESS",
+  ADD_META_FAILURE: "ADD_META_FAILURE",
+  UPDATE_META_REQUEST: "UPDATE_META_REQUEST",
+  UPDATE_META_SUCCESS: "UPDATE_META_SUCCESS",
+  UPDATE_META_FAILURE: "UPDATE_META_FAILURE",
+  DELETE_META_REQUEST: "DELETE_META_REQUEST",
+  DELETE_META_SUCCESS: "DELETE_META_SUCCESS",
+  DELETE_META_FAILURE: "DELETE_META_FAILURE",
+
+  getAllMetas: () => ({
+    type: metaActions.GET_ALL_METAS_REQUEST,
+  }),
+  getMeta: (metaId) => ({
+    type: metaActions.GET_META_REQUEST,
+    metaId,
+  }),
+  addMeta: (newMeta) => ({
+    type: metaActions.ADD_META_REQUEST,
+    meta: newMeta,
+  }),
+  updateMeta: (newMeta) => ({
+    type: metaActions.UPDATE_META_REQUEST,
+    meta: newMeta,
+  }),
+  deleteMeta: (metaId) => ({
+    type: metaActions.DELETE_META_REQUEST,
+    metaId,
+  }),
+};
+export default metaActions;

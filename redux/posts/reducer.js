@@ -7,7 +7,7 @@ const initState = {
   loading: false,
 };
 
-export default function propertiesReducer(state = initState, action) {
+export default function postsReducer(state = initState, action) {
   switch (action.type) {
     // List
     case postActions.GET_ALL_POSTS_REQUEST:

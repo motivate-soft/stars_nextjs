@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IoMdMenu,
   IoIosSearch,
@@ -56,13 +56,14 @@ import {
   IoIosPeople,
   IoIosHome,
   IoLogoInstagram,
-  IoIosText
-} from 'react-icons/io';
+  IoIosText,
+  IoMdText,
+  IoIosHelpCircle
+} from "react-icons/io";
 
-import {FaFacebookF} from 'react-icons/fa'
+import { FaFacebookF } from "react-icons/fa";
 
 // Guest pages
-
 
 // TopBar Icons
 export const TopbarMenuIcon = IoMdMenu; // Menu icon
@@ -76,7 +77,7 @@ export const TopbarCartIcon = IoMdCart; // Cart icon
 export const SidebarPeopleIcon = IoIosPeople;
 export const SidebarHomeIcon = IoIosHome;
 export const SidebarTextIcon = IoIosText;
-
+export const SidebarPostIcon = IoMdText;
 
 export const SidebarEmailIcon = IoMdMail; // Email icon
 export const SidebarChatIcon = IoIosChatbubbles; // Chat icon
@@ -148,3 +149,5 @@ export const DeleteIcon = IoMdTrash; // Delete icon
 export const EditIcon = IoMdCreate; // Edit icon
 export const MenuIcon = IoMdMenu; // Edit icon
 export const FlameIcon = IoMdFlame; // Flame icon
+export const HelpIcon = IoIosHelpCircle; // Cart icon
+

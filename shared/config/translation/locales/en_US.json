@@ -9,6 +9,7 @@
   "sidebar.blogs": "Blogs",
   "sidebar.tag": "Tag",
   "sidebar.blog": "Blog",
+  "sidebar.meta": "Meta",
 
   "Component.users.noOption": "No user found",
   "userlist.searchUsers": "Search Users",

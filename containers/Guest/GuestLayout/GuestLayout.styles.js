@@ -48,6 +48,8 @@ const GuestAppHolder = styled.div`
     color: ${palette("primary", 0)} !important;
   }
 
+  position: relative;
+ 
   span {
     font-family: "Raleway", sans-serif;
   }

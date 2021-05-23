@@ -10,10 +10,13 @@ import CookieConsent from "react-cookie-consent";
 import { useSelector, useDispatch } from "react-redux";
 import { checkExpirity, getCookie } from "@redux/authentication/auth.utils";
 import authActions from "@redux/authentication/actions";
+import SeoButton from "./SeoButton";
+import { useRouter } from "next/router";
 
 function GuestLayout({ children }) {
   const { idToken } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (idToken === null) {
@@ -38,11 +41,21 @@ function GuestLayout({ children }) {
       return;
     }
   }
+
+  function renderSeoButton() {
+    if (!idToken) return null;
+    if (router?.pathname.split("/")[0] === "admin") {
+      return null;
+    }
+    return <SeoButton />;
+  }
+
   return (
     <GuestAppHolder>
       <TopNavigation />
       {children}
       <Footer />
+      {renderSeoButton()}
       <ChatWidget />
       <CookieConsent
         location="bottom"

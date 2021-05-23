@@ -446,3 +446,7 @@ html[dir="rtl"] .dz-hidden-input {
 .ant-picker-dropdown-range {
   z-index: 4000;
 }
+
+.ant-notification-notice-message {
+  white-space: pre-line;
+}

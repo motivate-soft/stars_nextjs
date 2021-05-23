@@ -1,13 +1,12 @@
 import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
-import HttpsProxyAgent from "https-proxy-agent/dist/agent";
 
-const postApi = {
+const metaApi = {
   getAll: async () => {
     const prod = process.env.NODE_ENV === "production";
     if (prod) {
-      return await fetch(`${BACKEND_URL}/api/content/`, {
+      return await fetch(`${BACKEND_URL}/api/meta/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -23,7 +22,7 @@ const postApi = {
         .catch(handleError);
     }
 
-    return await fetch(`${BACKEND_URL}/api/content/`, {
+    return await fetch(`${BACKEND_URL}/api/meta/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -40,7 +39,7 @@ const postApi = {
   },
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/content/${id}`, {
+    await fetch(`${BACKEND_URL}/api/meta/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -56,15 +55,15 @@ const postApi = {
       })
       .catch(handleError),
 
-  add: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/`, {
+  add: async (meta) =>
+    await fetch(`${BACKEND_URL}/api/meta/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("accessToken")}`,
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(meta),
     })
       .then((res) => {
         if (res.ok) {
@@ -74,15 +73,15 @@ const postApi = {
       })
       .catch(handleError),
 
-  update: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/${post.id}`, {
+  update: async (meta) =>
+    await fetch(`${BACKEND_URL}/api/meta/${meta.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${getCookie("accessToken")}`,
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(meta),
     })
       .then((res) => {
         if (res.ok) {
@@ -92,8 +91,8 @@ const postApi = {
       })
       .catch(handleError),
 
-  delete: async (postId) =>
-    await fetch(`${BACKEND_URL}/api/content/${postId}`, {
+  delete: async (metaId) =>
+    await fetch(`${BACKEND_URL}/api/meta/${metaId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -110,4 +109,4 @@ const postApi = {
       .catch(handleError),
 };
 
-export default postApi;
+export default metaApi;
