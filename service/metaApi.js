@@ -44,7 +44,6 @@ const metaApi = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
       },
     })
       .then((res) => {

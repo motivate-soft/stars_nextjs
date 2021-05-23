@@ -25,10 +25,9 @@ const SeoButtonWrapper = styled.div`
 export default function SeoButton() {
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("router", router);
+  function handleClick() {
+    let pageSlug;
     if (router.pathname) {
-      let pageSlug;
       if (router.pathname == "/") {
         pageSlug = "home";
       } else {
@@ -37,11 +36,9 @@ export default function SeoButton() {
       }
       console.log("router", router);
       console.log("window.location", window.location);
-      router.push(`/admin/meta?slug=${pageSlug}`);
     }
-  }, [router.pathname]);
-
-  function handleClick() {}
+    router.push(`/admin/meta?slug=${pageSlug}`);
+  }
 
   return (
     <SeoButtonWrapper onClick={handleClick}>
