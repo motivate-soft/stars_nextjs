@@ -1,20 +1,5 @@
 import React from "react";
 import App from "next/app";
-
-/**
- *  import for legacy version of next-redux-wrapper
- */
-// import {Provider} from 'react-redux';
-// import withRedux from 'next-redux-wrapper';
-
-// return (
-//   <Provider store={store}>
-//     <ThemeProvider>
-//       <Component {...pageProps} />
-//     </ThemeProvider>
-//   </Provider>
-// );
-
 import { createWrapper } from "next-redux-wrapper";
 import ThemeProvider from "../containers/Admin/ThemeProvider";
 import initStore from "../redux/store";
@@ -32,6 +17,11 @@ import GuestThemeProvider from "../containers/Guest/GuestThemeProvider";
 import { SearchProvider } from "@context/SearchProvider";
 import { BookingProvider, initBooking } from "@context/BookingProvider";
 import GlobalStyles from "../style/GlobalStyles";
+import {
+  NEXTSEO_DEFAULT_DESCRIPTION,
+  NEXTSEO_DEFAULT_TITLE,
+} from "./../next-seo.config";
+import { DefaultSeo } from "next-seo";
 
 class CustomApp extends App {
   render() {
@@ -51,6 +41,16 @@ class CustomApp extends App {
         <SearchProvider query={query}>
           <BookingProvider booking={initBooking}>
             <GlobalStyles />
+            <DefaultSeo
+              title={NEXTSEO_DEFAULT_TITLE}
+              description={NEXTSEO_DEFAULT_DESCRIPTION}
+              openGraph={{
+                type: "website",
+                locale: "en_US",
+                url: "https://www.url.ie/",
+                site_name: "starsofboston",
+              }}
+            />
             <Component {...pageProps} />
           </BookingProvider>
         </SearchProvider>
@@ -61,5 +61,19 @@ class CustomApp extends App {
 
 const wrapper = createWrapper(initStore, { debug: false });
 export default wrapper.withRedux(CustomApp);
+
+/**
+ *  import for legacy version of next-redux-wrapper
+ */
+// import {Provider} from 'react-redux';
+// import withRedux from 'next-redux-wrapper';
+
+// return (
+//   <Provider store={store}>
+//     <ThemeProvider>
+//       <Component {...pageProps} />
+//     </ThemeProvider>
+//   </Provider>
+// );
 
 // export default withRedux(initStore)(CustomApp);

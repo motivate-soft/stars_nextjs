@@ -96,4 +96,10 @@ export const SingeMetaWrapper = styled.div`
   }
 `;
 
+export const MetaMediaDetailWrapper = styled.div`
+  .detail-item {
+    margin-bottom: 20px;
+  }
+`;
+
 export default WithDirection(MetaListWrapper);

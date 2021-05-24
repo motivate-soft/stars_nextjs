@@ -13,7 +13,6 @@ export default function metaReducer(state = initState, action) {
     case metaActions.GET_ALL_METAS_REQUEST:
       return {
         ...state,
-        items: [],
         loading: true,
       };
     case metaActions.GET_ALL_METAS_SUCCESS:
@@ -25,7 +24,6 @@ export default function metaReducer(state = initState, action) {
     case metaActions.GET_ALL_METAS_FAILURE:
       return {
         ...state,
-        items: [],
         error: action.error,
         loading: false,
       };
@@ -60,7 +58,7 @@ export default function metaReducer(state = initState, action) {
       state.items.push(action.item);
       return {
         ...state,
-        items: items,
+        items: state.items,
         selectedItem: action.item,
         loading: false,
       };
@@ -70,6 +68,7 @@ export default function metaReducer(state = initState, action) {
         error: action.error,
         loading: false,
       };
+      
     // Update
     case metaActions.UPDATE_META_REQUEST:
       return {

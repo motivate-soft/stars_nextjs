@@ -90,7 +90,7 @@ export function* deleteMeta() {
     yield takeEvery(actions.DELETE_META_REQUEST, function* (payload) {
         try {
             yield call(metaApi.delete, payload.metaId);
-            notification('warning', 'Meta has been deleted successfully');
+            notification('success', 'Meta has been deleted successfully');
 
             yield put({
                 type: actions.DELETE_META_SUCCESS,

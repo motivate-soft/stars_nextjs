@@ -33,12 +33,6 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="author" content="Stars of Boston" />
-          <meta name="keywords" content="" />
-          <meta
-            name="description"
-            content="Your short-term apartment rental solution in the greater Boston area"
-          />
           <link
             rel="icon"
             href="/static/image/favicon.png"

@@ -5,20 +5,68 @@ import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { HelpIcon } from "@iso/config/icon.config";
 import { useDispatch } from "react-redux";
 import metaActions from "./../../../redux/meta/actions";
+import Loader from "@iso/components/utility/loader";
+import MetaMediaManager from "./MetaMediaManager";
 
 const { Option } = Select;
-
-export default function AddMeta() {
+const ogTags = [
+  {
+    name: "type",
+    content: "",
+  },
+  {
+    name: "title",
+    content: "",
+  },
+  {
+    name: "description",
+    content: "",
+  },
+  {
+    name: "url",
+    content: "",
+  },
+  {
+    name: "image_url",
+    content: "",
+  },
+  {
+    name: "image_width",
+    content: "",
+  },
+  {
+    name: "image_height",
+    content: "",
+  },
+  {
+    name: "image_alt",
+    content: "",
+  },
+];
+export default function AddMeta(props) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("Received values of form:", values);
+    console.log("AddMeta:onFinish", values);
     dispatch(metaActions.addMeta(values));
   };
 
+  if (!props.slug) return <Loader />;
+
   return (
-    <Form form={form} name="meta_form" onFinish={onFinish} autoComplete="off">
+    <Form
+      form={form}
+      name="meta_form"
+      onFinish={onFinish}
+      autoComplete="off"
+      initialValues={{
+        slug: props.slug,
+        title: "",
+        description: "",
+        og_tags: ogTags,
+      }}
+    >
       <h2>Add Page Meta information</h2>
       <Form.Item label="Page Name" className="page-name">
         <Space>
@@ -27,9 +75,9 @@ export default function AddMeta() {
             noStyle
             rules={[{ required: true, message: "Missing slug" }]}
           >
-            <Input />
+            <Input disabled />
           </Form.Item>
-          <Tooltip title="Enter page slug here">
+          <Tooltip title="identifier for meta objects of each page">
             <HelpIcon />
           </Tooltip>
         </Space>
@@ -50,49 +98,7 @@ export default function AddMeta() {
         <Input />
       </Form.Item>
 
-      <h3>Meta tags</h3>
-      <Form.List name="meta_tags">
-        {(fields, { add, remove }) => (
-          <>
-            {fields.map((field) => (
-              <Space key={field.key} align="baseline">
-                <Form.Item
-                  {...field}
-                  label="Name"
-                  name={[field.name, "name"]}
-                  fieldKey={[field.fieldKey, "name"]}
-                  rules={[{ required: true, message: "Missing name" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  {...field}
-                  label="Content"
-                  name={[field.name, "content"]}
-                  fieldKey={[field.fieldKey, "content"]}
-                  rules={[{ required: true, message: "Missing content" }]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <MinusCircleOutlined onClick={() => remove(field.name)} />
-              </Space>
-            ))}
-
-            <Form.Item>
-              <Button
-                type="dashed"
-                onClick={() => add()}
-                block
-                icon={<PlusOutlined />}
-              >
-                Add Tag
-              </Button>
-            </Form.Item>
-          </>
-        )}
-      </Form.List>
-      <h3>Open graph tags</h3>
+      <h3>Open graph</h3>
       <Form.List name="og_tags">
         {(fields, { add, remove }) => (
           <>
@@ -135,8 +141,51 @@ export default function AddMeta() {
         )}
       </Form.List>
 
-      <h3>Twitter tags</h3>
+      {/* <h3>Twitter</h3>
       <Form.List name="twitter_tags">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map((field) => (
+              <Space key={field.key} align="baseline">
+                <Form.Item
+                  {...field}
+                  label="Name"
+                  name={[field.name, "name"]}
+                  fieldKey={[field.fieldKey, "name"]}
+                  rules={[{ required: true, message: "Missing name" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  {...field}
+                  label="Content"
+                  name={[field.name, "content"]}
+                  fieldKey={[field.fieldKey, "content"]}
+                  rules={[{ required: true, message: "Missing content" }]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <MinusCircleOutlined onClick={() => remove(field.name)} />
+              </Space>
+            ))}
+
+            <Form.Item>
+              <Button
+                type="dashed"
+                onClick={() => add()}
+                block
+                icon={<PlusOutlined />}
+              >
+                Add Tag
+              </Button>
+            </Form.Item>
+          </>
+        )}
+      </Form.List> */}
+
+      <h3>Additional Meta tags</h3>
+      <Form.List name="meta_tags">
         {(fields, { add, remove }) => (
           <>
             {fields.map((field) => (
@@ -183,6 +232,7 @@ export default function AddMeta() {
           Save
         </Button>
       </Form.Item>
+      <MetaMediaManager />
     </Form>
   );
 }

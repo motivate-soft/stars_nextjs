@@ -15,7 +15,7 @@ const metaActions = {
   DELETE_META_SUCCESS: "DELETE_META_SUCCESS",
   DELETE_META_FAILURE: "DELETE_META_FAILURE",
 
-  getAllMetas: () => ({
+  getAllMeta: () => ({
     type: metaActions.GET_ALL_METAS_REQUEST,
   }),
   getMeta: (metaId) => ({

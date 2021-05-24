@@ -3,20 +3,15 @@ import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import Home from "@components/Guest/Home";
 import postApi from "../service/postApi";
 import metaApi from "./../service/metaApi";
+import CustomHead from "@components/Guest/CustomHead";
 
 export default function HomePage(props) {
-  const { posts, meta, properties } = props;
-  console.log("HomePage:props", meta);
+  const { posts, meta, currentUrl } = props;
   return (
     <>
-      <Head>
-        <title>
-          Stars of Boston: Your Short Term Apartment Rental Solution! | Stars of
-          Boston
-        </title>
-      </Head>
+      <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
-        <Home posts={posts} properties={properties} />
+        <Home posts={posts} />
       </GuestLayout>
     </>
   );
@@ -46,10 +41,12 @@ export async function getServerSideProps(context) {
     meta = await metaApi.getOne(pageSlug);
   } catch (error) {
     console.log("fetchMetatags:Error", error);
+    meta = [];
   }
 
   return {
     props: {
+      currentUrl: resolvedUrl,
       posts,
       meta,
     },

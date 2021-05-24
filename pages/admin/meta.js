@@ -13,7 +13,9 @@ const getMetaSlug = (props) => {
       slug: router.query.slug,
       redirectPath: router.pathname,
     };
-  } catch (e) {}
+  } catch (error) {
+    console.log("error", error);
+  }
 };
 
 export default withRouter(

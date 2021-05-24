@@ -1,33 +1,61 @@
-import React from 'react'
-import {BACKEND_URL} from "../../env-config";
-import Head from "next/head";
+import React from "react";
+import { BACKEND_URL } from "../../env-config";
 import GuestLayout from "@containers/Guest/GuestLayout/GuestLayout";
 import PropertyDetail from "@components/Guest/Property/PropertyDetail";
+import PropertyPageHead from "./../../components/Guest/PropertyPageHead";
 
-export default function PropertyDetailPage({property, query}) {
-    const pageTitle =
-        query.slug.split("-").join(" ").charAt(0).toUpperCase() +
-        query.slug.split("-").join(" ").slice(1);
+export default function PropertyDetailPage(props) {
+  const { property, meta, currentUrl } = props;
 
-    return (
-        <>
-            <Head>
-                <title>{pageTitle} | Starsofboston</title>
-            </Head>
-            <GuestLayout>
-                <PropertyDetail property={property}/>
-            </GuestLayout>
-        </>
-    )
+  return (
+    <>
+      <PropertyPageHead
+        meta={meta}
+        property={property}
+        currentUrl={currentUrl}
+      />
+      <GuestLayout>
+        <PropertyDetail property={property} />
+      </GuestLayout>
+    </>
+  );
 }
 
 export async function getServerSideProps(context) {
-    const {req, query} = context;
+  const { resolvedUrl, query } = context;
 
-    const res = await fetch(`${BACKEND_URL}/api/accommodation/property/listing/${query.slug}`);
-    const property = await res.json()
-    console.log("PropertyDetail",query, property)
-    return {
-        props: {property, query},
-    };
+  let pageSlug;
+  if (resolvedUrl == "/") {
+    pageSlug = "home";
+  } else {
+    const array = resolvedUrl.split("/");
+    pageSlug = array[array.length - 1];
+  }
+
+  let property, meta;
+
+  try {
+    const res = await fetch(
+      `${BACKEND_URL}/api/accommodation/property/listing/${query.slug}`
+    );
+    property = await res.json();
+  } catch (error) {
+    console.log("fetchProperty:Error", error);
+    property = null;
+  }
+
+  try {
+    meta = await metaApi.getOne(pageSlug);
+  } catch (error) {
+    console.log("fetchMetatags:Error", error);
+    meta = [];
+  }
+
+  return {
+    props: {
+      currentUrl: resolvedUrl,
+      property,
+      meta,
+    },
+  };
 }

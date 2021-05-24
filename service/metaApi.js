@@ -3,26 +3,8 @@ import { getCookie } from "@redux/authentication/auth.utils";
 import { handleError } from "./utils";
 
 const metaApi = {
-  getAll: async () => {
-    const prod = process.env.NODE_ENV === "production";
-    if (prod) {
-      return await fetch(`${BACKEND_URL}/api/meta/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw res;
-        })
-        .catch(handleError);
-    }
-
-    return await fetch(`${BACKEND_URL}/api/meta/`, {
+  getAll: async () =>
+    await fetch(`${BACKEND_URL}/api/meta/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -35,11 +17,10 @@ const metaApi = {
         }
         throw res;
       })
-      .catch(handleError);
-  },
+      .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/meta/${id}/`, {
+    await fetch(`${BACKEND_URL}/api/meta/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

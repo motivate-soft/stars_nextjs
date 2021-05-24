@@ -204,9 +204,11 @@ function Home({ posts }) {
           </Row>
         </Container>
         <Container className="vip-services-block">
-          <h3>VIP Services</h3>
-          <Row gutter={[32, 64]}>
-            <Col lg={12} sm={24} xs={24}>
+          <Row gutter={[32, 32]}>
+            <Col lg={{ span: 22, offset: 2 }} sm={24} xs={24}>
+              <h3>VIP Services</h3>
+            </Col>
+            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
               <Row>
                 <Col lg={10} sm={24} xs={24}>
                   <img className="stars-icon" src={icon7} alt="icon" />
@@ -216,7 +218,7 @@ function Home({ posts }) {
                 </Col>
               </Row>
             </Col>
-            <Col lg={12} sm={24} xs={24}>
+            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
               <Row>
                 <Col lg={10} sm={24} xs={24}>
                   <img className="stars-icon" src={icon8} alt="icon" />
@@ -226,7 +228,7 @@ function Home({ posts }) {
                 </Col>
               </Row>
             </Col>
-            <Col lg={12} sm={24} xs={24}>
+            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
               <Row>
                 <Col lg={10} sm={24} xs={24}>
                   <img className="stars-icon" src={icon9} alt="icon" />
@@ -236,7 +238,7 @@ function Home({ posts }) {
                 </Col>
               </Row>
             </Col>
-            <Col lg={12} sm={24} xs={24}>
+            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
               <Row>
                 <Col lg={10} sm={24} xs={24}>
                   <img className="stars-icon" src={icon10} alt="icon" />

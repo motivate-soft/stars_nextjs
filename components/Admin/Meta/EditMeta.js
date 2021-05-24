@@ -6,12 +6,12 @@ import { HelpIcon } from "@iso/config/icon.config";
 import { useDispatch, useSelector } from "react-redux";
 import metaActions from "./../../../redux/meta/actions";
 import { useRouter } from "next/router";
-import metaApi from "./../../../service/metaApi";
 import Loader from "@iso/components/utility/loader";
+import MetaMediaManager from "./MetaMediaManager";
 
 const { Option } = Select;
 
-export default function EditMeta() {
+export default function EditMeta(props) {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -20,15 +20,17 @@ export default function EditMeta() {
   const { selectedItem } = useSelector((state) => state.Meta);
 
   useEffect(() => {
-    if (router?.query?.slug) {
-      dispatch(metaActions.getMeta(router.query.slug));
-      console.log("EditMeta:useEffect", router);
-    }
+    dispatch(metaActions.getMeta(props.slug));
   }, []);
 
   function onFinish(values) {
-    console.log("Received values of form:", values);
-    dispatch(metaActions.addMeta(values));
+    console.log("EditMeta:onFinish", values);
+    dispatch(
+      metaActions.updateMeta({
+        ...selectedItem,
+        ...values,
+      })
+    );
   }
 
   if (!selectedItem.slug) return <Loader />;
@@ -50,9 +52,9 @@ export default function EditMeta() {
             noStyle
             rules={[{ required: true, message: "Missing slug" }]}
           >
-            <Input />
+            <Input disabled />
           </Form.Item>
-          <Tooltip title="Enter page url here">
+          <Tooltip title="identifier for meta objects of each page">
             <HelpIcon />
           </Tooltip>
         </Space>
@@ -73,49 +75,7 @@ export default function EditMeta() {
         <Input />
       </Form.Item>
 
-      <h3>Meta tags</h3>
-      <Form.List name="meta_tags">
-        {(fields, { add, remove }) => (
-          <>
-            {fields.map((field) => (
-              <Space key={field.key} align="baseline">
-                <Form.Item
-                  {...field}
-                  label="Name"
-                  name={[field.name, "name"]}
-                  fieldKey={[field.fieldKey, "name"]}
-                  rules={[{ required: true, message: "Missing name" }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  {...field}
-                  label="Content"
-                  name={[field.name, "content"]}
-                  fieldKey={[field.fieldKey, "content"]}
-                  rules={[{ required: true, message: "Missing content" }]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <MinusCircleOutlined onClick={() => remove(field.name)} />
-              </Space>
-            ))}
-
-            <Form.Item>
-              <Button
-                type="dashed"
-                onClick={() => add()}
-                block
-                icon={<PlusOutlined />}
-              >
-                Add Tag
-              </Button>
-            </Form.Item>
-          </>
-        )}
-      </Form.List>
-      <h3>Open graph tags</h3>
+      <h3>Open graph</h3>
       <Form.List name="og_tags">
         {(fields, { add, remove }) => (
           <>
@@ -158,7 +118,7 @@ export default function EditMeta() {
         )}
       </Form.List>
 
-      <h3>Twitter tags</h3>
+      {/* <h3>Twitter</h3>
       <Form.List name="twitter_tags">
         {(fields, { add, remove }) => (
           <>
@@ -199,13 +159,56 @@ export default function EditMeta() {
             </Form.Item>
           </>
         )}
-      </Form.List>
+      </Form.List> */}
 
+      <h3>Additional Meta tags</h3>
+      <Form.List name="meta_tags">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map((field) => (
+              <Space key={field.key} align="baseline">
+                <Form.Item
+                  {...field}
+                  label="Name"
+                  name={[field.name, "name"]}
+                  fieldKey={[field.fieldKey, "name"]}
+                  rules={[{ required: true, message: "Missing name" }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  {...field}
+                  label="Content"
+                  name={[field.name, "content"]}
+                  fieldKey={[field.fieldKey, "content"]}
+                  rules={[{ required: true, message: "Missing content" }]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <MinusCircleOutlined onClick={() => remove(field.name)} />
+              </Space>
+            ))}
+
+            <Form.Item>
+              <Button
+                type="dashed"
+                onClick={() => add()}
+                block
+                icon={<PlusOutlined />}
+              >
+                Add Tag
+              </Button>
+            </Form.Item>
+          </>
+        )}
+      </Form.List>
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Save
         </Button>
       </Form.Item>
+      <MetaMediaManager />
     </Form>
   );
 }

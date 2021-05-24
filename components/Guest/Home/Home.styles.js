@@ -234,7 +234,6 @@ const HomeWrapper = styled.div`
 
     .vip-services-block {
       h3 {
-        margin: 0 0 48px;
         font-size: 30px;
         font-weight: 700;
       }
