@@ -24,7 +24,8 @@ export default function PropertyDetailPage(props) {
 export async function getServerSideProps(context) {
   const { resolvedUrl, query } = context;
 
-  let pageSlug;
+  let pageSlug, property, meta;
+
   if (resolvedUrl == "/") {
     pageSlug = "home";
   } else {
@@ -32,7 +33,12 @@ export async function getServerSideProps(context) {
     pageSlug = array[array.length - 1];
   }
 
-  let property, meta;
+  try {
+    meta = await metaApi.getOne(pageSlug);
+  } catch (error) {
+    console.log("fetchMetatags:Error", error);
+    meta = [];
+  }
 
   try {
     const res = await fetch(
@@ -42,13 +48,6 @@ export async function getServerSideProps(context) {
   } catch (error) {
     console.log("fetchProperty:Error", error);
     property = null;
-  }
-
-  try {
-    meta = await metaApi.getOne(pageSlug);
-  } catch (error) {
-    console.log("fetchMetatags:Error", error);
-    meta = [];
   }
 
   return {

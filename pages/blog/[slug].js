@@ -3,17 +3,14 @@ import { BACKEND_URL } from "../../env-config";
 import Head from "next/head";
 import GuestLayout from "@containers/Guest/GuestLayout/GuestLayout";
 import BlogDetail from "@components/Guest/Blog/SingleBlog/BlogDetail";
+import BlogPageHead from "../../components/Guest/BlogPageHead";
 
-export default function BlogDetailPage({ blog, query }) {
-  const pageTitle =
-    query.slug.split("-").join(" ").charAt(0).toUpperCase() +
-    query.slug.split("-").join(" ").slice(1);
+export default function BlogDetailPage(props) {
+  const { blog, meta, currentUrl } = props;
 
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-      </Head>
+      <BlogPageHead meta={meta} blog={blog} currentUrl={currentUrl} />
       <GuestLayout>
         <BlogDetail blog={blog} />
       </GuestLayout>
@@ -22,13 +19,33 @@ export default function BlogDetailPage({ blog, query }) {
 }
 
 export async function getServerSideProps(context) {
-  const { req, query } = context;
+  const { resolvedUrl, query } = context;
+  let pageSlug, blog, meta;
 
-  const res = await fetch(`${BACKEND_URL}/api/blog/post/listing/${query.slug}`);
-  const blog = await res.json();
+  if (resolvedUrl == "/") {
+    pageSlug = "home";
+  } else {
+    const array = resolvedUrl.split("/");
+    pageSlug = array[array.length - 1];
+  }
 
-  console.log("BlogDetail", query, blog);
+  try {
+    meta = await metaApi.getOne(pageSlug);
+  } catch (error) {
+    console.log("fetchMetatags:Error", error);
+    meta = [];
+  }
+
+  try {
+    const res = await fetch(
+      `${BACKEND_URL}/api/blog/post/listing/${query.slug}`
+    );
+    blog = await res.json();
+  } catch (error) {
+    console.log("fetchMetaBlog:Error", error);
+  }
+
   return {
-    props: { blog, query },
+    props: { currentUrl: resolvedUrl, blog, meta },
   };
 }
