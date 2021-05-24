@@ -1,15 +1,14 @@
-import Head from "next/head";
+import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import Terms from "@components/Guest/Other/Terms";
 import postApi from "../service/postApi";
+import metaApi from "../service/metaApi";
 
 export default function TermsPage(props) {
-  const { posts } = props;
+  const { posts, meta, currentUrl } = props;
   return (
     <>
-      <Head>
-        <title>Terms and Conditions</title>
-      </Head>
+      <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
         <Terms posts={posts} />
       </GuestLayout>
@@ -17,19 +16,38 @@ export default function TermsPage(props) {
   );
 }
 
-export async function getServerSideProps() {
-  let posts;
+export async function getServerSideProps(context) {
+  const { resolvedUrl, query } = context;
+  console.log("getServerSideProps", resolvedUrl, query);
+  let pageSlug;
+  if (resolvedUrl == "/") {
+    pageSlug = "home";
+  } else {
+    const array = resolvedUrl.split("/");
+    pageSlug = array[array.length - 1];
+  }
+
+  let posts, meta;
 
   try {
     posts = await postApi.getAll();
-  } catch (e) {
-    console.log("fetchPostsError", e);
+  } catch (error) {
+    console.log("fetchPosts:Error", error);
     posts = [];
+  }
+
+  try {
+    meta = await metaApi.getOne(pageSlug);
+  } catch (error) {
+    console.log("fetchMetatags:Error", error);
+    meta = [];
   }
 
   return {
     props: {
+      currentUrl: resolvedUrl,
       posts,
+      meta,
     },
   };
 }

@@ -65,6 +65,7 @@ export default function AddMeta(props) {
         title: "",
         description: "",
         og_tags: ogTags,
+        twitter_tags: [],
       }}
     >
       <h2>Add Page Meta information</h2>

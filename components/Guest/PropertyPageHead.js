@@ -1,6 +1,6 @@
 import React from "react";
 import { NextSeo } from "next-seo";
-import { NEXTSEO_DEFAULT_SITE_URL } from "./../../next-seo.config";
+import { NEXTSEO_DEFAULT_SITE_URL } from "../../next-seo.config";
 
 export default function PropertyPageHead(props) {
   const { meta, property, currentUrl } = props;

@@ -1,10 +1,10 @@
 import React from "react";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
 import {
+  NEXTSEO_DEFAULT_SITE_URL,
   NEXTSEO_DEFAULT_DESCRIPTION,
   NEXTSEO_DEFAULT_TITLE,
-} from "./../../next-seo.config";
+} from "../../next-seo.config";
 
 export default function CustomHead(props) {
   const { meta, currentUrl } = props;
@@ -19,7 +19,9 @@ export default function CustomHead(props) {
       title: getTagValue(meta.og_tags, "title") ?? NEXTSEO_DEFAULT_TITLE,
       description:
         getTagValue(meta.og_tags, "description") ?? NEXTSEO_DEFAULT_DESCRIPTION,
-      url: getTagValue(meta.og_tags, "url") ?? currentUrl,
+      url:
+        getTagValue(meta.og_tags, "url") ??
+        `${NEXTSEO_DEFAULT_SITE_URL}${currentUrl}`,
       images: [
         {
           url:
@@ -27,7 +29,7 @@ export default function CustomHead(props) {
             "https://www.example.ie/og-image.jpg",
           width: getTagValue(meta.og_tags, "image_width") ?? 800,
           height: getTagValue(meta.og_tags, "image_height") ?? 600,
-          alt: getTagValue(meta.og_tags, "image_alt") ?? "Og Image Alt",
+          alt: getTagValue(meta.og_tags, "image_alt") ?? "Starsofboston",
         },
       ],
     },

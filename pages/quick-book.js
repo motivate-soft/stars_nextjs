@@ -1,35 +1,53 @@
-import Head from "next/head";
+import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import Checkout from "@components/Guest/Checkout/Checkout";
 import postApi from "../service/postApi";
+import metaApi from "../service/metaApi";
 
 export default function QuickBookPage(props) {
-    const {posts} = props
-    return (
-        <>
-            <Head>
-                <title>Checkout Page</title>
-            </Head>
-            <GuestLayout>
-                <Checkout posts={posts}/>
-            </GuestLayout>
-        </>
-    );
+  const { posts, meta, currentUrl } = props;
+  return (
+    <>
+      <CustomHead meta={meta} currentUrl={currentUrl} />
+      <GuestLayout>
+        <Checkout posts={posts} />
+      </GuestLayout>
+    </>
+  );
 }
 
-export async function getServerSideProps() {
-    let posts;
+export async function getServerSideProps(context) {
+  const { resolvedUrl, query } = context;
+  console.log("getServerSideProps", resolvedUrl, query);
+  let pageSlug;
+  if (resolvedUrl == "/") {
+    pageSlug = "home";
+  } else {
+    const array = resolvedUrl.split("/");
+    pageSlug = array[array.length - 1];
+  }
 
-    try {
-        posts = await postApi.getAll()
-    } catch (e) {
-        console.log("fetchPostsError", e)
-        posts = [];
-    }
+  let posts, meta;
 
-    return {
-        props: {
-            posts,
-        },
-    };
+  try {
+    posts = await postApi.getAll();
+  } catch (error) {
+    console.log("fetchPosts:Error", error);
+    posts = [];
+  }
+
+  try {
+    meta = await metaApi.getOne(pageSlug);
+  } catch (error) {
+    console.log("fetchMetatags:Error", error);
+    meta = [];
+  }
+
+  return {
+    props: {
+      currentUrl: resolvedUrl,
+      posts,
+      meta,
+    },
+  };
 }

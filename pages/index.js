@@ -1,9 +1,8 @@
-import Head from "next/head";
+import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import Home from "@components/Guest/Home";
 import postApi from "../service/postApi";
-import metaApi from "./../service/metaApi";
-import CustomHead from "@components/Guest/CustomHead";
+import metaApi from "../service/metaApi";
 
 export default function HomePage(props) {
   const { posts, meta, currentUrl } = props;
