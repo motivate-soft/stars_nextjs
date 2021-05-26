@@ -45,7 +45,7 @@ export const SearchWrapper = styled.div`
   position: absolute;
   z-index: 1;
   bottom: 0;
-  transform: translateY(60%);
+  transform: translateY(58%);
 
   h2 {
     color: ${palette("primary", 0)};
@@ -87,7 +87,7 @@ export const SearchWrapper = styled.div`
 export const FormWrapper = styled.div`
   display: flex;
   border-radius: 3px 0 0 3px;
-  min-height: 60px;
+  min-height: 50px;
 
   .ant-row {
     flex-grow: 1;
@@ -272,7 +272,7 @@ export const ComponentWrapper = styled.div`
       button.ant-btn {
         min-width: auto;
         width: 100%;
-        height: 60px;
+        height: 50px;
         border: 0;
         padding: 0 30px;
         border-radius: 0;

@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
     padding: 0;
   }
   .rental-solution-block {
-    padding: 180px 0 50px;
+    padding: 160px 0 50px;
     @media (max-width: 991px) {
       margin-top: 200px;
     }

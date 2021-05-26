@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Modal, Button } from "antd";
 import styled from "styled-components";
 import { palette } from "styled-theme";
@@ -37,6 +38,13 @@ const CovidBannerWrapper = styled.div`
 const CovidBanner = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { isScrolled } = props;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.route === "/") {
+      setIsModalVisible(true);
+    }
+  }, []);
 
   const showModal = () => {
     setIsModalVisible(true);
