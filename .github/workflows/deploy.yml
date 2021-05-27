@@ -1,23 +1,32 @@
-name: Frontend Deploy using AWS SSM Send-Command
+name: Frontend CI/CD
 
 on:
-push:
-branches: [master]
+  push:
+    branches:
+      - master
+  
+  pull_request:
+    branches:
+      - master
+  
+  repository_dispatch:
+    types: [production-deploy]
 
 jobs:
-start:
-runs-on: ubuntu-latest
-
-steps:
-			  - uses: actions/checkout@v2
-
-			  - name: AWS SSM Send Command2
-			  uses: peterkimzz/aws-ssm-send-command@1.0.1
-			  with:
-			  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
-			  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
-			  aws-region: us-east-2
-			  instance-ids: ${{ secrets.INSTANCE_ID  }}
-			  comment: Deploy the master branch
-			  working-directory: /home/ubuntu/var/starsofboston/stars_nextjs
-			  command: /bin/sh ./deploy.sh
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+    - name: SSH and deploy to Starsofboston Frontend
+      uses: appleboy/ssh-action@master
+      timeout-minutes: 30
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        command_timeout: 30min
+        script: |
+          cd /var/starsofboston/stars_nextjs
+          sudo npm run build
+          sudo pm2 restart next

@@ -7,7 +7,7 @@ function Profile() {
     return (
         <>
             <Head>
-                <title>Profile</title>
+                <title>Admin | Profile</title>
             </Head>
             <DashboardLayout>
                 <EditProfile/>
