@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, Input, Button, Space, Select, Row, Col, Tooltip } from "antd";
+import { Form, Input, Button, Space, Select, Tooltip } from "antd";
 
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { HelpIcon } from "@iso/config/icon.config";

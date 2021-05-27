@@ -12,7 +12,8 @@ const SinglePageWrapper = styled.div`
 export const PropertyDetailWrapper = styled.div`
   padding: 20px 0 100px;
 
-  h3 {
+  h3,
+  h2 {
     color: ${palette("warning", 0)};
     margin-bottom: 30px;
   }

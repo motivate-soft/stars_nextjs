@@ -99,6 +99,34 @@ export const SingeMetaWrapper = styled.div`
 export const MetaMediaDetailWrapper = styled.div`
   .detail-item {
     margin-bottom: 20px;
+    .detail-label {
+      background-color: #e9ecef;
+      border-top: 1px solid #dee2e6;
+      border-left: 1px solid #dee2e6;
+      border-right: 1px solid #dee2e6;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+    }
+    .detail-value {
+      border: 1px solid #dee2e6;
+      margin-bottom: 1rem;
+      position: relative;
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #7d7d7d;
+        margin-top: 0.5rem;
+        outline: none !important;
+        position: absolute;
+        right: 0;
+      }
+      & > div {
+        background-color: #f8f9fa;
+        padding: 8px 16px;
+      }
+    }
   }
 `;
 

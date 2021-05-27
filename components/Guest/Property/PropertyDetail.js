@@ -137,7 +137,7 @@ function PropertyDetail(props) {
         </Row>
         <Row gutter={[32, 32]}>
           <Col sm={24}>
-            <h3>Similar Accommodations</h3>
+            <h2>Similar Accommodations</h2>
           </Col>
           {property.similar_properties.map((item, index) => (
             <Col key={index} lg={8} sm={24}>

@@ -63,7 +63,8 @@ import {
 
 import { FaFacebookF } from "react-icons/fa";
 
-// Guest pages
+// Admin pages
+export const CopyIcon = IoIosCopy; // Pages icon
 
 // TopBar Icons
 export const TopbarMenuIcon = IoMdMenu; // Menu icon

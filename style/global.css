@@ -448,5 +448,6 @@ html[dir="rtl"] .dz-hidden-input {
 }
 
 .ant-notification-notice-message {
+  z-index: 9000;
   white-space: pre-line;
 }
