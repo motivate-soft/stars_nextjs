@@ -214,7 +214,7 @@ function Home({ posts }) {
                   <img className="stars-icon" src={icon7} alt="icon" />
                 </Col>
                 <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={11} posts={posts} size="sm" />
+                  <EditPost index={11} posts={posts} />
                 </Col>
               </Row>
             </Col>
@@ -224,7 +224,7 @@ function Home({ posts }) {
                   <img className="stars-icon" src={icon8} alt="icon" />
                 </Col>
                 <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={12} posts={posts} size="sm" />
+                  <EditPost index={12} posts={posts} />
                 </Col>
               </Row>
             </Col>
@@ -234,7 +234,7 @@ function Home({ posts }) {
                   <img className="stars-icon" src={icon9} alt="icon" />
                 </Col>
                 <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={13} posts={posts} size="sm" />
+                  <EditPost index={13} posts={posts} />
                 </Col>
               </Row>
             </Col>
@@ -244,7 +244,7 @@ function Home({ posts }) {
                   <img className="stars-icon" src={icon10} alt="icon" />
                 </Col>
                 <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={14} posts={posts} size="sm" />
+                  <EditPost index={14} posts={posts} />
                 </Col>
               </Row>
             </Col>

@@ -103,7 +103,7 @@ function PropertyDetail(props) {
             <Description property={property} />
             <Amenities amenities={property.amenities} />
             <LocationMap lat={property.lat} lng={property.lng} />
-            <Element name="neighborhood">
+            <Element name="neighborhood" className="neighborhood-block">
               <div>
                 <h3>Neighborhood</h3>
                 <div
@@ -111,7 +111,7 @@ function PropertyDetail(props) {
                 />
               </div>
             </Element>
-            <Element name="transit">
+            <Element name="transit" className="transit-block">
               <div id="transit">
                 <h3>Transit</h3>
                 <div

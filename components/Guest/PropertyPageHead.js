@@ -9,20 +9,20 @@ export default function PropertyPageHead(props) {
     title: meta.title ? meta.title : property.title,
     description: meta.description ? meta.description : property.title,
     openGraph: {
-      type: getTagValue(meta.og_tags, "type") ?? "website",
-      title: getTagValue(meta.og_tags, "title") ?? property.title,
-      description: getTagValue(meta.og_tags, "description") ?? property.title,
+      type: getTagValue(meta?.og_tags, "type") ?? "website",
+      title: getTagValue(meta?.og_tags, "title") ?? property.title,
+      description: getTagValue(meta?.og_tags, "description") ?? property.title,
       url:
-        getTagValue(meta.og_tags, "url") ??
+        getTagValue(meta?.og_tags, "url") ??
         `${NEXTSEO_DEFAULT_SITE_URL}${currentUrl}`,
       images: [
         {
           url:
-            getTagValue(meta.og_tags, "image_url") ??
+            getTagValue(meta?.og_tags, "image_url") ??
             property.featured_img.file,
-          width: getTagValue(meta.og_tags, "image_width") ?? 2048,
-          height: getTagValue(meta.og_tags, "image_height") ?? 1365,
-          alt: getTagValue(meta.og_tags, "image_alt") ?? property.title,
+          width: getTagValue(meta?.og_tags, "image_width") ?? 2048,
+          height: getTagValue(meta?.og_tags, "image_height") ?? 1365,
+          alt: getTagValue(meta?.og_tags, "image_alt") ?? property.title,
         },
       ],
     },
@@ -31,12 +31,13 @@ export default function PropertyPageHead(props) {
 
   function getTagValue(array, fieldName) {
     try {
-      const arr = array.filter((item) => item.name === fieldName);
-      console.log("getTagValue", array, fieldName, arr);
-      if (arr.length > 0) {
-        console.log("getTagValue", arr[0]["content"]);
-        return arr[0]["content"];
+      if (array) {
+        const arr = array.filter((item) => item.name === fieldName);
+        if (arr.length > 0) {
+          return arr[0]["content"];
+        }
       }
+      return null;
     } catch (error) {
       console.log("error", error);
       return null;

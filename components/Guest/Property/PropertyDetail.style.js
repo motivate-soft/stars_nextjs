@@ -31,6 +31,71 @@ export const PropertyDetailWrapper = styled.div`
       color: #707070;
     }
   }
+
+  .overview-block {
+    margin-bottom: 50px;
+
+    h3 {
+      color: ${palette("warning", 0)};
+    }
+
+    .property-feature-icons-wrapper {
+      font-size: 14px;
+
+      span {
+        margin-right: 16px;
+        font-family: Raleway, sans-serif;
+
+        svg {
+          width: 20px;
+          fill: #cbcbcb;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .property-room {
+      max-width: 180px;
+      height: 100%;
+      border-radius: 4px;
+      padding: 30px 20px 30px;
+      background-color: #f7f7f7;
+      margin: auto auto 20px;
+      text-align: center;
+      svg {
+        width: 80px;
+        height: 80px;
+        fill: ${palette("primary", 1)};
+      }
+    }
+  }
+
+  .amenities-block {
+    margin-bottom: 50px;
+    .collpased {
+      display: none;
+    }
+
+    .amenity-box {
+      max-width: 130px;
+      p {
+        text-align: center;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .location-block {
+    margin-bottom: 50px;
+  }
+
+  .neighborhood-block {
+    margin-bottom: 50px;
+  }
+
+  .transit-block {
+    margin-bottom: 50px;
+  }
 `;
 
 export const BannerImageWrapper = styled.div`
@@ -107,7 +172,7 @@ export const TextButton = styled.div`
   }
 `;
 
-export const TobBarWrapper = styled.div`
+export const TopBarWrapper = styled.div`
   .sticky-outer-wrapper {
     .sticky-inner-wrapper {
       background-color: #ffffff;

@@ -64,7 +64,8 @@ const TopNavWrapper = styled.div`
               font-weight: bold;
               line-height: normal;
               color: ${palette("primary", 0)} !important;
-              position: relative;
+              position: relative;import { isServer } from '@iso/lib/helpers/isServer';
+
               text-transform: uppercase;
               text-decoration: none;
 
@@ -269,6 +270,7 @@ const TopNavWrapper = styled.div`
     }
   }
 `;
+
 const navLinks = [
   {
     path: "/listing",
@@ -300,34 +302,40 @@ const navLinks = [
   },
 ];
 
-const TopNavigation = () => {
+const TopNav = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    // scroll to top if no hash
     if (window.location.hash === "") {
       window.scrollTo({ top: 0 });
     }
   }, []);
 
-  const hasPageYOffset = () => {
-    if (process.browser) {
-      return window.pageYOffset > 0 || document.documentElement.scrollTop > 0;
-    }
-    return false;
-  };
-
-  const isScrolled = useIsScrolled() || hasPageYOffset();
+  function hasPageYOffset() {
+    if (typeof window === "undefined") return;
+    console.log(
+      "TopNav:hasPageYOffset",
+      window.pageYOffset,
+      document.documentElement.scrollTop
+    );
+    return window.pageYOffset > 0 || document.documentElement.scrollTop > 0;
+  }
 
   return (
     <TopNavWrapper>
-      <CovidBanner isScrolled={isScrolled} />
-      <nav className={classNames("navbar fixed", { sticky: isScrolled })}>
+      <CovidBanner isScrolled={useIsScrolled() || hasPageYOffset()} />
+      <nav
+        className={classNames("navbar fixed", {
+          sticky: useIsScrolled() || hasPageYOffset(),
+        })}
+      >
         <Container className="nav-container">
           <Logo className="nav-logo" />
           <button
             className={classNames("navbar-toggler", {
               collapsed: !show,
-              sticky: isScrolled,
+              sticky: useIsScrolled() || hasPageYOffset(),
             })}
             onClick={() => setShow(!show)}
           >
@@ -350,4 +358,4 @@ const TopNavigation = () => {
   );
 };
 
-export default TopNavigation;
+export default TopNav;

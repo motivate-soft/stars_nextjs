@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import TopNavigation from "./TopNav";
+import TopNav from "./TopNav";
 import Footer from "./Footer";
 import GuestAppHolder from "./GuestLayout.styles";
 import WithGATracker from "@components/HOC/WithGATracker";
@@ -52,7 +52,7 @@ function GuestLayout({ children }) {
 
   return (
     <GuestAppHolder>
-      <TopNavigation />
+      <TopNav />
       {children}
       <Footer />
       {renderSeoButton()}

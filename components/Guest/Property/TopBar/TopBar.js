@@ -7,7 +7,7 @@ import Sticky from "react-stickynode";
 //   PinterestShare,
 // } from 'components/SocialShare/SocialShare';
 import { Button, Dropdown } from "antd";
-import { TobBarWrapper, ButtonGroup } from "../PropertyDetail.style";
+import { TopBarWrapper, ButtonGroup } from "../PropertyDetail.style";
 import SocialShareMenu from "@components/Guest/Property/TopBar/SocialShareMenu";
 import TopScrollBar from "@components/Common/ScrollBar/ScrollBar";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -55,7 +55,7 @@ const SideButtons = (props) => {
 const TopBar = (props) => {
   const { title, shareURL, author, media } = props;
   return (
-    <TobBarWrapper>
+    <TopBarWrapper>
       <Sticky innerZ={2000} top={108} activeClass="isSticky">
         <TopScrollBar
           menu={topBarMenu}
@@ -64,7 +64,7 @@ const TopBar = (props) => {
           }
         />
       </Sticky>
-    </TobBarWrapper>
+    </TopBarWrapper>
   );
 };
 

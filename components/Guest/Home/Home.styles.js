@@ -219,7 +219,7 @@ const HomeWrapper = styled.div`
 
         h4 {
           font-family: Raleway, sans-serif;
-          font-size: 1.2rem;
+          font-size: 20px;
           font-weight: bold;
           text-transform: uppercase;
           color: #3a3a3a;
@@ -238,7 +238,8 @@ const HomeWrapper = styled.div`
         font-weight: 700;
       }
 
-      h5 {
+      h4 {
+        font-family: Raleway, sans-serif;
         font-size: 20px;
         font-weight: bold;
         color: ${palette("gray", 2)} !important;
