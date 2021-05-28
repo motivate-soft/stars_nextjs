@@ -25,7 +25,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        command_timeout: 30min
+        command_timeout: 30m
         script: |
           cd /var/starsofboston/stars_nextjs
           sudo npm run build
