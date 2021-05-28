@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import BlogCard from "./../BlogCard/BlogCard";
+import BlogCard from "../BlogCard/BlogCard";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
-import blogApi from "./../../../../service/blogApi";
+import blogApi from "../../../../service/blogApi";
 import Pagination from "./Pagination";
 import { Row, Col } from "antd";
 import WidgetSearch from "./WidgetSearch";
@@ -11,7 +11,8 @@ import WidgetTags from "./WidgetTags";
 import BlogListWrapper from "./BlogList.styles";
 import Loader from "@iso/components/utility/loader";
 
-function BlogList() {
+function TaggedBlogList(props) {
+  const { tag } = props;
   const layout = "list";
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,41 +29,19 @@ function BlogList() {
 
   useEffect(() => {
     fetchBlogs();
-  }, [currentPage, pageSize]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-    setPageSize(10);
-    console.log("BlogList:useEffect:tags", tags);
-    fetchBlogs();
-  }, [tags]);
+  }, [currentPage, pageSize, tags]);
 
   async function fetchBlogs() {
     setLoading(true);
     try {
-      let query;
-      query = {
+      const query = {
         page: currentPage,
         page_size: pageSize,
+        tags: tag.id,
       };
 
-      if (tags) {
-        const tagsString = tags.reduce(
-          (total, value, index, array) => (total = total + "," + value)
-        );
-        console.log("tagsString", tags, tagsString);
-        query.tags = tagsString;
-      }
-
       const res = await blogApi.getListing(query);
-
       setTotalPage(Math.ceil(res.count / pageSize));
-      console.log(
-        "setTotalPage",
-        res,
-        pageSize,
-        Math.ceil(res.count / pageSize)
-      );
       setLoading(false);
       setBlogs(res.results);
     } catch (error) {
@@ -71,13 +50,8 @@ function BlogList() {
     }
   }
 
-  function handleChangeTags(values) {
-    console.log("BlogList:handleChangeTags", values);
-    setTags(values);
-  }
-
   function handlePageChange(page) {
-    console.log("BlogList:handlePageChange", page);
+    console.log("handlePageChange", page);
     setCurrentPage(page);
   }
 
@@ -135,21 +109,7 @@ function BlogList() {
                 </div>
               </div>
             </Col>
-            <Col span={24} lg={8}>
-              <div
-                className={`block block-sidebar block-sidebar--position--end`}
-              >
-                {/* <div className="block-sidebar__item">
-                  <WidgetSearch
-                    search={search}
-                    onChangeSearch={handleChangeSearch}
-                  />
-                </div> */}
-                <div className="block-sidebar__item">
-                  <WidgetTags tags={tags} onChangeTags={handleChangeTags} />
-                </div>
-              </div>
-            </Col>
+            <Col span={24} lg={8}></Col>
           </Row>
         </BlogListWrapper>
       </Container>
@@ -157,4 +117,12 @@ function BlogList() {
   );
 }
 
-export default BlogList;
+TaggedBlogList.propTypes = {
+  tag: PropTypes.object,
+};
+
+TaggedBlogList.defaultProps = {
+  tag: null,
+};
+
+export default TaggedBlogList;
