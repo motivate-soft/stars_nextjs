@@ -14,6 +14,7 @@ export const BlogCardWrapper = styled.div`
     border-radius: 1.5px;
 
     img {
+      width: 100%;
       max-width: 100%;
     }
 

@@ -35,6 +35,7 @@ const BlogDetailWrapper = styled.div`
     overflow: hidden;
     border-radius: 2px;
     img {
+      width: 100%;
       max-width: 100%;
     }
   }
