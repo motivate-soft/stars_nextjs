@@ -1,6 +1,5 @@
 # npm
 node_modules
-package-lock.json
 # next.js build files
 # environment variables
 .env
