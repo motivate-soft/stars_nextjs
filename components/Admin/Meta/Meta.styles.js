@@ -94,6 +94,18 @@ export const SingeMetaWrapper = styled.div`
   button {
     margin-right: 20px;
   }
+  .ant-space {
+    display: flex;
+    .ant-space-item:nth-child(3) {
+      max-width: 50px;
+    }
+    input {
+      width: 300px;
+    }
+    textarea {
+      width: 300px;
+    }
+  }
 `;
 
 export const MetaMediaDetailWrapper = styled.div`
