@@ -1,4 +1,4 @@
-# Website React Nextjs
+# Starsofboston Website React/NextJS
 
 Updating STARS of BOSTON react website with NEXT JS framework for better SEO, blogging and admin framework for tags, meta tags, etc.
 
