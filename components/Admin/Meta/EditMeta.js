@@ -118,8 +118,7 @@ export default function EditMeta(props) {
                 </Form.Item>
                 <Form.Item shouldUpdate>
                   {() =>
-                    form.getFieldsValue().og_tags &&
-                    form.getFieldsValue().og_tags[field.name]
+                    form.getFieldsValue()?.og_tags?.[field.name]?.content
                       ? form.getFieldsValue().og_tags[field.name].content.length
                       : 0
                   }
@@ -168,8 +167,7 @@ export default function EditMeta(props) {
                 </Form.Item>
                 <Form.Item shouldUpdate>
                   {() =>
-                    form.getFieldsValue().meta_tags &&
-                    form.getFieldsValue().meta_tags[field.name]
+                    form.getFieldsValue()?.meta_tags?.[field.name]?.content
                       ? form.getFieldsValue().meta_tags[field.name].content
                           .length
                       : 0
