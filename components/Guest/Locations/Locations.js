@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@iso/ui/Box/Box";
 import LocationsWrapper from "@components/Guest/Locations/Locations.styles";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import { Element, Link } from "react-scroll";
 
 import imgBoston from "@iso/assets/images/locations-boston.jpg";
@@ -45,6 +45,7 @@ function Locations(props) {
                 <Link
                   key={menuItem.target}
                   activeClass="active"
+                  className="ant-btn ant-btn-secondary ant-btn-lg"
                   to={menuItem.target}
                   spy={true}
                   smooth={true}
@@ -54,10 +55,7 @@ function Locations(props) {
                   isDynamic={true}
                   ignoreCancelEvents={false}
                 >
-                  <Button type="secondary" size="large">
-                    {" "}
-                    {menuItem.name}
-                  </Button>
+                  {menuItem.name}
                 </Link>
               </Col>
             ))}

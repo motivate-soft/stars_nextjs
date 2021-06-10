@@ -38,8 +38,8 @@ export default function CustomHead(props) {
 
   function getTagValue(array, fieldName) {
     try {
+      if (!array) return null;
       const arr = array.filter((item) => item.name === fieldName);
-      console.log("getTagValue", array, fieldName, arr);
       if (arr.length > 0) {
         console.log("getTagValue", arr[0]["content"]);
         return arr[0]["content"];

@@ -136,26 +136,16 @@ function Footer() {
                 <h5>Locations</h5>
                 <ul className="list-unstyled my-3">
                   <li>
-                    <Link href="/services">Services</Link>
+                    <Link href="/locations#boston">Boston</Link>
                   </li>
                   <li>
-                    <Link href="/about">About us</Link>
+                    <Link href="/locations#brookline">Brookline</Link>
                   </li>
                   <li>
-                    <Link href="/medical">Medical Travel</Link>
+                    <Link href="/locations#cambridge">Cambridge</Link>
                   </li>
                   <li>
-                    <Link href="/medical">Business Travel</Link>
-                  </li>
-                  <li>
-                    <Link
-                      target="_blank"
-                      href={
-                        "//www.travelmag.com/articles/short-term-rentals-boston/"
-                      }
-                    >
-                      Press
-                    </Link>
+                    <Link href="/locations#quincy">Quincy</Link>
                   </li>
                 </ul>
               </Col>
