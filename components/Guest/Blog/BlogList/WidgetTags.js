@@ -16,17 +16,16 @@ function WidgetTags(props) {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchTags();
+    fetchAllTags();
   }, []);
 
   useEffect(() => {
     console.log("WidgetTags:tags", tags, onChangeTags);
-  });
+  }, []);
 
-  async function fetchTags() {
+  async function fetchAllTags() {
     try {
       const array = await tagApi.getAll();
-      console.log("WidgetTags:fetchTags", array);
       setTagOptions(array);
       onChangeTags(array.map((item) => item.id));
     } catch (error) {
@@ -43,9 +42,8 @@ function WidgetTags(props) {
   }
 
   function handleAddTag() {
-    tags.push(parseInt(selected));
     setSelected(null);
-    onChangeTags(tags);
+    onChangeTags([...tags, parseInt(selected)]);
   }
 
   function handleRemoveTag(tagId) {
@@ -147,7 +145,10 @@ function WidgetTags(props) {
       <div className="widget-tags widget">
         <div className="widget__title">
           <h4>Tags</h4>
-          <button className="widget_tag_edit_btn" onClick={showEditForm}>
+          <button
+            className="widget_tag_edit_btn"
+            onClick={isEditting ? hideEditForm : showEditForm}
+          >
             <span>{isEditting ? "Close" : "Edit"}</span>
           </button>
         </div>

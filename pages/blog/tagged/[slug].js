@@ -1,5 +1,5 @@
 import Head from "next/head";
-import BlogList from "@components/Guest/Blog/BlogList/BlogList";
+import TaggedBlogList from "@components/Guest/Blog/BlogList/TaggedBlogList";
 import GuestLayout from "@containers/Guest/GuestLayout/GuestLayout";
 import { BACKEND_URL } from "../../../env-config";
 
@@ -11,7 +11,7 @@ export default function TaggedBlogPage(props) {
         <title>Tagged Blog</title>
       </Head>
       <GuestLayout>
-        <BlogList tag={tag} />
+        <TaggedBlogList tag={tag} />
       </GuestLayout>
     </>
   );

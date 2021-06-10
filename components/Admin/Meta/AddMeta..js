@@ -8,7 +8,7 @@ import metaActions from "./../../../redux/meta/actions";
 import Loader from "@iso/components/utility/loader";
 import MetaMediaManager from "./MetaMediaManager";
 
-const { Option } = Select;
+const { TextArea } = Input;
 const ogTags = [
   {
     name: "type",
@@ -43,6 +43,7 @@ const ogTags = [
     content: "",
   },
 ];
+
 export default function AddMeta(props) {
   const [form] = Form.useForm();
 
@@ -84,20 +85,37 @@ export default function AddMeta(props) {
         </Space>
       </Form.Item>
 
-      <Form.Item
-        label="Page title"
-        name="title"
-        rules={[{ required: true, message: "Missing title" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="Page Description"
-        name="description"
-        rules={[{ required: true, message: "Missing description" }]}
-      >
-        <Input />
-      </Form.Item>
+      <Space>
+        <Form.Item
+          label="Page title"
+          name="title"
+          rules={[{ required: true, message: "Missing title" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item shouldUpdate>
+          {() =>
+            form.getFieldsValue().title ? form.getFieldsValue().title.length : 0
+          }
+        </Form.Item>
+      </Space>
+
+      <Space align="start">
+        <Form.Item
+          label="Page Description"
+          name="description"
+          rules={[{ required: true, message: "Missing description" }]}
+        >
+          <TextArea rows={4} />
+        </Form.Item>
+        <Form.Item shouldUpdate>
+          {() =>
+            form.getFieldsValue().description
+              ? form.getFieldsValue().description.length
+              : 0
+          }
+        </Form.Item>
+      </Space>
 
       <h3>Open graph</h3>
       <Form.List name="og_tags">
@@ -123,7 +141,13 @@ export default function AddMeta(props) {
                 >
                   <Input />
                 </Form.Item>
-
+                <Form.Item shouldUpdate>
+                  {() =>
+                    form.getFieldsValue()?.og_tags?.[field.name]?.content
+                      ? form.getFieldsValue().og_tags[field.name].content.length
+                      : 0
+                  }
+                </Form.Item>
                 <MinusCircleOutlined onClick={() => remove(field.name)} />
               </Space>
             ))}
@@ -209,7 +233,14 @@ export default function AddMeta(props) {
                 >
                   <Input />
                 </Form.Item>
-
+                <Form.Item shouldUpdate>
+                  {() =>
+                    form.getFieldsValue()?.meta_tags?.[field.name]?.content
+                      ? form.getFieldsValue().meta_tags[field.name].content
+                          .length
+                      : 0
+                  }
+                </Form.Item>
                 <MinusCircleOutlined onClick={() => remove(field.name)} />
               </Space>
             ))}
