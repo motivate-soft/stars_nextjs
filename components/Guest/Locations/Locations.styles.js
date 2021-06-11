@@ -1,25 +1,27 @@
 import styled from "styled-components";
-import {palette} from "styled-tools";
-
+import { palette } from "styled-tools";
 
 const LocationsWrapper = styled.div`
   h2 {
     text-align: center;
-    color: ${palette('primary', 0)};
+    color: ${palette("primary", 0)};
   }
 
   .locations-block {
     padding: 50px 0;
+
+    .ant-row {
+      margin-bottom: 50px;
+    }
 
     .ant-col {
       display: flex;
       justify-content: center;
     }
 
-    a {
-      .ant-btn {
-        width: 180px !important;
-      }
+    a.ant-btn {
+      width: 180px !important;
+      padding: 0;
     }
 
     img {
@@ -34,7 +36,5 @@ const LocationsWrapper = styled.div`
       margin-bottom: 50px;
     }
   }
-
-
-`
-export default LocationsWrapper
+`;
+export default LocationsWrapper;
