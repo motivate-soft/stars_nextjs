@@ -40,8 +40,7 @@ const Description = (props) => {
         )}
         {sleeps && sleeps !== 0 ? (
           <span>
-            <FaUserFriends />
-            Sleeps {sleeps}
+            <FaUserFriends /> Sleeps {sleeps}
           </span>
         ) : (
           ""

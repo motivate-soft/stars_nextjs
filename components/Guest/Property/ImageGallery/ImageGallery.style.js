@@ -1,15 +1,17 @@
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
+import styled from "styled-components";
+import { themeGet } from "@styled-system/theme-get";
 
 const ImageGalleryWrapper = styled.div`
   .image-gallery-slides {
     border-radius: 3px;
-    box-shadow: 0 2px 25px ${themeGet('boxShadow.1', 'rgba(0, 0, 0, 0.16)')};
+    box-shadow: 0 2px 25px ${themeGet("boxShadow.1", "rgba(0, 0, 0, 0.16)")};
   }
 
   .image-gallery-slide {
     .image-gallery-image {
-      object-fit: cover;
+      object-fit: contain;
+      height: auto;
+      max-height: unset;
     }
   }
 
@@ -19,7 +21,7 @@ const ImageGalleryWrapper = styled.div`
       width: auto;
     }
     &:hover {
-      color: ${themeGet('color.1', '#ffffff')};
+      color: ${themeGet("color.1", "#ffffff")};
     }
   }
 
@@ -30,10 +32,10 @@ const ImageGalleryWrapper = styled.div`
     position: static;
     margin: 30px 0 16px 0;
     background-color: transparent;
-    color: ${themeGet('text.0', '#2C2C2C')};
+    color: ${themeGet("text.0", "#2C2C2C")};
 
     &:after {
-      content: 'photos';
+      content: "photos";
       display: inline-block;
       margin-left: 0.25em;
     }
@@ -61,14 +63,14 @@ const ImageGalleryWrapper = styled.div`
         }
 
         &:before {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
           width: 100%;
           height: 100%;
           top: 0;
           left: 0;
-          background: ${themeGet('color.1', '#ffffff')};
+          background: ${themeGet("color.1", "#ffffff")};
           opacity: 0.7;
           z-index: 1;
           transform: scaleX(1);

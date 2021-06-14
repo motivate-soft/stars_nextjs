@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { withGoogleMap, GoogleMap, Circle } from "react-google-maps";
 import { Element } from "react-scroll";
 
-const defaultZoom = 11.5;
+const defaultZoom = 12.5;
 const defaultCenter = { lat: 37.431489, lng: -122.163719 };
 const circle = {
-  radius: 5000,
+  radius: 2000,
   options: {
     strokeColor: "#0071AA",
   },

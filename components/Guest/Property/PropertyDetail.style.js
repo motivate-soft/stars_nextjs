@@ -42,6 +42,7 @@ export const PropertyDetailWrapper = styled.div`
 
     .property-feature-icons-wrapper {
       font-size: 14px;
+      margin-bottom: 12px;
 
       span {
         margin-right: 16px;
