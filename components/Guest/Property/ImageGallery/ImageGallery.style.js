@@ -10,8 +10,10 @@ const ImageGalleryWrapper = styled.div`
   .image-gallery-slide {
     .image-gallery-image {
       object-fit: contain;
+      width: auto;
       height: auto;
-      max-height: unset;
+      max-width: 100%;
+      max-height: calc(100vh - 200px);
     }
   }
 
