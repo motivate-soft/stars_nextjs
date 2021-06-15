@@ -107,11 +107,23 @@ const PropertyCardWrapper = styled.div`
       justify-content: space-around;
       align-items: center;
 
-      a {
+      .ant-btn-secondary {
         min-width: 120px;
         padding: 0 16px;
         span {
           font-size: 14px;
+        }
+      }
+      @media (max-width: 1399px) {
+        flex-direction: column;
+        .ant-btn-secondary:nth-child(1) {
+          margin-bottom: 16px;
+        }
+      }
+      @media (max-width: 1199px) {
+        flex-direction: row;
+        .ant-btn-secondary:nth-child(1) {
+          margin-bottom: 0;
         }
       }
     }

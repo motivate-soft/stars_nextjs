@@ -140,7 +140,7 @@ function PropertyDetail(props) {
             <h2>Similar Accommodations</h2>
           </Col>
           {property.similar_properties.map((item, index) => (
-            <Col key={index} lg={8} sm={24}>
+            <Col key={index} xl={8} lg={12} sm={24}>
               <PropertyCard
                 key={index}
                 id={item.id}

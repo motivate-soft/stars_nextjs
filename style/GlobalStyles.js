@@ -166,7 +166,7 @@ const GlobalStyle = createGlobalStyle`
             svg {
               path {
                 opacity: 0.8;
-                fill: #ffffff;
+                /* fill: #ffffff; */
                 transition: all 0.3s ease;
               }
             }
@@ -202,6 +202,7 @@ const GlobalStyle = createGlobalStyle`
         .ant-modal-body {
         }
       }
+    }
   }
   
   /*------------------------------------------*/

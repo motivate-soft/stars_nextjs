@@ -157,7 +157,7 @@ function PropertyListing(props) {
                             <hr className="property-category-border" />
                           </Col>
                           {filteredItems.map((item, index) => (
-                            <Col key={index} xl={8} lg={12} sm={24} xs={24}>
+                            <Col key={index} xl={8} lg={12} sm={24}>
                               <PropertyCard
                                 key={index}
                                 id={item.id}
@@ -197,7 +197,7 @@ function PropertyListing(props) {
                       {items
                         .filter((item) => item.category === category.name)
                         .map((item, index) => (
-                          <Col key={index} lg={8} sm={24}>
+                          <Col key={index} xl={8} lg={12} sm={24}>
                             <PropertyCard
                               key={index}
                               id={item.id}
