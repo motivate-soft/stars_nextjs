@@ -126,7 +126,7 @@ const GlobalStyle = createGlobalStyle`
   .ant-modal-wrap {
     &.image_gallery_modal {
       .ant-modal {
-        top: 50px;
+        top: 30px;
 
         .ant-modal-content {
           box-shadow: none;

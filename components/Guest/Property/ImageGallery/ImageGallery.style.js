@@ -4,16 +4,29 @@ import { themeGet } from "@styled-system/theme-get";
 const ImageGalleryWrapper = styled.div`
   .image-gallery-slides {
     border-radius: 3px;
-    box-shadow: 0 2px 25px ${themeGet("boxShadow.1", "rgba(0, 0, 0, 0.16)")};
+    /* box-shadow: 0 2px 25px ${themeGet(
+      "boxShadow.1",
+      "rgba(0, 0, 0, 0.16)"
+    )}; */
   }
 
   .image-gallery-slide {
+    &.center {
+      > div {
+        height: calc(100vh - 300px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
     .image-gallery-image {
       object-fit: contain;
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: calc(100vh - 200px);
+      max-height: calc(100vh - 300px);
+      box-shadow: 0 2px 25px ${themeGet("boxShadow.1", "rgba(0, 0, 0, 0.16)")};
+      border-radius: 8px;
     }
   }
 
@@ -48,7 +61,7 @@ const ImageGalleryWrapper = styled.div`
       padding: 0;
 
       .image-gallery-thumbnail {
-        width: 150px;
+        width: 120px;
         padding: 0;
         margin: 0 20px 0 0;
         border: 0;
