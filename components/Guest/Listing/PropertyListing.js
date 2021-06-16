@@ -163,6 +163,7 @@ function PropertyListing(props) {
                                 id={item.id}
                                 address={item.address}
                                 title={item.name}
+                                category={item.category}
                                 slug={item.slug}
                                 price={item.price}
                                 minPrice={item.min_price}
@@ -203,6 +204,7 @@ function PropertyListing(props) {
                               id={item.id}
                               address={item.address}
                               title={item.name}
+                              category={item.category}
                               slug={item.slug}
                               price={item.price}
                               minPrice={item.min_price}

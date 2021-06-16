@@ -46,6 +46,22 @@ function PropertyCard(props) {
     router.push("/quick-book");
   };
 
+  const renderRoomCategory = () => {
+    let categoryName;
+    console.log("propertycard->renderRoomCategory", category, bedroomCount);
+    if (category === "Private Rooms") categoryName = category;
+    if (category === "Studios") categoryName = category;
+    if (bedroomCount && bedroomCount === 1)
+      categoryName = `${bedroomCount} Bedroom`;
+    if (bedroomCount && bedroomCount > 0)
+      categoryName = `${bedroomCount} Bedrooms`;
+    return (
+      <li>
+        <FaDoorOpen /> {categoryName}
+      </li>
+    );
+  };
+
   return (
     <PropertyCardWrapper>
       <div
@@ -61,21 +77,7 @@ function PropertyCard(props) {
       <div className="property-card-content">
         <div className="features-wrapper">
           <ul>
-            {category === "Private Rooms" ? (
-              <li>
-                <FaDoorOpen /> Private Room
-              </li>
-            ) : category === "Studios" ? (
-              <li>
-                <FaDoorOpen /> Studio
-              </li>
-            ) : bedroomCount && bedroomCount !== 0 ? (
-              <li>
-                <FaDoorOpen /> {bedroomCount} Bedroom
-              </li>
-            ) : (
-              ""
-            )}
+            {renderRoomCategory()}
             {sharedBathroom && sharedBathroom === true ? (
               <li>
                 <FaBath />
