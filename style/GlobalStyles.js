@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
         position: relative;
 
         .reservation_sidebar {
+          position: relative;
           box-shadow: 0 1px 10px rgba(0, 0, 0, 0.16);
 
           .DateInput__small {

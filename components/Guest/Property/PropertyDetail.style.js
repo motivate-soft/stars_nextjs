@@ -10,7 +10,7 @@ const SinglePageWrapper = styled.div`
 `;
 
 export const PropertyDetailWrapper = styled.div`
-  padding: 20px 0 100px;
+  padding: 0 0 100px;
 
   h3,
   h2 {
@@ -102,7 +102,7 @@ export const PropertyDetailWrapper = styled.div`
 
 export const BannerImageWrapper = styled.div`
   position: relative;
-  margin: 120px 0 0;
+  margin: 110px 0 0;
   padding-bottom: 0;
   background-image: ${(props) => props.imageUrl};
   background-color: #f2f2f3;

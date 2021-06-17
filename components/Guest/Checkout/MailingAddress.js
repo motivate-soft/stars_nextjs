@@ -40,6 +40,8 @@ const FormWrapper = styled.div`
     span.ant-select-selection-item {
       height: 48px;
       line-height: 48px;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -158,7 +160,7 @@ function MailingAddressForm(props) {
                   validator: (_, value) =>
                     value
                       ? Promise.resolve()
-                      : Promise.reject(new Error("Should accept agreement")),
+                      : Promise.reject(new Error("Please accept agreement")),
                 },
               ]}
             >

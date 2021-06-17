@@ -34,7 +34,7 @@ export const FieldWrapper = styled.div`
     &.map-marker,
     &.calendar,
     &.user-friends {
-      left: 15px;
+      left: 20px;
       right: auto;
       fill: ${palette("primary", 0)};
     }
@@ -119,6 +119,20 @@ export const FieldWrapper = styled.div`
             }
           }
         }
+
+        .DateRangePickerInput_clearDates {
+          top: 47%;
+          right: 0;
+          @media (max-width: 450px) {
+            right: -20px;
+          }
+        }
+      }
+
+      @media (max-width: 450px) {
+        input {
+          padding: 0;
+        }
       }
 
       .DateRangePicker_picker {
@@ -163,6 +177,10 @@ export const FieldWrapper = styled.div`
 
         &::after {
           display: none;
+        }
+
+        @media (max-width: 450px) {
+          padding: 0 20px;
         }
       }
     }

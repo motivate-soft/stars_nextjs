@@ -10,7 +10,7 @@ const ReservationFormWrapper = styled.form`
 `;
 
 export const FieldWrapper = styled.div`
-  padding-left: 30px;
+  padding-left: 40px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -34,7 +34,7 @@ export const FieldWrapper = styled.div`
     &.map-marker,
     &.calendar,
     &.user-friends {
-      left: 15px;
+      left: 20px;
       right: auto;
       fill: ${palette("primary", 0)};
     }
@@ -118,6 +118,9 @@ export const FieldWrapper = styled.div`
               text-align: right;
             }
           }
+        }
+        .DateRangePickerInput_clearDates {
+          top: 47%;
         }
       }
 

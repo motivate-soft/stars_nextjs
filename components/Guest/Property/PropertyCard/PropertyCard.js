@@ -48,7 +48,6 @@ function PropertyCard(props) {
 
   const renderRoomCategory = () => {
     let categoryName;
-    console.log("propertycard->renderRoomCategory", category, bedroomCount);
     if (category === "Private Rooms") categoryName = category;
     if (category === "Studios") categoryName = category;
     if (bedroomCount && bedroomCount === 1)

@@ -342,6 +342,9 @@ export default function EditProperty(props) {
       ...state,
       galleryImgs: galleryImgs.filter((item) => item.id !== imageId),
     });
+
+    // save updated featured image
+    handleSave();
   }
 
   function handleSortEnd({ oldIndex, newIndex }) {

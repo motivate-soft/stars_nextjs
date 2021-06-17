@@ -126,6 +126,12 @@ const PropertyCardWrapper = styled.div`
           margin-bottom: 0;
         }
       }
+      @media (max-width: 450px) {
+        flex-direction: column;
+        .ant-btn-secondary:nth-child(1) {
+          margin-bottom: 16px;
+        }
+      }
     }
   }
 

@@ -64,7 +64,7 @@ const TopNavWrapper = styled.div`
               font-weight: bold;
               line-height: normal;
               color: ${palette("primary", 0)} !important;
-              position: relative;import { isServer } from '@iso/lib/helpers/isServer';
+              position: relative;
 
               text-transform: uppercase;
               text-decoration: none;
@@ -314,11 +314,6 @@ const TopNav = () => {
 
   function hasPageYOffset() {
     if (typeof window === "undefined") return;
-    console.log(
-      "TopNav:hasPageYOffset",
-      window.pageYOffset,
-      document.documentElement.scrollTop
-    );
     return window.pageYOffset > 0 || document.documentElement.scrollTop > 0;
   }
 

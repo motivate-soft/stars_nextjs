@@ -41,7 +41,6 @@ function BookingCalculationForm({ property, disabled }) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("___BookingCalculationForm: BookingContext___", state);
     if (disabled) {
       setBillState({
         nights: state.nights,
@@ -202,11 +201,6 @@ function BookingCalculationForm({ property, disabled }) {
     let lastDate = moment(checkoutDate).startOf("day");
     do {
       propertyFee += getDayPrice(currDate.clone().toDate());
-      console.log(
-        "currentDate",
-        currDate,
-        getDayPrice(currDate.clone().toDate())
-      );
     } while (currDate.add(1, "days").diff(lastDate) <= 0);
 
     tax = formatToFloat((tax_rate * propertyFee) / 100);
@@ -329,8 +323,7 @@ function BookingCalculationForm({ property, disabled }) {
       {billState && !isCalculating && (
         <BillWrapper>
           <Row>
-            <Col sm={12}>
-              {console.log("___billState", billState)}
+            <Col span={12}>
               <ul>
                 <li>{billState?.nights} nights</li>
                 <li>Cleaning fee</li>
@@ -339,7 +332,7 @@ function BookingCalculationForm({ property, disabled }) {
                 <li>Tax ({property?.tax_rate}%)</li>
               </ul>
             </Col>
-            <Col sm={12}>
+            <Col span={12}>
               <ul className="cost-list">
                 <li>${billState?.propertyFee}</li>
                 <li>${billState?.cleaningFee}</li>
