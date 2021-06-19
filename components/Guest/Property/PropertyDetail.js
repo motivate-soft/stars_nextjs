@@ -114,9 +114,7 @@ function PropertyDetail(props) {
             <Element name="transit" className="transit-block">
               <div id="transit">
                 <h3>Transit</h3>
-                <div
-                  dangerouslySetInnerHTML={{ __html: property.neighbourhood }}
-                />
+                <div dangerouslySetInnerHTML={{ __html: property.transit }} />
               </div>
             </Element>
           </Col>
