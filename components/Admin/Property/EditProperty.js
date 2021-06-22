@@ -193,7 +193,10 @@ export default function EditProperty(props) {
       property_rooms: makeRoomsArray(),
       amenities: state.amenities,
       featured_img: state.featuredImg.id,
-      gallery_imgs: state.galleryImgs.map((image) => image.id),
+      gallery_imgs: state.galleryImgs.map((image) => ({
+        id: image.id,
+        order: image.order,
+      })),
       images: state.images,
     };
     dispatch(propertyActions.updateProperty(property));
