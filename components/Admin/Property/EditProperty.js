@@ -93,6 +93,22 @@ export default function EditProperty(props) {
 
   useEffect(() => {
     if (selectedItem.id === parseInt(propertyId)) {
+      console.log(
+        "EditProperty->selectedItem.id, propertyId",
+        selectedItem.id,
+        propertyId
+      );
+      console.log(
+        "EditProperty->selectedItem.gallery_imgs",
+        selectedItem.gallery_imgs
+      );
+      console.log(
+        "EditProperty->selectedItem.gallery_imgs->sort",
+        selectedItem.gallery_imgs.sort((a, b) => a.order > b.order)
+      );
+      let sortedGalleryItems = selectedItem.gallery_imgs.sort(
+        (a, b) => a.order > b.order
+      );
       setState({
         id: selectedItem.id,
         bookervilleId: selectedItem.bookerville_id,
@@ -127,9 +143,7 @@ export default function EditProperty(props) {
         })),
         amenities: selectedItem.amenities,
         featuredImg: selectedItem.featured_img,
-        galleryImgs: selectedItem?.gallery_imgs.sort(
-          (a, b) => a.order > b.order
-        ),
+        galleryImgs: sortedGalleryItems,
       });
     }
   }, [selectedItem]);
