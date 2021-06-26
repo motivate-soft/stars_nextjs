@@ -102,12 +102,12 @@ export default function EditProperty(props) {
         "EditProperty->selectedItem.gallery_imgs",
         selectedItem.gallery_imgs
       );
+
+      const { gallery_imgs } = selectedItem;
+      gallery_imgs.sort((a, b) => a.order - b.order);
       console.log(
         "EditProperty->selectedItem.gallery_imgs->sort",
-        selectedItem.gallery_imgs.sort((a, b) => a.order > b.order)
-      );
-      let sortedGalleryItems = selectedItem.gallery_imgs.sort(
-        (a, b) => a.order > b.order
+        gallery_imgs
       );
       setState({
         id: selectedItem.id,
@@ -143,7 +143,7 @@ export default function EditProperty(props) {
         })),
         amenities: selectedItem.amenities,
         featuredImg: selectedItem.featured_img,
-        galleryImgs: sortedGalleryItems,
+        galleryImgs: selectedItem.gallery_imgs,
       });
     }
   }, [selectedItem]);
