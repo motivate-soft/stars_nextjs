@@ -35,12 +35,12 @@ function CheckoutPayment(props) {
   const router = useRouter();
 
   const handlePaymentSuccess = (details, data) => {
-    console.log("handlePaymentSuccess", details, data);
+    console.log("CheckoutPayment->handlePaymentSuccess", details, data);
     addPaymentInfo();
   };
 
   const handlePaymentError = (error) => {
-    console.log("handlePaymentError", error);
+    console.log("CheckoutPayment->handlePaymentError", error);
     notification("warning", "Sorry, we couldn't process your payment");
   };
 
@@ -84,7 +84,7 @@ function CheckoutPayment(props) {
       const data = await res.json();
 
       if (res.status === 400) {
-        notification("warning", "Bad request");
+        notification("warning", data.error || "Bad request");
       }
 
       if (res.ok) {
@@ -139,11 +139,7 @@ function CheckoutPayment(props) {
                 <h3>Payment Information</h3>
                 <span>Step 3 of 3</span>
               </div>
-              {state.total}
               {isPaypalButtonLoading && <Loader />}
-              {
-                isPaypalButtonLoading
-              }
 
               <PayPalButton
                 amount={state.total}
@@ -155,7 +151,7 @@ function CheckoutPayment(props) {
                 }}
                 onSuccess={(details, data) => {
                   console.log(
-                    "__TransactionCompletedBy__",
+                    "PayPalButton->TransactionCompletedBy",
                     details,
                     data,
                     details.payer.name.given_name
