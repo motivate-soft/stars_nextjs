@@ -56,8 +56,7 @@ const PropertyListingWrapper = styled.div`
             color: ${palette("primary", 0)} !important;
             font-weight: bold;
             background-color: ${palette("warning", 0)} !important;
-          }import { styled } from 'styled-components';
-
+          }
 
           &::before {
             background: none repeat scroll 0 0 #e8c36a;
@@ -98,6 +97,11 @@ const PropertyListingWrapper = styled.div`
             position: absolute;
             width: 100%;
           }
+        }
+
+        @media (max-width: 992px) {
+          flex-direction: column;
+          row-gap: 20px;
         }
       }
     }

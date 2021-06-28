@@ -146,8 +146,8 @@ export const ComponentWrapper = styled.div`
       height: 60px;
     }
 
-    @media (max-width: 480px) {
-      height: 47px;
+    @media (max-width: 500px) {
+      height: 80px;
     }
 
     .DayPicker__withBorder {
@@ -193,7 +193,7 @@ export const ComponentWrapper = styled.div`
           .DateInput_input {
             font-family: "Raleway", sans-serif;
             padding: 0;
-            font-weight: 400;
+            font-weight: bold;
             color: #2c2c2c;
             background: transparent;
 
@@ -206,6 +206,9 @@ export const ComponentWrapper = styled.div`
               font-weight: bold;
               opacity: 1;
             }
+            @media (max-width: 500px) {
+              text-align: center;
+            }
           }
         }
 
@@ -215,6 +218,19 @@ export const ComponentWrapper = styled.div`
               text-align: right;
             }
           }
+          @media (max-width: 500px) {
+            display: none;
+            & + .DateInput {
+              input {
+                text-align: center;
+              }
+            }
+          }
+        }
+        @media (max-width: 500px) {
+          display: flex;
+          flex-direction: column;
+          row-gap: 12px;
         }
       }
 
@@ -286,9 +302,17 @@ export const ComponentWrapper = styled.div`
           padding: 0 25px 0 30px;
         }
 
-        @media (max-width: 480px) {
-          height: 47px;
+        @media (max-width: 500px) {
+          height: 80px;
           padding: 0 20px 0 25px;
+          display: flex;
+          flex-direction: column;
+          span {
+            justify-content: center;
+          }
+          span:nth-child(2) {
+            display: none;
+          }
         }
 
         &::after {

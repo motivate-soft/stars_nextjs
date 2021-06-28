@@ -21,7 +21,7 @@ export default function PropertyGalleryModal({
     >
       <>
         <PropertyImageGallery
-          images={images.sort((a, b) => a.order > b.order)}
+          images={images.sort((a, b) => a.order - b.order)}
         />
         <Button
           onClick={() => setIsModalShowing(false)}

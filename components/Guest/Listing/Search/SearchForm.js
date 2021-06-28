@@ -149,10 +149,12 @@ const SearchForm = () => {
               view={
                 <Button type="default">
                   <span>
-                    Adults {guest.children > 0 && `: ${guest.children}`}
+                    Adults {guest.children > 0 && `: ${guest.adults}`}
                   </span>
                   <span>-</span>
-                  <span>Children{guest.adults > 0 && `: ${guest.adults}`}</span>
+                  <span>
+                    Children{guest.adults > 0 && `: ${guest.children}`}
+                  </span>
                 </Button>
               }
               popup={
