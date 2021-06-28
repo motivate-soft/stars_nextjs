@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import HomeBanner from "@components/Guest/Home/Search/HomeBanner";
+import HomeBanner from "@components/Guest/Home/HomeBanner";
 import Container from "@iso/ui/UI/Container/Container";
 import Link from "next/link";
 import room1 from "@iso/assets/images/room1.jpg";
@@ -28,7 +28,7 @@ import BrooklineImage from "@iso/assets/images/location_brookline.jpg";
 import CambridgeImage from "@iso/assets/images/location_cambridge.jpg";
 import QuincyImage from "@iso/assets/images/location_quincy.jpg";
 
-import HomeWrapper from "@components/Guest/Home/Home.styles";
+import { HomeWrapper } from "@components/Guest/Home/Home.styles";
 import Box from "@iso/ui/Box/Box";
 import { FaStar } from "react-icons/fa";
 import EditPost from "@components/Common/PostBlock/EditPost";

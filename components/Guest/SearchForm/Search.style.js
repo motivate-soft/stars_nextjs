@@ -2,39 +2,6 @@ import styled from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
 import { palette } from "styled-tools";
 
-export const SearchWrapper = styled.div`
-  margin-top: auto;
-  width: 100%;
-  padding: 28px 30px 30px;
-  border-radius: 6px;
-  background-color: #ffffff;
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
-  bottom: -100px;
-  z-index: 1;
-
-  p {
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.2;
-    margin: 16px 0 0;
-
-    svg {
-      width: 8px;
-      height: 8px;
-      fill: ${palette("error", 0)};
-    }
-  }
-
-  @media (max-width: 991px) {
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
-  }
-
-  @media (max-width: 480px) {
-    width: calc(100% - 30px);
-  }
-`;
 
 export const FormWrapper = styled.div`
   display: flex;

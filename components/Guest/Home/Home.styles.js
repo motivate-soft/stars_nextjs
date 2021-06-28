@@ -4,7 +4,7 @@ import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
 import { palette } from "styled-tools";
 import room3 from "@iso/assets/images/room3.jpg";
 
-const HomeWrapper = styled.div`
+export const HomeWrapper = styled.div`
   a.ant-btn {
     padding: 0;
   }
@@ -512,4 +512,83 @@ const HomeWrapper = styled.div`
   }
 `;
 
-export default HomeWrapper;
+export const BannerWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  max-height: 600px;
+  height: 70vh;
+  position: relative;
+  background: linear-gradient(180deg, #fff, hsla(0, 0%, 100%, 0.3), transparent),
+    url(${bannerBackground1}) no-repeat center center;
+  background-size: cover;
+
+  @media (max-width: 991px) {
+    > div {
+      max-width: 100%;
+    }
+  }
+
+  > div {
+    position: relative;
+    height: 100%;
+  }
+
+  &:after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 60%;
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  width: calc(100% - 60px);
+  padding: 20px 30px 30px;
+  border-radius: 6px;
+  background: hsla(0, 0%, 100%, 0.85);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.16);
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  transform: translateY(58%);
+
+  h2 {
+    color: ${palette("primary", 0)};
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  h6 {
+    font-family: "Raleway", sans-serif;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  @media (max-width: 991px) {
+    // margin-left: auto;
+    // margin-right: auto;
+    // left: 0;
+    // right: 0;
+    width: 500px;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: calc(100% - 30px);
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    h2 {
+      font-size: 28px;
+    }
+  }
+`;
