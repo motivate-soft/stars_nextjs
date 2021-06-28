@@ -141,6 +141,9 @@ function CheckoutPayment(props) {
               </div>
               {state.total}
               {isPaypalButtonLoading && <Loader />}
+              {
+                isPaypalButtonLoading
+              }
 
               <PayPalButton
                 amount={state.total}
