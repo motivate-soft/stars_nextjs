@@ -58,7 +58,8 @@ import {
   IoLogoInstagram,
   IoIosText,
   IoMdText,
-  IoIosHelpCircle
+  IoIosHelpCircle,
+  IoIosBusiness,
 } from "react-icons/io";
 
 import { FaFacebookF } from "react-icons/fa";
@@ -79,6 +80,7 @@ export const SidebarPeopleIcon = IoIosPeople;
 export const SidebarHomeIcon = IoIosHome;
 export const SidebarTextIcon = IoIosText;
 export const SidebarPostIcon = IoMdText;
+export const SidebarBusinessIcon = IoIosBusiness;
 
 export const SidebarEmailIcon = IoMdMail; // Email icon
 export const SidebarChatIcon = IoIosChatbubbles; // Chat icon
@@ -151,4 +153,3 @@ export const EditIcon = IoMdCreate; // Edit icon
 export const MenuIcon = IoMdMenu; // Edit icon
 export const FlameIcon = IoMdFlame; // Flame icon
 export const HelpIcon = IoIosHelpCircle; // Cart icon
-

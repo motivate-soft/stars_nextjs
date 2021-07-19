@@ -1,5 +1,5 @@
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
-import About from "@components/Guest/About/About";
+import About from "@components/Guest/About";
 import CustomHead from "@components/Guest/CustomHead";
 import postApi from "../service/postApi";
 import metaApi from "../service/metaApi";

@@ -35,11 +35,11 @@ import EditPost from "@components/Common/PostBlock/EditPost";
 import GuestReviews from "@components/Guest/Review/GuestReview";
 import PropertyCard from "./../Property/PropertyCard/PropertyCard";
 import { SearchContext } from "@context/SearchProvider";
-import Router from "next/router";
 import propertyApi from "./../../../service/propertyApi";
 import Subscription from "@components/Guest/Subscription";
+import Companies from "../Companies";
 
-function Home({ posts }) {
+function Home({ posts, companies }) {
   const { state, dispatch } = useContext(SearchContext);
   const [properties, setProperties] = useState(null);
 
@@ -341,6 +341,9 @@ function Home({ posts }) {
             </Col>
           </Row>
         </Container>
+      </Box>
+      <Box as="section" className="companies-block">
+        <Companies companies={companies} />
       </Box>
       <Box as="section" className="explore-locations-block">
         <Container>

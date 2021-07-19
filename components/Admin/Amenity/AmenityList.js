@@ -14,7 +14,7 @@ import {
 } from "@iso/components/Tables/HelperCells";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Loader from "@iso/components/utility/loader";
-import CardWrapper from "./AmenityList.styles";
+import { AmenityListWrapper } from "./AmenityList.styles";
 
 import amenityActions from "@redux/amenities/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -101,7 +101,7 @@ export default function AmenityList() {
     <LayoutWrapper>
       <PageHeader>Amenity</PageHeader>
       <Box>
-        <CardWrapper>
+        <AmenityListWrapper>
           <div className="amenityTableBtn">
             <Link href={`amenity?id=1234`}>
               <a>
@@ -114,11 +114,13 @@ export default function AmenityList() {
           {loading && <Loader />}
 
           {items && (
-            <Scrollbars style={{ width: "100%", height: "calc(60vh - 70px)" }}>
+            <Scrollbars
+              style={{ width: "100%", height: "calc(100vh - 400px)" }}
+            >
               <AntReactTable columns={columns} data={items} />
             </Scrollbars>
           )}
-        </CardWrapper>
+        </AmenityListWrapper>
       </Box>
     </LayoutWrapper>
   );

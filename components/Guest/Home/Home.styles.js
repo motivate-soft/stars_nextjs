@@ -347,6 +347,92 @@ export const HomeWrapper = styled.div`
     }
   }
 
+  .companies-block {
+    .logos-carousel {
+      .slick-slider {
+        .slick-list {
+          padding: 50px 0;
+
+          .slick-track {
+            display: flex;
+            align-items: stretch;
+
+            .slick-slide {
+              display: flex;
+              height: auto;
+              margin: 0 12px;
+              justify-content: center;
+
+              & > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                .logo-wrapper {
+                  justify-content: center;
+                  align-items: center;
+                  img {
+                    max-width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .slick-arrow {
+          width: 50px;
+          height: 50px;
+          fill: ${palette("primary", 0)};
+
+          path {
+            fill: ${palette("primary", 0)};
+          }
+
+          &.slick-prev {
+            left: -50px;
+          }
+
+          &.slick-next {
+            right: -50px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      padding: 50px 0;
+      .carousel-container {
+        padding: 0 25px;
+
+        .slick-slider {
+          .slick-list {
+            .slick-slide {
+              .review-card {
+                p {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+
+          .slick-arrow {
+            width: 25px;
+            height: 25px;
+
+            &.slick-prev {
+              left: -25px;
+            }
+
+            &.slick-next {
+              right: -25px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .look-rentals-block {
     padding: 167px 0;
     background-color: #f8f8f8;

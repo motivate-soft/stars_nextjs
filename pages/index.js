@@ -3,14 +3,15 @@ import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import Home from "@components/Guest/Home";
 import postApi from "../service/postApi";
 import metaApi from "../service/metaApi";
+import companyApi from "../service/companyApi";
 
 export default function HomePage(props) {
-  const { posts, meta, currentUrl } = props;
+  const { posts, meta, companies, currentUrl } = props;
   return (
     <>
       <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
-        <Home posts={posts} />
+        <Home posts={posts} companies={companies} />
       </GuestLayout>
     </>
   );
@@ -27,7 +28,7 @@ export async function getServerSideProps(context) {
     pageSlug = array[array.length - 1];
   }
 
-  let posts, meta;
+  let posts, meta, companies;
 
   try {
     posts = await postApi.getAll();
@@ -43,11 +44,19 @@ export async function getServerSideProps(context) {
     meta = [];
   }
 
+  try {
+    companies = await companyApi.getAll();
+  } catch (error) {
+    console.log("fetchCompanyLogos:Error", error);
+    meta = [];
+  }
+
   return {
     props: {
       currentUrl: resolvedUrl,
       posts,
       meta,
+      companies,
     },
   };
 }

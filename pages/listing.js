@@ -1,7 +1,7 @@
 import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import { BACKEND_URL } from "../env-config";
-import PropertyListing from "@components/Guest/Listing/PropertyListing";
+import PropertyListing from "@components/Guest/Listing";
 import qs from "query-string";
 import metaApi from "../service/metaApi";
 

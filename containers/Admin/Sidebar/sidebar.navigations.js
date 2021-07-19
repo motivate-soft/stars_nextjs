@@ -27,7 +27,8 @@ import {
   SidebarBlankIcon,
   SidebarTextIcon,
   SidebarPostIcon,
-  EditIcon
+  SidebarBusinessIcon,
+  EditIcon,
 } from "@iso/config/icon.config";
 
 export default [
@@ -88,6 +89,12 @@ export default [
     path: "/meta",
     label: "sidebar.meta",
     leftIcon: <EditIcon size={19} />,
+  },
+  {
+    key: "company",
+    path: "/company",
+    label: "sidebar.company",
+    leftIcon: <SidebarBusinessIcon size={19} />,
   },
   // {
   //   key: "blank_page",

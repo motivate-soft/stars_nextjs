@@ -95,7 +95,7 @@ export default function TagList() {
           {items && (
             <div className="tagTable">
               <Scrollbars
-                style={{ width: "100%", height: "calc(60vh - 70px)" }}
+                style={{ width: "100%", height: "calc(100vh - 400px)" }}
               >
                 <AntReactTable columns={columns} data={items} />
               </Scrollbars>

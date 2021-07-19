@@ -1,7 +1,7 @@
 import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import { BACKEND_URL } from "../env-config";
-import Medical from "@components/Guest/Medical/Medical";
+import Medical from "@components/Guest/Medical";
 import postApi from "../service/postApi";
 import metaApi from "../service/metaApi";
 

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import clone from "clone";
 import Link from "next/link";
 import Box from "@iso/components/utility/box";
-import HelperText from "@iso/components/utility/helper-text";
 import LayoutWrapper from "@iso/components/utility/layoutWrapper";
 import PageHeader from "@iso/components/utility/pageHeader";
 import Scrollbars from "@iso/components/utility/customScrollBar";
@@ -15,10 +13,10 @@ import {
   TextCell,
 } from "@iso/components/Tables/HelperCells";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import TableWrapper from "@iso/containers/Tables/AntTables/AntTables.styles";
-import { CategoryListWrapper } from "./Category.styles";
 import Loader from "@iso/components/utility/loader";
-import categoryActions from "@redux/categories/actions";
+import { CompanyListWrapper } from "./CompanyList.styles";
+
+import companyActions from "@redux/companies/actions";
 import { useDispatch, useSelector } from "react-redux";
 import AntReactTable from "../Datatable/AntReactTable";
 
@@ -36,40 +34,52 @@ const renderCell = (object, type, key) => {
   }
 };
 
-export default function CategoryList() {
+export default function CompanyList() {
   const dispatch = useDispatch();
-  const { items, loading } = useSelector((state) => state.Categories);
+  const { items, loading } = useSelector((state) => state.Companies);
 
   useEffect(() => {
-    dispatch(categoryActions.getAllCategories());
+    dispatch(companyActions.getAllCompanies());
   }, []);
 
   const columns = [
     {
       Header: "Name",
       accessor: "name",
+      width: 300,
       sortType: "basic",
       Cell: ({ row: { original } }) => (
-        <Link href={`/admin/category?id=${original.id}`}>{original.name}</Link>
+        <Link href={`/admin/company?id=${original.id}`}>{original.name}</Link>
       ),
+    },
+    {
+      Header: "Image",
+      accessor: "image",
+      width: 300,
+      Cell: ({ row: { original } }) =>
+        original?.image &&
+        original.image?.file &&
+        renderCell(original.image, "ImageCell", "file"),
     },
     {
       Header: "Created At",
       accessor: "created_date",
+      width: 200,
       sortType: "basic",
     },
     {
-      Header: "Updated At",
+      Header: "Updated date",
       accessor: "updated_date",
+      width: 200,
       sortType: "basic",
     },
     {
       Header: "Action",
       accessor: "action",
-      minWidth: 200,
+      minWidth: 300,
       Cell: ({ row: { original } }) => (
         <div className="opt-cell">
-          <Link href={`/admin/category?id=${original.id}`}>
+          <Link href={`/admin/company?id=${original.id}`}>
             <EditOutlined />
           </Link>
           <Popconfirm
@@ -83,35 +93,32 @@ export default function CategoryList() {
     },
   ];
 
-  function onDeleteCell(categoryId) {
-    dispatch(categoryActions.deleteCategory(categoryId));
+  function onDeleteCell(companyId) {
+    dispatch(companyActions.deleteCompany(companyId));
   }
 
   return (
     <LayoutWrapper>
-      <PageHeader>Category</PageHeader>
+      <PageHeader>Company</PageHeader>
       <Box>
-        <CategoryListWrapper>
-          <div className="categoryTableBtn">
-            <Link href={`category?id=1234`}>
+        <CompanyListWrapper>
+          <div className="companyTableBtn">
+            <Link href={`company?id=1234`}>
               <a>
-                <Button type="primary" className="mateAddCategoryBtn">
-                  Add Category
-                </Button>
+                <Button type="primary">Add Company</Button>
               </a>
             </Link>
           </div>
           {loading && <Loader />}
+
           {items && (
-            <div className="categoryTable">
-              <Scrollbars
-                style={{ width: "100%", height: "calc(100vh - 400px)" }}
-              >
-                <AntReactTable columns={columns} data={items} />
-              </Scrollbars>
-            </div>
+            <Scrollbars
+              style={{ width: "100%", height: "calc(100vh - 400px)" }}
+            >
+              <AntReactTable columns={columns} data={items} />
+            </Scrollbars>
           )}
-        </CategoryListWrapper>
+        </CompanyListWrapper>
       </Box>
     </LayoutWrapper>
   );

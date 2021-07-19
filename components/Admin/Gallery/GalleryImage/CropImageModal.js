@@ -96,7 +96,7 @@ export default function CropImageModal(props) {
                 <ReactCrop
                   className="d-block mx-auto"
                   src={imagePath}
-                  crossorigin="anonymous"
+                  crossorigin="*"
                   crop={crop}
                   ruleOfThirds
                   onImageLoaded={onImageLoaded}

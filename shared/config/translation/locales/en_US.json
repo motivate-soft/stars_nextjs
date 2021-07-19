@@ -10,6 +10,7 @@
   "sidebar.tag": "Tag",
   "sidebar.blog": "Blog",
   "sidebar.meta": "Meta",
+  "sidebar.company": "Company",
 
   "Component.users.noOption": "No user found",
   "userlist.searchUsers": "Search Users",

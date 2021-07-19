@@ -17,7 +17,7 @@ export default function ComingSoon() {
     disabled: true,
   });
   const options = {
-    endDate: "06/01/2021 10:55 AM",
+    endDate: "08/01/2021 10:55 AM",
     prefix: "until launch of new page!",
   };
   const onChange = (event) => {

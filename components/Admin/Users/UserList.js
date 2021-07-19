@@ -151,7 +151,7 @@ export default function UserList() {
                             ? <Loader/>
                             : <div className="isoUserTable">
                                 <Scrollbars
-                                    style={{width: "100%", height: "calc(60vh - 70px)"}}
+                                    style={{width: "100%", height: "calc(100vh - 400px)"}}
                                 >
                                     <TableWrapper
                                         columns={columns}

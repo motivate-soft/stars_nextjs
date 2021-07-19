@@ -4,7 +4,7 @@ import WithDirection from '@iso/lib/helpers/rtl';
 const WDComponentTitleWrapper = styled.h1`
   font-size: 19px;
   font-weight: 500;
-  color: ${palette('secondary', 2)};
+  color: ${palette('primary', 2)};
   width: 100%;
   margin-right: 17px;
   margin-bottom: 30px;
@@ -21,7 +21,7 @@ const WDComponentTitleWrapper = styled.h1`
     content: '';
     width: 5px;
     height: 40px;
-    background-color: ${palette('secondary', 3)};
+    background-color: ${palette('primary', 3)};
     display: flex;
     margin: ${props =>
       props['data-rtl'] === 'rtl' ? '0 0 0 15px' : '0 15px 0 0'};
@@ -31,7 +31,7 @@ const WDComponentTitleWrapper = styled.h1`
     content: '';
     width: 100%;
     height: 1px;
-    background-color: ${palette('secondary', 3)};
+    background-color: ${palette('primary', 3)};
     display: flex;
     margin: ${props =>
       props['data-rtl'] === 'rtl' ? '0 15px 0 0' : '0 0 0 15px'};

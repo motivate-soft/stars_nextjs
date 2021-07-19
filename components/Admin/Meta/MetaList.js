@@ -103,7 +103,9 @@ export default function MetaList() {
           {loading && <Loader />}
 
           {items && (
-            <Scrollbars style={{ width: "100%", height: "calc(60vh - 70px)" }}>
+            <Scrollbars
+              style={{ width: "100%", height: "calc(100vh - 400px)" }}
+            >
               <AntReactTable columns={columns} data={items} />
             </Scrollbars>
           )}

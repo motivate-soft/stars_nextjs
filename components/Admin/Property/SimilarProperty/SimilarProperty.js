@@ -70,7 +70,7 @@ export default function SimilarProperty(props) {
             ) : (
                 <div className="isoPropertyTable">
                     <Scrollbars
-                        style={{width: "100%", height: "calc(60vh - 70px)"}}
+                        style={{width: "100%", height: "calc(100vh - 400px)"}}
                     >
                         <TableWrapper
                             rowKey="id"

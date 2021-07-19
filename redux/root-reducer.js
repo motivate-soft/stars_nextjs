@@ -13,6 +13,7 @@ import Posts from "@redux/posts/reducer";
 import Blogs from "@redux/blogs/reducer";
 import Tags from "@redux/tags/reducer";
 import Meta from "@redux/meta/reducer";
+import Companies from "@redux/companies/reducer";
 
 export default combineReducers({
   Auth,
@@ -29,4 +30,5 @@ export default combineReducers({
   Blogs,
   Tags,
   Meta,
+  Companies,
 });

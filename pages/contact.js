@@ -1,6 +1,6 @@
 import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
-import Contact from "@components/Guest/Contact/Contact";
+import Contact from "@components/Guest/Contact";
 import postApi from "../service/postApi";
 import metaApi from "../service/metaApi";
 

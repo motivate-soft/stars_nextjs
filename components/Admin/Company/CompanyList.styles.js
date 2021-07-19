@@ -2,32 +2,32 @@ import styled from "styled-components";
 import { palette } from "styled-theme";
 import WithDirection from "@iso/lib/helpers/rtl";
 
-export const BlogListWrapper = styled.div`
+export const CompanyListWrapper = WithDirection(styled.div`
   width: auto;
   overflow: inherit;
   position: relative;
 
-  .blogTableBtn {
+  .companyTableBtn {
     display: flex;
     margin-bottom: 20px;
     a {
       margin-left: auto;
     }
   }
-`;
+`);
 
-export const SingeBlogWrapper = styled.div`
+export const SingeCompanyWrapper = WithDirection(styled.div`
   margin: 50px auto;
   padding: 20px;
   background: #fff;
+
   .card-title-wrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
-  .cover-image{
-    max-width: 300px;
-  }
+
   button {
     margin-right: 20px;
   }
-`;
+`);

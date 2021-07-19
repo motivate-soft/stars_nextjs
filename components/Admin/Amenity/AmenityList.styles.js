@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { palette } from "styled-theme";
 import WithDirection from "@iso/lib/helpers/rtl";
 
-const CardWrapper = styled.div`
+export const AmenityListWrapper = WithDirection(styled.div`
   width: auto;
   overflow: inherit;
   position: relative;
@@ -14,9 +14,9 @@ const CardWrapper = styled.div`
       margin-left: auto;
     }
   }
-`;
+`);
 
-export const SingeAmenityWrapper = styled.div`
+export const SingeAmenityWrapper = WithDirection(styled.div`
   margin: 50px auto;
   padding: 20px;
   background: #fff;
@@ -30,6 +30,4 @@ export const SingeAmenityWrapper = styled.div`
   button {
     margin-right: 20px;
   }
-`;
-
-export default WithDirection(CardWrapper);
+`);

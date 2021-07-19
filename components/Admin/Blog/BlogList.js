@@ -100,7 +100,7 @@ export default function BlogList() {
           <div className="blogTableBtn">
             <Link href={`blog?id=new`}>
               <a>
-                <Button type="primary" className="mateAddBlogBtn">
+                <Button type="primary">
                   Add Blog
                 </Button>
               </a>
@@ -110,7 +110,7 @@ export default function BlogList() {
           {items && (
             <div className="blogTable">
               <Scrollbars
-                style={{ width: "100%", height: "calc(60vh - 70px)" }}
+                style={{ width: "100%", height: "calc(100vh - 400px)" }}
               >
                 <AntReactTable columns={columns} data={items} />
               </Scrollbars>
