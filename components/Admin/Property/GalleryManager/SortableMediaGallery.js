@@ -15,7 +15,7 @@ export default class SortableMediaGallery extends React.Component {
 
     const SortableItem = SortableElement(({ item }) => {
       return (
-        <Col lg={4} sm={6}>
+        <Col xl={4} lg={6} sm={12}>
           <GalleryMedia
             propertyId={propertyId}
             image={item}

@@ -57,9 +57,7 @@ export default function CompanyList() {
       accessor: "image",
       width: 300,
       Cell: ({ row: { original } }) =>
-        original?.image &&
-        original.image?.file &&
-        renderCell(original.image, "ImageCell", "file"),
+        original?.image && renderCell(original, "ImageCell", "image"),
     },
     {
       Header: "Created At",

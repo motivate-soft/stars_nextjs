@@ -50,7 +50,7 @@ export default function Companies({ companies }) {
         <Slider {...settings}>
           {companies.map((company, index) => (
             <div key={index} className="logo-wrapper">
-              <img src={company.image.file} alt={company.name} />
+              <img src={company.image} alt={company.name} />
             </div>
           ))}
         </Slider>

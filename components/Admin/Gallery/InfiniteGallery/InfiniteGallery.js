@@ -133,7 +133,7 @@ export default function InfiniteGallery(props) {
                 // .filter((item) => item.id !== selectedItem.id)
                 .map((item, index) => {
                   return (
-                    <Col key={index} lg={4} sm={6}>
+                    <Col key={index} xl={4} lg={6} sm={12}>
                       <GalleryMedia
                         showSelectButton
                         selected={item.id === selectedItem?.id}

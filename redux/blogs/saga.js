@@ -92,7 +92,7 @@ export function* deleteBlog() {
   yield takeEvery(actions.DELETE_BLOG_REQUEST, function* (payload) {
     try {
       yield call(blogApi.delete, payload.blogId);
-      notification("warning", "Blog has been deleted successfully");
+      notification("info", "Blog has been deleted successfully");
       Router.push("/admin/blog");
 
       yield put({

@@ -101,6 +101,7 @@ const blogApi = {
       },
     })
       .then((res) => {
+        console.log("blogApi->delete->res", res);
         if (res.ok) {
           return null;
         }

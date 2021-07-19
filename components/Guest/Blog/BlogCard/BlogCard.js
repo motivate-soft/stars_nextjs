@@ -65,9 +65,11 @@ function BlogCard(props) {
               href={`/blog/${post.slug}`}
               className="btn btn-secondary btn-sm"
             >
-              <Button type="secondary" size="large">
-                Read More
-              </Button>
+              <a>
+                <Button type="secondary" size="large">
+                  Read More
+                </Button>
+              </a>
             </Link>
           </div>
         </div>
