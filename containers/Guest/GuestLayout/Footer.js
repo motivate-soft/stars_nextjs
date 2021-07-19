@@ -6,7 +6,7 @@ import SocialLinks from "@components/Common/SocialLinks";
 import { palette } from "styled-tools";
 import styled from "styled-components";
 import LogoNext from "@iso/ui/Logo/LogoNextJs";
-import logo from "@iso/assets/images/logo-horizontal.png";
+import logo from "@assets/images/logo-horizontal.png";
 
 const FooterWrapper = styled.div`
   padding: 105px 24px 93px;

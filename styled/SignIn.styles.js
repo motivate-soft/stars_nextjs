@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { palette } from 'styled-theme';
 import WithDirection from '@iso/lib/helpers/rtl';
 
-import bgImage from '@iso/assets/images/background.jpg';
+import bgImage from '@assets/images/background.jpg';
 
 const SignInStyleWrapper = styled.div`
   width: 100%;

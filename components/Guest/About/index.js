@@ -8,7 +8,7 @@ import ContactSocialLinks from "@components/Common/ContactSocialLinks";
 import AboutWrapper from "@components/Guest/About/About.styles";
 import EditPost from "@components/Common/PostBlock/EditPost";
 import Link from "next/link";
-import BostonImage from "@iso/assets/images/locations-boston.jpg";
+import BostonImage from "@assets/images/locations-boston.jpg";
 
 function About(props) {
   const { posts } = props;

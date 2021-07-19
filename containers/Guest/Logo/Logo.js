@@ -1,6 +1,6 @@
 import React from 'react'
-import logoDefault from '@iso/assets/images/logo-horizontal.png';
-import logoWhite from '@iso/assets/images/logo-white.png';
+import logoDefault from '@assets/images/logo-horizontal.png';
+import logoWhite from '@assets/images/logo-white.png';
 import PropTypes from 'prop-types';
 import LogoNext from "@iso/ui/Logo/LogoNextJs";
 

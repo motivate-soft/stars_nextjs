@@ -4,10 +4,10 @@ import LocationsWrapper from "@components/Guest/Locations/Locations.styles";
 import { Col, Row } from "antd";
 import { Element, Link } from "react-scroll";
 
-import imgBoston from "@iso/assets/images/locations-boston.jpg";
-import imgBrookline from "@iso/assets/images/locations-brookline.jpg";
-import imgCambridge from "@iso/assets/images/locations-cambridge.jpg";
-import imgQuincy from "@iso/assets/images/locations-quincy.jpg";
+import imgBoston from "@assets/images/locations-boston.jpg";
+import imgBrookline from "@assets/images/locations-brookline.jpg";
+import imgCambridge from "@assets/images/locations-cambridge.jpg";
+import imgQuincy from "@assets/images/locations-quincy.jpg";
 import EditPost from "@components/Common/PostBlock/EditPost";
 import Container from "@iso/ui/UI/Container/Container";
 

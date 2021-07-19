@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Col, Form, Input, Row} from "antd";
 import styled from "styled-components";
-import subscriptionBackImage from '@iso/assets/images/subscribe-bg.jpg';
+import subscriptionBackImage from '@assets/images/subscribe-bg.jpg';
 import Container from "@iso/ui/UI/Container/Container";
 import {palette} from "styled-tools";
 

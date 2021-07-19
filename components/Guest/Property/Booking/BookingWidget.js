@@ -3,7 +3,7 @@ import BookingCalculationForm from "./BookingCalculationForm";
 import Card from "@iso/ui/UI/Card/Card";
 import { Button, Col, Row } from "antd";
 import PropertyGalleryModal from "@components/Guest/Property/ImageGallery/ImageGalleryModal";
-import tourIcon from "@iso/assets/images/icon/icons_360.svg";
+import tourIcon from "@assets/icons/icons_360.svg";
 import { BookingContext } from "@context/BookingProvider";
 import { useRouter } from "next/router";
 import { BACKEND_URL } from "../../../../env-config";

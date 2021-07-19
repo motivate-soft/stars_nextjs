@@ -126,8 +126,8 @@
   "scripts": {
     "dev": "next -p 3030",
     "start": "next start -p 3000",
-    "gcp-build": "rm -rf ./build && next build",
-    "build": "rm -rf ./build && next build",
+    "build": "rm -rf ./build ./public/assets && next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -138,7 +138,8 @@
     "nodemon": "^2.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "next-sitemap": "^1.6.140"
   },
   "browserslist": [
     "> 1%",

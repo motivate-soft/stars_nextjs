@@ -43,7 +43,6 @@ function PrevArrow(props) {
 }
 
 export default function Companies({ companies }) {
-  console.log("Companies", companies);
   return (
     <Container>
       <div className="logos-carousel">

@@ -1,6 +1,9 @@
 const prod = process.env.NODE_ENV === "production";
 
 module.exports = {
+  SITE_URL: prod
+    ? "https://short-term-apartments-boston.com"
+    : "http://localhost:8000",
   BACKEND_URL: prod
     ? "https://short-term-apartments-boston.com"
     : "http://localhost:8000",

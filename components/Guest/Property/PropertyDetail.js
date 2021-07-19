@@ -5,7 +5,7 @@ import styled from "styled-components";
 import isEmpty from "lodash/isEmpty";
 import Sticky from "react-stickynode";
 
-import tourIcon from "@iso/assets/images/icon/360-degrees-2.svg";
+import tourIcon from "@assets/icons/360-degrees-2.svg";
 import TourModal from "@components/Guest/Property/TourModal/TourModal";
 import PropertyGalleryModal from "@components/Guest/Property/ImageGallery/ImageGalleryModal";
 import TopBar from "@components/Guest/Property/TopBar/TopBar";

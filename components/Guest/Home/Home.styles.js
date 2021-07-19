@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
-import bannerBackground1 from "@iso/assets/images/couch-background.jpg";
+import bannerBackground1 from "@assets/images/couch-background.jpg";
 import { palette } from "styled-tools";
-import room3 from "@iso/assets/images/room3.jpg";
+import room3 from "@assets/images/room3.jpg";
 
 export const HomeWrapper = styled.div`
   a.ant-btn {

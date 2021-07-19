@@ -3,14 +3,14 @@ import Box from "@iso/ui/Box/Box";
 import { Button, Col, Row } from "antd";
 import Link from "next/link";
 
-import MedicalImage from "@iso/assets/images/medical.jpg";
-import CorporateImage from "@iso/assets/images/corporate.jpg";
-import iconHospital from "@iso/assets/images/icon/icon_hospital.png";
-import iconKit from "@iso/assets/images/icon/icon_kit.png";
-import iconHand from "@iso/assets/images/icon/icon_hand.png";
-import iconCalendar from "@iso/assets/images/icon/icon_calendar.png";
-import iconWorkspace from "@iso/assets/images/icon/icon_workspace.png";
-import iconService from "@iso/assets/images/icon/icon_service.png";
+import MedicalImage from "@assets/images/medical.jpg";
+import CorporateImage from "@assets/images/corporate.jpg";
+import iconHospital from "@assets/icons/icon_hospital.png";
+import iconKit from "@assets/icons/icon_kit.png";
+import iconHand from "@assets/icons/icon_hand.png";
+import iconCalendar from "@assets/icons/icon_calendar.png";
+import iconWorkspace from "@assets/icons/icon_workspace.png";
+import iconService from "@assets/icons/icon_service.png";
 
 import EditPost from "@components/Common/PostBlock/EditPost";
 import Container from "@iso/ui/UI/Container/Container";

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import moment from "moment";
 import Link from "next/link";
-import defaultFeatured from "@iso/assets/images/post-featured.jpg";
+import defaultFeatured from "@assets/images/post-featured.jpg";
 
 export default function BlogPost(props) {
   const { layout, blog } = props;

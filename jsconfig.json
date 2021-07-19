@@ -7,6 +7,7 @@
       "@redux/*": ["redux/*"],
       "@context/*": ["context/*"],
       "@styled/*": ["styled/*"],
+      "@assets/*": ["assets/*"],
       "@iso/assets": ["shared/assets"],
       "@iso/assets/*": ["shared/assets/*"],
       "@iso/config": ["shared/config"],

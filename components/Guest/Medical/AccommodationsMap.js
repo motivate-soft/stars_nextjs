@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import homeIcon from '@iso/assets/images/icon/icon_home.svg';
+import homeIcon from '@assets/icons/icon_home.svg';
 
 const defaultZoom = 13;
 const defaultCenter = { lat: 42.3454769, lng: -71.1078781 };
