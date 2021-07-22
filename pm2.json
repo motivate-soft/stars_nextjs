@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "starsofboston-nextjs",
+      "script": "npm",
+      "args": "start",
+      "error_file": "prod.log",
+      "out_file": "prod.log",
+      "merge_logs": true,
+      "env": {
+        "PORT": "3000",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
