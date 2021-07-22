@@ -17,6 +17,6 @@ module.exports = {
         allow: ["/admin"],
       },
     ],
-    additionalSitemaps: ["https://example.com/server-sitemap.xml"],
+    additionalSitemaps: [`${SITE_URL}/server-sitemap.xml`],
   },
 };

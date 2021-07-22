@@ -1,5 +1,4 @@
 import { getServerSideSitemap } from "next-sitemap";
-import { GetServerSideProps } from "next";
 import { SITE_URL, BACKEND_URL } from "env-config";
 
 export const getServerSideProps = async (ctx) => {

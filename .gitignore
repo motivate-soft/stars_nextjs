@@ -1,15 +1,15 @@
 # npm
 node_modules
-# next.js build files
 # environment variables
-.env
-.env.*
-!.env.example
 
+# editor config
 .idea
 .vscode
 
+# next.js build files
 build
 public/assets
 public/robots.txt
 public/sitemap.xml
+
+*.log
