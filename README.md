@@ -18,7 +18,7 @@ npm start
 Nextjs app starts on [localhost:8080](http://localhost:8080)
 
 ## Restart EC2 pm2 service
-connect to server with putty
+connect to server with putty or ssh client
 
 ```
 cd /var/starsofboston/stars_nextjs
