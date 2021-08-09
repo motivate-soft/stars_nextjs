@@ -4,7 +4,7 @@ console.log("env-config-->node_env", process.env.NODE_ENV);
 
 module.exports = {
   SITE_URL: "www.starsofboston.com",
-  BACKEND_URL: prod ? "http://www.starsofboston.com" : "http://localhost:8000",
+  BACKEND_URL: prod ? "https://www.starsofboston.com" : "http://localhost:8000",
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
   GA_ID: "UA-129107246-1",
