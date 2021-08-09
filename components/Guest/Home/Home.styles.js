@@ -348,6 +348,7 @@ export const HomeWrapper = styled.div`
   }
 
   .companies-block {
+    padding-top: 50px;
     h2 {
       text-align: center;
       color: ${palette("primary", 0)};
@@ -371,12 +372,15 @@ export const HomeWrapper = styled.div`
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 100%;
                 height: 100%;
                 .logo-wrapper {
+                  display: flex !important;
                   justify-content: center;
                   align-items: center;
                   img {
-                    max-width: 100%;
+                    max-width: 200px;
+                    width: 100%;
                   }
                 }
               }

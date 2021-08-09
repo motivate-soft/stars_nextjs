@@ -5,7 +5,7 @@ import { FaChevronRight } from "react-icons/fa";
 import Slider from "react-slick";
 import Container from "@iso/ui/UI/Container/Container";
 
-const settings = {
+let settings = {
   dots: false,
   arrows: true,
   nextArrow: <NextArrow />,
@@ -26,7 +26,7 @@ const settings = {
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
       },
     },
   ],
@@ -43,6 +43,9 @@ function PrevArrow(props) {
 }
 
 export default function Companies({ companies }) {
+  if (companies.length < 5) {
+    settings.slidesToShow = companies.length;
+  }
   return (
     <Container>
       <h2>Certifications</h2>
