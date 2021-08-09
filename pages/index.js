@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
     companies = await companyApi.getAll();
   } catch (error) {
     console.log("fetchCompanyLogos:Error", error);
-    meta = [];
+    companies = [];
   }
 
   return {

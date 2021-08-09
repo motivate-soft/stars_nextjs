@@ -348,6 +348,10 @@ export const HomeWrapper = styled.div`
   }
 
   .companies-block {
+    h2 {
+      text-align: center;
+      color: ${palette("primary", 0)};
+    }
     .logos-carousel {
       .slick-slider {
         .slick-list {

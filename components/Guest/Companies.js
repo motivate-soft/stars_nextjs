@@ -45,6 +45,7 @@ function PrevArrow(props) {
 export default function Companies({ companies }) {
   return (
     <Container>
+      <h2>Certifications</h2>
       <div className="logos-carousel">
         <Slider {...settings}>
           {companies.map((company, index) => (
