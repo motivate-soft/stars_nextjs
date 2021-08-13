@@ -249,7 +249,7 @@ export const HomeWrapper = styled.div`
 
   .stay-boston-block {
     padding: 77px 24px;
-    background-color: #f8f8f8;
+    // background-color: #f8f8f8;
 
     h2 {
       margin: 0 auto 25px;
@@ -348,8 +348,10 @@ export const HomeWrapper = styled.div`
   }
 
   .companies-block {
+    background-color: #f8f8f8;
     padding-top: 50px;
     h2 {
+      font-size: 36px;
       text-align: center;
       color: ${palette("primary", 0)};
     }
@@ -379,7 +381,7 @@ export const HomeWrapper = styled.div`
                   justify-content: center;
                   align-items: center;
                   img {
-                    max-width: 200px;
+                    max-width: 250px;
                     width: 100%;
                   }
                 }
