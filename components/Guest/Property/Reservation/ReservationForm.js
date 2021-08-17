@@ -40,6 +40,7 @@ function ReservationForm(props) {
       [type]: parseInt(formState[type]) + 1,
     });
   };
+
   const handleDecrement = (type) => {
     if (formState[type] <= 0) {
       return false;
@@ -49,6 +50,7 @@ function ReservationForm(props) {
       [type]: parseInt(formState[type]) - 1,
     });
   };
+
   const handleIncDecOnChnage = (e, type) => {
     let currentValue = e.target.value;
     setFormState({
@@ -56,7 +58,14 @@ function ReservationForm(props) {
       [type]: parseInt(currentValue),
     });
   };
+
   const updateSearchDataFunc = (value) => {
+    console.log("updateSearchDataFunc :>> ", value);
+    // check if selected date range contains any booked dates
+    if (checkForBlockedDates(value.setStartDate, value.setEndDate)) {
+      notification("warning", "selected dates includes booked dates");
+      return;
+    }
     setFormState({
       ...formState,
       checkinDate: value.setStartDate,
@@ -64,13 +73,16 @@ function ReservationForm(props) {
     });
   };
 
-  const isSameDay = (a, b) => {
-    if (!moment.isMoment(a) || !moment.isMoment(b)) return false;
-    // Compare least significant, most likely to change units first
-    // Moment's isSame clones moment inputs and is a tad slow
-    return (
-      a.date() === b.date() && a.month() === b.month() && a.year() === b.year()
-    );
+  const checkForBlockedDates = (start, end) => {
+    const diff = moment(end).diff(start, "days") + 1;
+
+    for (let i = 0; i < diff; i++) {
+      if (isDayBooked(moment(start).add(i, "d"))) {
+        return true;
+      }
+    }
+
+    return false;
   };
 
   const isDayBooked = (day) => {
@@ -86,9 +98,11 @@ function ReservationForm(props) {
   };
 
   const isDayBlocked = (day) => {
+    // disable past dates
     if (moment(day) < moment().startOf("day")) {
       return true;
     }
+    // disable booked dates
     if (isDayBooked(day) === true) {
       return true;
     }
@@ -191,14 +205,6 @@ function ReservationForm(props) {
           isDayBlocked={(day) => isDayBlocked(day)}
           renderDayContents={(day) => renderDayContents(day)}
           displayFormat={"YYYY/MM/DD"}
-          // checkinDateId="checkin-Id"
-          // checkoutDateId="checkout-id"
-          // checkinDatePlaceholderText="Check In"
-          // checkoutDatePlaceholderText="Check Out"
-          // updateSearchData={(value) => updateSearchDataFunc(value)}
-          // renderDayContents={(day) => renderDayContents(day)}
-          // numberOfMonths={1}
-          // small
         />
       </FieldWrapper>
       <FieldWrapper>
