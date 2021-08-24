@@ -27,12 +27,12 @@ function ContactForm() {
       const res = await sendContactEmail(values);
       console.log("ContactForm:res", res);
       if (res.status === "ok") {
-        notification("success", "Email has been submitted successfully!");
+        notification("success", "Email submitted successfully!");
         return;
       }
       notification(
         "warning",
-        "Sorry, there was an error while submitting your email"
+        "Failed to submit email"
       );
     } catch (error) {
       console.log("ContactForm:error", error);
