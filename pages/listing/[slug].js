@@ -3,6 +3,7 @@ import { BACKEND_URL } from "../../env-config";
 import GuestLayout from "@containers/Guest/GuestLayout/GuestLayout";
 import PropertyDetail from "@components/Guest/Property/PropertyDetail";
 import PropertyPageHead from "./../../components/Guest/PropertyPageHead";
+import metaApi from "../../service/metaApi";
 
 export default function PropertyDetailPage(props) {
   const { property, meta, currentUrl } = props;

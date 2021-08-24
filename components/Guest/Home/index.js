@@ -398,7 +398,7 @@ function Home({ posts, companies }) {
       </Box>
       <Box as="section" className="look-rentals-block">
         <Container>
-          <div class="title-wrapper">
+          <div className="title-wrapper">
             <div>
               <p>FIND YOUR IDEAL STAY</p>
               <h2>Take a look at our rentals</h2>
