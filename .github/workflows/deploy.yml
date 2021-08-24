@@ -5,30 +5,20 @@ on:
     branches:
       - master
 
-  pull_request:
-    branches:
-      - master
-
-  repository_dispatch:
-    types: [production-deploy]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 200
+
     steps:
-      - uses: actions/checkout@v2
-      - name: SSH and deploy to Starsofboston Frontend
-        uses: appleboy/ssh-action@master
-        timeout-minutes: 60
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          command_timeout: 60m
-          script: |
-            cd /var/starsofboston/stars_nextjs
+    - name: SSH and deploy to Fxdesk Backend
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+            cd /var/www/stars_nextjs
             sudo git pull origin master
             sudo npm install --legacy-peer-deps
             sudo npm run build
