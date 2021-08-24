@@ -1,7 +1,9 @@
 # npm
 node_modules
 # environment variables
+.env
 
+package-lock.json
 # editor config
 .idea
 .vscode
