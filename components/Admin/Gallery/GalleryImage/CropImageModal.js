@@ -110,7 +110,7 @@ export default function CropImageModal(props) {
                 <img
                   alt="Crop"
                   style={{ width: "100%" }}
-                  crossOrigin="*"
+                  crossorigin="*"
                   src={croppedImage}
                 />
               )}
