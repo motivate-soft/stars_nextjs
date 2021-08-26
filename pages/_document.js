@@ -33,24 +33,25 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta
+            name="facebook-domain-verification"
+            content="adfyctvimvpf4rq5mlpfbkx6fku50b"
+          />
           <link
             rel="icon"
             href="/static/image/favicon.png"
             type="image/png"
             sizes="16x16"
           />
-
           <link
             href="https://fonts.googleapis.com/css?family=PT+Serif:wght@400;700&display=swap"
             rel="stylesheet"
           />
-
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
-
           <script
             src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}
           ></script>
