@@ -29,14 +29,16 @@ const nextConfig = {
 //   require.extensions['.css'] = file => {};
 // }
 
-const webpackConfig = withTM(
-  withFonts(
-    withSass(
-      withCSS({
-        webpack: (
-          config,
-          { buildId, dev, isServer, defaultLoaders, webpack }
-        ) => {
+module.exports = withPlugins(
+  [
+    withTM,
+    // withOptimizedImages,
+    withFonts,
+    withSass,
+    [
+      withCSS,
+      {
+        webpack: (config) => {
           config.node = {
             net: "empty",
             tls: "empty",
@@ -51,64 +53,83 @@ const webpackConfig = withTM(
             },
           });
 
-          const {
-            resolve: { alias },
-          } = config;
-          config.resolve.alias = {
-            ...alias,
-            "@components": path.join(__dirname, "components"),
-            "@containers": path.join(__dirname, "containers"),
-            "@redux": path.join(__dirname, "redux"),
-            "@context": path.join(__dirname, "context"),
-            "@styled": path.join(__dirname, "styled"),
-            "@assets": path.join(__dirname, "assets"),
-            "@iso/assets": path.join(__dirname, "shared/assets"),
-            "@iso/redux": path.join(__dirname, "shared/redux"),
-            "@iso/config": path.join(__dirname, "shared/config"),
-            "@iso/components": path.join(__dirname, "shared/components"),
-            "@iso/containers": path.join(__dirname, "shared/containers"),
-            "@iso/lib": path.join(__dirname, "shared/library"),
-            "@iso/ui": path.join(__dirname, "shared/UI"),
-          };
-
           return config;
         },
-      })
-    )
-  )
+      },
+    ],
+    [
+      withBundleAnalyzer,
+      {
+        analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
+        analyzeBrowser: ["browser", "both"].includes(
+          process.env.BUNDLE_ANALYZE
+        ),
+        bundleAnalyzerConfig: {
+          server: {
+            analyzerMode: "static",
+            reportFilename: "../bundles/server.html",
+          },
+          browser: {
+            analyzerMode: "static",
+            reportFilename: "../bundles/client.html",
+          },
+        },
+      },
+    ],
+  ],
+  nextConfig
 );
 
-module.exports = {
-  ...webpackConfig,
-  distDir: "build",
-};
+// const webpackConfig = withTM(
+//   withFonts(
+//     withSass(
+//       withCSS({
+//         webpack: (
+//           config,
+//           { buildId, dev, isServer, defaultLoaders, webpack }
+//         ) => {
+//           config.node = {
+//             net: "empty",
+//             tls: "empty",
+//           };
 
-// module.exports = withPlugins(
-//     [
-//         withTM,
-//         // withOptimizedImages,
-//         withFonts,
-//         withSass,
-//         withCSS,
-//         [
-//             withBundleAnalyzer,
-//             {
-//                 analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-//                 analyzeBrowser: ['browser', 'both'].includes(
-//                     process.env.BUNDLE_ANALYZE
-//                 ),
-//                 bundleAnalyzerConfig: {
-//                     server: {
-//                         analyzerMode: 'static',
-//                         reportFilename: '../bundles/server.html',
-//                     },
-//                     browser: {
-//                         analyzerMode: 'static',
-//                         reportFilename: '../bundles/client.html',
-//                     },
-//                 },
+//           config.module.rules.push({
+//             test: /\.(png|jpe?g|gif|svg|eot|woff|woff2|ttf)$/i,
+//             loader: "file-loader",
+//             options: {
+//               outputPath: "../public/assets/", // if you don't use ../ it will put it inside ".next" folder by default
+//               publicPath: "/assets/",
 //             },
-//         ],
-//     ],
-//     nextConfig
+//           });
+
+//           const {
+//             resolve: { alias },
+//           } = config;
+//           config.resolve.alias = {
+//             ...alias,
+//             "@components": path.join(__dirname, "components"),
+//             "@containers": path.join(__dirname, "containers"),
+//             "@redux": path.join(__dirname, "redux"),
+//             "@context": path.join(__dirname, "context"),
+//             "@styled": path.join(__dirname, "styled"),
+//             "@assets": path.join(__dirname, "assets"),
+//             "@iso/assets": path.join(__dirname, "shared/assets"),
+//             "@iso/redux": path.join(__dirname, "shared/redux"),
+//             "@iso/config": path.join(__dirname, "shared/config"),
+//             "@iso/components": path.join(__dirname, "shared/components"),
+//             "@iso/containers": path.join(__dirname, "shared/containers"),
+//             "@iso/lib": path.join(__dirname, "shared/library"),
+//             "@iso/ui": path.join(__dirname, "shared/UI"),
+//           };
+
+//           return config;
+//         },
+//       })
+//     )
+//   )
 // );
+
+// module.exports = {
+//   ...webpackConfig,
+//   distDir: "build",
+// };
