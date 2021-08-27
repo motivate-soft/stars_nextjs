@@ -91,7 +91,7 @@ function ReservationForm(props) {
         // Checkin 3:00 PM Checkout 9:00AM
         // guest can checkin the day former guest checks out
 
-        day.isSameOrAfter(range.arrival_date, "day") &&
+        day.isAfter(range.arrival_date, "day") &&
         day.isBefore(range.departure_date, "day")
       ) {
         return true;
