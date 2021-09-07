@@ -5,7 +5,7 @@ module.exports = {
   outDir: "public",
   siteUrl: SITE_URL || "https://starsofboston.com",
   generateRobotsTxt: true,
-  exclude: ["/server-sitemap.xml"], // <= exclude here
+  exclude: ["admin", "/admin/*", "/server-sitemap.xml"], // <= exclude here
   robotsTxtOptions: {
     policies: [
       {
