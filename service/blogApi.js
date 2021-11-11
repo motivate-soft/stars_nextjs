@@ -7,7 +7,7 @@ const blogUrl = `${BACKEND_URL}/api/blog/post`;
 
 const blogApi = {
   getListing: async (query) =>
-    await fetch(`${blogUrl}/listing?${qs.stringify(query)}`, {
+    fetch(`${blogUrl}/listing?${qs.stringify(query)}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -22,7 +22,7 @@ const blogApi = {
       })
       .catch(handleError),
   getAll: async () =>
-    await fetch(`${blogUrl}/`, {
+    fetch(`${blogUrl}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -39,7 +39,7 @@ const blogApi = {
       .catch(handleError),
 
   getOne: async (blogId) =>
-    await fetch(`${blogUrl}/${blogId}`, {
+    fetch(`${blogUrl}/${blogId}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -56,7 +56,7 @@ const blogApi = {
       .catch(handleError),
 
   add: async (blog) =>
-    await fetch(`${blogUrl}/`, {
+    fetch(`${blogUrl}/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -74,7 +74,7 @@ const blogApi = {
       .catch(handleError),
 
   update: async (blog) =>
-    await fetch(`${blogUrl}/${blog.id}`, {
+    fetch(`${blogUrl}/${blog.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -92,7 +92,7 @@ const blogApi = {
       .catch(handleError),
 
   delete: async (blogId) =>
-    await fetch(`${blogUrl}/${blogId}`, {
+    fetch(`${blogUrl}/${blogId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

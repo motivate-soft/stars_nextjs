@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const companyApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/company/`, {
+    fetch(`${BACKEND_URL}/api/company/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -20,7 +20,7 @@ const companyApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/company/${id}/`, {
+    fetch(`${BACKEND_URL}/api/company/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -37,7 +37,7 @@ const companyApi = {
       .catch(handleError),
 
   add: async (company) =>
-    await fetch(`${BACKEND_URL}/api/company/`, {
+    fetch(`${BACKEND_URL}/api/company/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -55,7 +55,7 @@ const companyApi = {
       .catch(handleError),
 
   update: async (company) =>
-    await fetch(`${BACKEND_URL}/api/company/${company.id}/`, {
+    fetch(`${BACKEND_URL}/api/company/${company.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -73,7 +73,7 @@ const companyApi = {
       .catch(handleError),
 
   delete: async (companyId) =>
-    await fetch(`${BACKEND_URL}/api/company/${companyId}/`, {
+    fetch(`${BACKEND_URL}/api/company/${companyId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

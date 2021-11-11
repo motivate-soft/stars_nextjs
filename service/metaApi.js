@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const metaApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/meta/`, {
+    fetch(`${BACKEND_URL}/api/meta/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -20,7 +20,7 @@ const metaApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/meta/${id}`, {
+    fetch(`${BACKEND_URL}/api/meta/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -36,7 +36,7 @@ const metaApi = {
       .catch(handleError),
 
   add: async (meta) =>
-    await fetch(`${BACKEND_URL}/api/meta/`, {
+    fetch(`${BACKEND_URL}/api/meta/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -54,7 +54,7 @@ const metaApi = {
       .catch(handleError),
 
   update: async (meta) =>
-    await fetch(`${BACKEND_URL}/api/meta/${meta.id}`, {
+    fetch(`${BACKEND_URL}/api/meta/${meta.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -72,7 +72,7 @@ const metaApi = {
       .catch(handleError),
 
   delete: async (metaId) =>
-    await fetch(`${BACKEND_URL}/api/meta/${metaId}`, {
+    fetch(`${BACKEND_URL}/api/meta/${metaId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

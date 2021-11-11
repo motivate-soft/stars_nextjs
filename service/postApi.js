@@ -7,7 +7,7 @@ const postApi = {
   getAll: async () => {
     const prod = process.env.NODE_ENV === "production";
     if (prod) {
-      return await fetch(`${BACKEND_URL}/api/content/`, {
+      return fetch(`${BACKEND_URL}/api/content/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -23,7 +23,7 @@ const postApi = {
         .catch(handleError);
     }
 
-    return await fetch(`${BACKEND_URL}/api/content/`, {
+    return fetch(`${BACKEND_URL}/api/content/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -40,7 +40,7 @@ const postApi = {
   },
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/content/${id}`, {
+    fetch(`${BACKEND_URL}/api/content/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -57,7 +57,7 @@ const postApi = {
       .catch(handleError),
 
   add: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/`, {
+    fetch(`${BACKEND_URL}/api/content/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -75,7 +75,7 @@ const postApi = {
       .catch(handleError),
 
   update: async (post) =>
-    await fetch(`${BACKEND_URL}/api/content/${post.id}`, {
+    fetch(`${BACKEND_URL}/api/content/${post.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -93,7 +93,7 @@ const postApi = {
       .catch(handleError),
 
   delete: async (postId) =>
-    await fetch(`${BACKEND_URL}/api/content/${postId}`, {
+    fetch(`${BACKEND_URL}/api/content/${postId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

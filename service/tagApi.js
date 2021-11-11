@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const tagApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -20,7 +20,7 @@ const tagApi = {
       .catch(handleError),
 
   getBySlug: async (slug) =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/${slug}`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/${slug}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -36,7 +36,7 @@ const tagApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/${id}/`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -53,7 +53,7 @@ const tagApi = {
       .catch(handleError),
 
   add: async (tag) =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -71,7 +71,7 @@ const tagApi = {
       .catch(handleError),
 
   update: async (tag) =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/${tag.id}/`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/${tag.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -89,7 +89,7 @@ const tagApi = {
       .catch(handleError),
 
   delete: async (tagId) =>
-    await fetch(`${BACKEND_URL}/api/blog/tag/${tagId}/`, {
+    fetch(`${BACKEND_URL}/api/blog/tag/${tagId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

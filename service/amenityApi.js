@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const amenityApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/accommodation/amenity/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/amenity/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +21,7 @@ const amenityApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/amenity/${id}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/amenity/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +38,7 @@ const amenityApi = {
       .catch(handleError),
 
   add: async (amenity) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/amenity/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/amenity/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -56,7 +56,7 @@ const amenityApi = {
       .catch(handleError),
 
   update: async (amenity) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/amenity/${amenity.id}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/amenity/${amenity.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -74,7 +74,7 @@ const amenityApi = {
       .catch(handleError),
 
   delete: async (amenityId) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/amenity/${amenityId}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/amenity/${amenityId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

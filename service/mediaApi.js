@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const mediaApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/media/`, {
+    fetch(`${BACKEND_URL}/api/media/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +21,7 @@ const mediaApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/media/${id}`, {
+    fetch(`${BACKEND_URL}/api/media/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +38,7 @@ const mediaApi = {
       .catch(handleError),
 
   add: async (body) =>
-    await fetch(`${BACKEND_URL}/api/media/`, {
+    fetch(`${BACKEND_URL}/api/media/`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${getCookie("accessToken")}`,
@@ -54,7 +54,7 @@ const mediaApi = {
       .catch(handleError),
 
   addCrop: async (media) =>
-    await fetch(`${BACKEND_URL}/api/media/`, {
+    fetch(`${BACKEND_URL}/api/media/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -72,7 +72,7 @@ const mediaApi = {
       .catch(handleError),
 
   update: async (media) =>
-    await fetch(`${BACKEND_URL}/api/media/${media.id}`, {
+    fetch(`${BACKEND_URL}/api/media/${media.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -90,7 +90,7 @@ const mediaApi = {
       .catch(handleError),
 
   delete: async (mediaId) =>
-    await fetch(`${BACKEND_URL}/api/media/${mediaId}`, {
+    fetch(`${BACKEND_URL}/api/media/${mediaId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -107,7 +107,7 @@ const mediaApi = {
       .catch(handleError),
 
   getDetail: async (id) =>
-    await fetch(`${BACKEND_URL}/api/media/detail/${id}`, {
+    fetch(`${BACKEND_URL}/api/media/detail/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",

@@ -111,8 +111,8 @@ export default function UserList() {
 
     function createcolumns(columns) {
         const optColumn = {
-            title: "operation",
-            dataIndex: "operation",
+            title: "Action",
+            dataIndex: "action",
             width: 200,
             render: (text, record, index) => (
                 <div className="opt-cell">

@@ -6,7 +6,7 @@ const AUTH_URL = `${BACKEND_URL}/api/rest-auth`;
 
 const authApi = {
   jwtLogin: async (userInfo) =>
-    await fetch(`${AUTH_URL}/login/`, {
+    fetch(`${AUTH_URL}/login/`, {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -23,7 +23,7 @@ const authApi = {
       .catch(handleError),
 
   getProfile: async () =>
-    await fetch(`${AUTH_URL}/user/`, {
+    fetch(`${AUTH_URL}/user/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -40,7 +40,7 @@ const authApi = {
       .catch(handleError),
 
   updateProfile: async (userInfo) =>
-    await fetch(`${AUTH_URL}/user/`, {
+    fetch(`${AUTH_URL}/user/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -58,7 +58,7 @@ const authApi = {
       .catch(handleError),
 
   changePassword: async (userInfo) =>
-    await fetch(`${AUTH_URL}/password/change/`, {
+    fetch(`${AUTH_URL}/password/change/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -76,7 +76,7 @@ const authApi = {
       .catch(handleError),
 
   passwordResetRequest: async (email) =>
-    await fetch(`${AUTH_URL}/password/reset/`, {
+    fetch(`${AUTH_URL}/password/reset/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -93,7 +93,7 @@ const authApi = {
       .catch(handleError),
 
   passwordResetConfirm: async (userInfo) =>
-    await fetch(`${AUTH_URL}/password/reset/confirm/`, {
+    fetch(`${AUTH_URL}/password/reset/confirm/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -102,6 +102,7 @@ const authApi = {
       body: JSON.stringify(userInfo),
     })
       .then((res) => {
+        console.log("passwordResetConfirm :>> res", res);
         if (res.ok) {
           return res.json();
         }

@@ -4,6 +4,7 @@ import Container from "@iso/ui/UI/Container/Container";
 import Loader from "@iso/components/utility/loader";
 import Box from "@iso/ui/Box/Box";
 import { Form, Button, Input } from "antd";
+import { notification } from "@iso/components";
 
 import { SingeUserWrapper } from "@components/Admin/Users/UserList.style";
 import { UserCardWrapper } from "@components/Admin/Users/UserCard.style";
@@ -32,18 +33,21 @@ export default function ForgotPasswordConfirm(props) {
   const { userId, resetToken } = props;
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     try {
-      const res = authApi.passwordResetConfirm({
+      const res = await authApi.passwordResetConfirm({
         uid: userId,
         token: resetToken,
         new_password1: values.password,
         new_password2: values.password,
       });
 
+      console.log("ForgotPwd :>>res ", res);
+
       notification("success", "Password has been reset!");
     } catch (error) {
-      console.log("error", error);
+      console.log("ForgotPwd :>>error", error);
+      notification("warning", error.statusText);
     }
   };
 

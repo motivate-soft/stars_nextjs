@@ -4,7 +4,7 @@ import { handleError } from "./utils";
 
 const categoryApi = {
   getAll: async () =>
-    await fetch(`${BACKEND_URL}/api/accommodation/category/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/category/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +21,7 @@ const categoryApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/category/${id}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/category/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +38,7 @@ const categoryApi = {
       .catch(handleError),
 
   add: async (category) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/category/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/category/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -56,7 +56,7 @@ const categoryApi = {
       .catch(handleError),
 
   update: async (category) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/category/${category.id}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/category/${category.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -74,7 +74,7 @@ const categoryApi = {
       .catch(handleError),
 
   delete: async (categoryId) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/category/${categoryId}/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/category/${categoryId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

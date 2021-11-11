@@ -8,7 +8,7 @@ import qs from "query-string";
 const propertyApi = {
   getAll: async () => {
     console.log("propertyApi:getCookie", getCookie);
-    return await fetch(`${BACKEND_URL}/api/accommodation/property/`, {
+    return fetch(`${BACKEND_URL}/api/accommodation/property/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -40,7 +40,7 @@ const propertyApi = {
       .catch(handleError),
 
   getOne: async (id) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/${id}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/property/${id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -57,7 +57,7 @@ const propertyApi = {
       .catch(handleError),
 
   add: async (property) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/property/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -75,7 +75,7 @@ const propertyApi = {
       .catch(handleError),
 
   update: async (property) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/${property.id}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/property/${property.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -93,7 +93,7 @@ const propertyApi = {
       .catch(handleError),
 
   delete: async (propertyId) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/property/${propertyId}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/property/${propertyId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -109,7 +109,7 @@ const propertyApi = {
       })
       .catch(handleError),
   getPriceItems: async (propertyId) =>
-    await fetch(
+    fetch(
       `${BACKEND_URL}/api/accommodation/pricing/filtered_list/?property_id=${propertyId}`,
       {
         headers: {
@@ -127,7 +127,7 @@ const propertyApi = {
       })
       .catch(handleError),
   createPriceItem: async (pricing) =>
-    await fetch(`${BACKEND_URL}/api/accommodation/pricing/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/pricing/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
