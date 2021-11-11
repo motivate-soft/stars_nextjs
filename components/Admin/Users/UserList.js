@@ -55,6 +55,12 @@ const userTableColumns = [
         render: (object) => renderCell(object, "TextCell", "username"),
     },
     {
+        title: "Email",
+        key: "email",
+        width: 200,
+        render: (object) => renderCell(object, "TextCell", "email"),
+    },
+    {
         title: "Role",
         key: "role",
         width: 200,

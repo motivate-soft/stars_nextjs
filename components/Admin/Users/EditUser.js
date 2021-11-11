@@ -112,6 +112,7 @@ export default function EditUser(props) {
                                     onFinish={onFinish}
                                     initialValues={{
                                         username: selectedItem.username,
+                                        email: selectedItem.email,
                                         first_name: selectedItem.first_name,
                                         last_name: selectedItem.last_name,
                                         status: selectedItem.status,
@@ -132,6 +133,21 @@ export default function EditUser(props) {
                                     >
                                         <Input
                                             placeholder='Username'
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Email"
+                                        name="email"
+                                        className="isoUserCardInfos"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input email',
+                                            },
+                                        ]}
+                                    >
+                                        <Input
+                                            placeholder='Email'
                                         />
                                     </Form.Item>
                                     <Form.Item
