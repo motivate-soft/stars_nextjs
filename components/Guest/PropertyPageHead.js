@@ -6,8 +6,8 @@ export default function PropertyPageHead(props) {
   const { meta, property, currentUrl } = props;
 
   const SEO = {
-    title: meta.title ? meta.title : property.title,
-    description: meta.description ? meta.description : property.title,
+    title: meta?.title ? meta.title : property.title,
+    description: meta?.description ? meta.description : property.title,
     openGraph: {
       type: getTagValue(meta?.og_tags, "type") ?? "website",
       title: getTagValue(meta?.og_tags, "title") ?? property.title,

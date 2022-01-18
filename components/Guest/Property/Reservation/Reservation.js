@@ -3,12 +3,12 @@ import ReservationForm from "./ReservationForm";
 import Card from "@iso/ui/UI/Card/Card";
 import { CardHeaderWrapper } from "@components/Guest/Property/Reservation/Reservation.style";
 
-const CardHeader = ({ price, minMonthPrice }) => {
+const CardHeader = ({ price, monthPrice }) => {
   return (
     <CardHeaderWrapper>
       <h3>
         Starting at
-        <br />${price}/night, ${minMonthPrice}/month
+        <br />${price}/night, ${monthPrice}/month
       </h3>
     </CardHeaderWrapper>
   );
@@ -23,7 +23,7 @@ export default function Reservation(props) {
       header={
         <CardHeader
           price={property.price}
-          minMonthPrice={property.min_month_price}
+          monthPrice={property.monthly_price ? property.monthly_price : property.min_month_price}
         />
       }
       content={

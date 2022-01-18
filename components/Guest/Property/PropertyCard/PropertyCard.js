@@ -22,6 +22,7 @@ function PropertyCard(props) {
     price,
     minPrice,
     minMonthPrice,
+    monthlyPrice,
     bedroomCount,
     minSleeps,
     sleeps,
@@ -86,8 +87,8 @@ function PropertyCard(props) {
               ""
             )}
             {bathroomCount &&
-            bathroomCount !== 0 &&
-            sharedBathroom === false ? (
+              bathroomCount !== 0 &&
+              sharedBathroom === false ? (
               <li>
                 <FaBath /> {bathroomCount} Bathroom
               </li>
@@ -122,7 +123,7 @@ function PropertyCard(props) {
           <h4>
             <span>Starting at</span> ${minPrice}/night,
           </h4>
-          <h4>${minMonthPrice}/month</h4>
+          <h4>${monthlyPrice ? monthlyPrice : minMonthPrice}/month</h4>
         </div>
         <div className="property-buttons-wrapper">
           <Button type="secondary" size="large" onClick={handleQuickBook}>

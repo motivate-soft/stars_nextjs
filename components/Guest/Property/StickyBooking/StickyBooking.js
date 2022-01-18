@@ -12,7 +12,7 @@ import StickyBookingWrapper, {
 const StickyBooking = ({
   title,
   price,
-  minMonthPrice,
+  monthPrice,
   onClickBook,
   className,
 }) => {
@@ -38,7 +38,7 @@ const StickyBooking = ({
             <span>${price}</span> / Night
           </Price>
           <Price>
-            <span>${minMonthPrice}</span> / Month
+            <span>${monthPrice}</span> / Month
           </Price>
         </div>
         <Button type="secondary" size="large" onClick={onClickBook}>

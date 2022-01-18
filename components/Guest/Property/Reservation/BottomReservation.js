@@ -5,7 +5,7 @@ import StickyBooking from "../StickyBooking/StickyBooking";
 import Reservation from "./Reservation";
 
 const BottomReservation = ({ property }) => {
-  const { name, price, min_month_price } = property;
+  const { name, price, min_month_price, monthly_price } = property;
   const [visible, setVisible] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ const BottomReservation = ({ property }) => {
       <StickyBooking
         title={name}
         price={price}
-        minMonthPrice={min_month_price}
+        monthPrice={monthly_price ? monthly_price : min_month_price}
         onClickBook={() => setVisible(true)}
       />
 

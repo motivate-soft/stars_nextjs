@@ -150,6 +150,7 @@ function PropertyDetail(props) {
                 minPrice={item.min_price}
                 maxPrice={item.max_price}
                 minMonthPrice={item.min_month_price}
+                monthlyPrice={item.monthly_price}
                 bedroomCount={item.bedroom_count}
                 bathroomCount={item.bathroom_count}
                 sharedBathroom={item.shared_bathroom}
