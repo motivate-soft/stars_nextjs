@@ -27,9 +27,19 @@ const propertyActions = {
   GET_PRICE_ITEMS_SUCCESS: "GET_PRICE_ITEMS_SUCCESS",
   GET_PRICE_ITEMS_FAILURE: "GET_PRICE_ITEMS_FAILURE",
 
+
   CREATE_PRICE_ITEM_REQUEST: "CREATE_PRICE_ITEM_REQUEST",
   CREATE_PRICE_ITEM_SUCCESS: "CREATE_PRICE_ITEM_SUCCESS",
   CREATE_PRICE_ITEM_FAILURE: "CREATE_PRICE_ITEM_FAILURE",
+
+
+  GET_MONTHLY_PRICE_ITEMS_REQUEST: "GET_MONTHLY_PRICE_ITEMS_REQUEST",
+  GET_MONTHLY_PRICE_ITEMS_SUCCESS: "GET_MONTHLY_PRICE_ITEMS_SUCCESS",
+  GET_MONTHLY_PRICE_ITEMS_FAILURE: "GET_MONTHLY_PRICE_ITEMS_FAILURE",
+
+  CREATE_MONTHLY_PRICE_ITEM_REQUEST: "CREATE_MONTHLY_PRICE_ITEM_REQUEST",
+  CREATE_MONTHLY_PRICE_ITEM_SUCCESS: "CREATE_MONTHLY_PRICE_ITEM_SUCCESS",
+  CREATE_MONTHLY_PRICE_ITEM_FAILURE: "CREATE_MONTHLY_PRICE_ITEM_FAILURE",
 
   getAllProperties: () => ({
     type: propertyActions.GET_ALL_PROPERTIES_REQUEST,
@@ -54,9 +64,18 @@ const propertyActions = {
     type: propertyActions.GET_PRICE_ITEMS_REQUEST,
     propertyId,
   }),
-  createPriceItem: (pricing, dispatch) => ({
+  createPriceItem: (pricing) => ({
     type: propertyActions.CREATE_PRICE_ITEM_REQUEST,
     pricing,
   }),
+  getMonthlyPriceItems: (propertyId) => ({
+    type: propertyActions.GET_MONTHLY_PRICE_ITEMS_REQUEST,
+    propertyId,
+  }),
+  createMonthlyPriceItems: (data) => ({
+    type: propertyActions.CREATE_MONTHLY_PRICE_ITEM_REQUEST,
+    data,
+  }),
 };
+
 export default propertyActions;

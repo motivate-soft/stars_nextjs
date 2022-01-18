@@ -27,8 +27,8 @@ export default function PricingCalendar(props) {
   }, []);
 
   useEffect(() => {
-    if (selectedItem.pricingItems) {
-      const newItems = selectedItem.pricingItems.map((item, index) => ({
+    if (selectedItem.pricing_items) {
+      const newItems = selectedItem.pricing_items.map((item, index) => ({
         price: item.price,
         allDay: true,
         start: item.start_date,

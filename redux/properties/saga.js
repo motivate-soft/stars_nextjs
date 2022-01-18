@@ -131,7 +131,7 @@ export function* createPriceItem() {
       yield put({
         type: actions.CREATE_PRICE_ITEM_SUCCESS,
       });
-      notification("success", "Pricing item created");
+      notification("success", "Pricing saved!");
       yield put({
         type: actions.GET_PRICE_ITEMS_REQUEST,
         propertyId: payload.pricing.property,
@@ -140,6 +140,44 @@ export function* createPriceItem() {
       notification("warning", error.message);
       yield put({
         type: actions.CREATE_PRICE_ITEM_FAILURE,
+      });
+    }
+  });
+}
+
+
+export function* getMonthlyPriceItems() {
+  yield takeLatest(actions.GET_MONTHLY_PRICE_ITEMS_REQUEST, function* (payload) {
+    try {
+      const res = yield call(propertyApi.getMonthlyPriceItems, payload.propertyId);
+      yield put({
+        type: actions.GET_MONTHLY_PRICE_ITEMS_SUCCESS,
+        items: res,
+      });
+    } catch (error) {
+      notification("warning", error.message);
+      yield put({
+        type: actions.GET_MONTHLY_PRICE_ITEMS_FAILURE,
+        error: error.message,
+      });
+    }
+  });
+}
+
+export function* createMonthlyPriceItem() {
+  yield takeLatest(actions.CREATE_MONTHLY_PRICE_ITEM_REQUEST, function* (payload) {
+    try {
+      console.log(`createMonthlyPriceItem`, payload)
+      const res = yield call(propertyApi.createMonthlyPriceItem, payload.data);
+      yield put({
+        type: actions.CREATE_MONTHLY_PRICE_ITEM_SUCCESS,
+        items: res
+      });
+      notification("success", "Monthly Pricing saved!");
+    } catch (error) {
+      notification("warning", error.message);
+      yield put({
+        type: actions.CREATE_MONTHLY_PRICE_ITEM_FAILURE,
       });
     }
   });
@@ -154,5 +192,7 @@ export default function* rootSaga() {
     fork(deleteProperty),
     fork(getPriceItems),
     fork(createPriceItem),
+    fork(getMonthlyPriceItems),
+    fork(createMonthlyPriceItem),
   ]);
 }

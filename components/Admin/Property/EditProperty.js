@@ -14,6 +14,7 @@ import Editor from "@components/Admin/Property/Editor/Editor";
 import { useDispatch, useSelector } from "react-redux";
 import propertyActions from "@redux/properties/actions";
 import PricingCalendar from "@components/Admin/Property/PricingCalendar/PricingCalendar";
+import MonthlyPricing from "@components/Admin/Property/MonthlyPricing/MonthlyPricing";
 import SimilarProperty from "@components/Admin/Property/SimilarProperty/SimilarProperty";
 import { SinglePropertyWrapper } from "@components/Admin/Property/PropertyList.styles";
 import GalleryManager from "@components/Admin/Property/GalleryManager/GalleryManager";
@@ -220,14 +221,14 @@ export default function EditProperty(props) {
     let array = state.rooms.map((room) => {
       return room.id > 10000
         ? {
-            name: room.name ? room.name : "",
-            bed_type: room.bedType ? room.bedType : "",
-          }
+          name: room.name ? room.name : "",
+          bed_type: room.bedType ? room.bedType : "",
+        }
         : {
-            id: room.id,
-            name: room.name ? room.name : "",
-            bed_type: room.bedType ? room.bedType : "",
-          };
+          id: room.id,
+          name: room.name ? room.name : "",
+          bed_type: room.bedType ? room.bedType : "",
+        };
     });
     return array;
   }
@@ -396,15 +397,12 @@ export default function EditProperty(props) {
         <Row style={rowStyle} gutter={0} justify="start">
           <Col lg={8} md={12} sm={24} xs={24} style={colStyle}>
             <div className="property-detail-main">
-              {state.name !== "" && (
-                <Main
-                  name={state.name}
-                  bookervilleId={state.bookervilleId}
-                  category={state.category}
-                  onValuesChange={handleMainInfoChange}
-                />
-              )}
-
+              <Main
+                name={state.name}
+                bookervilleId={state.bookervilleId}
+                category={state.category}
+                onValuesChange={handleMainInfoChange}
+              />
               <GalleryManager
                 propertyId={selectedItem.id ? selectedItem.id : null}
                 items={state.galleryImgs}
@@ -481,6 +479,12 @@ export default function EditProperty(props) {
                 <PricingCalendar
                   propertyId={propertyId}
                   defaultPrice={state.price}
+                />
+              </TabPane>
+              <TabPane tab="MonthlyPricing" key="MonthlyPricing">
+                <MonthlyPricing
+                  propertyId={propertyId}
+                  defaultPrice={state.minMonthPrice}
                 />
               </TabPane>
               <TabPane tab="Similar Properties" key="similar">

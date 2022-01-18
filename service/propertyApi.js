@@ -110,7 +110,7 @@ const propertyApi = {
       .catch(handleError),
   getPriceItems: async (propertyId) =>
     fetch(
-      `${BACKEND_URL}/api/accommodation/pricing/filtered_list/?property_id=${propertyId}`,
+      `${BACKEND_URL}/api/accommodation/pricing/?property=${propertyId}`,
       {
         headers: {
           Accept: "application/json",
@@ -135,6 +135,42 @@ const propertyApi = {
         Authorization: `Bearer ${getCookie("accessToken")}`,
       },
       body: JSON.stringify(pricing),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  getMonthlyPriceItems: async (propertyId) =>
+    fetch(
+      `${BACKEND_URL}/api/accommodation/monthlypricing/?property=${propertyId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+  createMonthlyPriceItem: async (data) =>
+    fetch(`${BACKEND_URL}/api/accommodation/monthlypricing/bulk_create/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("accessToken")}`,
+      },
+      body: JSON.stringify(data),
     })
       .then((res) => {
         if (res.ok) {

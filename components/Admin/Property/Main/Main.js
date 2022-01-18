@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import {Form, Select, Input, Radio, Rate, Row, Col} from "antd";
+import React, { useEffect } from "react";
+import { Form, Select, Input, Radio, Rate, Row, Col } from "antd";
 
-const Option = {Select};
+const Option = { Select };
 
 const formItemLayout = {
     labelCol: {
@@ -23,33 +23,33 @@ const requiredRule = {
 };
 
 export default function Main(props) {
-    const {name, category, bookervilleId, onValuesChange} = props;
+    const { name, category, bookervilleId, onValuesChange } = props;
+
+    const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        console.log("Received values of form: ", values);
+        console.log("Main:onFinish", values);
     };
 
     useEffect(() => {
-        console.log("props", props);
+        console.log("Main:useEffect", props);
+        const { name, category, bookervilleId } = props;
+        form.setFieldsValue({ name, category, bookervilleId })
     }, [props]);
 
     return (
         <div>
             <Form
+                form={form}
                 name="mainInfoForm"
                 {...formItemLayout}
                 onValuesChange={onValuesChange}
                 onFinish={onFinish}
-                initialValues={{
-                    name,
-                    category,
-                    bookervilleId,
-                }}
             >
                 <Row>
                     <Col sm={24}>
                         <Form.Item label="Name" name="name" hasFeedback validateTrigger="onBlur" rules={[requiredRule]}>
-                            <Input/>
+                            <Input />
                         </Form.Item>
                     </Col>
                     <Col sm={24}>
@@ -59,7 +59,7 @@ export default function Main(props) {
                             hasFeedback validateTrigger="onBlur"
                             rules={[integerValidationRule, requiredRule]}
                         >
-                            <Input/>
+                            <Input />
                         </Form.Item>
                     </Col>
                     <Col sm={24}>

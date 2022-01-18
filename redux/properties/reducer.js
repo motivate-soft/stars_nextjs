@@ -115,6 +115,10 @@ export default function propertiesReducer(state = initState, action) {
         case propertyActions.GET_PRICE_ITEMS_REQUEST:
             return {
                 ...state,
+                selectedItem: {
+                    ...state.selectedItem,
+                    pricing_items: [],
+                },
                 loading: true,
             };
         case propertyActions.GET_PRICE_ITEMS_SUCCESS:
@@ -122,13 +126,49 @@ export default function propertiesReducer(state = initState, action) {
                 ...state,
                 selectedItem: {
                     ...state.selectedItem,
-                    pricingItems: action.items,
+                    pricing_items: action.items,
                 },
                 loading: false,
             };
         case propertyActions.GET_PRICE_ITEMS_FAILURE:
             return {
                 ...state,
+                selectedItem: {
+                    ...state.selectedItem,
+                    pricing_items: [],
+                },
+                error: action.error,
+                loading: false,
+            };
+
+        case propertyActions.GET_MONTHLY_PRICE_ITEMS_REQUEST:
+        case propertyActions.CREATE_MONTHLY_PRICE_ITEM_REQUEST:
+            return {
+                ...state,
+                selectedItem: {
+                    ...state.selectedItem,
+                    monthly_pricing_items: [],
+                },
+                loading: true,
+            };
+        case propertyActions.GET_MONTHLY_PRICE_ITEMS_SUCCESS:
+        case propertyActions.CREATE_MONTHLY_PRICE_ITEM_SUCCESS:
+            return {
+                ...state,
+                selectedItem: {
+                    ...state.selectedItem,
+                    monthly_pricing_items: action.items,
+                },
+                loading: false,
+            };
+        case propertyActions.GET_MONTHLY_PRICE_ITEMS_FAILURE:
+        case propertyActions.CREATE_MONTHLY_PRICE_ITEM_FAILURE:
+            return {
+                ...state,
+                selectedItem: {
+                    ...state.selectedItem,
+                    monthly_pricing_items: [],
+                },
                 error: action.error,
                 loading: false,
             };
