@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Form, Input, Button, Space, Select, Divider } from 'antd';
+import Loader from "@iso/components/utility/loader";
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import propertyActions from "@redux/properties/actions";
@@ -14,7 +15,7 @@ export default function MonthlyPricing(props) {
     const { propertyId } = props;
 
     const dispatch = useDispatch();
-    const { selectedItem } = useSelector((state) => state.Properties);
+    const { selectedItem, loading } = useSelector((state) => state.Properties);
     const { monthly_pricing_items } = selectedItem
 
 
@@ -46,6 +47,7 @@ export default function MonthlyPricing(props) {
         }));
     };
 
+    if (loading) return <Loader />
 
     return (
         <div>
