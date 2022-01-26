@@ -31,7 +31,8 @@ const Box = ({ children, ...props }) => (
 export default Box;
 
 Box.propTypes = {
-  children: PropTypes.any.isRequired,
+  // children: PropTypes.any.isRequired,
+  
   /** Using this props we can convert our Box Component to a Flex Container or Component */
   flexBox: PropTypes.bool,
   as: PropTypes.oneOf([

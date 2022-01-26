@@ -7,17 +7,9 @@ import { palette } from "styled-tools";
 import { BookingContext } from "@context/BookingProvider";
 import moment from "moment";
 import { useRouter } from "next/router";
+import { CheckoutWrapper } from "./Checkout.styles";
 
-const CheckoutConfirmWrapper = styled.div`
-  .checkout-confirm-block {
-    padding: 50px 0 100px;
 
-    h4 {
-      text-align: center;
-      color: ${palette("primary", 0)};
-    }
-  }
-`;
 
 function CheckoutConfirm({ posts }) {
   const { state, dispatch } = useContext(BookingContext);
@@ -30,7 +22,7 @@ function CheckoutConfirm({ posts }) {
   }, []);
 
   return (
-    <CheckoutConfirmWrapper>
+    <CheckoutWrapper>
       <Box as="section" className="main-background-2" />
       <Box as="section" className="checkout-confirm-block">
         <Container>
@@ -44,18 +36,18 @@ function CheckoutConfirm({ posts }) {
               <p>
                 Departure: {moment(state.checkoutDate).format("MMM DD, YYYY")}
               </p>
-              <p>Rent: ${state.propertyFee}</p>
-              <p>Cleaning Fee: ${state.cleaningFee}</p>
-              <p>Security Deposit: ${state.refundableAmount}</p>
-              <p>Transaction Fee: ${state.transactionFee}</p>
-              <p>Tax: ${state.tax}</p>
-              <p>Total: ${state.total}</p>
+              <p>Rent: ${state.pricing.nights_price - state.pricing.monthly_discount}</p>
+              <p>Cleaning Fee: ${state.pricing.cleaning_fee}</p>
+              <p>Security Deposit: ${state.pricing.refundable_amount}</p>
+              <p>Transaction Fee: ${state.pricing.transaction_fee}</p>
+              <p>Tax: ${state.pricing.tax}</p>
+              <p>Total: ${state.pricing.total}</p>
               <p>Please print this page for your records.</p>
             </Col>
           </Row>
         </Container>
       </Box>
-    </CheckoutConfirmWrapper>
+    </CheckoutWrapper>
   );
 }
 

@@ -1,8 +1,8 @@
 import 'react-dates/initialize';
-import {DateRangePicker} from 'react-dates';
-import React, {Component} from 'react';
+import { DateRangePicker } from 'react-dates';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {ReactDatesStyleWrapper} from './ReactDates.style';
+import { ReactDatesStyleWrapper } from './ReactDates.style';
 /*
  * For Localization enable this code [example : French language as "fr"]
  */
@@ -35,15 +35,13 @@ class DateRangePickerBox extends Component {
         // moment.locale('fr');
     }
 
-    onDateChangeFunc = ({startDate, endDate}) => {
-        const {dateFormat} = this.state;
-        this.setState({startDate, endDate});
-        // if (startDate !== null && endDate !== null) {
-        //     this.props.updateSearchData({
-        //         setStartDate: startDate.format(dateFormat),
-        //         setEndDate: endDate.format(dateFormat),
-        //     });
-        // }
+    onDateChangeFunc = ({ startDate, endDate }) => {
+        console.log(`ReactDates:>> onDateChangeFunc`, startDate, endDate)
+        const { dateFormat } = this.state;
+        this.setState({ startDate, endDate });
+        /**
+         * clear dates 
+         */
         this.props.updateSearchData({
             setStartDate: startDate ? startDate.format(dateFormat) : null,
             setEndDate: endDate ? endDate.format(dateFormat) : null,
@@ -51,11 +49,11 @@ class DateRangePickerBox extends Component {
     };
 
     onFocusChangeFunc = (focusedInput) => {
-        return this.setState({focusedInput});
+        return this.setState({ focusedInput });
     };
 
     render() {
-        const {focusedInput, startDate, endDate} = this.state;
+        const { focusedInput, startDate, endDate } = this.state;
         // DateRangePickerBox props list
         const {
             className,

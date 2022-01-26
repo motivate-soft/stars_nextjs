@@ -81,37 +81,39 @@ const CardHeader = ({ name, images, isModalShowing, setIsModalShowing }) => {
 export default function BookingWidget(props) {
   const { disabled } = props;
   const [isLoading, setIsLoading] = useState(null);
-  const { state, dispatch } = useContext(BookingContext);
+  const { state: { propertySlug, property }, dispatch } = useContext(BookingContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (state.propertySlug === null) {
+    if (!propertySlug) {
       router.push("/listing");
-      return;
     }
-    getPropertyDetail(state.propertySlug);
+    if (propertySlug && !property) {
+      fetchPropertyDetail(propertySlug);
+    }
+    if (propertySlug && property && propertySlug !== property.slug) {
+      fetchPropertyDetail(propertySlug);
+    }
   }, []);
 
-  const [property, setProperty] = useState(null);
   const [isModalShowing, setIsModalShowing] = useState(false);
 
-  const getPropertyDetail = async (propertySlug) => {
+  const fetchPropertyDetail = async (propertySlug) => {
     setIsLoading(true);
     try {
       const res = await fetch(
         `${BACKEND_URL}/api/accommodation/property/listing/${propertySlug}`
       );
       const property = await res.json();
-      setProperty(property);
       dispatch({
         type: "UPDATE_BOOKING_INFORMATION",
         payload: {
-          bookervilleId: property.bookerville_id,
+          property,
         },
       });
       setIsLoading(false);
-    } catch (e) {
-      notification("warning", "Server error while fetching property detail");
+    } catch (error) {
+      console.log(`BookingWidget->fetchPropertyDetail error:`, error)
     }
   };
 

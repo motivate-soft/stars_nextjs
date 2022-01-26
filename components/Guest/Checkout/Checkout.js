@@ -2,27 +2,13 @@ import React, { useEffect } from "react";
 import { Button, Col, Row } from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
-import styled from "styled-components";
-import { palette } from "styled-tools";
 import ContactInfoForm from "@components/Guest/Checkout/ContactInfoForm";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import ReactGA from "react-ga";
 import { PIXEL_ID } from "../../../env-config";
+import { CheckoutWrapper } from "./Checkout.styles";
 
-const CheckoutWrapper = styled.div`
-  .checkout-block {
-    padding: 50px 0 100px;
 
-    h3,
-    h5 {
-      color: ${palette("primary", 0)};
-    }
-
-    span {
-      font-size: 16px;
-    }
-  }
-`;
 
 function Checkout(props) {
   useEffect(() => {

@@ -15,24 +15,23 @@ import Router from "next/router";
 import moment from "moment";
 import { notification } from "@iso/components";
 import { FaRegCalendar, FaUserFriends } from "react-icons/fa";
+import { dateFormat, calendarDateFormat } from "helper/utils.js";
 
 function ReservationForm(props) {
+  const { state, dispatch } = useContext(BookingContext);
   const {
-    propertyId,
-    propertySlug,
-    bookervilleId,
     price,
     minSleeps,
     checkedDates,
     pricingItems,
-  } = props;
+  } = props
+
   const [formState, setFormState] = useState({
     checkinDate: null,
     checkoutDate: null,
     adults: 0,
     children: 0,
   });
-  const { state, dispatch } = useContext(BookingContext);
 
   const handleIncrement = (type) => {
     setFormState({
@@ -60,17 +59,20 @@ function ReservationForm(props) {
   };
 
   const updateSearchDataFunc = (value) => {
-    console.log("updateSearchDataFunc :>> ", value);
-    // check if selected date range contains any booked dates
+    console.log("ReservationForm :>> updateSearchDataFunc", value);
+    /**
+     * Todo: Disable Calendar from selecting date range that contains any booked dates
+     */
     if (checkForBlockedDates(value.setStartDate, value.setEndDate)) {
       notification("warning", "selected dates includes booked dates");
       return;
+    } else {
+      setFormState({
+        ...formState,
+        checkinDate: value.setStartDate,
+        checkoutDate: value.setEndDate,
+      });
     }
-    setFormState({
-      ...formState,
-      checkinDate: value.setStartDate,
-      checkoutDate: value.setEndDate,
-    });
   };
 
   const checkForBlockedDates = (start, end) => {
@@ -167,16 +169,14 @@ function ReservationForm(props) {
       return;
     }
 
+    console.log("ReservationForm :>> handleSubmit", formState);
     dispatch({
       type: "UPDATE_BOOKING_INFORMATION",
       payload: {
         ...state,
-        propertyId,
-        propertySlug,
-        bookervilleId,
         ...formState,
-        checkinDate: moment(formState.checkinDate).toISOString(),
-        checkoutDate: moment(formState.checkoutDate).toISOString(),
+        checkinDate: formState.checkinDate,
+        checkoutDate: formState.checkoutDate,
       },
     });
 
@@ -207,7 +207,13 @@ function ReservationForm(props) {
           minimumNights={minSleeps}
           isDayBlocked={(day) => isDayBlocked(day)}
           renderDayContents={(day) => renderDayContents(day)}
-          displayFormat={"YYYY/MM/DD"}
+          displayFormat={calendarDateFormat}
+          item={
+            {
+              format: dateFormat,
+              separator: "/"
+            }
+          }
         />
       </FieldWrapper>
       <FieldWrapper>

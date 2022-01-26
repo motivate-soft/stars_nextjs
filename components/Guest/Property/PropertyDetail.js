@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import styled from "styled-components";
@@ -24,6 +24,7 @@ import {
   PropertyDetailWrapper,
   BannerImageWrapper,
 } from "./PropertyDetail.style";
+import { BookingContext } from "@context/BookingProvider";
 
 function PropertyDetail(props) {
   const { property } = props;
@@ -31,6 +32,8 @@ function PropertyDetail(props) {
   const [href, setHref] = useState("");
   const [isGalleryModalShowing, setIsGalleryModalShowing] = useState(false);
   const [isTourModalShowing, setIsTourModalShowing] = useState(false);
+
+  const { state, dispatch } = useContext(BookingContext);
 
   if (isEmpty(property)) return <Loader />;
 
@@ -45,6 +48,18 @@ function PropertyDetail(props) {
     const path = window.location.href;
     setHref(path);
   }, [setHref]);
+
+  useEffect(() => {
+    dispatch({
+      type: "UPDATE_BOOKING_INFORMATION",
+      payload: {
+        ...state,
+        propertyId: property.id,
+        propertySlug: property.slug,
+        property
+      },
+    });
+  }, [property]);
 
   function getView() {
     if (!isServer && window.innerWidth < 1201) {

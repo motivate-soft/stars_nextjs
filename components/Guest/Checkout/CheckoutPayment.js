@@ -14,20 +14,9 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga";
 import Loader from "@iso/components/utility/loader";
+import { CheckoutWrapper } from "./Checkout.styles";
 
-const CheckoutPaymentWrapper = styled.div`
-  .checkout-payment-block {
-    padding: 50px 0 100px;
 
-    h3 {
-      color: ${palette("primary", 0)};
-    }
-
-    span {
-      font-size: 16px;
-    }
-  }
-`;
 
 function CheckoutPayment(props) {
   const [isPaypalButtonLoading, setIsPaypalButtonLoading] = useState(true);
@@ -46,23 +35,26 @@ function CheckoutPayment(props) {
 
   const addPaymentInfo = async () => {
     const bookingData = {
-      bookerville_id: state.bookervilleId,
-      checkin_date: moment(state.checkinDate).format("YYYY-MM-DD"),
-      checkout_date: moment(state.checkoutDate).format("YYYY-MM-DD"),
+      bookerville_id: state.property.bookerville_id,
+      checkin_date: state.checkinDate,
+      checkout_date: state.checkoutDate,
       adults: state.adults,
       children: state.children === "" ? 0 : state.children,
-      property_fee: state.propertyFee,
-      cleaning_fee: state.cleaningFee,
-      refundable_amount: state.refundableAmount,
-      transaction_fee: state.transactionFee,
-      tax: state.tax,
-      total: state.total,
+
+      property_fee: (state.pricing.nights_price - state.pricing.monthly_discount),
+      cleaning_fee: state.pricing.cleaning_fee,
+      refundable_amount: state.pricing.refundable_amount,
+      transaction_fee: state.pricing.transaction_fee,
+      tax: state.pricing.tax,
+      total: state.pricing.total,
+
       guest: {
         first_name: state.guest.firstName,
         last_name: state.guest.lastName,
         email: state.guest.email,
         phone_number: state.guest.phoneNumber,
       },
+
       billing: {
         country: state.billing.country,
         state: state.billing.state,
@@ -123,7 +115,7 @@ function CheckoutPayment(props) {
   };
 
   return (
-    <CheckoutPaymentWrapper>
+    <CheckoutWrapper>
       <Box as="section" className="main-background-2" />
       <Box as="section" className="checkout-payment-block">
         <Container>
@@ -142,7 +134,7 @@ function CheckoutPayment(props) {
               {isPaypalButtonLoading && <Loader />}
 
               <PayPalButton
-                amount={state.total}
+                amount={state.pricing.total}
                 // disableCard
                 style={{ color: "blue" }}
                 shippingPreference="NO_SHIPPING"
@@ -179,7 +171,7 @@ function CheckoutPayment(props) {
           </Row>
         </Container>
       </Box>
-    </CheckoutPaymentWrapper>
+    </CheckoutWrapper>
   );
 }
 

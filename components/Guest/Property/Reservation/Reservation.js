@@ -28,9 +28,6 @@ export default function Reservation(props) {
       }
       content={
         <ReservationForm
-          propertyId={property.id}
-          propertySlug={property.slug}
-          bookervilleId={property.bookerville_id}
           price={property.price}
           minSleeps={property.min_sleeps}
           checkedDates={property.checked_dates}

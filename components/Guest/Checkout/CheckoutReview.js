@@ -8,20 +8,9 @@ import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
 import MailingAddressForm from "@components/Guest/Checkout/MailingAddress";
 import EditPost from "@components/Common/PostBlock/EditPost";
 import ReactGA from "react-ga";
+import { CheckoutWrapper } from "./Checkout.styles";
 
-const CheckoutReviewWrapper = styled.div`
-  .checkout-review-block {
-    padding: 50px 0 100px;
 
-    h3 {
-      color: ${palette("primary", 0)};
-    }
-
-    span {
-      font-size: 16px;
-    }
-  }
-`;
 
 function CheckoutReview({ posts }) {
   useEffect(() => {
@@ -32,7 +21,7 @@ function CheckoutReview({ posts }) {
   }, []);
 
   return (
-    <CheckoutReviewWrapper>
+    <CheckoutWrapper>
       <Box as="section" className="main-background-2" />
       <Box as="section" className="checkout-review-block">
         <Container>
@@ -67,7 +56,7 @@ function CheckoutReview({ posts }) {
           </Row>
         </Container>
       </Box>
-    </CheckoutReviewWrapper>
+    </CheckoutWrapper>
   );
 }
 

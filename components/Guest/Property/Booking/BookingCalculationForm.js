@@ -16,6 +16,8 @@ import moment from "moment";
 import Loader from "@iso/components/utility/loader";
 import { notification } from "@iso/components";
 import { FaRegCalendar, FaUserFriends } from "react-icons/fa";
+import { BACKEND_URL } from "env-config.js";
+import { calendarDateFormat, dateFormat } from "helper/utils.js";
 
 function BookingCalculationForm({ property, disabled }) {
   const {
@@ -23,65 +25,51 @@ function BookingCalculationForm({ property, disabled }) {
     price,
     checked_dates,
     pricing_items,
-    tax_rate,
-    cleaning_fee,
-    refundable_amount,
-    transactionfee_rate,
   } = property;
-  const { state, dispatch } = useContext(BookingContext);
+
+  const { state: { propertyId, propertySlug, checkinDate, checkoutDate, adults, children, pricing }, dispatch } = useContext(BookingContext);
+
   const [formState, setFormState] = useState({
-    checkinDate: state.checkinDate ? moment(state.checkinDate) : null,
-    checkoutDate: state.checkoutDate ? moment(state.checkoutDate) : null,
-    adults: state.adults,
-    children: state.children,
+    checkinDate: checkinDate ? checkinDate : null,
+    checkoutDate: checkoutDate ? checkoutDate : null,
+    adults: adults,
+    children: children,
   });
-  const [billState, setBillState] = useState(null);
   const [isCalculating, setIsCalculating] = useState(null);
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (disabled) {
-      setBillState({
-        nights: state.nights,
-        propertyFee: state.propertyFee,
-        tax: state.tax,
-        transactionFee: state.transactionFee,
-        cleaningFee: state.cleaningFee,
-        refundableAmount: state.refundableAmount,
-        total: state.total,
-      });
-    }
-  }, []);
 
   useEffect(() => {
     if (
       formState.checkinDate !== null &&
-      formState.checkoutDate !== null &&
-      formState.adults !== 0
+      formState.checkoutDate !== null
     ) {
-      setIsCalculating(true);
+      fetchBookingPricing();
+    }
+  }, [formState]);
 
-      const bill = calculateBookingCost(
-        formState.checkinDate,
-        formState.checkoutDate
+  const fetchBookingPricing = async () => {
+    setIsCalculating(true);
+    try {
+      const { checkinDate, checkoutDate } = formState
+      const res = await fetch(
+        `${BACKEND_URL}/api/accommodation/booking/quote?property=${propertyId}&checkin_date=${checkinDate}&checkout_date=${checkoutDate}`
       );
-      setBillState(bill);
+      const data = await res.json();
       dispatch({
         type: "UPDATE_BOOKING_INFORMATION",
         payload: {
-          ...state,
           ...formState,
-          ...bill,
+          pricing: data
         },
       });
-      setTimeout(() => {
-        setIsCalculating(false);
-      }, 1000);
-    } else {
-      setBillState(null);
+      console.log(`BookingCalculationForm :>> fetchBookingPricing data`, data)
+    } catch (error) {
+      console.log(`BookingCalculationForm :>> fetchBookingPricing error`, error)
     }
-  }, [formState]);
+    setIsCalculating(false);
+  }
 
   const handleIncrement = (type) => {
     setFormState({
@@ -109,11 +97,19 @@ function BookingCalculationForm({ property, disabled }) {
   };
 
   const updateSearchDataFunc = (value) => {
-    console.log("updateSearchDataFunc", value);
+    console.log("BookingCalculationForm :>> updateSearchDataFunc", value);
     setFormState({
       ...formState,
       checkinDate: value.setStartDate,
       checkoutDate: value.setEndDate,
+    });
+
+    dispatch({
+      type: "UPDATE_BOOKING_INFORMATION",
+      payload: {
+        checkinDate: value.setStartDate,
+        checkoutDate: value.setEndDate,
+      },
     });
   };
 
@@ -135,7 +131,6 @@ function BookingCalculationForm({ property, disabled }) {
   };
 
   const renderDayContents = (day) => {
-    // console.log("renderDayContents", day)
     let dayPrice = price;
     if (moment(day) < moment().startOf("day")) {
       return (
@@ -169,57 +164,6 @@ function BookingCalculationForm({ property, disabled }) {
     }
   };
 
-  const getDayPrice = (date) => {
-    let dayPrice = price;
-    pricing_items.map((item) => {
-      if (
-        moment(date).diff(item.start_date) >= 0 &&
-        moment(date).diff(item.end_date) <= 0
-      ) {
-        dayPrice = item.price;
-      }
-    });
-    return dayPrice;
-  };
-
-  const formatToFloat = (value) => {
-    return parseFloat(value.toFixed(2));
-  };
-
-  const calculateBookingCost = (checkinDate, checkoutDate) => {
-    console.log("calculateBookingCost");
-
-    let nights,
-      propertyFee = 0,
-      tax,
-      subTotal,
-      transactionFee,
-      total;
-
-    nights = moment(checkoutDate).diff(moment(checkinDate), "day");
-    let currDate = moment(checkinDate).startOf("day");
-    let lastDate = moment(checkoutDate).startOf("day");
-    do {
-      propertyFee += getDayPrice(currDate.clone().toDate());
-    } while (currDate.add(1, "days").diff(lastDate) <= 0);
-
-    tax = formatToFloat((tax_rate * propertyFee) / 100);
-    subTotal = formatToFloat(
-      propertyFee + tax + +cleaning_fee + refundable_amount
-    );
-    transactionFee = formatToFloat((transactionfee_rate * subTotal) / 100);
-    total = formatToFloat((1 + transactionfee_rate / 100) * subTotal);
-    return {
-      nights,
-      propertyFee,
-      tax,
-      transactionFee,
-      cleaningFee: cleaning_fee,
-      refundableAmount: refundable_amount,
-      total,
-    };
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formState.checkinDate === null || formState.checkoutDate === null) {
@@ -234,8 +178,7 @@ function BookingCalculationForm({ property, disabled }) {
     dispatch({
       type: "UPDATE_BOOKING_INFORMATION",
       payload: {
-        ...state,
-        ...billState,
+        ...pricing,
         ...formState,
       },
     });
@@ -251,6 +194,50 @@ function BookingCalculationForm({ property, disabled }) {
     );
   };
 
+  const renderPricing = () => {
+    if (isCalculating) return <Loader />
+    if (propertyId && propertySlug && checkinDate && checkoutDate) {
+      return <BillWrapper>
+        <Row>
+          <Col span={12}>
+            <ul>
+              <li>{pricing?.nights} nights</li>
+              {pricing.monthly_discount > 0 && <li>Monthly Discount</li>}
+              <li>Cleaning fee</li>
+              <li>Security deposit</li>
+              <li>Transaction fee ({property.transactionfee_rate}%)</li>
+              <li>Tax ({property.tax_rate}%)</li>
+            </ul>
+          </Col>
+          <Col span={12}>
+            <ul className="cost-list">
+              <li>${pricing.nights_price}</li>
+              {pricing.monthly_discount > 0 && <li>${pricing.monthly_discount}</li>}
+              <li>${pricing?.cleaning_fee}</li>
+              <li>${pricing?.refundable_amount}</li>
+              <li>${pricing?.transaction_fee}</li>
+              <li>${pricing?.tax}</li>
+            </ul>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm={18}>
+            <ul>
+              <li>Total</li>
+            </ul>
+          </Col>
+          <Col sm={6}>
+            <ul className="cost-list">
+              <li>${pricing.total}</li>
+            </ul>
+          </Col>
+        </Row>
+      </BillWrapper>
+    }
+    return null
+  }
+
   return (
     <BookingCalculationFormWrapper
       className="form-container"
@@ -261,8 +248,8 @@ function BookingCalculationForm({ property, disabled }) {
         <DateRangePickerBox
           disabled={disabled}
           showClearDates={!disabled}
-          startDate={formState.checkinDate}
-          endDate={formState.checkoutDate}
+          startDate={formState.checkinDate ? moment(formState.checkinDate) : null}
+          endDate={formState.checkoutDate ? moment(formState.checkoutDate) : null}
           startDatePlaceholderText="Check In"
           endDatePlaceholderText="Check Out"
           startDateId="startDateId-id"
@@ -273,7 +260,13 @@ function BookingCalculationForm({ property, disabled }) {
           updateSearchData={(value) => updateSearchDataFunc(value)}
           isDayBlocked={(day) => isDayBlocked(day)}
           renderDayContents={(day) => renderDayContents(day)}
-          displayFormat={"YYYY/MM/DD"}
+          displayFormat={calendarDateFormat}
+          item={
+            {
+              format: dateFormat,
+              separator: "/"
+            }
+          }
         />
       </FieldWrapper>
       <FieldWrapper>
@@ -319,44 +312,7 @@ function BookingCalculationForm({ property, disabled }) {
           }
         />
       </FieldWrapper>
-      {isCalculating && <Loader />}
-      {billState && !isCalculating && (
-        <BillWrapper>
-          <Row>
-            <Col span={12}>
-              <ul>
-                <li>{billState?.nights} nights</li>
-                <li>Cleaning fee</li>
-                <li>Security deposit</li>
-                <li>Transaction fee ({property?.transactionfee_rate}%)</li>
-                <li>Tax ({property?.tax_rate}%)</li>
-              </ul>
-            </Col>
-            <Col span={12}>
-              <ul className="cost-list">
-                <li>${billState?.propertyFee}</li>
-                <li>${billState?.cleaningFee}</li>
-                <li>${billState?.refundableAmount}</li>
-                <li>${billState?.transactionFee}</li>
-                <li>${billState?.tax}</li>
-              </ul>
-            </Col>
-          </Row>
-          <hr />
-          <Row>
-            <Col sm={18}>
-              <ul>
-                <li>Total</li>
-              </ul>
-            </Col>
-            <Col sm={6}>
-              <ul className="cost-list">
-                <li>${billState?.total}</li>
-              </ul>
-            </Col>
-          </Row>
-        </BillWrapper>
-      )}
+      {renderPricing()}
       <p>
         For booking assistance please <Link href="/contact">contact us</Link>
       </p>

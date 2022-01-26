@@ -8,6 +8,12 @@ import csc from "country-state-city";
 import { palette } from "styled-tools";
 
 const countries = csc.getAllCountries();
+const countryOptions = countries.map((country, index) => (
+  {
+    label: country.name,
+    value: country.id
+  }
+))
 const Option = { Select };
 
 const formItemLayout = {
@@ -57,7 +63,7 @@ function MailingAddressForm(props) {
   const { state, dispatch } = useContext(BookingContext);
   const [form] = Form.useForm();
 
-  console.log("BookingContext", state);
+  console.log("MailingAddressForm :>> BookingContext", state);
 
   const [stateOptions, setStateOptions] = useState([
     {
@@ -193,21 +199,23 @@ function MailingAddressForm(props) {
                   message: "This field is required",
                 },
               ]}
+              initialValue="default"
             >
-              <Select
-                placeholder="Country"
-                onChange={onCountryChange}
-                size="large"
-                defaultValue="default"
-              >
-                <Option value="default">---Country---</Option>
-                {countries &&
-                  countries.map((country, index) => (
-                    <Option key={index} value={country.id}>
-                      {country.name}
-                    </Option>
-                  ))}
-              </Select>
+
+              {
+                countries &&
+                <Select
+                  placeholder="Country"
+                  size="large"
+                  options={[
+                    ...countryOptions,
+                    {
+                      label: "---Country---",
+                      value: "default",
+                    },]}
+                  onChange={onCountryChange}
+                />
+              }
             </Form.Item>
           </Col>
           <Col lg={8} sm={24} xs={24}>
@@ -219,12 +227,12 @@ function MailingAddressForm(props) {
                   message: "This field is required",
                 },
               ]}
+              initialValue="default"
             >
               <Select
                 placeholder="State"
                 size="large"
                 options={stateOptions}
-                defaultValue="default"
                 onChange={onStateChange}
               />
             </Form.Item>
@@ -238,12 +246,12 @@ function MailingAddressForm(props) {
                   message: "This field is required",
                 },
               ]}
+              initialValue="default"
             >
               <Select
                 placeholder="City"
                 size="large"
                 options={cityOptions}
-                defaultValue="default"
               />
             </Form.Item>
           </Col>
