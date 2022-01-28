@@ -212,7 +212,7 @@ function BookingCalculationForm({ property, disabled }) {
           <Col span={12}>
             <ul className="cost-list">
               <li>${pricing.nights_price}</li>
-              {pricing.monthly_discount > 0 && <li>${pricing.monthly_discount}</li>}
+              {pricing.monthly_discount > 0 && <li className="discount">-${pricing.monthly_discount}</li>}
               <li>${pricing?.cleaning_fee}</li>
               <li>${pricing?.refundable_amount}</li>
               <li>${pricing?.transaction_fee}</li>

@@ -256,6 +256,10 @@ export const BillWrapper = styled.div`
       margin-bottom: 16px;
     }
 
+    li.discount {
+      color: #4F8039!important;
+    }
+
     &.cost-list {
       text-align: right;
     }
