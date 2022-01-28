@@ -16,14 +16,13 @@ function ForgotPassword() {
     setEmail(e.target.value);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     try {
-      const res = authApi.passwordResetRequest({ email });
+      const res = await authApi.passwordResetRequest({ email });
       console.log("res", res);
-      notification("success", "Password reset email has been sent");
+      notification("success", "Password reset email has been sent if you provided right email");
     } catch (error) {
-      notification("warning", "Email not found!");
-
+      notification("error", error.message);
       console.log("error", error);
     }
   };

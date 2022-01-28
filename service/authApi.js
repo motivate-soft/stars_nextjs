@@ -1,114 +1,47 @@
 import { BACKEND_URL } from "../env-config";
 import { getCookie } from "@redux/authentication/auth.utils";
-import { handleError } from "./utils";
+import { request, authHeader, defaultHeader } from "./api_helper";
 
 const AUTH_URL = `${BACKEND_URL}/api/rest-auth`;
 
 const authApi = {
-  jwtLogin: async (userInfo) =>
-    fetch(`${AUTH_URL}/login/`, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  getProfile: async () =>
-    fetch(`${AUTH_URL}/user/`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  updateProfile: async (userInfo) =>
-    fetch(`${AUTH_URL}/user/`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  changePassword: async (userInfo) =>
-    fetch(`${AUTH_URL}/password/change/`, {
+  jwtLogin: (userInfo) =>
+    request(`${AUTH_URL}/login/`, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
-      },
+      headers: { ...defaultHeader() },
       body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
+    }),
 
-  passwordResetRequest: async (email) =>
-    fetch(`${AUTH_URL}/password/reset/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(email),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
+  getProfile: () => request(`${AUTH_URL}/user/`, {
+    method: "GET",
+    headers: { ...authHeader() },
+  }),
 
-  passwordResetConfirm: async (userInfo) =>
-    fetch(`${AUTH_URL}/password/reset/confirm/`, {
+  updateProfile: (userInfo) => request(`${AUTH_URL}/user/`, {
+    method: "PATCH",
+    headers: { ...authHeader() },
+    body: JSON.stringify(userInfo),
+  }),
+
+  changePassword: (userInfo) => request(`${AUTH_URL}/user/`, {
+    method: "POST",
+    headers: { ...authHeader() },
+    body: JSON.stringify(userInfo),
+  }),
+
+  passwordResetRequest: (data) =>
+    request(`${AUTH_URL}/password/reset/`, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+      headers: { ...defaultHeader() },
+      body: JSON.stringify(data),
+    }),
+
+  passwordResetConfirm: (userInfo) =>
+    request(`${AUTH_URL}/password/reset/confirm/`, {
+      method: "POST",
+      headers: { ...defaultHeader() },
       body: JSON.stringify(userInfo),
-    })
-      .then((res) => {
-        console.log("passwordResetConfirm :>> res", res);
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
+    }),
 };
 
 export default authApi;

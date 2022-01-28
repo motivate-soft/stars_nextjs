@@ -1,3 +1,9 @@
+export function authHeader() {
+  return {
+    Authorization: `Bearer ${getCookie("accessToken")}`,
+  }
+}
+
 export function handleError(res) {
   console.log("handleError:res", res);
   if (res instanceof Error) {
@@ -40,33 +46,3 @@ export function handleError(res) {
   });
 }
 
-// function parseJSON(response) {
-//   return new Promise((resolve) =>
-//     response.json().then((json) =>
-//       resolve({
-//         status: response.status,
-//         ok: response.ok,
-//         json,
-//       })
-//     )
-//   );
-// }
-
-// export default function request(url, options) {
-//   return new Promise((resolve, reject) => {
-//     fetch(endpoint + url, options)
-//       .then(parseJSON)
-//       .then((response) => {
-//         if (response.ok) {
-//           return resolve(response.json);
-//         }
-//         // extract the error from the server's json
-//         return reject(response.json.meta.error);
-//       })
-//       .catch((error) =>
-//         reject({
-//           networkError: error.message,
-//         })
-//       );
-//   });
-// }

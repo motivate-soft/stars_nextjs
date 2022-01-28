@@ -25,11 +25,7 @@ export default function SignInPage(props) {
   const router = useRouter();
   const [form] = Form.useForm();
   const { idToken } = useSelector((state) => state.Auth);
-  // console.log("SiginPage", idToken);
-  
-  // if (idToken !== null) {
-  //   Router.push("/admin/property");
-  // }
+
   const onFinish = (values) => {
     const userInfo = {
       username: values.username,

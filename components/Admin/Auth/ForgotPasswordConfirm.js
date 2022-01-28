@@ -41,13 +41,11 @@ export default function ForgotPasswordConfirm(props) {
         new_password1: values.password,
         new_password2: values.password,
       });
-
-      console.log("ForgotPwd :>>res ", res);
-
+      console.log("ForgotPasswordConfirm :>> res ", res);
       notification("success", "Password has been reset!");
     } catch (error) {
-      console.log("ForgotPwd :>>error", error);
-      notification("warning", error.statusText);
+      console.log("ForgotPasswordConfirm :>> error", error);
+      notification("warning", error.message);
     }
   };
 

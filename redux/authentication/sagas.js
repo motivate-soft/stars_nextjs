@@ -54,8 +54,9 @@ export function* jwtLoginRequest() {
         payload,
       });
     } catch (error) {
+      console.log(`*jwtLoginRequest:error`, error)
       notification("error", error.message);
-      yield put(actions.loginRequestFailure(error.message));
+      yield put(actions.loginRequestFailure(error));
     }
   });
 }
