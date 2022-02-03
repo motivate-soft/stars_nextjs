@@ -66,7 +66,7 @@ function CheckoutPayment(props) {
 
     try {
       const res = await fetch(
-        `${BACKEND_URL}/api/accommodation/booking/add_payment`,
+        `${BACKEND_URL}/api/accommodation/booking/add`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

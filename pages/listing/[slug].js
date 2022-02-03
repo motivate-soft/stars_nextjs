@@ -36,6 +36,8 @@ export async function getServerSideProps(context) {
 
   try {
     meta = await metaApi.getOne(pageSlug);
+    console.log("fetchMetatags:Success", meta);
+
   } catch (error) {
     console.log("fetchMetatags:Error", error);
     meta = [];
