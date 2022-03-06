@@ -22,6 +22,16 @@ import {
   NEXTSEO_DEFAULT_TITLE,
 } from "./../next-seo.config";
 import { DefaultSeo } from "next-seo";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PAYPAL_CLIENT_ID } from "env-config"
+
+const scriptProviderOptions = {
+  'client-id':
+    PAYPAL_CLIENT_ID,
+  'merchant-id': 'T2FJV5QNVSW2A',
+  components: "hosted-fields",
+  "data-client-token": "abc123xyz==",
+};
 
 class CustomApp extends App {
   render() {
@@ -38,22 +48,24 @@ class CustomApp extends App {
 
     return (
       <GuestThemeProvider>
-        <SearchProvider query={query}>
-          <BookingProvider booking={initBooking}>
-            <GlobalStyles />
-            <DefaultSeo
-              title={NEXTSEO_DEFAULT_TITLE}
-              description={NEXTSEO_DEFAULT_DESCRIPTION}
-              openGraph={{
-                type: "website",
-                locale: "en_US",
-                url: "https://www.url.ie/",
-                site_name: "starsofboston",
-              }}
-            />
-            <Component {...pageProps} />
-          </BookingProvider>
-        </SearchProvider>
+        {/* <PayPalScriptProvider options={scriptProviderOptions}> */}
+          <SearchProvider query={query}>
+            <BookingProvider booking={initBooking}>
+              <GlobalStyles />
+              <DefaultSeo
+                title={NEXTSEO_DEFAULT_TITLE}
+                description={NEXTSEO_DEFAULT_DESCRIPTION}
+                openGraph={{
+                  type: "website",
+                  locale: "en_US",
+                  url: "https://www.url.ie/",
+                  site_name: "starsofboston",
+                }}
+              />
+              <Component {...pageProps} />
+            </BookingProvider>
+          </SearchProvider>
+        {/* </PayPalScriptProvider> */}
       </GuestThemeProvider>
     );
   }

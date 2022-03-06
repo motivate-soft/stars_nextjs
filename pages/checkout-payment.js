@@ -10,7 +10,7 @@ export default function CheckoutPaymentPage(props) {
     <>
       <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
-        <CheckoutPayment posts={posts} />
+        <CheckoutPayment posts={posts} clientID={props.clientID} clientToken={props.clientToken} />
       </GuestLayout>
     </>
   );
@@ -43,11 +43,32 @@ export async function getServerSideProps(context) {
     meta = [];
   }
 
+  // get paypal client token
+  let clientToken;
+  try {
+    const res = await fetch(
+      `${BACKEND_URL}/api/accommodation/booking/token`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const data = await res.json();
+    clientToken = data.client_token;
+
+    console.log(`fetchClientToken :>> data`, data)
+  } catch (error) {
+    console.log(`fetchClientToken :>> data`, error)
+  }
+
+
   return {
     props: {
       currentUrl: resolvedUrl,
       posts,
       meta,
+      clientToken,
+      clientID: PAYPAL_CLIENT_ID
     },
   };
 }

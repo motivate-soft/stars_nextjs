@@ -61,6 +61,10 @@ export default [
         key: "property",
         label: "sidebar.property",
       },
+      {
+        key: "booking",
+        label: "sidebar.booking",
+      },
     ],
   },
   {

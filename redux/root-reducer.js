@@ -14,7 +14,9 @@ import Blogs from "@redux/blogs/reducer";
 import Tags from "@redux/tags/reducer";
 import Meta from "@redux/meta/reducer";
 import Companies from "@redux/companies/reducer";
+import Bookings from "@redux/bookings/reducer";
 
+console.log("~~~~~~~~~~~~", Bookings)
 export default combineReducers({
   Auth,
   App,
@@ -24,6 +26,7 @@ export default combineReducers({
   Properties,
   Amenities,
   Categories,
+  Bookings,
   Posts,
   modal,
   profile,

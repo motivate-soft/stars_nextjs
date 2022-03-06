@@ -9,6 +9,7 @@ import blogSagas from "@redux/blogs/saga";
 import tagSagas from "@redux/tags/saga";
 import metaSagas from "@redux/meta/saga";
 import companySagas from "@redux/companies/saga";
+import bookingsSagas from "@redux/bookings/saga";
 
 export default function* rootSaga(getState) {
   yield all([
@@ -22,5 +23,6 @@ export default function* rootSaga(getState) {
     tagSagas(),
     metaSagas(),
     companySagas(),
+    bookingsSagas(),
   ]);
 }
