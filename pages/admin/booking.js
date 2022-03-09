@@ -10,7 +10,7 @@ const getBookingId = (props) => {
   try {
     const { router } = props;
     return {
-      propertyId: router.query.id,
+      bookingId: router.query.id,
       redirectPath: router.pathname,
     };
   } catch (e) { }
@@ -18,7 +18,7 @@ const getBookingId = (props) => {
 
 export default withRouter(
   withAuthSync((props) => {
-    let { propertyId, redirectPath } = getBookingId(props);
+    let { bookingId, redirectPath } = getBookingId(props);
 
     return (
       <>
@@ -26,9 +26,9 @@ export default withRouter(
           <title>Bookings</title>
         </Head>
         <DashboardLayout>
-          {propertyId ? (
+          {bookingId ? (
             <SingleBooking
-              propertyId={propertyId}
+              bookingId={bookingId}
               redirectPath={redirectPath}
             />
           ) : (

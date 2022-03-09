@@ -17,7 +17,7 @@ import Loader from "@iso/components/utility/loader";
 import { notification } from "@iso/components";
 import { FaRegCalendar, FaUserFriends } from "react-icons/fa";
 import { BACKEND_URL } from "env-config.js";
-import { calendarDateFormat, dateFormat } from "helper/utils.js";
+import { calculateDays, calendarDateFormat, dateFormat } from "helper/utils.js";
 
 function BookingCalculationForm({ property, disabled }) {
   const {
@@ -41,9 +41,13 @@ function BookingCalculationForm({ property, disabled }) {
 
 
   useEffect(() => {
+    console.log(`BookingCalculationForm :>> formState`, formState, pricing)
+
     if (
       formState.checkinDate !== null &&
-      formState.checkoutDate !== null
+      formState.checkoutDate !== null &&
+      formState.adults !== null &&
+      !disabled
     ) {
       fetchBookingPricing();
     }
@@ -196,7 +200,7 @@ function BookingCalculationForm({ property, disabled }) {
 
   const renderPricing = () => {
     if (isCalculating) return <Loader />
-    if (propertyId && propertySlug && checkinDate && checkoutDate) {
+    if (propertyId && propertySlug && checkinDate && checkoutDate && pricing) {
       return <BillWrapper>
         <Row>
           <Col span={12}>

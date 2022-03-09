@@ -11,15 +11,7 @@ export const initBooking = {
     checkoutDate: null,
     adults: 0,
     children: 0,
-    pricing: {
-        propertyFee: '',
-        cleaningFee: '',
-        refundableAmount: '',
-        transactionFee: '',
-        tax: '',
-        total: '',
-        nights: '',
-    },
+    pricing: null,
     guest: null,
 }
 

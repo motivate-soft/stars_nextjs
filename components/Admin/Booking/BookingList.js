@@ -6,9 +6,9 @@ import PageHeader from "@iso/components/utility/pageHeader";
 import Scrollbars from "@iso/components/utility/customScrollBar";
 import Button from "@iso/components/uielements/button";
 import Popconfirm from "@iso/components/Feedback/Popconfirm";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, FieldTimeOutlined, DeleteOutlined } from "@ant-design/icons";
 import Loader from "@iso/components/utility/loader";
-import CardWrapper from "./BookingList.styles";
+import { BookingListWrapper } from "./Booking.styles";
 
 import bookingActions from "@redux/bookings/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -109,6 +109,10 @@ export default function BookingList() {
           <Link href={`/admin/booking?id=${original.id}`}>
             <EditOutlined />
           </Link>
+          {
+            original.status !== "A" &&
+            <FieldTimeOutlined onClick={() => handleApprove(order.id)} />
+          }
           <Popconfirm
             title="Sure to delete?"
             onConfirm={() => onDeleteCell(original.id)}
@@ -120,6 +124,10 @@ export default function BookingList() {
     },
   ];
 
+  function handleApprove(bookingId) {
+    dispatch(bookingActions.approveBooking(bookingId));
+  }
+
   function onDeleteCell(bookingId) {
     dispatch(bookingActions.deleteBooking(bookingId));
   }
@@ -128,16 +136,7 @@ export default function BookingList() {
     <LayoutWrapper>
       <PageHeader>Booking</PageHeader>
       <Box>
-        <CardWrapper>
-          <div className="bookingTableBtn">
-            <Link href={`booking?id=new`}>
-              <a>
-                <Button type="primary" className="addBookingBtn">
-                  Add Booking
-                </Button>
-              </a>
-            </Link>
-          </div>
+        <BookingListWrapper>
           {loading && <Loader />}
           {items && (
             <Scrollbars
@@ -146,7 +145,7 @@ export default function BookingList() {
               <AntReactTable columns={columns} data={items} />
             </Scrollbars>
           )}
-        </CardWrapper>
+        </BookingListWrapper>
       </Box>
     </LayoutWrapper>
   );

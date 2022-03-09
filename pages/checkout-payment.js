@@ -3,6 +3,7 @@ import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
 import CheckoutPayment from "@components/Guest/Checkout/CheckoutPayment";
 import postApi from "../service/postApi";
 import metaApi from "../service/metaApi";
+import { BACKEND_URL, PAYPAL_CLIENT_ID } from "env-config";
 
 export default function CheckoutPaymentPage(props) {
   const { posts, meta, currentUrl } = props;

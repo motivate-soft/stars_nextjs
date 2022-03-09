@@ -37,3 +37,9 @@ export const calculateBookingCost = (property, checkinDate, checkoutDate) => {
         total,
     };
 };
+
+export const calculateDays = (date1, date2) => {
+    var a = moment(date1);
+    var b = moment(date2);
+    return a.diff(b, 'days')
+}

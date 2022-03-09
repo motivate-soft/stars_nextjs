@@ -25,22 +25,8 @@ const bookingApi = {
       .catch(handleError);
   },
 
-  getListing: async (queryObj) =>
-    fetch(
-      `${BACKEND_URL}/api/accommodation/booking/listing?${qs.stringify(
-        queryObj
-      )}`
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
   getOne: async (id) =>
-    fetch(`${BACKEND_URL}/api/accommodation/booking/${id}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${id}/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -75,7 +61,7 @@ const bookingApi = {
       .catch(handleError),
 
   update: async (booking) =>
-    fetch(`${BACKEND_URL}/api/accommodation/booking/${booking.id}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${booking.id}/`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -92,8 +78,42 @@ const bookingApi = {
       })
       .catch(handleError),
 
+  approve: async (bookingId) =>
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/approve/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("accessToken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
+  decline: async (bookingId) =>
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/decline/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("accessToken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .catch(handleError),
+
   delete: async (bookingId) =>
-    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}`, {
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -104,77 +124,6 @@ const bookingApi = {
       .then((res) => {
         if (res.ok) {
           return null;
-        }
-        throw res;
-      })
-      .catch(handleError),
-  getPriceItems: async (bookingId) =>
-    fetch(
-      `${BACKEND_URL}/api/accommodation/pricing/?booking=${bookingId}`,
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-  createPriceItem: async (pricing) =>
-    fetch(`${BACKEND_URL}/api/accommodation/pricing/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
-      },
-      body: JSON.stringify(pricing),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-
-  getMonthlyPriceItems: async (bookingId) =>
-    fetch(
-      `${BACKEND_URL}/api/accommodation/monthlypricing/?booking=${bookingId}`,
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getCookie("accessToken")}`,
-        },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .catch(handleError),
-  createMonthlyPriceItem: async (data) =>
-    fetch(`${BACKEND_URL}/api/accommodation/monthlypricing/bulk_create/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie("accessToken")}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
         }
         throw res;
       })
