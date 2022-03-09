@@ -16,7 +16,7 @@ function CheckoutConfirm({ posts }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (!state.propertyId) {
+    if (!state.bookingId) {
       router.push("/listing");
     }
   }, []);
@@ -28,10 +28,21 @@ function CheckoutConfirm({ posts }) {
         <Container>
           <Row gutter={[32, 32]}>
             <Col lg={{ offset: 6, span: 12 }} sm={24} xs={24}>
-              <h4 style={{ textAlign: 'center' }}>
-                Thank you! <br />
-                Please wait while we process your booking request
+              <h4>
+                Your booking has been confirmed! <br /> Your reservation ID is:{" "}
+                {state.bookingId}
               </h4>
+              <p>Arrival: {moment(state.checkinDate).format("MMM DD, YYYY")}</p>
+              <p>
+                Departure: {moment(state.checkoutDate).format("MMM DD, YYYY")}
+              </p>
+              <p>Rent: ${state.pricing.nights_price - state.pricing.monthly_discount}</p>
+              <p>Cleaning Fee: ${state.pricing.cleaning_fee}</p>
+              <p>Security Deposit: ${state.pricing.refundable_amount}</p>
+              <p>Transaction Fee: ${state.pricing.transaction_fee}</p>
+              <p>Tax: ${state.pricing.tax}</p>
+              <p>Total: ${state.pricing.total}</p>
+              <p>Please print this page for your records.</p>
             </Col>
           </Row>
         </Container>
