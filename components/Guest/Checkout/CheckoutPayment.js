@@ -3,15 +3,7 @@ import Link from "next/link";
 import { Button, Col, Row } from "antd";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
-import styled from "styled-components";
-import { palette } from "styled-tools";
 import BookingWidget from "@components/Guest/Property/Booking/BookingWidget";
-import { BookingContext } from "@context/BookingProvider";
-import { notification } from "@iso/components";
-import { BACKEND_URL, PIXEL_ID } from "../../../env-config";
-import { useRouter } from "next/router";
-import ReactGA from "react-ga";
-import Loader from "@iso/components/utility/loader";
 import { CheckoutWrapper } from "./Checkout.styles";
 import CheckoutForm from "@components/Guest/Checkout/CheckoutForm";
 import {
@@ -47,8 +39,11 @@ function CheckoutPayment(props) {
                   <h3>Payment Information</h3>
                   <span>Step 3 of 3</span>
                 </div>
-
-                <CheckoutForm />
+                <Row >
+                  <Col lg={12} sm={24} xs={24}>
+                    <CheckoutForm />
+                  </Col>
+                </Row>
                 <p>
                   <Link href="/contact" target="_blank">
                     <span className="underlined-link">Contact us </span>

@@ -85,6 +85,49 @@ export function* updateBooking() {
   });
 }
 
+
+export function* approveBooking() {
+  yield takeEvery(actions.APPROVE_BOOKING_REQUEST, function* (payload) {
+    try {
+      yield call(bookingApi.approve, payload.bookingId);
+      notification("success", "Booking approved!");
+
+      Router.push("/admin/booking");
+      yield put({
+        type: actions.APPROVE_BOOKING_SUCCESS,
+        bookingId: payload.bookingId,
+      });
+    } catch (error) {
+      notification("warning", error.message);
+      yield put({
+        type: actions.APPROVE_BOOKING_FAILURE,
+        error: error.message,
+      });
+    }
+  });
+}
+
+export function* declineBooking() {
+  yield takeEvery(actions.DECLINE_BOOKING_FAILURE, function* (payload) {
+    try {
+      yield call(bookingApi.decline, payload.bookingId);
+      notification("success", "Booking declined!");
+
+      Router.push("/admin/booking");
+      yield put({
+        type: actions.DECLINE_BOOKING_SUCCESS,
+        bookingId: payload.bookingId,
+      });
+    } catch (error) {
+      notification("warning", error.message);
+      yield put({
+        type: actions.DECLINE_BOOKING_FAILURE,
+        error: error.message,
+      });
+    }
+  });
+}
+
 export function* deleteBooking() {
   yield takeEvery(actions.DELETE_BOOKING_REQUEST, function* (payload) {
     try {
@@ -107,12 +150,15 @@ export function* deleteBooking() {
 }
 
 
+
 export default function* rootSaga() {
   yield all([
     call(getAllBookings),
     fork(getBooking),
     fork(addBooking),
     fork(updateBooking),
+    fork(approveBooking),
+    fork(declineBooking),
     fork(deleteBooking),
   ]);
 }

@@ -83,13 +83,13 @@ export default function BookingList() {
     },
     {
       Header: "Check in",
-      accessor: "start",
+      accessor: "checkin_date",
       width: 200,
       sortType: "basic",
     },
     {
       Header: "Check out",
-      accessor: "end",
+      accessor: "checkout_date",
       width: 200,
       sortType: "basic",
     },
@@ -109,16 +109,19 @@ export default function BookingList() {
           <Link href={`/admin/booking?id=${original.id}`}>
             <EditOutlined />
           </Link>
-          {
-            original.status !== "A" &&
-            <FieldTimeOutlined onClick={() => handleApprove(order.id)} />
-          }
           <Popconfirm
             title="Sure to delete?"
             onConfirm={() => onDeleteCell(original.id)}
           >
             <DeleteOutlined />
           </Popconfirm>
+          {
+            original.status === "P" &&
+            <>
+              <Button type="primary" size="small" style={{ marginRight: 12 }} onClick={() => handleApprove(original.id)} >Approve</Button>
+              <Button type="danger" size="small" onClick={() => handleDecline(original.id)} >Decline</Button>
+            </>
+          }
         </div>
       ),
     },
@@ -126,6 +129,10 @@ export default function BookingList() {
 
   function handleApprove(bookingId) {
     dispatch(bookingActions.approveBooking(bookingId));
+  }
+
+  function handleDecline(bookingId) {
+    dispatch(bookingActions.declineBooking(bookingId));
   }
 
   function onDeleteCell(bookingId) {

@@ -79,7 +79,7 @@ const bookingApi = {
       .catch(handleError),
 
   approve: async (bookingId) =>
-    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/approve/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/approve`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -96,7 +96,7 @@ const bookingApi = {
       .catch(handleError),
 
   decline: async (bookingId) =>
-    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/decline/`, {
+    fetch(`${BACKEND_URL}/api/accommodation/booking/${bookingId}/decline`, {
       method: "POST",
       headers: {
         Accept: "application/json",

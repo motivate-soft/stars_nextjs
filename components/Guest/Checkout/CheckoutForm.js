@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useRouter } from "next/router";
 import {
     PayPalHostedFieldsProvider,
     PayPalHostedField,
@@ -7,9 +8,10 @@ import {
     usePayPalScriptReducer,
 } from '@paypal/react-paypal-js';
 import { Button } from "antd";
-import { BACKEND_URL } from 'env-config';
+import { notification } from "@iso/components";
+import { BACKEND_URL, PIXEL_ID } from 'env-config';
 import { BookingContext } from "@context/BookingProvider";
-
+import Loader from "@iso/components/utility/loader";
 import ReactGA from "react-ga";
 
 
@@ -22,7 +24,7 @@ export default function CheckoutForm(props) {
     const cardHolderName = useRef(null);
 
     const { state, dispatch } = useContext(BookingContext);
-
+    const router = useRouter();
 
     useEffect(() => {
         console.log('CheckoutForm :>>isPending ', isPending);
@@ -35,12 +37,16 @@ export default function CheckoutForm(props) {
             );
             setSupportsHostedFields(window.paypal.HostedFields.isEligible());
         }
-    }, [isPending, isResolved]);
+    }, [isResolved]);
 
     const createOrder = async () => {
+        /**
+         * Calculate booking price and Create paypal Order.
+         */
+
         try {
             const orderData = {
-                property: state.property_id,
+                property: state.propertyId,
                 checkin_date: state.checkinDate,
                 checkout_date: state.checkoutDate,
                 adults: state.adults,
@@ -57,6 +63,7 @@ export default function CheckoutForm(props) {
             );
             const data = await res.json();
             console.log(`createOrder :>> data`, data)
+
             return data.id
         } catch (error) {
             console.log(`createOrder :>> error`, error)
@@ -64,8 +71,12 @@ export default function CheckoutForm(props) {
     }
 
     const handleOrder = async (orderData) => {
+        /**
+         * Create a new booking request
+         */
+        setIsLoading(true)
         const bookingData = {
-            property_id: state.property_id,
+            property_id: state.propertyId,
             checkin_date: state.checkinDate,
             checkout_date: state.checkoutDate,
             adults: state.adults,
@@ -82,7 +93,7 @@ export default function CheckoutForm(props) {
             street: state.billing.street,
             zip_code: state.billing.zipCode,
 
-            order_id: orderData.orderId
+            order_id: orderData.orderId // Paypal OrderId
         };
 
         try {
@@ -98,40 +109,35 @@ export default function CheckoutForm(props) {
             console.log('CheckoutForm :>>handleOrder:success', data);
 
             if (res.ok) {
-                // ReactGA.event({
-                //   category: "ecommerce",
-                //   action: "purchase",
-                // });
+                ReactGA.event({
+                    category: "ecommerce",
+                    action: "purchase",
+                });
 
-                // import("react-facebook-pixel")
-                //   .then((x) => x.default)
-                //   .then((ReactPixel) => {
-                //     console.log("initReactPixel", PIXEL_ID);
-                //     ReactPixel.init(PIXEL_ID);
-                //     ReactPixel.track("Purchase", {
-                //       value: bookingData.total,
-                //       currency: "USD",
-                //     });
-                //   });
-
-                // dispatch({
-                //   type: "UPDATE_BOOKING_INFORMATION",
-                //   payload: {
-                //     ...state,
-                //     bookingId: data.booking_id,
-                //   },
-                // });
-
-                router.push("/checkout-confirm");
+                import("react-facebook-pixel")
+                    .then((x) => x.default)
+                    .then((ReactPixel) => {
+                        console.log("initReactPixel", PIXEL_ID);
+                        ReactPixel.init(PIXEL_ID);
+                        ReactPixel.track("Purchase", {
+                            value: bookingData.total,
+                            currency: "USD",
+                        });
+                    });
+                notification(
+                    "success",
+                    "Please wait while we process your booking request"
+                );
             }
-        } catch (error) {
-            console.log('CheckoutForm :>>handleOrder:success', error);
 
+        } catch (error) {
+            console.log('CheckoutForm :>>handleOrder:error', error);
             notification(
                 "warning",
                 "Server error while handling booking information"
             );
         }
+        setIsLoading(false)
     };
 
     const SubmitPayment = () => {
@@ -158,14 +164,17 @@ export default function CheckoutForm(props) {
         };
 
         return (
-            <Button type="primary" onClick={handleClick} disabled={isLoading}>
-                {isLoading ? "Loading..." : 'Pay'}
+            <Button type="secondary " size='large' style={{ width: 100, marginBottom: 50 }} onClick={handleClick} disabled={isLoading}>
+                {isLoading ? <Loader /> : 'Pay'}
             </Button>
         );
     };
 
     return (
         <div className="checkout__form">
+            {
+                isPending && <Loader />
+            }
             {
                 supportsHostedFields &&
                 <PayPalHostedFieldsProvider
@@ -177,8 +186,8 @@ export default function CheckoutForm(props) {
                         input: {
                             'font-family': 'Raleway, sans-serif',
                             'font-size': '16px',
-                            'border': '2px solid #e8c36a',
-                            'box-shadow': 'none !important',
+                            // 'border': '2px solid #e8c36a',
+                            // 'box-shadow': 'none !important',
                         },
                     }}
                 >
@@ -189,13 +198,17 @@ export default function CheckoutForm(props) {
                         type="text"
                         placeholder="name"
                         className="ant-input ant-input-lg"
+                        style={{ marginBottom: 20 }}
                     />
                     <label htmlFor="card-number">Card Number</label>
                     <PayPalHostedField
                         id="card-number"
                         className="ant-input ant-input-lg"
                         hostedFieldType={PAYPAL_HOSTED_FIELDS_TYPES.NUMBER}
-                        style={{ height: '48px' }}
+                        style={{
+                            height: '48px',
+                            marginBottom: '20px'
+                        }}
                         options={{
                             selector: '#card-number',
                             placeholder: '4111 1111 1111 1111',
@@ -206,7 +219,10 @@ export default function CheckoutForm(props) {
                         id="cvv"
                         className="ant-input ant-input-lg"
                         hostedFieldType={PAYPAL_HOSTED_FIELDS_TYPES.CVV}
-                        style={{ height: '48px' }}
+                        style={{
+                            height: '48px',
+                            marginBottom: '20px'
+                        }}
                         options={{
                             selector: '#cvv',
                             placeholder: '123',
@@ -218,7 +234,10 @@ export default function CheckoutForm(props) {
                         id="expiration-date"
                         className="ant-input ant-input-lg"
                         hostedFieldType={PAYPAL_HOSTED_FIELDS_TYPES.EXPIRATION_DATE}
-                        style={{ height: '48px' }}
+                        style={{
+                            height: '48px',
+                            marginBottom: '20px'
+                        }}
                         options={{
                             selector: '#expiration-date',
                             placeholder: 'MM/YYYY',

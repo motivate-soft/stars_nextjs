@@ -24,6 +24,8 @@ const TableWrapper = styled.div`
     tbody {
       td {
         .opt-cell {
+          display: flex;
+          justify-content: center;
           svg {
             margin-right: 10px;
             width: 25px;
