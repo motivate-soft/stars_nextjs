@@ -36,7 +36,8 @@ export default function EditBooking(props) {
   const onFinish = (values) => {
     dispatch(bookingActions.updateBooking({
       ...selectedItem,
-      ...values
+      ...values,
+      property: selectedItem.property.id
     }));
   };
 

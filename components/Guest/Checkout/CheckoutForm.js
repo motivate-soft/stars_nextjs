@@ -76,7 +76,7 @@ export default function CheckoutForm(props) {
          */
         setIsLoading(true)
         const bookingData = {
-            property_id: state.propertyId,
+            property: state.propertyId,
             checkin_date: state.checkinDate,
             checkout_date: state.checkoutDate,
             adults: state.adults,
@@ -137,7 +137,7 @@ export default function CheckoutForm(props) {
                 "Server error while handling booking information"
             );
         }
-        setIsLoading(false)
+        router.push("checkout-confirm")
     };
 
     const SubmitPayment = () => {
@@ -164,8 +164,8 @@ export default function CheckoutForm(props) {
         };
 
         return (
-            <Button type="secondary " size='large' style={{ width: 100, marginBottom: 50 }} onClick={handleClick} disabled={isLoading}>
-                {isLoading ? <Loader /> : 'Pay'}
+            <Button type="secondary " size='large' style={{ marginBottom: 50 }} onClick={handleClick} disabled={isLoading}>
+                {isLoading ? <Loader /> : 'Request a booking'}
             </Button>
         );
     };
