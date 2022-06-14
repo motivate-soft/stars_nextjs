@@ -4,7 +4,7 @@ import { palette } from "styled-tools";
 export const CheckoutWrapper = styled.div`
   .checkout-block,.checkout-review-block,.checkout-confirm-block,.checkout-payment-block {
     padding: 50px 0 100px;
-
+    h1,
     h3,
     h4,
     h5 {

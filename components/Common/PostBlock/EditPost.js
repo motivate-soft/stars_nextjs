@@ -9,7 +9,7 @@ import { palette } from "styled-tools";
 
 const EditPostWrapper = styled.div`
   margin-top: 0;
-
+  h1,
   h2,
   h4,
   h5 {
@@ -33,6 +33,9 @@ function EditPost(props) {
     if (content) return null;
     return (
       <>
+        {size === "xlg" && (
+          <h1>{posts && posts.length > 0 ? posts[index].title : ""}</h1>
+        )}
         {size === "lg" && (
           <h2>{posts && posts.length > 0 ? posts[index].title : ""}</h2>
         )}

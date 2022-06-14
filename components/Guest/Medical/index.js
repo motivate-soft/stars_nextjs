@@ -16,7 +16,7 @@ import EditPost from "@components/Common/PostBlock/EditPost";
 import Container from "@iso/ui/UI/Container/Container";
 import MedicalWrapper from "@components/Guest/Medical/Medical.styles";
 import { BACKEND_URL } from "../../../env-config";
-import AccommodationsMap from "@components/Guest/Medical/AccommodationsMap";
+// import AccommodationsMap from "@components/Guest/Medical/AccommodationsMap";
 
 function Medical(props) {
   const { posts } = props;
@@ -46,7 +46,7 @@ function Medical(props) {
         <Container className="medical-stays-block">
           <Row gutter={[32, 32]}>
             <Col lg={12} sm={24} xs={24}>
-              <EditPost index={35} size="lg" posts={posts} />
+              <EditPost index={35} size="xlg" posts={posts} />
               <Link href="/listing">
                 <a className="ant-btn ant-btn-secondary ant-btn-lg">
                   EXPLORE OUR MEDICAL ACCOMMODATIONS
@@ -114,7 +114,7 @@ function Medical(props) {
                 </Link>
               </div>
             </div>
-            <AccommodationsMap properties={properties} />
+            {/* <AccommodationsMap properties={properties} /> */}
           </Container>
         </div>
 

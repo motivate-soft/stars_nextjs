@@ -17,7 +17,7 @@ export default function ContactUs() {
         <Container className="contact-info-block">
           <Row gutter={[32, 32]}>
             <Col lg={12} sm={24} xs={24}>
-              <h2>Contact us</h2>
+              <h1>Contact us</h1>
               <p>
                 We are available to answer questions and provide suggestions or
                 connect you with some of our additional personalized services.

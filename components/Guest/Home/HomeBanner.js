@@ -10,7 +10,7 @@ const HomeBanner = ({ posts }) => {
     <BannerWrapper>
       <Container>
         <SearchWrapper>
-          <EditPost index={93} posts={posts} size="lg" />
+          <EditPost index={93} posts={posts} size="xlg" />
           <SearchForm />
           <h6>
             Please <Link href="/contact">Contact us</Link> for best rates for

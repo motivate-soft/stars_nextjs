@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { palette } from "styled-tools";
 
 export const PropertyListingWrapper = styled.div`
+  h1 {
+  text-align:center;
+  color: ${palette("primary", 0)};
+  }
   .main-background-3 {
     @media (max-width: 991px) {
       height: 700px;

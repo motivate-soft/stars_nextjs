@@ -38,7 +38,7 @@ function Locations(props) {
       <Box as="section" className="main-background-2" />
       <Box as="section" className="locations-block">
         <Container>
-          <h2>Our Locations</h2>
+          <h1>Our Locations</h1>
           <Row gutter={[32, 32]} style={{ marginBottom: 50 }}>
             {locationsMenu.map((menuItem, index) => (
               <Col lg={6} sm={12} xs={24}>

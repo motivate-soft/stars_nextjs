@@ -11,6 +11,7 @@ import { BookingContext } from "@context/BookingProvider";
 import { SearchContext } from "@context/SearchProvider";
 import ReactGA from "react-ga";
 import qs from "query-string";
+import EditPost from "@components/Common/PostBlock/EditPost";
 
 const categories = [
   {
@@ -136,6 +137,7 @@ function PropertyListing(props) {
       <Box as="section" className="main-background-3">
         <ListingPageSearch />
       </Box>
+      <h1>Apartement Lists</h1>
       <Box as="section" className="property-listing-block">
         <Container>
           <Tabs

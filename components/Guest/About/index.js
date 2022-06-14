@@ -15,6 +15,7 @@ function About(props) {
   return (
     <AboutWrapper>
       <Box as="section" className="main-background-2" />
+      <h1>About Us</h1>
       <Container className="check-boston-block">
         <Row gutter={[32, 32]}>
           <Col lg={12} sm={24} xs={24}>

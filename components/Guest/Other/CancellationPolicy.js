@@ -3,15 +3,15 @@ import Link from 'next/link';
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
 import EditPost from "@components/Common/PostBlock/EditPost";
-
+import { OthersWrapper } from './Others.styles';
 
 function CancellationPolicy({posts}) {
     return (
-        <>
+        <>  <OthersWrapper>
             <Box as="section" className="main-background-2"/>
             <Box as="section" className="posts-block">
                 <Container>
-                    <h2>Refund Policy</h2>
+                    <h1>Refund Policy</h1>
                     <EditPost index={80} posts={posts}/>
                     {/*Cancellation Policy*/}
                     <EditPost index={81} posts={posts}/>
@@ -24,6 +24,7 @@ function CancellationPolicy({posts}) {
                     </p>
                 </Container>
             </Box>
+            </OthersWrapper>
         </>
     );
 }

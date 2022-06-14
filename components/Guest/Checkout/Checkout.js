@@ -38,7 +38,7 @@ function Checkout(props) {
                   marginBottom: 30,
                 }}
               >
-                <h3>Begin your booking</h3>
+                <h1>Begin your booking</h1>
                 <span>Step 1 of 3</span>
               </div>
               <ContactInfoForm />

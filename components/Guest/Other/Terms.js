@@ -3,15 +3,17 @@ import Link from 'next/link';
 import EditPost from "@components/Common/PostBlock/EditPost";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
+import { OthersWrapper } from './Others.styles';
 
 
 function Terms({posts}) {
     return (
         <>
+            <OthersWrapper>
             <Box as="section" className="main-background-2"/>
             <Box as="section" className="posts-block">
                 <Container>
-                    <h2>Terms & Conditions</h2>
+                    <h1>Terms & Conditions</h1>
                     {/*Overview*/}
                     <EditPost index={52} posts={posts}/>
                     {/*STARS of Boston Terms*/}
@@ -51,6 +53,7 @@ function Terms({posts}) {
                     </p>
                 </Container>
             </Box>
+            </OthersWrapper>
         </>
     );
 }

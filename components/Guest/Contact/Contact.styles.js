@@ -4,7 +4,9 @@ import {palette} from "styled-tools";
 const ContactWrapper = styled.div`
   .contact-info-block {
     padding: 50px 0;
-
+    h1 {
+      color: ${palette("primary", 0)};
+    }
     h2 {
       color: ${palette('primary', 0)}
     }

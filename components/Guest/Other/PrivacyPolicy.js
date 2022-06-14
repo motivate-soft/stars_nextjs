@@ -3,7 +3,7 @@ import Link from "next/link";
 import Box from "@iso/ui/Box/Box";
 import Container from "@iso/ui/UI/Container/Container";
 import EditPost from "@components/Common/PostBlock/EditPost";
-
+import { OthersWrapper } from './Others.styles';
 function PrivacyPolicy({ posts }) {
   const handlesendContactEmail = () => {
     window.open(`mailto:hello@starsofboston.com`);
@@ -15,10 +15,11 @@ function PrivacyPolicy({ posts }) {
 
   return (
     <>
+    <OthersWrapper>
       <Box as="section" className="main-background-2" />
       <Box as="section" className="posts-block">
         <Container>
-          <h2>Privacy Policy</h2>
+          <h1>Privacy Policy</h1>
           {/*<h2>Privacy Policy</h2>*/}
           <EditPost index={80} posts={posts} />
 
@@ -69,6 +70,7 @@ function PrivacyPolicy({ posts }) {
           </p>
         </Container>
       </Box>
+      </OthersWrapper>
     </>
   );
 }

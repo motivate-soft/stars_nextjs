@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { palette } from "styled-tools";
 
 const LocationsWrapper = styled.div`
+  h1 {
+    text-align:center;
+    color: ${palette("primary", 0)};
+  }
   h2 {
     text-align: center;
     color: ${palette("primary", 0)};

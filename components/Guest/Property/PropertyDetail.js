@@ -11,7 +11,7 @@ import PropertyGalleryModal from "@components/Guest/Property/ImageGallery/ImageG
 import TopBar from "@components/Guest/Property/TopBar/TopBar";
 import Description from "@components/Guest/Property/Description/Description";
 import Amenities from "@components/Guest/Property/Amenities/Amenities";
-import LocationMap from "@components/Guest/Property/LocationMap/LocationMap";
+// import LocationMap from "@components/Guest/Property/LocationMap/LocationMap";
 import Loader from "@iso/components/utility/loader";
 import Reservation from "@components/Guest/Property/Reservation/Reservation";
 
@@ -117,7 +117,7 @@ function PropertyDetail(props) {
           <Col xl={16}>
             <Description property={property} />
             <Amenities amenities={property.amenities} />
-            <LocationMap lat={property.lat} lng={property.lng} />
+             <LocationMap lat={property.lat} lng={property.lng} />
             <Element name="neighborhood" className="neighborhood-block">
               <div>
                 <h3>Neighborhood</h3>
