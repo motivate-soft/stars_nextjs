@@ -11,7 +11,7 @@ import PropertyGalleryModal from "@components/Guest/Property/ImageGallery/ImageG
 import TopBar from "@components/Guest/Property/TopBar/TopBar";
 import Description from "@components/Guest/Property/Description/Description";
 import Amenities from "@components/Guest/Property/Amenities/Amenities";
-// import LocationMap from "@components/Guest/Property/LocationMap/LocationMap";
+import LocationMap from "@components/Guest/Property/LocationMap/LocationMap";
 import Loader from "@iso/components/utility/loader";
 import Reservation from "@components/Guest/Property/Reservation/Reservation";
 
