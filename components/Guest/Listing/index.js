@@ -137,7 +137,7 @@ function PropertyListing(props) {
       <Box as="section" className="main-background-3">
         <ListingPageSearch />
       </Box>
-      <h1>Apartement Lists</h1>
+      <h1>Furnished Apartments</h1>
       <Box as="section" className="property-listing-block">
         <Container>
           <Tabs
