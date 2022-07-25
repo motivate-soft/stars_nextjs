@@ -1,18 +1,15 @@
 import CustomHead from "@components/Guest/CustomHead";
 import GuestLayout from "../containers/Guest/GuestLayout/GuestLayout";
-import ComingSoon from "./../components/Guest/Other/ComingSoon";
-import Container from "@iso/ui/UI/Container/Container";
 import metaApi from "../service/metaApi";
-
+import Services from "@components/Guest/Services";
+import postApi from "../service/postApi";
 export default function ServicesPage(props) {
   const { posts, meta, currentUrl } = props;
   return (
     <>
       <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
-        <Container>
-          <ComingSoon />
-        </Container>
+          <Services posts={posts}/>
       </GuestLayout>
     </>
   );

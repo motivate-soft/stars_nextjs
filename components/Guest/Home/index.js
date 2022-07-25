@@ -203,53 +203,7 @@ function Home({ posts, companies }) {
             </Col>
           </Row>
         </Container>
-        <Container className="vip-services-block">
-          <Row gutter={[32, 32]}>
-            <Col lg={{ span: 22, offset: 2 }} sm={24} xs={24}>
-              <h3>VIP Services</h3>
-            </Col>
-            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
-              <Row>
-                <Col lg={10} sm={24} xs={24}>
-                  <img className="stars-icon" src={icon7} alt="icon" />
-                </Col>
-                <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={11} posts={posts} />
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
-              <Row>
-                <Col lg={10} sm={24} xs={24}>
-                  <img className="stars-icon" src={icon8} alt="icon" />
-                </Col>
-                <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={12} posts={posts} />
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
-              <Row>
-                <Col lg={10} sm={24} xs={24}>
-                  <img className="stars-icon" src={icon9} alt="icon" />
-                </Col>
-                <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={13} posts={posts} />
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={{ span: 10, offset: 2 }} sm={24} xs={24}>
-              <Row>
-                <Col lg={10} sm={24} xs={24}>
-                  <img className="stars-icon" src={icon10} alt="icon" />
-                </Col>
-                <Col lg={14} sm={24} xs={24}>
-                  <EditPost index={14} posts={posts} />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
+        
       </Box>
       <Box as="section" className="stay-boston-block">
         <Container>
