@@ -6,6 +6,7 @@ import isEmpty from "lodash/isEmpty";
 import Sticky from "react-stickynode";
 
 import tourIcon from "@assets/icons/360-degrees-2.svg";
+import unavailable from "@assets/icons/unavailable-white.png";
 import TourModal from "@components/Guest/Property/TourModal/TourModal";
 import PropertyGalleryModal from "@components/Guest/Property/ImageGallery/ImageGalleryModal";
 import TopBar from "@components/Guest/Property/TopBar/TopBar";
@@ -56,7 +57,7 @@ function PropertyDetail(props) {
         ...state,
         propertyId: property.id,
         propertySlug: property.slug,
-        property
+        property,
       },
     });
   }, [property]);
@@ -78,13 +79,20 @@ function PropertyDetail(props) {
         {/*    alt="Listing details banner"*/}
         {/*/>*/}
         <Container className="banner-buttons-wrapper">
-          <Button
-            type="primary"
-            onClick={() => setIsTourModalShowing(true)}
-            className="image_gallery_button"
-          >
-            <img src={tourIcon} alt="tour button" />
-          </Button>
+          {property.tour360 === null || property.tour360 === "Coming Soon!" ? (
+            <></>
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => {
+                setIsTourModalShowing(true);
+              }}
+              className="image_gallery_button"
+            >
+              <img src={tourIcon} alt="tour button" />
+            </Button>
+          )}
+
           <Button
             type="primary"
             onClick={() => setIsGalleryModalShowing(true)}
@@ -117,7 +125,7 @@ function PropertyDetail(props) {
           <Col xl={16}>
             <Description property={property} />
             <Amenities amenities={property.amenities} />
-             <LocationMap lat={property.lat} lng={property.lng} />
+            <LocationMap lat={property.lat} lng={property.lng} />
             <Element name="neighborhood" className="neighborhood-block">
               <div>
                 <h3>Neighborhood</h3>
