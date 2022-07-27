@@ -17,7 +17,6 @@ export default function ServicesPage(props) {
 
 export async function getServerSideProps(context) {
   const { resolvedUrl, query } = context;
-  console.log("getServerSideProps", resolvedUrl, query);
   let pageSlug;
   if (resolvedUrl == "/") {
     pageSlug = "home";

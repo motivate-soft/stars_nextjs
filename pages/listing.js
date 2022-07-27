@@ -19,9 +19,6 @@ export default function PropertyListingPage(props) {
 
 export async function getServerSideProps(context) {
   const { resolvedUrl, query } = context;
-
-  console.log("listing:getServerSideProps:query", query);
-
   let pageSlug, properties, categories, meta;
 
   if (resolvedUrl == "/") {
