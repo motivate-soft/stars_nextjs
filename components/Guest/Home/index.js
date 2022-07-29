@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import HomeBanner from "@components/Guest/Home/HomeBanner";
 import Container from "@iso/ui/UI/Container/Container";
 import Link from "next/link";
 import room1 from "@assets/images/room1.jpg";
 import room2 from "@assets/images/room2.jpg";
 import room3 from "@assets/images/room3.jpg";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import doctor from "@assets/images/doctor.jpg";
 import family from "@assets/images/family.jpg";
 import dining from "@assets/images/dining.jpg";
@@ -16,10 +16,6 @@ import icon3 from "@assets/icons/icons_3.svg";
 import icon4 from "@assets/icons/icons_4.svg";
 import icon5 from "@assets/icons/icons_5.svg";
 import icon6 from "@assets/icons/icons_6.svg";
-import icon7 from "@assets/icons/icons_7.svg";
-import icon8 from "@assets/icons/icons_8.svg";
-import icon9 from "@assets/icons/icons_9.svg";
-import icon10 from "@assets/icons/icons_10.svg";
 
 import stayinboston from "@assets/images/stayinboston.jpg";
 
@@ -33,31 +29,10 @@ import Box from "@iso/ui/Box/Box";
 import { FaStar } from "react-icons/fa";
 import EditPost from "@components/Common/PostBlock/EditPost";
 import GuestReviews from "@components/Guest/Review/GuestReview";
-import PropertyCard from "./../Property/PropertyCard/PropertyCard";
-import { SearchContext } from "@context/SearchProvider";
-import propertyApi from "./../../../service/propertyApi";
 import Subscription from "@components/Guest/Subscription";
 import Companies from "../Companies";
 
 function Home({ posts, companies }) {
-  const { state, dispatch } = useContext(SearchContext);
-  const [properties, setProperties] = useState(null);
-
-  useEffect(() => {
-    fetchProperties();
-  }, []);
-
-  async function fetchProperties() {
-    let queryObj = { category: "1-Bedroom" };
-    try {
-      const res = await propertyApi.getListing(queryObj);
-      setProperties(res);
-    } catch (error) {
-      console.log("error", error);
-      setProperties([]);
-    }
-  }
-
   return (
     <HomeWrapper>
       <HomeBanner posts={posts} />
