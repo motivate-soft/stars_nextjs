@@ -350,48 +350,6 @@ function Home({ posts, companies }) {
           </Row>
         </Container>
       </Box>
-      <Box as="section" className="look-rentals-block">
-        <Container>
-          <div className="title-wrapper">
-            <div>
-              <p>FIND YOUR IDEAL STAY</p>
-              <h2>Take a look at our rentals</h2>
-            </div>
-            <Link href="/listing">
-              <a className="ant-btn ant-btn-secondary ant-btn-lg">Read More</a>
-            </Link>
-          </div>
-          <Row gutter={[32, 32]}>
-            {properties &&
-              properties.map((item, index) => (
-                <Col key={index} lg={8} sm={24} xs={24}>
-                  <PropertyCard
-                    key={index}
-                    id={item.id}
-                    address={item.address}
-                    title={item.name}
-                    category={item.category}
-                    slug={item.slug}
-                    price={item.price}
-                    minPrice={item.min_price}
-                    maxPrice={item.max_price}
-                    minMonthPrice={item.min_month_price}
-                    monthlyPrice={item.monthly_price}
-                    bedroomCount={item.bedroom_count}
-                    bathroomCount={item.bathroom_count}
-                    sharedBathroom={item.shared_bathroom}
-                    minSleeps={item.min_sleeps}
-                    sleeps={item.sleeps}
-                    rentalParking={item.rental_parking}
-                    furnished={item.furnished}
-                    petsConsidered={item.pets_considered}
-                    image={item.featured_img}
-                  />
-                </Col>
-              ))}
-          </Row>
-        </Container>
-      </Box>
       <Box as="section" className="reviews-block">
         <GuestReviews posts={posts} />
       </Box>

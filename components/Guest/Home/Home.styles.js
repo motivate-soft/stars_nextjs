@@ -479,7 +479,7 @@ export const HomeWrapper = styled.div`
 
   .reviews-block {
     padding: 140px 24px;
-
+    background-color: #f8f8f8;
     h2 {
       margin: 0 auto 16px;
       text-align: center;
