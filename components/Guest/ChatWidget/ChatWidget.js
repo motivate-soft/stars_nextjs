@@ -33,7 +33,7 @@ const setting = {
 
 const ChatWidget = () => {
     return (
-        <Zendesk zendeskKey={ZENDESK_KEY} {...setting} onLoaded={() => console.log('is loaded')} />
+        <Zendesk zendeskKey={ZENDESK_KEY} {...setting} onLoaded={() => {}} />
     );
 };
 

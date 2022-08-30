@@ -16,7 +16,6 @@ import Meta from "@redux/meta/reducer";
 import Companies from "@redux/companies/reducer";
 import Bookings from "@redux/bookings/reducer";
 
-console.log("~~~~~~~~~~~~", Bookings)
 export default combineReducers({
   Auth,
   App,

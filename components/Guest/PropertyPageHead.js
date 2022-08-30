@@ -19,7 +19,7 @@ export default function PropertyPageHead(props) {
         {
           url:
             getTagValue(meta?.og_tags, "image_url") ??
-            property.featured_img.file,
+            (property.featured_img? property.featured_img.file: ""),
           width: getTagValue(meta?.og_tags, "image_width") ?? 2048,
           height: getTagValue(meta?.og_tags, "image_height") ?? 1365,
           alt: getTagValue(meta?.og_tags, "image_alt") ?? property.title,

@@ -11,6 +11,7 @@ export default class SortableMediaGallery extends React.Component {
       onSortEnd,
       onUploadSuccess,
       onDeleteSucess,
+      featuredImg
     } = this.props;
 
     const SortableItem = SortableElement(({ item }) => {
@@ -21,6 +22,7 @@ export default class SortableMediaGallery extends React.Component {
             image={item}
             onUploadSuccess={onUploadSuccess}
             onDeleteSucess={onDeleteSucess}
+            featuredImg={featuredImg}
           />
         </Col>
       );

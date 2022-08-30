@@ -22,7 +22,6 @@ const calendarItem = {
 
 const SearchForm = () => {
   const { state, dispatch } = useContext(SearchContext);
-  console.log("SearchFormSearchContext", state);
   const [searchDate, setSearchDate] = useState({
     setStartDate: state.checkin_date ? state.checkin_date : null,
     setEndDate: state.checkout_date ? state.checkout_date : null,

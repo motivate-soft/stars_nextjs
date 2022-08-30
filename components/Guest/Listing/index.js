@@ -92,8 +92,6 @@ function PropertyListing(props) {
   }, [router.query]);
 
   function handleTabClick(key, e) {
-    console.log("handleTabClick", key, searchState);
-
     if (key === "all") {
       key = null;
       setCategory(null);

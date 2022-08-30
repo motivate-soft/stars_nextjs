@@ -48,8 +48,10 @@ export default function GalleryManager(props) {
     onSortEnd,
     onUploadSuccess,
     onDeleteSucess,
+    featuredImg
   } = props;
   console.log("GalleryManager->items", items);
+  console.log("GalleryManager->featuredImg", featuredImg);
 
   const [visible, setVisible] = useState(false);
 
@@ -91,6 +93,7 @@ export default function GalleryManager(props) {
                 onSortEnd={onSortEnd}
                 onUploadSuccess={onUploadSuccess}
                 onDeleteSucess={onDeleteSucess}
+                featuredImg={featuredImg}
               />
             </GalleryWrapper>
           </TabPane>

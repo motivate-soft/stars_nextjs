@@ -73,24 +73,18 @@ const getCookieFromServer = (key, req) => {
 
 export const auth = (ctx) => {
   const { accessToken } = nextCookie(ctx);
-  console.log("auth.utils:ctx", ctx);
-  console.log("auth.utils:ctx:accessToken", accessToken);
 
   /*
    * If `ctx.req` is available it means we are on the server.
    * Additionally if there's no accessToken it means the user is not logged in.
    */
   if (ctx.req && !accessToken) {
-    console.log("auth.utils:redirect:server");
-
     ctx.res.writeHead(302, { Location: "/admin/signin" });
     ctx.res.end();
   }
 
   // We already checked for server. This should only happen on client.
   if (!accessToken) {
-    console.log("auth.utils:redirect:client");
-
     Router.push("/admin/signin");
   }
 
@@ -108,7 +102,6 @@ export const withAuthSync = (WrappedComponent) => {
   const Wrapper = (props) => {
     const syncLogout = (event) => {
       if (event.key === "logout") {
-        console.log("logged out from storage!");
         Router.push("/admin/signin");
       }
     };

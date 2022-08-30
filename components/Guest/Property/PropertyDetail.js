@@ -70,7 +70,7 @@ function PropertyDetail(props) {
 
   return (
     <PropertyDetailWrapper>
-      <BannerImageWrapper imageUrl={`url(${property.featured_img.file})`}>
+      <BannerImageWrapper imageUrl={`url(${property.featured_img? property.featured_img.file: ""})`}>
         {/*<Image*/}
         {/*    src="/images/single-post-bg.jpg"*/}
         {/*    layout="fill"*/}

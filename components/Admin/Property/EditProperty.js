@@ -20,25 +20,6 @@ import { SinglePropertyWrapper } from "@components/Admin/Property/PropertyList.s
 import GalleryManager from "@components/Admin/Property/GalleryManager/GalleryManager";
 import FeaturedImageManager from "@components/Admin/Property/FeaturedImageManager/FeaturedImageManager";
 
-// function uploadCallback(file) {
-//   return new Promise((resolve, reject) => {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open("POST", "https://api.imgur.com/3/image");
-//     xhr.setRequestHeader("Authorization", "Client-ID 8d26ccd12712fca");
-//     const data = new FormData();
-//     data.append("image", file);
-//     xhr.send(data);
-//     xhr.addEventListener("load", () => {
-//       const response = JSON.parse(xhr.responseText);
-//       resolve(response);
-//     });
-//     xhr.addEventListener("error", () => {
-//       const error = JSON.parse(xhr.responseText);
-//       reject(error);
-//     });
-//   });
-// }
-
 const newProperty = {
   name: "",
   category: "",
@@ -77,8 +58,6 @@ const editorOption = {
   toolbarClassName: "home-toolbar",
   wrapperClassName: "home-wrapper",
   editorClassName: "home-editor",
-  // uploadCallback: uploadCallback,
-  // toolbar: { image: { uploadCallback: uploadCallback } },
 };
 
 export default function EditProperty(props) {
@@ -134,14 +113,6 @@ export default function EditProperty(props) {
       });
     }
   }, [selectedItem]);
-
-  useEffect(() => {
-    console.log("state", state);
-  }, [state]);
-
-  function callback(key) {
-    console.log(key);
-  }
 
   function handleSave() {
     let errors = [];
@@ -409,6 +380,7 @@ export default function EditProperty(props) {
                 onSortEnd={handleSortEnd}
                 onUploadSuccess={handleUploadSuccess}
                 onDeleteSucess={handleDeleteSuccess}
+                featuredImg={state.featuredImg}
               />
               <FeaturedImageManager
                 propertyId={selectedItem.id ? selectedItem.id : null}
@@ -423,7 +395,7 @@ export default function EditProperty(props) {
           <Col lg={16} md={12} sm={24} xs={24} style={colStyle}>
             <Tabs
               defaultActiveKey="1"
-              onChange={callback}
+              onChange={() => {}}
               className="property-detail-tab"
             >
               {["description", "neighbourhood", "transit"].map((item) => (

@@ -117,7 +117,6 @@ export default function CheckoutForm(props) {
                 import("react-facebook-pixel")
                     .then((x) => x.default)
                     .then((ReactPixel) => {
-                        console.log("initReactPixel", PIXEL_ID);
                         ReactPixel.init(PIXEL_ID);
                         ReactPixel.track("Purchase", {
                             value: bookingData.total,

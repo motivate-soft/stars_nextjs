@@ -4,14 +4,12 @@ import ReactGA from "react-ga";
 import {GA_ID} from "../../env-config";
 
 const logPageView = () => {
-    console.log(`react-ga pageview for ${window.location.pathname}`)
     ReactGA.set({page: window.location.pathname})
     ReactGA.pageview(window.location.pathname)
 }
 
 export default (WrappedComponent) => (props) => {
     useEffect(() => {
-        console.log("initGA", GA_ID)
         ReactGA.initialize(GA_ID)
         // `routeChangeComplete` won't run for the first page load unless the query string is
         // hydrated later on, so here we log a page view if this is the first render and

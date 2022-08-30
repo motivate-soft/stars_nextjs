@@ -17,6 +17,7 @@ export default function GalleryMedia(props) {
     selected,
     onSelect,
     showSelectButton,
+    featuredImg
   } = props;
   const [isCropModalShowing, setIsCropModalShowing] = useState(false);
 
@@ -40,7 +41,6 @@ export default function GalleryMedia(props) {
       console.log("error", error);
       return;
     }
-    console.log("file", file);
     const body = new FormData();
     body.append("file", file);
 
@@ -61,6 +61,10 @@ export default function GalleryMedia(props) {
 
   async function handleDeleteImage(imageId) {
     try {
+      if(featuredImg && featuredImg.id === imageId) {
+        notification("warning", "Cannot delete the featured image!");
+        return; 
+      }
       let res = await mediaApi.delete(imageId);
       onDeleteSucess(imageId);
       notification("success", "file deleted successfully!");
