@@ -204,10 +204,6 @@ function ApplicationForm({ posts }) {
     }
   };
 
-  const onValuesChange = (v1, v2) => {
-    console.log("onValuesChange", v1, v2);
-  };
-
   const onReset = () => {
     form.resetFields();
   };
@@ -224,7 +220,7 @@ function ApplicationForm({ posts }) {
             className="rental-application-form"
             onFinish={onFinish}
             scrollToFirstError
-            onValuesChange={onValuesChange}
+            onValuesChange={() => {}}
             {...formItemLayout}
             initialValues={{
               name: "",

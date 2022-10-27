@@ -66,10 +66,6 @@ export default function ContactInfoForm(props) {
 
   const [form] = Form.useForm();
 
-  function onValuesChange(changedValues, allValues) {
-    console.log("onValuesChange", changedValues, allValues);
-  }
-
   const onFinish = (values) => {
     if (state.checkinDate === null || state.checkoutDate === null) {
       notification("warning", "Please select dates");
@@ -100,7 +96,7 @@ export default function ContactInfoForm(props) {
         name="contact-info"
         className="checkout-contact-form"
         onFinish={onFinish}
-        onValuesChange={onValuesChange}
+        onValuesChange={() => {}}
         initialValues={{
           firstName: "",
           lastName: "",
