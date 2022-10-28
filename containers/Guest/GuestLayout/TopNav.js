@@ -319,7 +319,7 @@ const TopNav = () => {
 
   return (
     <TopNavWrapper>
-      <CovidBanner isScrolled={useIsScrolled() || hasPageYOffset()} />
+      {/* <CovidBanner isScrolled={useIsScrolled() || hasPageYOffset()} /> */}
       <nav
         className={classNames("navbar fixed", {
           sticky: useIsScrolled() || hasPageYOffset(),
