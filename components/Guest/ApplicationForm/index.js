@@ -119,7 +119,6 @@ const ApplicationFormWrapper = styled.div`
 
 const PhoneNumberInput = ({ value = {}, onChange }) => {
   const triggerChange = (changedValue) => {
-    console.log("PhoneNumberInput", value, changedValue, onChange);
     onChange(changedValue);
   };
 
@@ -132,7 +131,7 @@ const PhoneNumberInput = ({ value = {}, onChange }) => {
       onChange={(value, country, e, formattedValue) => {
         triggerChange(formattedValue);
       }}
-      onBlur={() => {}}
+      onBlur={() => { }}
       inputStyle={{ width: "100%", height: "48px" }}
       isValid={(inputNumber, country, countries) => {
         return countries.some((country) => {
@@ -148,7 +147,6 @@ const PhoneNumberInput = ({ value = {}, onChange }) => {
 
 const AddressInput = ({ value = {}, onChange }) => {
   const triggerChange = (changedValue) => {
-    console.log("AddressInput", value, changedValue, onChange);
     onChange(changedValue);
   };
 
@@ -167,12 +165,12 @@ function ApplicationForm({ posts }) {
   const [submitted, setSubmitted] = useState(false);
   const [form] = Form.useForm();
 
-  useEffect(() => {
-    notification(
-      "success",
-      "Your rental application form has been submitted!\n We will process it and get back to you ASAP!"
-    );
-  }, []);
+  // useEffect(() => {
+  //   notification(
+  //     "success",
+  //     "Your rental application form has been submitted!\n We will process it and get back to you ASAP!"
+  //   );
+  // }, []);
 
   const onFinish = async (values) => {
     values.occupancy[0] = moment(values.occupancy[0]).format("YYYY/MM/DD");
@@ -186,8 +184,6 @@ function ApplicationForm({ posts }) {
 
     try {
       const res = await sendApplicationEmail(values);
-      console.log("ApplicationForm:res", res);
-
       if (res.status === "ok") {
         notification(
           "success",
@@ -220,7 +216,7 @@ function ApplicationForm({ posts }) {
             className="rental-application-form"
             onFinish={onFinish}
             scrollToFirstError
-            onValuesChange={() => {}}
+            onValuesChange={() => { }}
             {...formItemLayout}
             initialValues={{
               name: "",
@@ -236,6 +232,7 @@ function ApplicationForm({ posts }) {
               salary: "",
               reason: "",
               extradetail: "",
+              referralSource: "",
               lordname: "",
               lordaddress: "",
               lordphonenumber: "",
@@ -383,6 +380,15 @@ function ApplicationForm({ posts }) {
                 <Form.Item
                   label="Anything else we should know of"
                   name="extradetail"
+                  {...textConfig}
+                >
+                  <Input size="large" />
+                </Form.Item>
+              </Col>
+              <Col lg={12} sm={24}>
+                <Form.Item
+                  label="How did you hear about us?"
+                  name="referralSource"
                   {...textConfig}
                 >
                   <Input size="large" />
