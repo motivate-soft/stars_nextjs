@@ -22,9 +22,6 @@ function BlogList() {
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState(null);
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
 
   useEffect(() => {
     fetchBlogs();
@@ -33,7 +30,6 @@ function BlogList() {
   useEffect(() => {
     setCurrentPage(1);
     setPageSize(10);
-    console.log("BlogList:useEffect:tags", tags);
     fetchBlogs();
   }, [tags]);
 
