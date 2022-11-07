@@ -3,35 +3,34 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import WidgetTagsWrapper from "./WidgetTags.styles";
-import tagApi from "service/tagApi";
 import { Button, Select, Input } from "antd";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const { Option } = Select;
 
 function WidgetTags(props) {
-  const { tags, onChangeTags } = props;
+  const { tags, tagOptions } = props;
   const [isEditting, setIsEditting] = useState(false);
-  const [tagOptions, setTagOptions] = useState(null);
+  // const [tagOptions, setTagOptions] = useState(null);
   const [selected, setSelected] = useState(null);
 
-  useEffect(() => {
-    fetchAllTags();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllTags();
+  // }, []);
 
-  useEffect(() => {
-    console.log("WidgetTags:tags", tags, onChangeTags);
-  }, []);
+  // useEffect(() => {
+  //   console.log("WidgetTags:tags", tags, onChangeTags);
+  // }, []);
 
-  async function fetchAllTags() {
-    try {
-      const array = await tagApi.getAll();
-      setTagOptions(array);
-      onChangeTags(array.map((item) => item.id));
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
+  // async function fetchAllTags() {
+  //   try {
+  //     const array = await tagApi.getAll();
+  //     setTagOptions(array);
+  //     onChangeTags(array.map((item) => item.id));
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // }
 
   function showEditForm() {
     setIsEditting(true);

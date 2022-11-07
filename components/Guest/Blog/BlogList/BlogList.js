@@ -3,62 +3,62 @@ import React, { useEffect, useState } from "react";
 import BlogCard from "./../BlogCard/BlogCard";
 import Container from "@iso/ui/UI/Container/Container";
 import Box from "@iso/ui/Box/Box";
-import blogApi from "./../../../../service/blogApi";
+import blogApi from "service/blogApi";
+import tagApi from "service/tagApi";
 import Pagination from "./Pagination";
 import { Row, Col } from "antd";
-import WidgetSearch from "./WidgetSearch";
 import WidgetTags from "./WidgetTags";
 import BlogListWrapper from "./BlogList.styles";
 import Loader from "@iso/components/utility/loader";
+import { useRef } from "react";
 
 function BlogList() {
   const layout = "list";
+  const pageSize = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
-  const [pageSize, setPageSize] = useState(10);
+  const [tagOptions, setTagOptions] = useState(null);
   const [blogs, setBlogs] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState(null);
 
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    fetchBlogs();
-  }, [currentPage, pageSize]);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      fetchBlogs(1);
+    }
+  }, []);
 
   useEffect(() => {
-    setCurrentPage(1);
-    setPageSize(10);
-    fetchBlogs();
-  }, [tags]);
+    fetchAllTags();
+  }, []);
 
-  async function fetchBlogs() {
+  async function fetchAllTags() {
+    try {
+      const array = await tagApi.getAll();
+      setTagOptions(array);
+      setTags(array.map((item) => item.id));
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchBlogs(page) {
     setLoading(true);
     try {
       let query;
       query = {
-        page: currentPage,
+        page: page,
         page_size: pageSize,
       };
-
-      if (tags) {
-        const tagsString = tags.reduce(
-          (total, value, index, array) => (total = total + "," + value)
-        );
-        console.log("tagsString", tags, tagsString);
-        query.tags = tagsString;
-      }
 
       const res = await blogApi.getListing(query);
 
       setTotalPage(Math.ceil(res.count / pageSize));
-      console.log(
-        "setTotalPage",
-        res,
-        pageSize,
-        Math.ceil(res.count / pageSize)
-      );
       setLoading(false);
       setBlogs(res.results);
     } catch (error) {
@@ -68,13 +68,14 @@ function BlogList() {
   }
 
   function handleChangeTags(values) {
-    console.log("BlogList:handleChangeTags", values);
     setTags(values);
+    setCurrentPage(1);
+    fetchBlogs(1);
   }
 
   function handlePageChange(page) {
-    console.log("BlogList:handlePageChange", page);
     setCurrentPage(page);
+    fetchBlogs(page);
   }
 
   function renderBlogLists() {
@@ -142,7 +143,7 @@ function BlogList() {
                   />
                 </div> */}
                 <div className="block-sidebar__item">
-                  <WidgetTags tags={tags} onChangeTags={handleChangeTags} />
+                  <WidgetTags tags={tags} tagOptions={tagOptions}/>
                 </div>
               </div>
             </Col>
