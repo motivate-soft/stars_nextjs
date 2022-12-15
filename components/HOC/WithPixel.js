@@ -11,7 +11,6 @@ export default (Component) => (props) => {
                 ReactPixel.pageView();
 
                 Router.events.on('routeChangeComplete', () => {
-                    console.log("ReactPixel pageView", Router.events)
                     ReactPixel.pageView();
                 });
             });
