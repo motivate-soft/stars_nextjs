@@ -32,7 +32,6 @@ const locationsMenu = [
 
 function Locations(props) {
   const { posts } = props;
-
   return (
     <LocationsWrapper>
       <Box as="section" className="main-background-2" />

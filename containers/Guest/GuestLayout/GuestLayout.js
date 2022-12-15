@@ -3,7 +3,6 @@ import Link from "next/link";
 import TopNav from "./TopNav";
 import Footer from "./Footer";
 import GuestAppHolder from "./GuestLayout.styles";
-import WithGATracker from "@components/HOC/WithGATracker";
 import WithPixel from "@components/HOC/WithPixel";
 import ChatWidget from "@components/Guest/ChatWidget/ChatWidget";
 import CookieConsent from "react-cookie-consent";
@@ -63,10 +62,6 @@ function GuestLayout({ children }) {
         cookieName="acceptPolicy"
         style={{ background: "#2B373B" }}
         buttonClasses={"accept-button"}
-        // enableDeclineButton
-        // declineButtonText="decline"
-        // declineButtonClasses={'decline-button'}
-        // onAccept={handleAccept}
         expires={60}
       >
         <p>
@@ -79,4 +74,4 @@ function GuestLayout({ children }) {
   );
 }
 
-export default WithGATracker(WithPixel(GuestLayout));
+export default WithPixel(GuestLayout);

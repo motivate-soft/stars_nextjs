@@ -7,7 +7,7 @@ module.exports = {
   BACKEND_URL: prod ? "https://www.starsofboston.com" : "http://localhost:8000",
   RECAPTCHA_KEY: "6LffDNoZAAAAAA3a5FIcMwHJSB3V4wJ5_U5w60GH",
   PIXEL_ID: "339821513993100",
-  GA_ID: "UA-129107246-1",
+  GA_ID: "AW-775813485",
   ZENDESK_KEY: "fb706650-c59e-4f45-b7b3-f601aec370db",
   GOOGLE_MAP_API_KEY: "AIzaSyD9hE5SVxx97vM6tVn979OjeoB58ZGgyWI",
   // PAYPAL_CLIENT_ID:
