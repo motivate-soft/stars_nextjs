@@ -3,6 +3,7 @@ import Link from "next/link";
 import TopNav from "./TopNav";
 import Footer from "./Footer";
 import GuestAppHolder from "./GuestLayout.styles";
+import WithGATracker from "@components/HOC/WithGATracker";
 import WithPixel from "@components/HOC/WithPixel";
 import ChatWidget from "@components/Guest/ChatWidget/ChatWidget";
 import CookieConsent from "react-cookie-consent";
@@ -74,4 +75,4 @@ function GuestLayout({ children }) {
   );
 }
 
-export default WithPixel(GuestLayout);
+export default WithGATracker(WithPixel(GuestLayout));
