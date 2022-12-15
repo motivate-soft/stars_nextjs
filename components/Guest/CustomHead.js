@@ -41,7 +41,6 @@ export default function CustomHead(props) {
       if (!array) return null;
       const arr = array.filter((item) => item.name === fieldName);
       if (arr.length > 0) {
-        console.log("getTagValue", arr[0]["content"]);
         return arr[0]["content"];
       }
     } catch (error) {

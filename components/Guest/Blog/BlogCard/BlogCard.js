@@ -17,10 +17,6 @@ function BlogCard(props) {
     let text = blogRef.current.innerText;
     if (text.length > MAX_LENGTH_LIMIT) {
       text = text.substring(0, MAX_LENGTH_LIMIT) + "...";
-      console.log(
-        "text.substring(0, MAX_LENGTH_LIMIT)",
-        text.substring(0, MAX_LENGTH_LIMIT)
-      );
     }
     setSummary(text);
   }, [post]);
