@@ -9,7 +9,7 @@ import { notification } from "@iso/components";
 import LocationSearchAutoComplete from "@components/Guest/ApplicationForm/LocationSearchAutoComplete";
 import moment from "moment";
 import { sendApplicationEmail } from "../../../service/guestApi";
-import _ from "lodash";
+import startsWith from "lodash/startsWith";
 
 const { RangePicker } = DatePicker;
 
@@ -136,8 +136,8 @@ const PhoneNumberInput = ({ value = {}, onChange }) => {
       isValid={(inputNumber, country, countries) => {
         return countries.some((country) => {
           return (
-            _.startsWith(inputNumber, country.dialCode) ||
-            _.startsWith(country.dialCode, inputNumber)
+            startsWith(inputNumber, country.dialCode) ||
+            startsWith(country.dialCode, inputNumber)
           );
         });
       }}

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { palette } from "styled-theme";
-import _ from "lodash";
 
 const SeoButtonWrapper = styled.div`
   position: fixed;

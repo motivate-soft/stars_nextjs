@@ -6,7 +6,7 @@ import PhoneInput from "react-phone-input-2";
 import styled from "styled-components";
 import { BookingContext } from "@context/BookingProvider";
 import { notification } from "@iso/components";
-import _ from "lodash";
+import startsWith from "lodash/startsWith";
 
 const formItemLayout = {
   wrapperCol: {
@@ -51,8 +51,8 @@ const PhoneNumberInput = ({ value = {}, onChange }) => {
       isValid={(inputNumber, country, countries) => {
         return countries.some((country) => {
           return (
-            _.startsWith(inputNumber, country.dialCode) ||
-            _.startsWith(country.dialCode, inputNumber)
+            startsWith(inputNumber, country.dialCode) ||
+            startsWith(country.dialCode, inputNumber)
           );
         });
       }}
