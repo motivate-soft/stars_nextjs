@@ -6,12 +6,12 @@ import metaApi from "../service/metaApi";
 import { BACKEND_URL, PAYPAL_CLIENT_ID } from "env-config";
 
 export default function CheckoutPaymentPage(props) {
-  const { posts, meta, currentUrl } = props;
+  const { posts, meta, currentUrl, clientToken } = props;
   return (
     <>
       <CustomHead meta={meta} currentUrl={currentUrl} />
       <GuestLayout>
-        <CheckoutPayment posts={posts} clientID={props.clientID} clientToken={props.clientToken} />
+        <CheckoutPayment posts={posts} clientID={props.clientID} clientToken={clientToken} />
       </GuestLayout>
     </>
   );
@@ -55,8 +55,6 @@ export async function getServerSideProps(context) {
     );
     const data = await res.json();
     clientToken = data.client_token;
-
-    console.log(`fetchClientToken :>> data`, data)
   } catch (error) {
     console.log(`fetchClientToken :>> data`, error)
   }

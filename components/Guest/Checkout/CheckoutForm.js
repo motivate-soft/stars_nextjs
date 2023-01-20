@@ -16,7 +16,6 @@ import ReactGA from "react-ga";
 
 
 export default function CheckoutForm(props) {
-    console.log(`CheckoutForm :>> props`, props)
     const [supportsHostedFields, setSupportsHostedFields] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 
@@ -27,14 +26,7 @@ export default function CheckoutForm(props) {
     const router = useRouter();
 
     useEffect(() => {
-        console.log('CheckoutForm :>>isPending ', isPending);
-        console.log('CheckoutForm :>>usePayPalScriptReducer:options', options);
-        console.log('CheckoutForm :>>usePayPalScriptReducer:isResolved', isResolved);
         if (isResolved) {
-            console.log(
-                'CheckoutForm :>>window.paypal.HostedFields.isEligible()',
-                window.paypal.HostedFields.isEligible(),
-            );
             setSupportsHostedFields(window.paypal.HostedFields.isEligible());
         }
     }, [isResolved]);
@@ -62,8 +54,6 @@ export default function CheckoutForm(props) {
                 }
             );
             const data = await res.json();
-            console.log(`createOrder :>> data`, data)
-
             return data.id
         } catch (error) {
             console.log(`createOrder :>> error`, error)
@@ -106,7 +96,6 @@ export default function CheckoutForm(props) {
                 }
             );
             const data = await res.json();
-            console.log('CheckoutForm :>>handleOrder:success', data);
 
             if (res.ok) {
                 ReactGA.event({
@@ -144,7 +133,6 @@ export default function CheckoutForm(props) {
 
         const handleClick = () => {
             if (cardFields) {
-                console.log(`cardFields`, cardFields)
 
                 if (typeof cardFields.submit !== "function" || !cardHolderName?.current?.value) {
                     alert(
@@ -152,8 +140,6 @@ export default function CheckoutForm(props) {
                     )
                     return
                 }; // validate that `submit()` exists before using it
-
-                console.log('cardHolderName', cardHolderName.current);
                 cardFields
                     .submit({
                         cardholderName: cardHolderName.current.value,
