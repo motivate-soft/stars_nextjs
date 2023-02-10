@@ -23,7 +23,7 @@ function Medical(props) {
   const [properties, setProperties] = useState(null);
 
   useEffect(() => {
-    getLocationListing();
+    // getLocationListing();
   }, []);
 
   async function getLocationListing() {

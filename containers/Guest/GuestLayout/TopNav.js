@@ -9,7 +9,7 @@ import useIsScrolled from "@iso/lib/hooks/useIsScrolled";
 import CovidBanner from "@containers/Guest/GuestLayout/CovidBanner";
 
 const TopNavWrapper = styled.div`
-  .navbar {
+.navbar {
     margin: 0 auto;
     background-color: transparent !important;
     padding: 0 !important;
@@ -36,6 +36,30 @@ const TopNavWrapper = styled.div`
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        margin-top: 10px;
+      }
+      
+      .nav-item:hover .dropdown-content {
+        display: block;
+      }
+      
+      .dropdown-content .dropdown-item {
+        float: none;
+        color: black;
+        padding: 13px 16px !important;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        margin-top: 10px;
+      }
 
       .navbar-brand {
         img {
@@ -179,6 +203,10 @@ const TopNavWrapper = styled.div`
             width: 200px;
           }
         }
+        .dropdown-content {
+          width: 100%;
+          position: relative;
+        }
       }
 
       @media (max-width: 992px) {
@@ -281,8 +309,38 @@ const navLinks = [
     label: "Locations",
   },
   {
-    path: "/medical",
-    label: "Medical/Corporate",
+    path: "/industries",
+    label: "Industries",
+    children: [
+      {
+        path: "/industries/medical",
+        label: "Medical/Healthcare",
+      },
+      {
+        path: "/industries/business",
+        label: "Business/Corporate",
+      },
+      {
+        path: "/industries/students",
+        label: "Students/Educators",
+      },
+      {
+        path: "/industries/humanresources",
+        label: "Human Resources",
+      },
+      {
+        path: "/industries/insurance",
+        label: "Insurance",
+      },
+      {
+        path: "/industries/realestate",
+        label: "Real Estate",
+      },
+      {
+        path: "/industries/government",
+        label: "Government & Military",
+      },
+    ],
   },
   {
     path: "/services",
@@ -343,6 +401,16 @@ const TopNav = () => {
               {navLinks.map((item, index) => (
                 <div key={index} className="nav-item">
                   <Link href={item.path}>{item.label}</Link>
+                  {item.children && (
+                    <div className="dropdown-content">
+                      {item.children &&
+                        item.children.map((sItem, sIndex) => (
+                          <a className="dropdown-item" href={sItem.path} key={sIndex}>
+                            {sItem.label}
+                          </a>
+                        ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
