@@ -102,6 +102,7 @@ export const PropertyDetailWrapper = styled.div`
 
 export const BannerImageWrapper = styled.div`
   position: relative;
+  margin: 110px 0 0;
   padding-bottom: 0;
   background-image: ${(props) => props.imageUrl};
   background-color: #f2f2f3;

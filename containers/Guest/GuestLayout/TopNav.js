@@ -6,6 +6,7 @@ import classNames from "classnames";
 import Container from "@iso/ui/UI/Container/Container";
 import Logo from "@containers/Guest/Logo/Logo";
 import useIsScrolled from "@iso/lib/hooks/useIsScrolled";
+import { withRouter } from "next/router";
 // import CovidBanner from "@containers/Guest/GuestLayout/CovidBanner";
 
 const TopNavWrapper = styled.div`
@@ -360,7 +361,7 @@ const navLinks = [
   },
 ];
 
-const TopNav = () => {
+const TopNav = ({router}) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -375,12 +376,17 @@ const TopNav = () => {
     return window.pageYOffset > 0 || document.documentElement.scrollTop > 0;
   }
 
+  function stickyNavbar() {
+    const url = router.pathname;
+    return url.includes("/listing/");
+  }
+
   return (
     <TopNavWrapper>
       {/* <CovidBanner isScrolled={useIsScrolled() || hasPageYOffset()} /> */}
       <nav
         className={classNames("navbar fixed", {
-          sticky: useIsScrolled() || hasPageYOffset(),
+          sticky: useIsScrolled() || hasPageYOffset() || stickyNavbar(),
         })}
       >
         <Container className="nav-container">
@@ -388,7 +394,7 @@ const TopNav = () => {
           <button
             className={classNames("navbar-toggler", {
               collapsed: !show,
-              sticky: useIsScrolled() || hasPageYOffset(),
+              sticky: useIsScrolled() || hasPageYOffset() || stickyNavbar(),
             })}
             onClick={() => setShow(!show)}
           >
@@ -421,4 +427,4 @@ const TopNav = () => {
   );
 };
 
-export default TopNav;
+export default withRouter(TopNav);
