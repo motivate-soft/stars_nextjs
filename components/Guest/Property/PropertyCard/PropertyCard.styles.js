@@ -104,6 +104,7 @@ const PropertyCardWrapper = styled.div`
 
     .property-buttons-wrapper {
       display: flex;
+      margin-top: auto;
       justify-content: space-around;
       align-items: center;
 

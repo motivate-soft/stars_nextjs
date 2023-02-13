@@ -119,16 +119,16 @@ function PropertyCard(props) {
             )}
           </ul>
         </div>
-        <div className="price-wrapper">
+        {/* <div className="price-wrapper">
           <h4>
             <span>Starting at</span> ${minPrice}/night,
           </h4>
           <h4>${monthlyPrice ? monthlyPrice : minMonthPrice}/month</h4>
-        </div>
+        </div> */}
         <div className="property-buttons-wrapper">
-          <Button type="secondary" size="large" onClick={handleQuickBook}>
+          {/* <Button type="secondary" size="large" onClick={handleQuickBook}>
             Quick book
-          </Button>
+          </Button> */}
           <Link href={`/listing/${slug}`}>
             <a className="ant-btn ant-btn-secondary ant-btn-lg">
               View Property
