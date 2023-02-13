@@ -1,28 +1,25 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import Router from "next/router";
 import ReactGA from "react-ga";
-import {GA_ID} from "../../env-config";
+import { GA_ID } from "../../env-config";
+import Analytics from "analytics";
+import googleTagManager from "@analytics/google-tag-manager";
 
-const logPageView = () => {
-    ReactGA.set({page: window.location.pathname})
-    ReactGA.pageview(window.location.pathname)
-}
+const analytics = Analytics({
+  app: "Stars of Boston",
+  plugins: [
+    googleTagManager({
+      containerId: GA_ID,
+    }),
+  ],
+});
 
-export default (WrappedComponent) => (props) => {
-    useEffect(() => {
-        ReactGA.initialize(GA_ID)
-        if (!Router.asPath.includes('?')) {
-            logPageView()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+const WithGATracker = (WrappedComponent) => (props) => {
+  useEffect(() => {
+    analytics.page();
+  }, [Router.events]);
 
-    useEffect(() => {
-        Router.events.on('routeChangeComplete', logPageView)
-        return () => {
-            Router.events.off('routeChangeComplete', logPageView)
-        }
-    }, [Router.events])
-
-    return <WrappedComponent {...props} />;
+  return <WrappedComponent {...props} />;
 };
+
+export default WithGATracker;
