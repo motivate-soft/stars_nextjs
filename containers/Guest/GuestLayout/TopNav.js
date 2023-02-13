@@ -6,7 +6,7 @@ import classNames from "classnames";
 import Container from "@iso/ui/UI/Container/Container";
 import Logo from "@containers/Guest/Logo/Logo";
 import useIsScrolled from "@iso/lib/hooks/useIsScrolled";
-import CovidBanner from "@containers/Guest/GuestLayout/CovidBanner";
+// import CovidBanner from "@containers/Guest/GuestLayout/CovidBanner";
 
 const TopNavWrapper = styled.div`
 .navbar {
