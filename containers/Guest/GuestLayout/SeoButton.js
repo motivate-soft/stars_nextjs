@@ -33,8 +33,6 @@ export default function SeoButton() {
         const array = router.asPath.split("/");
         pageSlug = array[array.length - 1];
       }
-      console.log("router", router);
-      console.log("window.location", window.location);
     }
     router.push(`/admin/meta?slug=${pageSlug}`);
   }

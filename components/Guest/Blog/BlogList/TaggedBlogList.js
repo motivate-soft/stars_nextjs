@@ -51,7 +51,6 @@ function TaggedBlogList(props) {
   }
 
   function handlePageChange(page) {
-    console.log("handlePageChange", page);
     setCurrentPage(page);
   }
 

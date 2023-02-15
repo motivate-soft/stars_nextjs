@@ -5,13 +5,11 @@ export function authHeader() {
 }
 
 export function handleError(res) {
-  console.log("handleError:res", res);
   if (res instanceof Error) {
     throw Error("Network error");
   }
 
   return res.json().then((responseJson) => {
-    console.log("handleError:json", responseJson);
     let error = new Error();
 
     if (res.status >= 400 && res.status < 500) {

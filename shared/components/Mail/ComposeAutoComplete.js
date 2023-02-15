@@ -16,10 +16,8 @@ function createSuggestions(item) {
 export default function MentionsReceiver({ placeholder, autofocus, allMails }) {
   const [options] = React.useState(createSuggestions(allMails));
   function onChange(value) {
-    console.log('Change:', value);
   }
   function onSelect(option) {
-    console.log('select', option);
   }
   return (
     <AutoComplete>

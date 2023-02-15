@@ -223,7 +223,6 @@ export default function EditProperty(props) {
   }
 
   function handleSettingChange(changedValues, allValues) {
-    console.log("handleSettingChange", changedValues, allValues);
     setState({
       ...state,
       ...allValues,
@@ -231,7 +230,6 @@ export default function EditProperty(props) {
   }
 
   function handleMainInfoChange(changedValues, allValues) {
-    console.log("handleMainInfoChange", changedValues, allValues);
     setState({
       ...state,
       ...allValues,
@@ -239,7 +237,6 @@ export default function EditProperty(props) {
   }
 
   function handleToggleAmenityOption(amenityId) {
-    console.log("amenityId", state.amenities, amenityId);
     let array = state.amenities;
     let index = array.indexOf(amenityId);
     if (index > -1) {
@@ -255,7 +252,6 @@ export default function EditProperty(props) {
         amenities: array,
       });
     }
-    console.log("handleToggleAmenityOption", array, state);
   }
 
   function handleChangeRoom(values, id) {
@@ -268,20 +264,17 @@ export default function EditProperty(props) {
       }
       return room;
     });
-    console.log("handleChangeRoom", newRooms);
     setState({ ...state, rooms: newRooms });
   }
 
   function handleAddRoom() {
     const generatedId = new Date().getTime();
-    console.log("array", array, generatedId);
     let array = state.rooms;
     array.push({
       id: generatedId,
       name: "",
       bedType: "Q",
     });
-    console.log("handleAddRoom", array);
     setState({
       ...state,
       rooms: array,
@@ -289,7 +282,6 @@ export default function EditProperty(props) {
   }
 
   function handleRemoveRoom(roomId) {
-    console.log("handleRemoveRoom", roomId);
     let array = state.rooms;
     let index = array.findIndex((item) => item.id === roomId);
     if (index > -1) {
@@ -334,7 +326,6 @@ export default function EditProperty(props) {
   }
 
   function handleSelectFeatured(image) {
-    console.log("handleSelectFeatured", image);
     setState({ ...state, featuredImg: image });
   }
 

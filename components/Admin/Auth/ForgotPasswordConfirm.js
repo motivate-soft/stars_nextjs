@@ -41,7 +41,6 @@ export default function ForgotPasswordConfirm(props) {
         new_password1: values.password,
         new_password2: values.password,
       });
-      console.log("ForgotPasswordConfirm :>> res ", res);
       notification("success", "Password has been reset!");
     } catch (error) {
       console.log("ForgotPasswordConfirm :>> error", error);

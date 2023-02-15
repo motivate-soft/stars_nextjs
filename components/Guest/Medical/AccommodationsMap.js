@@ -76,7 +76,6 @@ class AccommodationsMap extends Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-        console.log('UNSAFE_componentWillReceiveProps', nextProps.properties)
         if (nextProps.properties !== this.props.properties) {
             let array = [];
             nextProps.properties.map((item) => {

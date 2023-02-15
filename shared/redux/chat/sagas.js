@@ -40,7 +40,6 @@ const sendMessageBatch = async ({ payload, selectedChatRoom }) => {
   const batch = db.batch();
   // const { chatRoom, text } = payload;
 
-  console.log(selectedChatRoom, payload, 'send');
   const revId = reverseString(selectedChatRoom.id);
   const messageTime = new Date().getTime();
   const chatRoomModified = {
@@ -79,7 +78,6 @@ function* initChat(action) {
     '==',
     chatRooms[0].id,
   ]);
-  console.log(chatRooms, 'chatRooms');
   messages.sort(sortMessages);
   // fsProps.selectedChatRoom = chatRooms.length > 0 && chatRooms[0];
   chatroomsUserCollections = db

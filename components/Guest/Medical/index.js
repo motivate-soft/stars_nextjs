@@ -32,7 +32,6 @@ function Medical(props) {
         `${BACKEND_URL}/api/accommodation/property/locations`
       );
       const array = await res.json();
-      console.log("array", array);
       setProperties(array);
     } catch (error) {
       error.log("error", error);

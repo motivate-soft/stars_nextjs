@@ -79,7 +79,6 @@ const SearchForm = () => {
   };
 
   const goToFilteredListingPage = () => {
-    console.log("goToFilteredListingPage", state, searchDate);
     let query = {
       checkin_date: searchDate.setStartDate,
       checkout_date: searchDate.setEndDate,

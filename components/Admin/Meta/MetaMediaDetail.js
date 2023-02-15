@@ -35,7 +35,6 @@ export default function MetaMediaDetail(props) {
   async function fetchImageDetail() {
     try {
       const res = await mediaApi.getDetail(imageId);
-      console.log("MetaMediaDetail", res);
       setImage(res);
     } catch (error) {
       console.log("error", error);

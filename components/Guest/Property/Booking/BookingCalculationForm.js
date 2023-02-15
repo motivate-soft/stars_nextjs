@@ -41,8 +41,6 @@ function BookingCalculationForm({ property, disabled }) {
 
 
   useEffect(() => {
-    console.log(`BookingCalculationForm :>> formState`, formState, pricing)
-
     if (
       formState.checkinDate !== null &&
       formState.checkoutDate !== null &&
@@ -68,7 +66,6 @@ function BookingCalculationForm({ property, disabled }) {
           pricing: data
         },
       });
-      console.log(`BookingCalculationForm :>> fetchBookingPricing data`, data)
     } catch (error) {
       console.log(`BookingCalculationForm :>> fetchBookingPricing error`, error)
     }
@@ -101,7 +98,6 @@ function BookingCalculationForm({ property, disabled }) {
   };
 
   const updateSearchDataFunc = (value) => {
-    console.log("BookingCalculationForm :>> updateSearchDataFunc", value);
     setFormState({
       ...formState,
       checkinDate: value.setStartDate,

@@ -33,7 +33,6 @@ const FormWrapper = styled.div`
 
 const PhoneNumberInput = ({ value = {}, onChange }) => {
   const triggerChange = (changedValue) => {
-    console.log("PhoneNumberInput", value, onChange);
     onChange(changedValue);
   };
 

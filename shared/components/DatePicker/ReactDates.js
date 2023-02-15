@@ -36,7 +36,6 @@ class DateRangePickerBox extends Component {
     }
 
     onDateChangeFunc = ({ startDate, endDate }) => {
-        console.log(`ReactDates:>> onDateChangeFunc`, startDate, endDate)
         const { dateFormat } = this.state;
         this.setState({ startDate, endDate });
         /**

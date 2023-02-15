@@ -63,7 +63,6 @@ function Setting(props) {
     } = setting;
 
     const onFinish = (values) => {
-        console.log("Received values of form: ", values);
     };
 
     // if (

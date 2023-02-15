@@ -4,7 +4,6 @@ import 'frappe-charts/dist/frappe-charts.min.css';
 export default function FrappeChart({ onSelect, ...props }) {
   const ref = React.useRef(null);
   const chart = React.useRef(null);
-  console.log('object');
   React.useEffect(() => {
     chart.current = new Chart(ref.current, {
       isNavigable: !!onSelect,

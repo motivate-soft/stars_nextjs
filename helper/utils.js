@@ -5,8 +5,6 @@ export const formatToFixedFloat = (value) => {
 };
 
 export const calculateBookingCost = (property, checkinDate, checkoutDate) => {
-    console.log("calculateBookingCost");
-
     let nights,
         propertyFee = 0,
         tax,

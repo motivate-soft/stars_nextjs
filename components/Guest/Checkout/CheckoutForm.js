@@ -119,7 +119,6 @@ export default function CheckoutForm(props) {
             }
 
         } catch (error) {
-            console.log('CheckoutForm :>>handleOrder:error', error);
             notification(
                 "warning",
                 "Server error while handling booking information"

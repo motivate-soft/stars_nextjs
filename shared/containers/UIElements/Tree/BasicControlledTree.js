@@ -80,7 +80,6 @@ const ControlledTree = () => {
   const [autoExpandParent, setAutoExpandParent] = useState(true);
 
   const onExpand = (expandedKeys) => {
-    console.log('onExpand', expandedKeys); // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded children keys.
 
     setExpandedKeys(expandedKeys);
@@ -88,12 +87,10 @@ const ControlledTree = () => {
   };
 
   const onCheck = (checkedKeys) => {
-    console.log('onCheck', checkedKeys);
     setCheckedKeys(checkedKeys);
   };
 
   const onSelect = (selectedKeys, info) => {
-    console.log('onSelect', info);
     setSelectedKeys(selectedKeys);
   };
 

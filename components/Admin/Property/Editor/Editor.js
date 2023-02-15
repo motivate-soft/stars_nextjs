@@ -27,7 +27,6 @@ function Editor(props) {
   function handleImageUpload(image, callback) {
     var range = quillRef.getEditor().getSelection();
     var value = prompt("What is the image URL");
-    console.log("handleImageUpload", image, range);
     if (value) {
       quillRef.getEditor().insertEmbed(range.index, "image", value, "user");
     }

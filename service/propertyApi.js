@@ -7,7 +7,6 @@ import qs from "query-string";
 
 const propertyApi = {
   getAll: async () => {
-    console.log("propertyApi:getCookie", getCookie);
     return fetch(`${BACKEND_URL}/api/accommodation/property/`, {
       method: "GET",
       headers: {

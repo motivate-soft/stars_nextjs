@@ -49,7 +49,6 @@ export default function AddMeta(props) {
 
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("AddMeta:onFinish", values);
     dispatch(metaActions.addMeta(values));
   };
 

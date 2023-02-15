@@ -47,11 +47,9 @@ const treeData = [
 
 const BasicTree = () => {
   const onSelect = (selectedKeys, info) => {
-    console.log('selected', selectedKeys, info);
   };
 
   const onCheck = (checkedKeys, info) => {
-    console.log('onCheck', checkedKeys, info);
   };
 
   return (

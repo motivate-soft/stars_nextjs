@@ -21,7 +21,6 @@ export default function CropImageModal(props) {
 
   function onImageLoaded(image) {
     imageRef.current = image;
-    console.log("onImageLoaded", imageRef);
   }
 
   function onCropComplete(crop) {

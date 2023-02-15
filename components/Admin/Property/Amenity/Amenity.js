@@ -38,16 +38,11 @@ export default function Amenity(props) {
         .then((res) => res.json())
         .then((res) => res)
         .catch((error) => error);
-      console.log("res", res);
       setOptions(res);
     } catch (error) {
       setOptions([]);
     }
   }
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
 
   return (
     <div style={{ margin: "0 20px", background: "#fff", padding: 20 }}>

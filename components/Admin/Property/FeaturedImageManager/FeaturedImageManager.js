@@ -51,8 +51,6 @@ export default function FeaturedImageManager(props) {
     onSelect,
   } = props;
 
-  console.log("selectedItem", selectedItem);
-
   const [visible, setVisible] = useState(false);
 
   function showModal() {

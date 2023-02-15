@@ -59,7 +59,6 @@ function ReservationForm(props) {
   };
 
   const updateSearchDataFunc = (value) => {
-    console.log("ReservationForm :>> updateSearchDataFunc", value);
     /**
      * Todo: Disable Calendar from selecting date range that contains any booked dates
      */
@@ -115,7 +114,6 @@ function ReservationForm(props) {
   };
 
   const renderDayContents = (day) => {
-    // console.log("renderDayContents", day)
     let dayPrice = price;
     if (moment(day) < moment().startOf("day")) {
       return (
@@ -133,7 +131,6 @@ function ReservationForm(props) {
       } else {
         pricingItems.map((item) => {
           const sDay = convertDate(moment(day).toDate());
-          console.log("pricingItems", moment(sDay), item);
           if (
             moment(sDay).isSameOrAfter(moment(item.start_date), "day") &&
             moment(sDay).isSameOrBefore(moment(item.end_date), "day")
@@ -153,7 +150,6 @@ function ReservationForm(props) {
 
   const convertDate = (date) => {
     const offset = date.getTimezoneOffset();
-    console.log("offset", offset);
     const newDate = new Date(date.getTime() - offset * 60 * 1000);
     return newDate.toISOString().split("T")[0];
   };
@@ -169,7 +165,6 @@ function ReservationForm(props) {
       return;
     }
 
-    console.log("ReservationForm :>> handleSubmit", formState);
     dispatch({
       type: "UPDATE_BOOKING_INFORMATION",
       payload: {

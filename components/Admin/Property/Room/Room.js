@@ -24,7 +24,6 @@ export default function Room(props) {
   useEffect(() => {}, []);
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
   };
 
   return (

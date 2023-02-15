@@ -48,7 +48,6 @@ export async function getServerSideProps(context) {
       `${BACKEND_URL}/api/accommodation/property/listing?${qs.stringify(query)}`
     );
     properties = await res.json();
-    console.log("listing:getServerSideProps:properties:success", properties);
   } catch (error) {
     console.log("listing:getServerSideProps:properties:error", error);
     properties = [];

@@ -3423,13 +3423,11 @@ export async function deleteDocuments(collectionName) {
   var batch = db.batch();
   await collectionRef.get().then(querySnapshot =>
     querySnapshot.docs.map((doc, idx) => {
-      console.log(doc);
       if (idx < 499) batch.delete(collectionRef.doc(doc.id));
     })
   );
 
   return await batch.commit().then(() => {
-    console.log('Batch Deletion successfully committed!');
   });
 }
 
@@ -3458,19 +3456,16 @@ export const addCollectionAndDocuments = async (
     });
   }
   return await batch.commit().then(() => {
-    console.log('Batch Addition successfully committed!');
   });
 };
 
 export async function resetDemoData() {
-  console.log('start');
   await deleteDocuments('users');
   await addCollectionAndDocuments('users', demoData.users);
   await deleteDocuments('messages');
   await addCollectionAndDocuments('messages', demoData.messages);
   await deleteDocuments('chatRooms');
   await addCollectionAndDocuments('chatRooms', demoData.chatRooms);
-  console.log('END');
 }
 /*
 const importDemoData = () => {

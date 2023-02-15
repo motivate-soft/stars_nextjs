@@ -63,7 +63,6 @@ function MailingAddressForm(props) {
   const { state, dispatch } = useContext(BookingContext);
   const [form] = Form.useForm();
 
-  console.log("MailingAddressForm :>> BookingContext", state);
 
   const [stateOptions, setStateOptions] = useState([
     {
@@ -103,7 +102,6 @@ function MailingAddressForm(props) {
     });
     form.resetFields(["city"]);
     setCityOptions(array);
-    console.log("onStateChange", value, array);
   };
 
   const onFinish = (values) => {
@@ -120,7 +118,6 @@ function MailingAddressForm(props) {
     let stateName = csc.getStateById(values.state).name;
     let cityName =
       values.city !== "default" ? csc.getCityById(values.city).name : "";
-    console.log("__onFinish", countrySortName, stateName, cityName);
 
     dispatch({
       type: "UPDATE_BOOKING_INFORMATION",

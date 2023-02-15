@@ -75,8 +75,6 @@ export async function request(url, config) {
 
         const responseJson = await response.json();
 
-        console.log("async request :>>response", response);
-        console.log("async request :>>responseJson", responseJson);
 
         return responseJson
 

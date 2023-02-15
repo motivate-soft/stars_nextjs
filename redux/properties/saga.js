@@ -167,7 +167,6 @@ export function* getMonthlyPriceItems() {
 export function* createMonthlyPriceItem() {
   yield takeLatest(actions.CREATE_MONTHLY_PRICE_ITEM_REQUEST, function* (payload) {
     try {
-      console.log(`createMonthlyPriceItem`, payload)
       const res = yield call(propertyApi.createMonthlyPriceItem, payload.data);
       yield put({
         type: actions.CREATE_MONTHLY_PRICE_ITEM_SUCCESS,

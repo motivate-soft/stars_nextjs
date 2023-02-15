@@ -51,7 +51,6 @@ export default function(props) {
       try {
         await signUpWithEmailAndPassword(email, password).then(authUser => {
           user = authUser.user;
-          console.log(user, 'User');
         });
       } catch (error) {
         message = error.message;

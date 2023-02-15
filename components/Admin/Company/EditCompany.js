@@ -39,7 +39,6 @@ export default function EditCompany(props) {
   }
 
   function handleSelectImage(image) {
-    console.log("handleSelectImage", image);
     setCompany({ ...company, image: image });
   }
 

@@ -62,10 +62,7 @@ export default function (props) {
   const end =
     modalData && modalData.end ? moment(modalData.end, dateFormat) : "";
 
-  console.log("__modalData__", modalData);
-
   const onChangePrice = (event) => {
-    console.log("onChangePrice", event);
     modalData.price = event.target.value;
     onModalDataChange("updateValue", modalData);
   };

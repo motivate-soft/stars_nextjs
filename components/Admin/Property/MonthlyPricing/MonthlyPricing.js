@@ -27,7 +27,6 @@ export default function MonthlyPricing(props) {
 
     useEffect(() => {
         if (monthly_pricing_items) {
-            console.log("MonthlyPricing:useEffect", monthly_pricing_items)
             form.setFieldsValue({ pricings: monthly_pricing_items })
         }
     }, [monthly_pricing_items]);
@@ -35,7 +34,6 @@ export default function MonthlyPricing(props) {
     const [form] = Form.useForm();
 
     const onFinish = values => {
-        console.log('Received values of form:', values);
         const items = values.pricings.map(item => ({
             ...item,
             date: moment(item.date).format("YYYY-MM-DD"),

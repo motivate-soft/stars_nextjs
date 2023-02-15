@@ -27,7 +27,6 @@ export default function DashboardLayout({ children }) {
     const refreshToken = getCookie("refreshToken");
     if (accessToken) {
       const res = checkExpirity(accessToken);
-      console.log("DashboardLayout:populateAuthe", res);
       if (res.expiredAt) {
         dispatch(
           authActions.syncLogin({

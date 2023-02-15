@@ -25,7 +25,6 @@ function ContactForm() {
   const onFinish = async (values) => {
     try {
       const res = await sendContactEmail(values);
-      console.log("ContactForm:res", res);
       if (res.status === "ok") {
         notification("success", "Email submitted successfully!");
         return;

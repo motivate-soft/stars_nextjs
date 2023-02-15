@@ -19,7 +19,6 @@ function ForgotPassword() {
   const onSubmit = async () => {
     try {
       const res = await authApi.passwordResetRequest({ email });
-      console.log("res", res);
       notification("success", "Password reset email has been sent if you provided right email");
     } catch (error) {
       notification("error", error.message);

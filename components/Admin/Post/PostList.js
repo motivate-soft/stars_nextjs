@@ -136,7 +136,6 @@ export default function PostList() {
                   onRow={(record, rowIndex) => {
                     return {
                       onClick: (event) => {
-                        console.log("rowClick", record, rowIndex);
                       },
                     };
                   }}

@@ -40,8 +40,6 @@ export function* jwtLoginRequest() {
 
       notification("success", "login success");
 
-      console.log("*jwtLoginRequest:access_token", access_token);
-      console.log("*jwtLoginRequest:user profile", profile);
 
       const payload = {
         accessToken: access_token,
@@ -84,17 +82,6 @@ export function* loginSuccess() {
       payload.refreshToken,
       new Date(jwtDecode(payload.refreshToken).exp * 1000)
     );
-
-    console.log("*loginSuccess:payload", payload);
-    console.log(
-      "*loginSuccess:accessToken:expires",
-      jwtDecode(payload.accessToken)
-    );
-    console.log(
-      "*loginSuccess:refreshToken:expires",
-      jwtDecode(payload.refreshToken)
-    );
-    console.log("*loginSuccess:Router", Router);
 
     // Redirect to page
     yield call(Router.push, "/admin/property");

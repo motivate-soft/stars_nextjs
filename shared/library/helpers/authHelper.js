@@ -42,8 +42,6 @@ class AuthHelper {
         return { error: 'Token expired' };
       }
     } catch (e) {
-      console.log(e);
-
       return { error: 'Server Error' };
     }
   };

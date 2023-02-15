@@ -28,11 +28,9 @@ export default function Main(props) {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
-        console.log("Main:onFinish", values);
     };
 
     useEffect(() => {
-        console.log("Main:useEffect", props);
         const { name, category, bookervilleId } = props;
         form.setFieldsValue({ name, category, bookervilleId })
     }, [props]);

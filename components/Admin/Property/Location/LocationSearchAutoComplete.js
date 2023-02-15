@@ -55,7 +55,6 @@ class LocationSearchAutoComplete extends React.Component {
         this.placesService.getDetails(request, (place, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
                 this.props.onPlaceChanged(place);
-                console.log("placesService", place.geometry.location.lat(), place.geometry.location.lng());
             }
         });
     };

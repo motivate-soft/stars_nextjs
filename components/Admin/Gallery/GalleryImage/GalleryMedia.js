@@ -52,7 +52,6 @@ export default function GalleryMedia(props) {
       const res = await mediaApi.add(body);
       notification("success", "Cropped image saved!");
       onUploadSuccess(res);
-      console.log("handleSaveCroppedImage", res);
     } catch (error) {
       console.log("error", error);
     }

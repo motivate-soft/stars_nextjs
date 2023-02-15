@@ -85,7 +85,6 @@ function* deleteBoardEffectSaga(action) {
 
 function* createOrUpdateColumnEffectSaga({ payload: { column, board_id } }) {
   let scrum_boards = yield select(getScrumBoards);
-  console.log(column, board_id);
   const columns = {
     ...scrum_boards.columns,
     [column.id]: {

@@ -39,8 +39,6 @@ class Pagination extends Component {
 
   render() {
     const { current, total } = this.props;
-    console.log("Pagination", total, current);
-
     const firstLinkClasses = classNames("page-item", {
       disabled: current <= 1,
     });

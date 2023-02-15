@@ -8,7 +8,6 @@ import Invoice from './Invoice';
 
 export default function (props) {
   const { currentInvoice, toggleView, redirectPath } = props;
-  console.log(props, 'props');
 
   return (
     <LayoutWrapper>

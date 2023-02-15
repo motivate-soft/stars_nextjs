@@ -47,7 +47,6 @@ const uploaderProps = {
       console.log(info.file, info.fileList);
     }
     if (status === "done") {
-      console.log("uploader_response", response);
       // form.setFieldsValue({ image: response.id });
       message.success(`${info.file.name} file uploaded successfully.`);
     } else if (status === "error") {
@@ -84,7 +83,6 @@ export default function AddBlog() {
   async function fetchTags() {
     try {
       const res = await tagApi.getAll();
-      console.log("res", res);
       setTags(res);
     } catch (error) {
       console.log("error", error);
@@ -92,7 +90,6 @@ export default function AddBlog() {
   }
 
   const normFile = (e) => {
-    console.log("Upload event:", e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -104,11 +101,9 @@ export default function AddBlog() {
   }
 
   function onValuesChange(changedValues, allValues) {
-    console.log("AddBlog_onValuesChange", changedValues, allValues);
   }
 
   function onFinish(values) {
-    console.log("values", values.image[0].response.id);
     dispatch(
       blogActions.addBlog({
         ...values,

@@ -19,7 +19,6 @@ const formItemLayout = {
 };
 
 export default function EditBooking(props) {
-  console.log(`EditBooking :>> props`, props)
   const { bookingId } = props;
   const { selectedItem, loading } = useSelector((state) => state.Bookings);
   const dispatch = useDispatch();

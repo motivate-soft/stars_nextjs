@@ -37,7 +37,6 @@ function Locations(props) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("asPath changed", router, window.location.hash.slice(1));
     if (router.asPath) {
       // let elem = document.getElementById(window.location.hash.slice(1));
       // if (elem) {

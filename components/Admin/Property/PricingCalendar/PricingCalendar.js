@@ -35,7 +35,6 @@ export default function PricingCalendar(props) {
         end: item.end_date,
       }));
       setPricingItems(newItems);
-      console.log("selectedItem", newItems, pricingItems);
     }
   }, [selectedItem]);
 
@@ -44,13 +43,6 @@ export default function PricingCalendar(props) {
   }
 
   const handleSlotSelection = ({ start, end, action }) => {
-    console.log(
-      "handleSlotSelection",
-      start,
-      end,
-      convertDate(start),
-      convertDate(end)
-    );
     setModalVisible(true);
     setModalData({
       price: defaultPrice,
@@ -61,7 +53,6 @@ export default function PricingCalendar(props) {
 
   const convertDate = (date) => {
     const offset = date.getTimezoneOffset();
-    console.log("offset", offset);
     const newDate = new Date(date.getTime() - offset * 60 * 1000);
     return newDate.toISOString().split("T")[0];
   };
@@ -73,7 +64,6 @@ export default function PricingCalendar(props) {
     } else if (type === "delete") {
       // some logic to delete pricing item
     } else if (type === "updateValue") {
-      console.log("updateValue", modalData);
       setModalData({
         price: modalData.price,
         start: modalData.start,

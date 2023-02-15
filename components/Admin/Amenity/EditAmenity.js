@@ -39,7 +39,6 @@ export default function EditAmenity(props) {
   }
 
   function handleSelectImage(image) {
-    console.log("handleSelectImage", image);
     setAmenity({ ...amenity, image: image });
   }
 

@@ -25,8 +25,6 @@ const STATUS_CHOICES = {
 const StatusCell = (props) => {
   const key = props.status
 
-  console.log(`StatusCell`, key, STATUS_CHOICES[key])
-
   switch (key) {
     case "A":
       return <Tag color="blue">{STATUS_CHOICES[key]}</Tag>
