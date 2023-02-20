@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import App from "next/app";
 import { createWrapper } from "next-redux-wrapper";
 import ThemeProvider from "../containers/Admin/ThemeProvider";
@@ -22,43 +22,43 @@ import {
   NEXTSEO_DEFAULT_TITLE,
 } from "./../next-seo.config";
 import { DefaultSeo } from "next-seo";
+import TagManager from 'react-gtm-module'
 
 
+const CustomApp = ({Component, router, pageProps, store}) => {
+  const { query } = router;
+  useEffect(() => {
+    TagManager.initialize({ gtmId: "GTM-P5PGM3G" })
+  }, [])
 
-class CustomApp extends App {
-  render() {
-    const { Component, router, pageProps, store } = this.props;
-    const { query } = router;
-
-    if (router?.pathname.split("/")[0] === "admin") {
-      return (
-        <ThemeProvider>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      );
-    }
-
+  if (router?.pathname.split("/")[0] === "admin") {
     return (
-      <GuestThemeProvider>
-        <SearchProvider query={query}>
-          <BookingProvider booking={initBooking}>
-            <GlobalStyles />
-            <DefaultSeo
-              title={NEXTSEO_DEFAULT_TITLE}
-              description={NEXTSEO_DEFAULT_DESCRIPTION}
-              openGraph={{
-                type: "website",
-                locale: "en_US",
-                url: "https://www.url.ie/",
-                site_name: "starsofboston",
-              }}
-            />
-            <Component {...pageProps} />
-          </BookingProvider>
-        </SearchProvider>
-      </GuestThemeProvider>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     );
   }
+
+  return (
+    <GuestThemeProvider>
+      <SearchProvider query={query}>
+        <BookingProvider booking={initBooking}>
+          <GlobalStyles />
+          <DefaultSeo
+            title={NEXTSEO_DEFAULT_TITLE}
+            description={NEXTSEO_DEFAULT_DESCRIPTION}
+            openGraph={{
+              type: "website",
+              locale: "en_US",
+              url: "https://www.url.ie/",
+              site_name: "starsofboston",
+            }}
+          />
+          <Component {...pageProps} />
+        </BookingProvider>
+      </SearchProvider>
+    </GuestThemeProvider>
+  );
 }
 
 const wrapper = createWrapper(initStore, { debug: false });
