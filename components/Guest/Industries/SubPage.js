@@ -58,8 +58,8 @@ const tabList = [
   {
     name: "realestate",
     title: "Real Estate",
-    content: `<p>Having misfortune strike your home is an undeniably burdensome event to deal with. STARS of Boston has had the honor of servicing numerous families while they navigate precisely these types of difficult situations. Our accommodations are the perfect turnkey disaster housing solution allowing you room to breathe while you get your ducks in a row. We have a suite of VIP partner services available to address a wide range of assistances that you may find yourself in need of, such as childcare, pet-care, car-service, and more. </p>
-        <p>We pride ourselves on our ability to also directly service insurance adjusters, alongside policyholders. Adjusters will be pleased to find that we have a comprehensive understanding of the relevant procedures, processes, and policies, in order to make the process as efficient and uncomplicated as possible. We’ll follow all the ALE standards, so you can rest assured your policyholder is in good hands.</p>`,
+    content: `<p>STARS of Boston offers a comprehensive solution for real estate professionals in need of temporary housing options for their clients who are either relocating, renovating, or building new homes. Our properties boast spacious floor plans, premium housewares, amenities, and electronics, including fully appointed kitchens, separate dining, sleeping, and living spaces, ensuring that your clients can relax in a true home away from home.</p>
+        <p>Our commitment to superior service means that we go above and beyond to ensure that your clients are satisfied with their temporary housing experience. That's why we have streamlined our process to make it efficient, hassle-free, and cost-effective. Trust us to help you elevate your clients' experience, provide them with the comfort they deserve, and exceed their expectations.</p>`,
   },
   {
     name: "government",
