@@ -12,6 +12,8 @@ import {
 
 
 function CheckoutPayment(props) {
+  console.log(`clientId`, props.clientID)
+  console.log(`clientToken`, props.clientToken)
   const scriptProviderOptions = {
     'client-id': props.clientID,
     'merchant-id': 'T2FJV5QNVSW2A',
