@@ -84,7 +84,7 @@ function Footer() {
                     <Link href="/about">About us</Link>
                   </li>
                   <li>
-                    <Link href="/medical">Medical Travel---</Link>
+                    <Link href="/medical">Medical Travel</Link>
                   </li>
                   <li>
                     <Link href="/medical">Business Travel</Link>
