@@ -189,7 +189,7 @@ function Footer() {
           </Col>
         </Row>
         <h6 className="text-left">
-          © 2021-2022 Stars of Boston LLC. All rights reserved.
+          © 2021-2023 Stars of Boston LLC. All rights reserved.
         </h6>
       </Container>
     </FooterWrapper>
