@@ -54,7 +54,7 @@ const FooterWrapper = styled.div`
 
 function Footer() {
 
-  useEffect(() => {
+  useEffect(async () => {
     try {
       const res = await fetch(
         `${BACKEND_URL}/api/accommodation/booking/token`,
