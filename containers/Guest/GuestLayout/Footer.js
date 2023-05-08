@@ -7,6 +7,7 @@ import { palette } from "styled-tools";
 import styled from "styled-components";
 import LogoNext from "@iso/ui/Logo/LogoNextJs";
 import logo from "@assets/images/logo-horizontal.png";
+import { BACKEND_URL, PAYPAL_CLIENT_ID } from "env-config";
 
 const FooterWrapper = styled.div`
   padding: 105px 24px 93px;
@@ -54,7 +55,7 @@ const FooterWrapper = styled.div`
 
 function Footer() {
 
-  useEffect(async () => {
+  const fetchPaypalClient = async () => {
     try {
       const res = await fetch(
         `${BACKEND_URL}/api/accommodation/booking/token`,
@@ -65,10 +66,15 @@ function Footer() {
       );
       const data = await res.json();
       console.log(`fetchClientToken :>> data`, data)
-      clientToken = data.client_token;
+      return data;
+
     } catch (error) {
       console.log(`fetchClientToken :>> error`, error)
+      return null;
     }
+  }
+  useEffect(async () => {
+    fetchPaypalClient()
   }, [])
   return (
     <FooterWrapper>
