@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "@iso/ui/UI/Container/Container";
 import { Col, Row } from "antd";
 import Link from "next/link";
@@ -53,6 +53,23 @@ const FooterWrapper = styled.div`
 `;
 
 function Footer() {
+
+  useEffect(() => {
+    try {
+      const res = await fetch(
+        `${BACKEND_URL}/api/accommodation/booking/token`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const data = await res.json();
+      console.log(`fetchClientToken :>> data`, data)
+      clientToken = data.client_token;
+    } catch (error) {
+      console.log(`fetchClientToken :>> error`, error)
+    }
+  }, [])
   return (
     <FooterWrapper>
       <Container>
