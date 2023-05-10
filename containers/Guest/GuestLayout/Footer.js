@@ -73,7 +73,7 @@ function Footer() {
       return null;
     }
   }
-  useEffect(async () => {
+  useEffect(() => {
     fetchPaypalClient()
   }, [])
   return (
