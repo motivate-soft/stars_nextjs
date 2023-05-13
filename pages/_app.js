@@ -23,12 +23,13 @@ import {
 } from "./../next-seo.config";
 import { DefaultSeo } from "next-seo";
 import TagManager from 'react-gtm-module'
+import { GTM_ID } from 'env-config';
 
 
 const CustomApp = ({Component, router, pageProps, store}) => {
   const { query } = router;
   useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-P5PGM3G" })
+    TagManager.initialize({ gtmId: GTM_ID })
   }, [])
 
   if (router?.pathname.split("/")[0] === "admin") {
