@@ -10,7 +10,7 @@ import { withRouter } from "next/router";
 // import CovidBanner from "@containers/Guest/GuestLayout/CovidBanner";
 
 const TopNavWrapper = styled.div`
-.navbar {
+  .navbar {
     margin: 0 auto;
     background-color: transparent !important;
     padding: 0 !important;
@@ -43,15 +43,15 @@ const TopNavWrapper = styled.div`
         position: absolute;
         background-color: #f9f9f9;
         min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         margin-top: 10px;
       }
-      
+
       .nav-item:hover .dropdown-content {
         display: block;
       }
-      
+
       .dropdown-content .dropdown-item {
         float: none;
         color: black;
@@ -310,6 +310,10 @@ const navLinks = [
     label: "Locations",
   },
   {
+    path: "/media",
+    label: "Media",
+  },
+  {
     path: "/industries",
     label: "Industries",
     children: [
@@ -361,7 +365,7 @@ const navLinks = [
   },
 ];
 
-const TopNav = ({router}) => {
+const TopNav = ({ router }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -411,7 +415,11 @@ const TopNav = ({router}) => {
                     <div className="dropdown-content">
                       {item.children &&
                         item.children.map((sItem, sIndex) => (
-                          <a className="dropdown-item" href={sItem.path} key={sIndex}>
+                          <a
+                            className="dropdown-item"
+                            href={sItem.path}
+                            key={sIndex}
+                          >
                             {sItem.label}
                           </a>
                         ))}
